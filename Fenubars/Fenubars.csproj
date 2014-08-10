@@ -30,19 +30,40 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Buttons\NormalButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Buttons\NormalButton.Designer.cs">
+      <DependentUpon>NormalButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Fenu.Designer.cs">
+      <DependentUpon>Fenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XMLProcessing\FenuSchema.cs">
       <DependentUpon>FenuSchema.xsd</DependentUpon>
+      <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="XMLProcessing\FenuSchema.xsd">
       <SubType>Designer</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Fenu.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Fenu.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

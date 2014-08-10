@@ -84,6 +84,7 @@
     <Content Include="Resources\Icons\File\Open\OpenSelectedItemHS.png" />
     <Content Include="Resources\Icons\File\SaveAllHS.png" />
     <Content Include="Resources\Icons\File\saveHS.png" />
+    <Content Include="Resources\Icons\Logo\Syntec.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
