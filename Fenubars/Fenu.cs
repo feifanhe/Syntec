@@ -33,25 +33,38 @@ namespace Fenubars
 		
 		public Fenu( ) {
 			InitializeComponent();
+			PopulateButtons();
+
+			Console.WriteLine( this.Size );
+			Console.WriteLine( FenuButtonPanel.Size );
 		}
 
 		private Button[] ButtonsHolder;	// Container for fenubuttons
 		private void PopulateButtons( ) {
-			
-			PopulateButton<NormalButton>( 1 );
-			PopulateButton<NormalButton>( 2 );
+
+			for( int i = 3; i <5 ; i++ )
+			{
+				PopulateButton<NormalButton>( i );
+			}
 		}
 
 		private void PopulateButton<T>(int ButtonSequence) where T : NormalButton {
-			// Instantatiate new button
-			ButtonsHolder[ ButtonSequence ] = Activator.CreateInstance<T>();
+			//// Instantatiate new button
+			//ButtonsHolder[ ButtonSequence ] = (NormalButton)(new Button());//Activator.CreateInstance<T>();
 
-			// Setup button visual look
-			ButtonsHolder[ ButtonSequence ].Location = new Point( 3 + 80 * ButtonSequence, 3 );
-			ButtonsHolder[ ButtonSequence ].Size = new Size( 80, 60 );
+			//// Setup button visual look
+			//ButtonsHolder[ ButtonSequence ].Location = new Point( 3 + 80 * ButtonSequence, 3 );
+			//ButtonsHolder[ ButtonSequence ].Size = new Size( 80, 60 );
 
-			// Add button to panel
-			FenuButtonPanel.Controls.Add( ButtonsHolder[ ButtonSequence ] );
+			//// Add button to panel
+			//FenuButtonPanel.Controls.Add( ButtonsHolder[ ButtonSequence ] );
+
+			T GeneratedButton = Activator.CreateInstance<T>();
+
+			GeneratedButton.Location = new Point( 3 + 80 * ButtonSequence, 3 );
+			GeneratedButton.Size = new Size( 80, 60 );
+
+			FenuButtonPanel.Controls.Add( GeneratedButton );
 		}
 	}
 }

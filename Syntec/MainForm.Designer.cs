@@ -153,6 +153,7 @@ namespace Syntec
 			this.aboutSyntecToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.StatusStrip = new System.Windows.Forms.StatusStrip();
 			this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+			this.DockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
 			this.ToolStrip_Standard = new System.Windows.Forms.ToolStrip();
 			this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
 			this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
@@ -161,7 +162,6 @@ namespace Syntec
 			this.toolStripSeparator22 = new System.Windows.Forms.ToolStripSeparator();
 			this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
-			this.DockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
 			this.MenuStrip.SuspendLayout();
 			this.toolStripContainer1.ContentPanel.SuspendLayout();
 			this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
@@ -978,6 +978,61 @@ namespace Syntec
 			// 
 			this.toolStripContainer1.TopToolStripPanel.Controls.Add( this.ToolStrip_Standard );
 			// 
+			// DockPanel
+			// 
+			this.DockPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.DockPanel.DocumentStyle = WeifenLuo.WinFormsUI.Docking.DocumentStyle.DockingWindow;
+			this.DockPanel.Location = new System.Drawing.Point( 0, 0 );
+			this.DockPanel.Name = "DockPanel";
+			this.DockPanel.Size = new System.Drawing.Size( 1009, 458 );
+			dockPanelGradient1.EndColor = System.Drawing.SystemColors.ControlLight;
+			dockPanelGradient1.StartColor = System.Drawing.SystemColors.ControlLight;
+			autoHideStripSkin1.DockStripGradient = dockPanelGradient1;
+			tabGradient1.EndColor = System.Drawing.SystemColors.Control;
+			tabGradient1.StartColor = System.Drawing.SystemColors.Control;
+			tabGradient1.TextColor = System.Drawing.SystemColors.ControlDarkDark;
+			autoHideStripSkin1.TabGradient = tabGradient1;
+			autoHideStripSkin1.TextFont = new System.Drawing.Font( "Segoe UI", 9F );
+			dockPanelSkin1.AutoHideStripSkin = autoHideStripSkin1;
+			tabGradient2.EndColor = System.Drawing.SystemColors.ControlLightLight;
+			tabGradient2.StartColor = System.Drawing.SystemColors.ControlLightLight;
+			tabGradient2.TextColor = System.Drawing.SystemColors.ControlText;
+			dockPaneStripGradient1.ActiveTabGradient = tabGradient2;
+			dockPanelGradient2.EndColor = System.Drawing.SystemColors.Control;
+			dockPanelGradient2.StartColor = System.Drawing.SystemColors.Control;
+			dockPaneStripGradient1.DockStripGradient = dockPanelGradient2;
+			tabGradient3.EndColor = System.Drawing.SystemColors.ControlLight;
+			tabGradient3.StartColor = System.Drawing.SystemColors.ControlLight;
+			tabGradient3.TextColor = System.Drawing.SystemColors.ControlText;
+			dockPaneStripGradient1.InactiveTabGradient = tabGradient3;
+			dockPaneStripSkin1.DocumentGradient = dockPaneStripGradient1;
+			dockPaneStripSkin1.TextFont = new System.Drawing.Font( "Segoe UI", 9F );
+			tabGradient4.EndColor = System.Drawing.SystemColors.ActiveCaption;
+			tabGradient4.LinearGradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+			tabGradient4.StartColor = System.Drawing.SystemColors.GradientActiveCaption;
+			tabGradient4.TextColor = System.Drawing.SystemColors.ActiveCaptionText;
+			dockPaneStripToolWindowGradient1.ActiveCaptionGradient = tabGradient4;
+			tabGradient5.EndColor = System.Drawing.SystemColors.Control;
+			tabGradient5.StartColor = System.Drawing.SystemColors.Control;
+			tabGradient5.TextColor = System.Drawing.SystemColors.ControlText;
+			dockPaneStripToolWindowGradient1.ActiveTabGradient = tabGradient5;
+			dockPanelGradient3.EndColor = System.Drawing.SystemColors.ControlLight;
+			dockPanelGradient3.StartColor = System.Drawing.SystemColors.ControlLight;
+			dockPaneStripToolWindowGradient1.DockStripGradient = dockPanelGradient3;
+			tabGradient6.EndColor = System.Drawing.SystemColors.InactiveCaption;
+			tabGradient6.LinearGradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+			tabGradient6.StartColor = System.Drawing.SystemColors.GradientInactiveCaption;
+			tabGradient6.TextColor = System.Drawing.SystemColors.InactiveCaptionText;
+			dockPaneStripToolWindowGradient1.InactiveCaptionGradient = tabGradient6;
+			tabGradient7.EndColor = System.Drawing.Color.Transparent;
+			tabGradient7.StartColor = System.Drawing.Color.Transparent;
+			tabGradient7.TextColor = System.Drawing.SystemColors.ControlDarkDark;
+			dockPaneStripToolWindowGradient1.InactiveTabGradient = tabGradient7;
+			dockPaneStripSkin1.ToolWindowGradient = dockPaneStripToolWindowGradient1;
+			dockPanelSkin1.DockPaneStripSkin = dockPaneStripSkin1;
+			this.DockPanel.Skin = dockPanelSkin1;
+			this.DockPanel.TabIndex = 0;
+			// 
 			// ToolStrip_Standard
 			// 
 			this.ToolStrip_Standard.Dock = System.Windows.Forms.DockStyle.None;
@@ -1052,60 +1107,6 @@ namespace Syntec
 			this.toolStripButton5.Name = "toolStripButton5";
 			this.toolStripButton5.Size = new System.Drawing.Size( 23, 22 );
 			this.toolStripButton5.Text = "toolStripButton5";
-			// 
-			// DockPanel
-			// 
-			this.DockPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.DockPanel.Location = new System.Drawing.Point( 0, 0 );
-			this.DockPanel.Name = "DockPanel";
-			this.DockPanel.Size = new System.Drawing.Size( 1009, 458 );
-			dockPanelGradient1.EndColor = System.Drawing.SystemColors.ControlLight;
-			dockPanelGradient1.StartColor = System.Drawing.SystemColors.ControlLight;
-			autoHideStripSkin1.DockStripGradient = dockPanelGradient1;
-			tabGradient1.EndColor = System.Drawing.SystemColors.Control;
-			tabGradient1.StartColor = System.Drawing.SystemColors.Control;
-			tabGradient1.TextColor = System.Drawing.SystemColors.ControlDarkDark;
-			autoHideStripSkin1.TabGradient = tabGradient1;
-			autoHideStripSkin1.TextFont = new System.Drawing.Font( "Segoe UI", 9F );
-			dockPanelSkin1.AutoHideStripSkin = autoHideStripSkin1;
-			tabGradient2.EndColor = System.Drawing.SystemColors.ControlLightLight;
-			tabGradient2.StartColor = System.Drawing.SystemColors.ControlLightLight;
-			tabGradient2.TextColor = System.Drawing.SystemColors.ControlText;
-			dockPaneStripGradient1.ActiveTabGradient = tabGradient2;
-			dockPanelGradient2.EndColor = System.Drawing.SystemColors.Control;
-			dockPanelGradient2.StartColor = System.Drawing.SystemColors.Control;
-			dockPaneStripGradient1.DockStripGradient = dockPanelGradient2;
-			tabGradient3.EndColor = System.Drawing.SystemColors.ControlLight;
-			tabGradient3.StartColor = System.Drawing.SystemColors.ControlLight;
-			tabGradient3.TextColor = System.Drawing.SystemColors.ControlText;
-			dockPaneStripGradient1.InactiveTabGradient = tabGradient3;
-			dockPaneStripSkin1.DocumentGradient = dockPaneStripGradient1;
-			dockPaneStripSkin1.TextFont = new System.Drawing.Font( "Segoe UI", 9F );
-			tabGradient4.EndColor = System.Drawing.SystemColors.ActiveCaption;
-			tabGradient4.LinearGradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-			tabGradient4.StartColor = System.Drawing.SystemColors.GradientActiveCaption;
-			tabGradient4.TextColor = System.Drawing.SystemColors.ActiveCaptionText;
-			dockPaneStripToolWindowGradient1.ActiveCaptionGradient = tabGradient4;
-			tabGradient5.EndColor = System.Drawing.SystemColors.Control;
-			tabGradient5.StartColor = System.Drawing.SystemColors.Control;
-			tabGradient5.TextColor = System.Drawing.SystemColors.ControlText;
-			dockPaneStripToolWindowGradient1.ActiveTabGradient = tabGradient5;
-			dockPanelGradient3.EndColor = System.Drawing.SystemColors.ControlLight;
-			dockPanelGradient3.StartColor = System.Drawing.SystemColors.ControlLight;
-			dockPaneStripToolWindowGradient1.DockStripGradient = dockPanelGradient3;
-			tabGradient6.EndColor = System.Drawing.SystemColors.InactiveCaption;
-			tabGradient6.LinearGradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-			tabGradient6.StartColor = System.Drawing.SystemColors.GradientInactiveCaption;
-			tabGradient6.TextColor = System.Drawing.SystemColors.InactiveCaptionText;
-			dockPaneStripToolWindowGradient1.InactiveCaptionGradient = tabGradient6;
-			tabGradient7.EndColor = System.Drawing.Color.Transparent;
-			tabGradient7.StartColor = System.Drawing.Color.Transparent;
-			tabGradient7.TextColor = System.Drawing.SystemColors.ControlDarkDark;
-			dockPaneStripToolWindowGradient1.InactiveTabGradient = tabGradient7;
-			dockPaneStripSkin1.ToolWindowGradient = dockPaneStripToolWindowGradient1;
-			dockPanelSkin1.DockPaneStripSkin = dockPaneStripSkin1;
-			this.DockPanel.Skin = dockPanelSkin1;
-			this.DockPanel.TabIndex = 0;
 			// 
 			// MainForm
 			// 

@@ -9,3 +9,5 @@ C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\obj\Debug\Synt
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\obj\Debug\Syntec.pdb
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\obj\Debug\Syntec.Windows.PropertiesWindowForm.resources
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\obj\Debug\Syntec.Windows.DocumentsForm.resources
+C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\bin\Debug\Fenubars.dll
+C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\bin\Debug\Fenubars.pdb
