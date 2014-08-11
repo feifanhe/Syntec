@@ -15,6 +15,14 @@ namespace Fenubars
 			InitializeComponent();
 		}
 
+		private int Sequence = -1;
+		public void SetSequence(int Sequence) {
+			if( Sequence < 1 || Sequence > 8 )
+				throw new IndexOutOfRangeException( "Button ID sequence out of range!" );
+
+			this.Sequence = Sequence;
+		}
+
 		public override string Text {
 			get {
 				return this.titleField;

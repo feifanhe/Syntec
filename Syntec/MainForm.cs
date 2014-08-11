@@ -1,9 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
+using WeifenLuo.WinFormsUI.Docking;
+
+using Syntec.Windows;
 using System.Windows.Forms;
 
 namespace Syntec
@@ -12,6 +10,9 @@ namespace Syntec
 	{
 		public MainForm( ) {
 			InitializeComponent();
+
+			PropertiesWindowForm pwf = new PropertiesWindowForm();
+			pwf.Show( DockPanel, DockState.DockRight );
 		}
 	}
 }

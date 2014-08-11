@@ -136,12 +136,5 @@ namespace Syntec.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
-        internal static System.Drawing.Icon Syntec {
-            get {
-                object obj = ResourceManager.GetObject("Syntec", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
     }
 }
