@@ -13,6 +13,9 @@ namespace Syntec
 
 			PropertiesWindowForm pwf = new PropertiesWindowForm();
 			pwf.Show( DockPanel, DockState.DockRight );
+
+			DocumentsForm df = new DocumentsForm();
+			df.Show( DockPanel, DockState.Document );
 		}
 	}
 }

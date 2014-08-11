@@ -26,57 +26,50 @@ namespace Fenubars
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent( ) {
-			this.normalButton1 = new NormalButton();
+			this.ScrollBarPanel = new System.Windows.Forms.Panel();
+			this.FenuButtonPanel = new System.Windows.Forms.Panel();
+			this.ScrollBarPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
-			// normalButton1
+			// ScrollBarPanel
 			// 
-			this.normalButton1.action = null;
-			this.normalButton1.actions = null;
-			this.normalButton1.alignment = 0;
-			this.normalButton1.alignmentSpecified = false;
-			this.normalButton1.backcolor = null;
-			this.normalButton1.enablerule = null;
-			this.normalButton1.forecolor = null;
-			this.normalButton1.holdmode = false;
-			this.normalButton1.holdmodeSpecified = false;
-			this.normalButton1.invisibledevice = null;
-			this.normalButton1.lightoncolor = null;
-			this.normalButton1.link = null;
-			this.normalButton1.Location = new System.Drawing.Point( 290, 38 );
-			this.normalButton1.name = null;
-			this.normalButton1.Name = "normalButton1";
-			this.normalButton1.picture = null;
-			this.normalButton1.position = 0;
-			this.normalButton1.positionSpecified = false;
-			this.normalButton1.pwd = null;
-			this.normalButton1.Size = new System.Drawing.Size( 109, 82 );
-			this.normalButton1.state = State.enable;
-			this.normalButton1.stateSpecified = false;
-			this.normalButton1.TabIndex = 0;
-			this.normalButton1.title = "";
-			this.normalButton1.userlevel = 0;
-			this.normalButton1.userlevelSpecified = false;
-			this.normalButton1.UseVisualStyleBackColor = true;
-			this.normalButton1.visible = false;
-			this.normalButton1.visibleSpecified = false;
+			//this.ScrollBarPanel.AutoScroll = true;
+			this.ScrollBarPanel.HorizontalScroll.Enabled = true;
+			this.ScrollBarPanel.HorizontalScroll.Visible = true;
+
+			this.ScrollBarPanel.Controls.Add( this.FenuButtonPanel );
+			this.ScrollBarPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.ScrollBarPanel.Location = new System.Drawing.Point( 0, 0 );
+			this.ScrollBarPanel.Name = "ScrollBarPanel";
+			this.ScrollBarPanel.Size = new System.Drawing.Size( 48, 86 );
+			this.ScrollBarPanel.TabIndex = 0;
+			// 
+			// FenuButtonPanel
+			// 
+			this.FenuButtonPanel.Dock = System.Windows.Forms.DockStyle.Top;
+			this.FenuButtonPanel.Location = new System.Drawing.Point( 0, 0 );
+			this.FenuButtonPanel.AutoSize = true;
+			this.FenuButtonPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+			this.FenuButtonPanel.Name = "FenuButtonPanel";
+			this.FenuButtonPanel.Size = new System.Drawing.Size( 48, 66 );
+			this.FenuButtonPanel.TabIndex = 0;
 			// 
 			// Fenu
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF( 6F, 13F );
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add( this.normalButton1 );
+			this.Controls.Add( this.ScrollBarPanel );
 			this.Name = "Fenu";
-			this.Size = new System.Drawing.Size( 769, 152 );
+			this.Size = new System.Drawing.Size( 48, 86 );
+			this.ScrollBarPanel.ResumeLayout( false );
 			this.ResumeLayout( false );
+			this.PerformLayout();
 
 		}
 
 		#endregion
 
-		private NormalButton normalButton1;
-
-
-
+		private System.Windows.Forms.Panel ScrollBarPanel;
+		private System.Windows.Forms.Panel FenuButtonPanel;
 	}
 }

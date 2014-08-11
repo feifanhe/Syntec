@@ -2,9 +2,9 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace Syntec.Windows
 {
-	public partial class PropertiesWindowForm : DockContent
+	public partial class DocumentsForm : DockContent
 	{
-		public PropertiesWindowForm( ) {
+		public DocumentsForm( ) {
 			InitializeComponent();
 		}
 	}
