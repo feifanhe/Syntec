@@ -12,18 +12,23 @@ namespace Fenubars
 	public partial class NormalButton : Button
 	{
 		public NormalButton( ) {
-			InitializeComponent();
+			InitializeComponent();	
 		}
 
-		public override string Text {
-			get {
-				return this.titleField;
-			}
-			set {
-				this.titleField = value;
-			}
+		BindingSource dataBindingSource;
+
+		public void BindProperty(NormalButtonProperties Properties) {
+			Console.WriteLine( "*BIND: " + Properties.Title );
+
+			dataBindingSource = new BindingSource();
+			dataBindingSource.DataSource = Properties;
+
+			this.DataBindings.Add( "Text", dataBindingSource, "Title" );
+			this.Refresh();
 		}
 
-		
+		protected override void OnEnabledChanged(EventArgs e) {
+			//Properties.state = ( this.Enabled ) ? State.enable : State.disable;
+		}
 	}
 }

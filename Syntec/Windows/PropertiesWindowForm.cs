@@ -7,5 +7,9 @@ namespace Syntec.Windows
 		public PropertiesWindowForm( ) {
 			InitializeComponent();
 		}
+
+		public void SetSelectedObject(object Content) {
+			PropertiesViewer.SelectedObject = Content;
+		}
 	}
 }

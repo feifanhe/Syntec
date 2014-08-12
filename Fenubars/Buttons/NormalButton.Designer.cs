@@ -26,9 +26,23 @@ namespace Fenubars
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent( ) {
-			components = new System.ComponentModel.Container();
+			this.components = new System.ComponentModel.Container();
+			this.BindingSource = new System.Windows.Forms.BindingSource( this.components );
+			( (System.ComponentModel.ISupportInitialize)( this.BindingSource ) ).BeginInit();
+			this.SuspendLayout();
+			// 
+			// BindingSource
+			// 
+			this.BindingSource.DataSource = typeof( Fenubars.NormalButtonProperties );
+			( (System.ComponentModel.ISupportInitialize)( this.BindingSource ) ).EndInit();
+			this.ResumeLayout( false );
+
 		}
 
 		#endregion
+
+		private System.Windows.Forms.BindingSource BindingSource;
+
+
 	}
 }

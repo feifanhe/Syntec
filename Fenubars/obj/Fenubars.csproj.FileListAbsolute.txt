@@ -1,7 +1,9 @@
-C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Fenubars\bin\Debug\Fenubars.dll
-C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Fenubars\bin\Debug\Fenubars.pdb
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Fenubars\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Fenubars\obj\Debug\Fenubars.dll
-C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Fenubars\obj\Debug\Fenubars.pdb
+C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Fenubars\obj\Debug\Fenubars.NormalButton.resources
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Fenubars\obj\Debug\Fenubars.Fenu.resources
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Fenubars\obj\Debug\Fenubars.csproj.GenerateResource.Cache
+C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Fenubars\bin\Debug\Fenubars.dll
+C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Fenubars\bin\Debug\Fenubars.pdb
+C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Fenubars\bin\Debug\WeifenLuo.WinFormsUI.Docking.dll
+C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Fenubars\obj\Debug\Fenubars.dll
+C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Fenubars\obj\Debug\Fenubars.pdb

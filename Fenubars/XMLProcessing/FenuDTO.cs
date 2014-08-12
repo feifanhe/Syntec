@@ -1,263 +1,217 @@
 ﻿using System;
 using System.Xml.Serialization;
 using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace Fenubars
 {
-	[Serializable()]
-	[DesignerCategoryAttribute( "code" )]
-	[XmlType( Namespace = "Fenubars" )]
-	[XmlRoot( "root", Namespace = "Fenubars", IsNullable = false )]
-	public partial class FenubarProperties
+	[Serializable]
+	//[XmlType( Namespace = "Fenubars" )]
+	[XmlRoot( "root", Namespace = "Fenubars", IsNullable = true )]
+	public class FenusProperties
 	{
 
-		private bool noLRField;
+		private bool _NoLR;
+		private bool _NoLR_Specified;
+		private bool _Button3D;
+		private bool _Button3D_Specified;
+		private int _Level3D;
+		private bool _Level3D_Sepecified;
+		private bool _TextOverPic;
+		private bool _TextOverPic_Specified;
+		private bool _NoFunc;
+		private bool _NoFunc_Specified;
+		private bool _BigLR;
+		private bool _BigLR_Specified;
+		private int _Alignment;
+		private bool _Alignment_Specified;
+		private List<FenuProperties> _Fenus;
 
-		private bool noLRFieldSpecified;
-
-		private bool button3DField;
-
-		private bool button3DFieldSpecified;
-
-		private int level3DField;
-
-		private bool level3DFieldSpecified;
-
-		private bool textOverPicField;
-
-		private bool textOverPicFieldSpecified;
-
-		private bool noFuncField;
-
-		private bool noFuncFieldSpecified;
-
-		private bool bigLRField;
-
-		private bool bigLRFieldSpecified;
-
-		private int alignmentField;
-
-		private bool alignmentFieldSpecified;
-
-		private Fenu[] fenuField;
-
-		/// <remarks/>
 		public bool NoLR {
 			get {
-				return this.noLRField;
+				return this._NoLR;
 			}
 			set {
-				this.noLRField = value;
+				this._NoLR = value;
 			}
 		}
-
-		/// <remarks/>
-		[XmlIgnoreAttribute()]
+		[XmlIgnore]
 		public bool NoLRSpecified {
 			get {
-				return this.noLRFieldSpecified;
+				return this._NoLR_Specified;
 			}
 			set {
-				this.noLRFieldSpecified = value;
+				this._NoLR_Specified = value;
 			}
 		}
 
-		/// <remarks/>
 		public bool Button3D {
 			get {
-				return this.button3DField;
+				return this._Button3D;
 			}
 			set {
-				this.button3DField = value;
+				this._Button3D = value;
 			}
 		}
-
-		/// <remarks/>
-		[XmlIgnoreAttribute()]
+		[XmlIgnore]
 		public bool Button3DSpecified {
 			get {
-				return this.button3DFieldSpecified;
+				return this._Button3D_Specified;
 			}
 			set {
-				this.button3DFieldSpecified = value;
+				this._Button3D_Specified = value;
 			}
 		}
 
-		/// <remarks/>
 		public int Level3D {
 			get {
-				return this.level3DField;
+				return this._Level3D;
 			}
 			set {
-				this.level3DField = value;
+				this._Level3D = value;
 			}
 		}
-
-		/// <remarks/>
-		[XmlIgnoreAttribute()]
+		[XmlIgnore]
 		public bool Level3DSpecified {
 			get {
-				return this.level3DFieldSpecified;
+				return this._Level3D_Sepecified;
 			}
 			set {
-				this.level3DFieldSpecified = value;
+				this._Level3D_Sepecified = value;
 			}
 		}
 
-		/// <remarks/>
 		public bool TextOverPic {
 			get {
-				return this.textOverPicField;
+				return this._TextOverPic;
 			}
 			set {
-				this.textOverPicField = value;
+				this._TextOverPic = value;
 			}
 		}
-
-		/// <remarks/>
-		[XmlIgnoreAttribute()]
+		[XmlIgnore]
 		public bool TextOverPicSpecified {
 			get {
-				return this.textOverPicFieldSpecified;
+				return this._TextOverPic_Specified;
 			}
 			set {
-				this.textOverPicFieldSpecified = value;
+				this._TextOverPic_Specified = value;
 			}
 		}
 
-		/// <remarks/>
 		public bool NoFunc {
 			get {
-				return this.noFuncField;
+				return this._NoFunc;
 			}
 			set {
-				this.noFuncField = value;
+				this._NoFunc = value;
 			}
 		}
-
-		/// <remarks/>
-		[XmlIgnoreAttribute()]
+		[XmlIgnore]
 		public bool NoFuncSpecified {
 			get {
-				return this.noFuncFieldSpecified;
+				return this._NoFunc_Specified;
 			}
 			set {
-				this.noFuncFieldSpecified = value;
+				this._NoFunc_Specified = value;
 			}
 		}
 
-		/// <remarks/>
 		public bool BigLR {
 			get {
-				return this.bigLRField;
+				return this._BigLR;
 			}
 			set {
-				this.bigLRField = value;
+				this._BigLR = value;
 			}
 		}
-
-		/// <remarks/>
-		[XmlIgnoreAttribute()]
+		[XmlIgnore]
 		public bool BigLRSpecified {
 			get {
-				return this.bigLRFieldSpecified;
+				return this._BigLR_Specified;
 			}
 			set {
-				this.bigLRFieldSpecified = value;
+				this._BigLR_Specified = value;
 			}
 		}
 
-		/// <remarks/>
 		public int Alignment {
 			get {
-				return this.alignmentField;
+				return this._Alignment;
 			}
 			set {
-				this.alignmentField = value;
+				this._Alignment = value;
 			}
 		}
-
-		/// <remarks/>
-		[XmlIgnoreAttribute()]
+		[XmlIgnore]
 		public bool AlignmentSpecified {
 			get {
-				return this.alignmentFieldSpecified;
+				return this._Alignment_Specified;
 			}
 			set {
-				this.alignmentFieldSpecified = value;
+				this._Alignment_Specified = value;
 			}
 		}
 
-		/// <remarks/>
-		[System.Xml.Serialization.XmlElementAttribute( "fenu" )]
-		public Fenu[] fenu {
+		[XmlElement( "fenu" )]
+		public List<FenuProperties> Fenus {
 			get {
-				return this.fenuField;
+				return this._Fenus;
 			}
 			set {
-				this.fenuField = value;
+				this._Fenus = value;
 			}
 		}
 	}
 
-	[SerializableAttribute()]
-	[DesignerCategoryAttribute( "code" )]
-	[XmlTypeAttribute( Namespace = "Fenubars" )]
-	public partial class Fenu
+	[Serializable]
+	public class FenuProperties
 	{
+		//private EscapeButtonProperties _EscapeButton;
+		private List<NormalButtonProperties> _NormalButton;
+		//private NextButtonProperties _NextButton;
+		private string _Name;
 
-		private EscapeButton escapeField;
+		//public EscapeButtonProperties escape {
+		//    get {
+		//        return this._EscapeButton;
+		//    }
+		//    set {
+		//        this._EscapeButton = value;
+		//    }
+		//}
 
-		private NormalButton[] buttonField;
-
-		private NextButton nextField;
-
-		private string nameField;
-
-		/// <remarks/>
-		public EscapeButton escape {
+		[XmlElement( "button" )]
+		public List<NormalButtonProperties> NormalButton {
 			get {
-				return this.escapeField;
+				return this._NormalButton;
 			}
 			set {
-				this.escapeField = value;
+				this._NormalButton = value;
 			}
 		}
 
-		/// <remarks/>
-		[System.Xml.Serialization.XmlElementAttribute( "button" )]
-		public NormalButton[] button {
-			get {
-				return this.buttonField;
-			}
-			set {
-				this.buttonField = value;
-			}
-		}
+		//public NextButtonProperties next {
+		//    get {
+		//        return this._NextButton;
+		//    }
+		//    set {
+		//        this._NextButton = value;
+		//    }
+		//}
 
-		/// <remarks/>
-		public NextButton next {
+		[XmlAttribute( "name" )]
+		public string Name {
 			get {
-				return this.nextField;
+				return this._Name;
 			}
 			set {
-				this.nextField = value;
-			}
-		}
-
-		/// <remarks/>
-		[System.Xml.Serialization.XmlAttributeAttribute()]
-		public string name {
-			get {
-				return this.nameField;
-			}
-			set {
-				this.nameField = value;
+				this._Name = value;
 			}
 		}
 	}
 
-	[SerializableAttribute()]
+	[Serializable]
 	[XmlTypeAttribute( Namespace = "Fenubars" )]
 	public enum State
 	{
@@ -265,10 +219,9 @@ namespace Fenubars
 		disable,
 	}
 
-	[SerializableAttribute()]
-	[DesignerCategoryAttribute( "code" )]
+	[Serializable]
 	[XmlTypeAttribute( Namespace = "Fenubars" )]
-	public partial class PwdActions
+	public class PwdActions
 	{
 
 		private int valueField;
@@ -306,10 +259,9 @@ namespace Fenubars
 		}
 	}
 
-	[SerializableAttribute()]
-	[DesignerCategoryAttribute( "code" )]
+	[Serializable]
 	[XmlTypeAttribute( Namespace = "Fenubars" )]
-	public partial class ActionCollection
+	public class ActionCollection
 	{
 
 		private string actionField;
@@ -337,10 +289,9 @@ namespace Fenubars
 		}
 	}
 
-	[SerializableAttribute()]
-	[DesignerCategoryAttribute( "code" )]
+	[Serializable]
 	[XmlTypeAttribute( Namespace = "Fenubars" )]
-	public partial class EscapeButton
+	public class EscapeButtonProperties
 	{
 
 		private string titleField;
@@ -374,7 +325,7 @@ namespace Fenubars
 		}
 
 		/// <remarks/>
-		[XmlIgnoreAttribute()]
+		[XmlIgnore]
 		public bool stateSpecified {
 			get {
 				return this.stateFieldSpecified;
@@ -436,7 +387,7 @@ namespace Fenubars
 		}
 
 		/// <remarks/>
-		[System.Xml.Serialization.XmlAttributeAttribute()]
+		[XmlAttribute]
 		public string name {
 			get {
 				return this.nameField;
@@ -447,11 +398,9 @@ namespace Fenubars
 		}
 	}
 
-
-	[SerializableAttribute()]
-	[DesignerCategoryAttribute( "code" )]
+	[Serializable]
 	[XmlTypeAttribute( Namespace = "Fenubars" )]
-	public partial class NextButton
+	public class NextButtonProperties
 	{
 
 		private string titleField;
@@ -486,7 +435,7 @@ namespace Fenubars
 		}
 
 		/// <remarks/>
-		[XmlIgnoreAttribute()]
+		[XmlIgnore]
 		public bool stateSpecified {
 			get {
 				return this.stateFieldSpecified;
@@ -548,7 +497,7 @@ namespace Fenubars
 		}
 
 		/// <remarks/>
-		[XmlIgnoreAttribute()]
+		[XmlIgnore]
 		public bool userlevelSpecified {
 			get {
 				return this.userlevelFieldSpecified;
@@ -570,13 +519,12 @@ namespace Fenubars
 		}
 	}
 
-	[SerializableAttribute()]
-	[DesignerCategoryAttribute( "code" )]
+	[Serializable]
 	[XmlTypeAttribute( Namespace = "Fenubars" )]
-	public partial class NormalButton
+	public class NormalButtonProperties
 	{
 
-		private string titleField = string.Empty;
+		private string _Title = "ORIGINAL STRING";
 		private State stateField;
 		private bool stateFieldSpecified;
 		private string actionField;
@@ -602,12 +550,13 @@ namespace Fenubars
 		private string nameField;
 
 		/// <remarks/>
-		public string title {
+		[XmlElement("title" )]
+		public string Title {
 			get {
-				return this.titleField;
+				return this._Title;
 			}
 			set {
-				this.titleField = value;
+				this._Title = value;
 			}
 		}
 
@@ -622,7 +571,7 @@ namespace Fenubars
 		}
 
 		/// <remarks/>
-		[XmlIgnoreAttribute()]
+		[XmlIgnore]
 		public bool stateSpecified {
 			get {
 				return this.stateFieldSpecified;
@@ -643,7 +592,7 @@ namespace Fenubars
 		}
 
 		/// <remarks/>
-		[XmlArrayItemAttribute( "action", IsNullable = false )]
+		[XmlArrayItem( "action", IsNullable = false )]
 		public string[] actions {
 			get {
 				return this.actionsField;
@@ -684,7 +633,7 @@ namespace Fenubars
 		}
 
 		/// <remarks/>
-		[XmlIgnoreAttribute()]
+		[XmlIgnore]
 		public bool positionSpecified {
 			get {
 				return this.positionFieldSpecified;
@@ -705,7 +654,7 @@ namespace Fenubars
 		}
 
 		/// <remarks/>
-		[XmlIgnoreAttribute()]
+		[XmlIgnore]
 		public bool visibleSpecified {
 			get {
 				return this.visibleFieldSpecified;
@@ -736,7 +685,7 @@ namespace Fenubars
 		}
 
 		/// <remarks/>
-		[XmlIgnoreAttribute()]
+		[XmlIgnore]
 		public bool userlevelSpecified {
 			get {
 				return this.userlevelFieldSpecified;
@@ -787,7 +736,7 @@ namespace Fenubars
 		}
 
 		/// <remarks/>
-		[XmlIgnoreAttribute()]
+		[XmlIgnore]
 		public bool holdmodeSpecified {
 			get {
 				return this.holdmodeFieldSpecified;
@@ -808,7 +757,7 @@ namespace Fenubars
 		}
 
 		/// <remarks/>
-		[XmlIgnoreAttribute()]
+		[XmlIgnore]
 		public bool alignmentSpecified {
 			get {
 				return this.alignmentFieldSpecified;
@@ -839,7 +788,7 @@ namespace Fenubars
 		}
 
 		/// <remarks/>
-		[XmlAttributeAttribute()]
+		[XmlAttribute]
 		public string name {
 			get {
 				return this.nameField;

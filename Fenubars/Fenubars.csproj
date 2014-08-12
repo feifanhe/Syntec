@@ -33,6 +33,10 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=2.9.0.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Buttons\NormalButton.cs">
@@ -47,19 +51,24 @@
     <Compile Include="Fenu.Designer.cs">
       <DependentUpon>Fenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainHandler.cs" />
+    <Compile Include="Loader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="XMLProcessing\FenuSchema.cs">
-      <DependentUpon>FenuSchema.xsd</DependentUpon>
-      <SubType>UserControl</SubType>
+    <Compile Include="XMLProcessing\FenuDTO.cs">
+      <DependentUpon>FenuDTO.xsd</DependentUpon>
     </Compile>
+    <Compile Include="XMLProcessing\ObjectXMLSerializer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="XMLProcessing\FenuSchema.xsd">
+    <None Include="Properties\DataSources\NormalButtonProperties.datasource" />
+    <None Include="XMLProcessing\FenuDTO.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Buttons\NormalButton.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>NormalButton.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Fenu.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Fenu.cs</DependentUpon>
