@@ -58,6 +58,25 @@
       <holdmode>false</holdmode>
       <invisibledevice>invisibledevice2</invisibledevice>
     </button>
+    <button name="buttonfenu1">
+      <title>fenu1_button2</title>
+      <state>disable</state>
+      <action>action2</action>
+      <actions>
+        <action>action7</action>
+        <action>action8</action>
+        <action>action9</action>
+      </actions>
+      <link>link2</link>
+      <enablerule>enablerule2</enablerule>
+      <visible>false</visible>
+      <picture>picture2</picture>
+      <forecolor>forecolor2</forecolor>
+      <backcolor>backcolor2</backcolor>
+      <lightoncolor>lightoncolor2</lightoncolor>
+      <holdmode>false</holdmode>
+      <invisibledevice>invisibledevice2</invisibledevice>
+    </button>
     <next name="nextfenu2">
       <title>title1</title>
       <state>enable</state>

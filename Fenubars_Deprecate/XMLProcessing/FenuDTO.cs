@@ -7,7 +7,7 @@ namespace Fenubars
 {
 	[Serializable]
 	//[XmlType( Namespace = "Fenubars" )]
-	[XmlRoot( "root", Namespace = "Fenubars", IsNullable = true )]
+	[XmlRoot( ElementName = "root", IsNullable = true )]
 	public class FenusProperties
 	{
 
@@ -212,7 +212,7 @@ namespace Fenubars
 	}
 
 	[Serializable]
-	[XmlTypeAttribute( Namespace = "Fenubars" )]
+	//[XmlTypeAttribute( Namespace = "Fenubars" )]
 	public enum State
 	{
 		enable,
@@ -220,7 +220,7 @@ namespace Fenubars
 	}
 
 	[Serializable]
-	[XmlTypeAttribute( Namespace = "Fenubars" )]
+	//[XmlTypeAttribute( Namespace = "Fenubars" )]
 	public class PwdActions
 	{
 
@@ -260,7 +260,7 @@ namespace Fenubars
 	}
 
 	[Serializable]
-	[XmlTypeAttribute( Namespace = "Fenubars" )]
+	//[XmlTypeAttribute( Namespace = "Fenubars" )]
 	public class ActionCollection
 	{
 
@@ -290,7 +290,7 @@ namespace Fenubars
 	}
 
 	[Serializable]
-	[XmlTypeAttribute( Namespace = "Fenubars" )]
+	//[XmlTypeAttribute( Namespace = "Fenubars" )]
 	public class EscapeButtonProperties
 	{
 
@@ -399,7 +399,7 @@ namespace Fenubars
 	}
 
 	[Serializable]
-	[XmlTypeAttribute( Namespace = "Fenubars" )]
+	//[XmlTypeAttribute( Namespace = "Fenubars" )]
 	public class NextButtonProperties
 	{
 
@@ -520,12 +520,12 @@ namespace Fenubars
 	}
 
 	[Serializable]
-	[XmlTypeAttribute( Namespace = "Fenubars" )]
+	//[XmlTypeAttribute( Namespace = "Fenubars" )]
 	public class NormalButtonProperties
 	{
 
 		private string _Title = "ORIGINAL STRING";
-		private State stateField;
+		private State stateField = State.disable;
 		private bool stateFieldSpecified;
 		private string actionField;
 		private string[] actionsField;

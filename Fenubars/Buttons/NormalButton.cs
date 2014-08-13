@@ -1,34 +1,40 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
-using System.Windows.Forms;
+using Fenubars.XML;
 
-namespace Fenubars
+namespace Fenubars.Buttons
 {
-	[ToolboxItem( true )]
-	public partial class NormalButton : Button
+	public partial class NormalButton : System.Windows.Forms.Button
 	{
 		public NormalButton( ) {
-			InitializeComponent();	
+			InitializeComponent();
 		}
 
-		BindingSource dataBindingSource;
+		public NormalButton(IContainer container) {
+			container.Add( this );
 
-		public void BindProperty(NormalButtonProperties Properties) {
-			Console.WriteLine( "*BIND: " + Properties.Title );
-
-			dataBindingSource = new BindingSource();
-			dataBindingSource.DataSource = Properties;
-
-			this.DataBindings.Add( "Text", dataBindingSource, "Title" );
-			this.Refresh();
+			InitializeComponent();
 		}
 
-		protected override void OnEnabledChanged(EventArgs e) {
-			//Properties.state = ( this.Enabled ) ? State.enable : State.disable;
+		private NormalButtonState _Properties;
+		public NormalButtonState Properties {
+			get {
+				return _Properties;
+			}
+			set {
+				_Properties = value;
+			}
+		}
+
+		public void Import(NormalButtonState Properties) {
+			this.Properties = Properties;
+		}
+
+		public NormalButtonState Export( ) {
+			return Properties;
 		}
 	}
 }

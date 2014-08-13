@@ -26,12 +26,15 @@ namespace Fenubars
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent( ) {
+			this.components = new System.ComponentModel.Container();
 			this.FenuButtonPanel = new System.Windows.Forms.Panel();
 			this.SplitContainer = new System.Windows.Forms.SplitContainer();
 			this.FenuName = new System.Windows.Forms.Label();
+			this.FenuPropertiesBindingSource = new System.Windows.Forms.BindingSource( this.components );
 			this.SplitContainer.Panel1.SuspendLayout();
 			this.SplitContainer.Panel2.SuspendLayout();
 			this.SplitContainer.SuspendLayout();
+			( (System.ComponentModel.ISupportInitialize)( this.FenuPropertiesBindingSource ) ).BeginInit();
 			this.SuspendLayout();
 			// 
 			// FenuButtonPanel
@@ -70,6 +73,7 @@ namespace Fenubars
 			// FenuName
 			// 
 			this.FenuName.AutoSize = true;
+			this.FenuName.DataBindings.Add( new System.Windows.Forms.Binding( "Text", this.FenuPropertiesBindingSource, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged ) );
 			this.FenuName.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.FenuName.Location = new System.Drawing.Point( 0, 0 );
 			this.FenuName.Name = "FenuName";
@@ -77,6 +81,10 @@ namespace Fenubars
 			this.FenuName.TabIndex = 0;
 			this.FenuName.Text = "DEFAULT TITLE";
 			this.FenuName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// FenuPropertiesBindingSource
+			// 
+			this.FenuPropertiesBindingSource.DataSource = typeof( Fenubars.FenuProperties );
 			// 
 			// Fenu
 			// 
@@ -90,6 +98,7 @@ namespace Fenubars
 			this.SplitContainer.Panel2.ResumeLayout( false );
 			this.SplitContainer.Panel2.PerformLayout();
 			this.SplitContainer.ResumeLayout( false );
+			( (System.ComponentModel.ISupportInitialize)( this.FenuPropertiesBindingSource ) ).EndInit();
 			this.ResumeLayout( false );
 
 		}
@@ -99,5 +108,6 @@ namespace Fenubars
 		private System.Windows.Forms.Panel FenuButtonPanel;
 		private System.Windows.Forms.SplitContainer SplitContainer;
 		private System.Windows.Forms.Label FenuName;
+		private System.Windows.Forms.BindingSource FenuPropertiesBindingSource;
 	}
 }

@@ -1,4 +1,4 @@
-namespace Fenubars
+namespace Fenubars.Buttons
 {
 	partial class NormalButton
 	{
@@ -7,7 +7,7 @@ namespace Fenubars
 		/// </summary>
 		private System.ComponentModel.IContainer components = null;
 
-		/// <summary>
+		/// <summary> 
 		/// Clean up any resources being used.
 		/// </summary>
 		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -22,27 +22,13 @@ namespace Fenubars
 		#region Component Designer generated code
 
 		/// <summary>
-		/// Required method for Designer support - do not modify 
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent( ) {
-			this.components = new System.ComponentModel.Container();
-			this.BindingSource = new System.Windows.Forms.BindingSource( this.components );
-			( (System.ComponentModel.ISupportInitialize)( this.BindingSource ) ).BeginInit();
-			this.SuspendLayout();
-			// 
-			// BindingSource
-			// 
-			this.BindingSource.DataSource = typeof( Fenubars.NormalButtonProperties );
-			( (System.ComponentModel.ISupportInitialize)( this.BindingSource ) ).EndInit();
-			this.ResumeLayout( false );
-
+			components = new System.ComponentModel.Container();
 		}
 
 		#endregion
-
-		private System.Windows.Forms.BindingSource BindingSource;
-
-
 	}
 }

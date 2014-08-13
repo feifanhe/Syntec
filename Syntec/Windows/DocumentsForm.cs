@@ -4,15 +4,18 @@ using WeifenLuo.WinFormsUI.Docking;
 using Fenubars;
 using System.Xml.Serialization;
 using System;
+using System.Windows.Forms;
 
 namespace Syntec.Windows
 {
 	public partial class DocumentsForm : DockContent
 	{
+		public Loader fenuloader;
+		
 		public DocumentsForm( ) {
 			InitializeComponent();
 
-			Loader fenuloader = new Loader( this);
+			fenuloader = new Loader( this);
 
 			//List<Fenu> fenulist = new List<Fenu>();
 
@@ -56,6 +59,8 @@ namespace Syntec.Windows
 			//    sw.Flush();
 			//}
 		}
+
+		
 
 		//public void Save(string FileName) {
 		//    using( var writer = new System.IO.StreamWriter( FileName ) )
