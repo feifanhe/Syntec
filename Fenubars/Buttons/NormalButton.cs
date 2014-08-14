@@ -18,23 +18,5 @@ namespace Fenubars.Buttons
 
 			InitializeComponent();
 		}
-
-		private NormalButtonState _Properties;
-		public NormalButtonState Properties {
-			get {
-				return _Properties;
-			}
-			set {
-				_Properties = value;
-			}
-		}
-
-		public void Import(NormalButtonState Properties) {
-			this.Properties = Properties;
-		}
-
-		public NormalButtonState Export( ) {
-			return Properties;
-		}
 	}
 }

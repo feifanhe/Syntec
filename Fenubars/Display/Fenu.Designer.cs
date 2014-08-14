@@ -26,12 +26,12 @@ namespace Fenubars.Display
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent( ) {
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager( typeof( Fenu ) );
 			this.FormSplitContainer = new System.Windows.Forms.SplitContainer();
 			this.TitleBarSplitterContainer = new System.Windows.Forms.SplitContainer();
 			this.FenuTitle = new System.Windows.Forms.Label();
-			this.PanelScrollBar = new System.Windows.Forms.HScrollBar();
-			this.ButtonPanel = new System.Windows.Forms.Panel();
 			this.CloseFenu = new System.Windows.Forms.Panel();
+			this.ButtonPanel = new System.Windows.Forms.Panel();
 			this.FormSplitContainer.Panel1.SuspendLayout();
 			this.FormSplitContainer.SuspendLayout();
 			this.TitleBarSplitterContainer.Panel1.SuspendLayout();
@@ -94,12 +94,19 @@ namespace Fenubars.Display
 			this.FenuTitle.Text = "NAME - PATH";
 			this.FenuTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
-			// PanelScrollBar
+			// CloseFenu
 			// 
-			this.PanelScrollBar.Location = new System.Drawing.Point( 0, 0 );
-			this.PanelScrollBar.Name = "PanelScrollBar";
-			this.PanelScrollBar.Size = new System.Drawing.Size( 80, 17 );
-			this.PanelScrollBar.TabIndex = 0;
+			this.CloseFenu.BackgroundImage = ( (System.Drawing.Image)( resources.GetObject( "CloseFenu.BackgroundImage" ) ) );
+			this.CloseFenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+			this.CloseFenu.Dock = System.Windows.Forms.DockStyle.Right;
+			this.CloseFenu.Location = new System.Drawing.Point( 17, 0 );
+			this.CloseFenu.Name = "CloseFenu";
+			this.CloseFenu.RightToLeft = System.Windows.Forms.RightToLeft.No;
+			this.CloseFenu.Size = new System.Drawing.Size( 20, 22 );
+			this.CloseFenu.TabIndex = 0;
+			this.CloseFenu.MouseLeave += new System.EventHandler( this.CloseFenu_MouseLeave );
+			this.CloseFenu.Click += new System.EventHandler( this.CloseFenu_Click );
+			this.CloseFenu.MouseEnter += new System.EventHandler( this.CloseFenu_MouseEnter );
 			// 
 			// ButtonPanel
 			// 
@@ -107,18 +114,6 @@ namespace Fenubars.Display
 			this.ButtonPanel.Name = "ButtonPanel";
 			this.ButtonPanel.Size = new System.Drawing.Size( 200, 100 );
 			this.ButtonPanel.TabIndex = 0;
-			// 
-			// CloseFenu
-			// 
-			this.CloseFenu.BackgroundImage = global::Fenubars.Properties.Resources.Close_Fenu;
-			this.CloseFenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-			this.CloseFenu.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.CloseFenu.Location = new System.Drawing.Point( 0, 0 );
-			this.CloseFenu.Name = "CloseFenu";
-			this.CloseFenu.Size = new System.Drawing.Size( 37, 22 );
-			this.CloseFenu.TabIndex = 0;
-			this.CloseFenu.MouseLeave += new System.EventHandler( this.CloseFenu_MouseLeave );
-			this.CloseFenu.MouseEnter += new System.EventHandler( this.CloseFenu_MouseEnter );
 			// 
 			// Fenu
 			// 
@@ -141,7 +136,6 @@ namespace Fenubars.Display
 		private System.Windows.Forms.SplitContainer FormSplitContainer;
 		private System.Windows.Forms.SplitContainer TitleBarSplitterContainer;
 		private System.Windows.Forms.Label FenuTitle;
-		private System.Windows.Forms.HScrollBar PanelScrollBar;
 		private System.Windows.Forms.Panel ButtonPanel;
 		private System.Windows.Forms.Panel CloseFenu;
 	}
