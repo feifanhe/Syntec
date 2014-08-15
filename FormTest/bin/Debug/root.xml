@@ -40,8 +40,8 @@
       </pwd>
     </escape>
     <button name="buttonfenu1">
-      <title>fenu1_button1</title>
       <state>disable</state>
+      <position>2</position>
       <action>action2</action>
       <actions>
         <action>action7</action>
@@ -60,6 +60,7 @@
     </button>
     <button name="buttonfenu1">
       <title>fenu1_button2</title>
+      <position>4</position>
       <state>disable</state>
       <action>action2</action>
       <actions>

@@ -61,6 +61,7 @@ namespace FormTest
 			this.Controls.Add( this.splitContainer1 );
 			this.Name = "MainForm";
 			this.Text = "Form Test";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler( this.MainForm_FormClosing );
 			this.splitContainer1.Panel2.ResumeLayout( false );
 			this.splitContainer1.ResumeLayout( false );
 			this.ResumeLayout( false );

@@ -93,6 +93,7 @@ namespace Fenubars.Display
 			this.FenuTitle.TabIndex = 0;
 			this.FenuTitle.Text = "NAME - PATH";
 			this.FenuTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.FenuTitle.Click += new System.EventHandler( this.FenuTitle_Click );
 			// 
 			// CloseFenu
 			// 

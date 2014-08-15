@@ -9,80 +9,33 @@ using Fenubars.Display;
 using Fenubars.XML;
 using System.Xml.Serialization;
 using System.IO;
+using Fenubars;
 
 namespace FormTest
 {
 	public partial class MainForm : Form
 	{
-		FenuState fs;
+		Handler loader;
 
 		public MainForm( ) {
 			InitializeComponent();
 
-			// Configure serializer namespaces, remove the xml:ns definition
-			XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
-			ns.Add( "", "" );
-
-			// Initiate serializer
-			XmlSerializer ser = new XmlSerializer( typeof( FenuState ), "" );
-
-#if DIRECT
-			// Generate state object
-			fs = new FenuState();
-
-			// Generate fenu contents
-			FenuContent fc1 = new FenuContent();
-			fc1.Name = "FENU1";
-			fs.IncludedFenus.Add( fc1 );
-			FenuContent fc2 = new FenuContent();
-			fc2.Name = "FENU2";
-			fs.IncludedFenus.Add( fc2 );
-
-			// Apply to fenu
-			Fenu fenu1 = new Fenu();
-			fenu1.AssignFenuContent( fs.IncludedFenus[ 0 ] );
-			fenu1.PopulateButtons();
-			fenu1.Dock = DockStyle.Top;
-			Fenu fenu2 = new Fenu();
-			fenu2.AssignFenuContent( fs.IncludedFenus[ 1 ] );
-			fenu2.PopulateButtons();
-			//fenu2.Location = new Point( 0, 150 );
-			fenu2.Dock = DockStyle.Top;
-
-			//fc.NB.ParseBackColor = SystemColors.Control;
-			//fc.NB.VisibleSpecified = false;
-
-			// Add controls
-			this.Controls.Add( fenu1 );
-			this.Controls.Add( fenu2 );
-#else
-			//Deserialize to object
-			using( StreamReader reader = new StreamReader( "CncFenu.xml" ) )
+			try
 			{
-				fs = (FenuState)ser.Deserialize( reader );
+				loader = new Handler( "CncFenu.xml" );
+				loader.Canvas = this.splitContainer1.Panel1.Controls;
+				loader.PropertyViewer = propertyGrid1;
+				loader.LoadFenu( "main" );
 			}
-
-			foreach( FenuContent fc in fs.IncludedFenus )
+			catch( FileLoadException )
 			{
-				Console.WriteLine( fc.Name );
-				Fenu DummyFenu = new Fenu();
-				DummyFenu.AssignFenuContent( fc );
-				DummyFenu.PopulateButtons();
-				DummyFenu.Dock = DockStyle.Top;
-				DummyFenu.DataAvailable += new EventHandler( FocusedObjectAvailable );
-
-				this.splitContainer1.Panel1.Controls.Add( DummyFenu );
+				MessageBox.Show( "Cannot load file." );
 			}
-#endif
-
-			//using( StreamWriter writer = new StreamWriter( "test.xml" ) )
-			//{
-			//    ser.Serialize( writer, fs, ns );
-			//}
 		}
 
-		private void FocusedObjectAvailable(object sender, EventArgs e) {
-			propertyGrid1.SelectedObject = sender;
+		private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			//loader.Save( "output.xml" );
 		}
 	}
 }

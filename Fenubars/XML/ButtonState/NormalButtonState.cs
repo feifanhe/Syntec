@@ -11,6 +11,22 @@ namespace Fenubars.XML
 	{
 		#region XML readout storage
 
+		#region Name
+
+		private string _Name;
+		[XmlAttribute( "name" )]
+		public string Name {
+			get {
+				return _Name;
+			}
+			set {
+				_Name = value;
+				InvokePropertyChanged( "Name" );
+			}
+		}
+
+		#endregion
+
 		private int _Position;
 		[XmlElement( "position" )]
 		public int Position {
@@ -23,7 +39,7 @@ namespace Fenubars.XML
 			}
 		}
 
-		private string _Title = "TITLE FROM NBS";
+		private string _Title;
 		[XmlElement( "title" )]
 		public string Title {
 			get {
@@ -57,7 +73,7 @@ namespace Fenubars.XML
 		}
 
 		private string _Picture;
-		[XmlElement("picture")]
+		[XmlElement( "picture" )]
 		public string Picture {
 			get {
 				return _Picture;
@@ -68,7 +84,7 @@ namespace Fenubars.XML
 		}
 
 		private int _UserLevel;
-		[XmlElement("userlevel")]
+		[XmlElement( "userlevel" )]
 		public int UserLevel {
 			get {
 				return _UserLevel;
@@ -79,7 +95,7 @@ namespace Fenubars.XML
 		}
 
 		private string _ForeColor;
-		[XmlElement("forecolor")]
+		[XmlElement( "forecolor" )]
 		public string ForeColor {
 			get {
 				return _ForeColor;
@@ -92,8 +108,8 @@ namespace Fenubars.XML
 		#region BackColor
 
 		private string _BackColor = "240,240,240";
-		[XmlElement("backcolor")]
-		[DefaultValue("240,240,240")]
+		[XmlElement( "backcolor" )]
+		[DefaultValue( "240,240,240" )]
 		public string BackColor {
 			get {
 				return _BackColor;
@@ -107,9 +123,9 @@ namespace Fenubars.XML
 		public Color ParseBackColor {
 			get {
 				string[] RGB = _BackColor.Split( ',' );
-				return Color.FromArgb( int.Parse(RGB[ 0 ]), 
-										int.Parse(RGB[ 1 ]), 
-										int.Parse(RGB[ 2 ]) );
+				return Color.FromArgb( int.Parse( RGB[ 0 ] ),
+										int.Parse( RGB[ 1 ] ),
+										int.Parse( RGB[ 2 ] ) );
 			}
 			set {
 				Color color = value;
@@ -123,8 +139,8 @@ namespace Fenubars.XML
 		#region State
 
 		private ButtonState _State = ButtonState.disable;
-		[XmlElement("state")]
-		[DefaultValue(ButtonState.disable)]
+		[XmlElement( "state" )]
+		[DefaultValue( ButtonState.disable )]
 		public ButtonState State {
 			get {
 				return _State;
@@ -151,8 +167,8 @@ namespace Fenubars.XML
 		#region Visible
 
 		private bool _Visible;
-		[XmlElement("visible")]
-		[DefaultValue(false)]
+		[XmlElement( "visible" )]
+		[DefaultValue( false )]
 		public bool Visible {
 			get {
 				return _Visible;
@@ -209,7 +225,7 @@ namespace Fenubars.XML
 		}
 
 		private PasswordActions _PasswordActions;
-		[XmlElement("pwd")]
+		[XmlElement( "pwd" )]
 		public PasswordActions PasswordActions {
 			get {
 				return _PasswordActions;

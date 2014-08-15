@@ -7,7 +7,24 @@ namespace Fenubars.XML
 	{
 		#region XML readout storage
 
+		#region Name
+
+		private string _Name;
+		[XmlAttribute( "name" )]
+		public string Name {
+			get {
+				return _Name;
+			}
+			set {
+				_Name = value;
+				InvokePropertyChanged( "Name" );
+			}
+		}
+
+		#endregion
+
 		private string _Title = ">>";
+		[ReadOnly(true)]
 		[XmlIgnore]
 		public string Title {
 			get {

@@ -8,7 +8,24 @@ namespace Fenubars.XML
 	{
 		#region XML readout storage
 
+		#region Name
+
+		private string _Name;
+		[XmlAttribute( "name" )]
+		public string Name {
+			get {
+				return _Name;
+			}
+			set {
+				_Name = value;
+				InvokePropertyChanged( "Name" );
+			}
+		}
+
+		#endregion
+
 		private string _Title = "<<";
+		[ReadOnly(true)]
 		[XmlIgnore]
 		public string Title {
 			get {
@@ -64,6 +81,17 @@ namespace Fenubars.XML
 			set {
 				_State = ( value ) ? ButtonState.enable : ButtonState.disable;
 				InvokePropertyChanged( "State" );
+			}
+		}
+
+		[XmlIgnore]
+		public System.Windows.Forms.FlatStyle ParseStyle {
+			get {
+				return ( _State == ButtonState.enable ) ? System.Windows.Forms.FlatStyle.Standard :
+															System.Windows.Forms.FlatStyle.Flat;
+			}
+			set {
+				_State = ( value == System.Windows.Forms.FlatStyle.Standard ) ? ButtonState.enable : ButtonState.disable;
 			}
 		}
 

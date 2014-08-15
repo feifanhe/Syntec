@@ -4,19 +4,16 @@ using System.Drawing;
 
 namespace Fenubars.Buttons
 {
-	public partial class NormalButton : Button
+	public partial class NextButton : Button
 	{
-		public NormalButton(int Index ) {
+		public NextButton(NextButtonState State) {
 			InitializeComponent();
-			
+
 			// Basic setup
-			this.Name = "F" + Index.ToString();
+			this.Name = "NEXT_BTN";
 			this.Text = this.Name;
 			this.Size = new Size( 80, 60 );
-			this.Location = new Point( 3 + 83 * Index, 3 );
-		}
 
-		public void SetState(NormalButtonState State) {
 			// Bindings
 			this.DataBindings.Add( "Name", State, "Name" );
 			this.DataBindings.Add( "Text", State, "Title" );
@@ -26,7 +23,9 @@ namespace Fenubars.Buttons
 			State.ParseState = true;
 		}
 
-		public void PaintComponent(System.Windows.Forms.Control.ControlCollection Canvas) {
+		public void PaintComponent(System.Windows.Forms.Control.ControlCollection Canvas,
+									Point Location) {
+			this.Location = Location;
 			Canvas.Add( this );
 		}
 	}

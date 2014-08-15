@@ -2,15 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Xml.Serialization;
+using System.ComponentModel;
 
 namespace Fenubars.XML
 {
-	[XmlRoot("root")]
+	[XmlRoot( "root" )]
 	public class FenuState
 	{
 		#region Fenu global states
 
 		private bool _Button3D;
+		[Category( "Global" )]
 		public bool Button3D {
 			get {
 				return _Button3D;
@@ -21,6 +23,7 @@ namespace Fenubars.XML
 		}
 
 		private int _Level3D;
+		[Category( "Global" )]
 		public int Level3D {
 			get {
 				return _Level3D;
@@ -31,6 +34,7 @@ namespace Fenubars.XML
 		}
 
 		private bool _NoFunc;
+		[Category( "Global" )]
 		public bool NoFunc {
 			get {
 				return _NoFunc;
@@ -41,6 +45,7 @@ namespace Fenubars.XML
 		}
 
 		private bool _NoLR;
+		[Category( "Global" )]
 		public bool NoLR {
 			get {
 				return _NoLR;
@@ -51,6 +56,7 @@ namespace Fenubars.XML
 		}
 
 		private bool _BigLR;
+		[Category( "Global" )]
 		public bool BigLR {
 			get {
 				return _BigLR;
@@ -61,6 +67,7 @@ namespace Fenubars.XML
 		}
 
 		private bool _TextOverPic;
+		[Category( "Global" )]
 		public bool TextOverPic {
 			get {
 				return _TextOverPic;
@@ -71,6 +78,8 @@ namespace Fenubars.XML
 		}
 
 		private string _Title;
+		[Category( "Global" )]
+		[ReadOnly( true )]
 		public string Title {
 			get {
 				return _Title;
@@ -81,6 +90,7 @@ namespace Fenubars.XML
 		}
 
 		private int _Alignment;
+		[Category( "Global" )]
 		public int Alignment {
 			get {
 				return _Alignment;

@@ -2,7 +2,7 @@
 <!--Created by 'eHMI'version2.2.27-->
 <root>
   <Level3D>4</Level3D>
-  <NoLR>True</NoLR>
+  <NoLR>true</NoLR>
   <LastOpenState focus="2">
     <fenu name="main" />
     <fenu name="TEST2" />
@@ -36,7 +36,7 @@
       <forecolor>128,128,255</forecolor>
       <backcolor>64,128,128</backcolor>
       <LightOnColor>255,0,128</LightOnColor>
-      <HoldMode>True</HoldMode>
+      <HoldMode>true</HoldMode>
       <Alignment>3</Alignment>
       <EnableRule>(R100.0eq1)</EnableRule>
       <InvisibleDevice>R100.4</InvisibleDevice>
@@ -79,7 +79,7 @@
       <forecolor>64,0,64</forecolor>
       <backcolor>128,128,128</backcolor>
       <LightOnColor>0,128,0</LightOnColor>
-      <HoldMode>True</HoldMode>
+      <HoldMode>true</HoldMode>
       <Alignment>2</Alignment>
       <EnableRule>(R3eq2)</EnableRule>
       <InvisibleDevice>R2.30</InvisibleDevice>
