@@ -8,12 +8,7 @@
   <TextOverPic>true</TextOverPic>
   <Alignment>1</Alignment>
   <fenu name="fenu1">
-    <escape name="escapefenu1">
-      <state>enable</state>
-      <pwd>
-        <Password>0</Password>
-      </pwd>
-    </escape>
+    <escape name="escapefenu1" />
     <button name="F2">
       <position>2</position>
     </button>
@@ -21,24 +16,13 @@
       <position>4</position>
       <title>BUTTON4</title>
     </button>
-    <next name="nextfenu2">
-      <userlevel>1</userlevel>
-      <state>enable</state>
-    </next>
+    <next name="nextfenu2" />
   </fenu>
   <fenu name="fenu2">
-    <escape name="escapefenu2">
-      <state>enable</state>
-      <pwd>
-        <Password>0</Password>
-      </pwd>
-    </escape>
+    <escape name="escapefenu2" />
     <button name="buttonfenu2">
       <title>fenu2_button1</title>
     </button>
-    <next name="nextfenu2">
-      <userlevel>1</userlevel>
-      <state>enable</state>
-    </next>
+    <next name="nextfenu2" />
   </fenu>
 </root>

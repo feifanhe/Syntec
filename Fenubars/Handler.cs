@@ -9,6 +9,7 @@ using System;
 using Fenubars.Buttons;
 using Azuria.Common.Controls;
 using System.Reflection;
+using System.ComponentModel;
 
 namespace Fenubars
 {
@@ -122,16 +123,26 @@ namespace Fenubars
 		private void FocusedObjectAvailable(object sender,
 											Fenubars.Display.ObjectDetailEventArgs e) {
 			if( e.Type == typeof( Fenu ) )
+			{
 				PropertyViewer.SelectedObject = CurrentFenuState;
-			else if( e.Type == typeof( EscapeButton ) )
-				PropertyViewer.SelectedObject = e.Escape;
-			else if( e.Type == typeof( NormalButton ) )
-				PropertyViewer.SelectedObject = e.Normal;
-			else if( e.Type == typeof( NextButton ) )
-				PropertyViewer.SelectedObject = e.Next;
+				PropertyViewer.HiddenAttributes = new AttributeCollection( new Attribute[] { } );
+				PropertyViewer.BrowsableProperties = new string[] { };
+				PropertyViewer.Refresh();
+			}
+			else
+			{
+				if( e.Type == typeof( EscapeButton ) )
+					PropertyViewer.SelectedObject = e.Escape;
+				else if( e.Type == typeof( NormalButton ) )
+					PropertyViewer.SelectedObject = e.Normal;
+				else if( e.Type == typeof( NextButton ) )
+					PropertyViewer.SelectedObject = e.Next;
 
-			PropertyViewer.BrowsableProperties = SelectedProperties( e.Type );
-			PropertyViewer.Refresh();
+				PropertyViewer.HiddenAttributes = new AttributeCollection( new Attribute[] { new CategoryAttribute( "Fenu Button" ) } );
+				PropertyViewer.BrowsableProperties = SelectedProperties( e.Type );
+				PropertyViewer.Refresh();
+			}
+			//PropertyViewer.Refresh();
 			//Console.WriteLine( typeof( NormalButton ).Name );
 			//Console.WriteLine(ButtonTypes.NormalButton.ToString());
 		}
@@ -139,22 +150,28 @@ namespace Fenubars
 		private string[] SelectedProperties(Type DesiredType) {
 			List<string> Properties = new List<string>();
 
+			ButtonTypes Template = (ButtonTypes)Enum.Parse(typeof(ButtonTypes), DesiredType.Name);
 			foreach( PropertyInfo PI in typeof( FenuButtonState ).GetProperties() )
 			{
 				if( PI.IsDefined( typeof( ButtonTypeAttribute ), false ) )
 				{
-					string Value =( PI.GetCustomAttributes(typeof(ButtonTypeAttribute), false)[0] as ButtonTypeAttribute).Type.ToString();
-					if( Value == DesiredType.Name )
+					ButtonTypes Value =( PI.GetCustomAttributes(typeof(ButtonTypeAttribute), false)[0] as ButtonTypeAttribute).Type;
+					if( ( Value & Template)== Template  )
 					{
-						MessageBox.Show( Value + " IS " + DesiredType.Name , PI.Name);
-						Properties.Add( Value );
+						//MessageBox.Show( Value + " IS " + DesiredType.Name , PI.Name);
+						Properties.Add( PI.Name );
 					}
 					else
 					{
-						MessageBox.Show( Value + " IS NOT " + DesiredType.Name, PI.Name );
+						//MessageBox.Show( Value + " IS NOT " + DesiredType.Name, PI.Name );
 					}
 				}
 			}
+
+			Console.WriteLine( "* SELECTED PROPERTIES: " );
+			foreach( string str in Properties )
+				Console.WriteLine( str );
+			Console.WriteLine( "*" );
 
 			return Properties.ToArray();
 		}

@@ -13,6 +13,8 @@ namespace Fenubars.XML
 
 		private string _Name;
 		[XmlAttribute( "name" )]
+		[Category( "Fenu Button" )]
+		[ReadOnly(true)]
 		[ButtonType( ButtonTypes.EscapeButton | ButtonTypes.NormalButton | ButtonTypes.NextButton )]
 		public string Name {
 			get {
@@ -40,6 +42,7 @@ namespace Fenubars.XML
 
 		private int _Position;
 		[XmlElement( "position" )]
+		[Category( "Fenu Button" )]
 		[ButtonType( ButtonTypes.NormalButton )]
 		public int Position {
 			get {
@@ -52,6 +55,7 @@ namespace Fenubars.XML
 
 		private bool _PositionSpecified = false;
 		[XmlIgnore]
+		[Browsable(false)]
 		public bool PositionSpecified {
 			get {
 				return _PositionSpecified;
@@ -67,6 +71,7 @@ namespace Fenubars.XML
 
 		private string _Title;
 		[XmlElement( "title" )]
+		[Category("Fenu Button")]
 		[ButtonType( ButtonTypes.EscapeButton | ButtonTypes.NormalButton | ButtonTypes.NextButton )]
 		public string Title {
 			get {
@@ -79,6 +84,7 @@ namespace Fenubars.XML
 
 		private bool _TitleSpecified = false;
 		[XmlIgnore]
+		[Browsable(false)]
 		public bool TitleSpecified {
 			get {
 				return _TitleSpecified;

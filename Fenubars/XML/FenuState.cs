@@ -25,9 +25,9 @@ namespace Fenubars.XML
 
 		#region Contained buttons
 
-		private EscapeButtonState _EscapeButton = new EscapeButtonState();
+		private FenuButtonState _EscapeButton = new FenuButtonState();
 		[XmlElement( "escape" )]
-		public EscapeButtonState EscapeButton {
+		public FenuButtonState EscapeButton {
 			get {
 				return _EscapeButton;
 			}
@@ -47,9 +47,9 @@ namespace Fenubars.XML
 			}
 		}
 
-		private NextButtonState _NextButton = new NextButtonState();
+		private FenuButtonState _NextButton = new FenuButtonState();
 		[XmlElement( "next" )]
-		public NextButtonState NextButton {
+		public FenuButtonState NextButton {
 			get {
 				return _NextButton;
 			}

@@ -165,8 +165,8 @@ namespace Fenubars.Display
 			}
 		}
 
-		private EscapeButtonState _Escape;
-		public EscapeButtonState Escape {
+		private FenuButtonState _Escape;
+		public FenuButtonState Escape {
 			get {
 				return _Escape;
 			}
@@ -185,8 +185,8 @@ namespace Fenubars.Display
 			}
 		}
 
-		private NextButtonState _Next;
-		public NextButtonState Next {
+		private FenuButtonState _Next;
+		public FenuButtonState Next {
 			get {
 				return _Next;
 			}
