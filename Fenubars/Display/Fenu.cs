@@ -115,7 +115,6 @@ namespace Fenubars.Display
 		}
 
 		private void CloseFenu_Click(object sender, EventArgs e) {
-			// TODO: Save any possible modification to data source
 			this.Dispose();
 		}
 
