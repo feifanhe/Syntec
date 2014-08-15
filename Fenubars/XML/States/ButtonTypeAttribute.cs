@@ -5,9 +5,9 @@ namespace Fenubars.XML
 	[Flags]
 	public enum ButtonTypes
 	{
-		Escape = 0x01,
-		Normal = 0x02,
-		Next = 0x04
+		EscapeButton = 0x01,
+		NormalButton = 0x02,
+		NextButton = 0x04
 	};
 
 	public class ButtonTypeAttribute : Attribute

@@ -14,12 +14,12 @@
         <Password>0</Password>
       </pwd>
     </escape>
-    <button>
+    <button name="F2">
       <position>2</position>
     </button>
-    <button>
+    <button name="F4">
       <position>4</position>
-      <title>fenu1_button2</title>
+      <title>BUTTON4</title>
     </button>
     <next name="nextfenu2">
       <userlevel>1</userlevel>

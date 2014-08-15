@@ -27,8 +27,8 @@ namespace FormTest
 		/// </summary>
 		private void InitializeComponent( ) {
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-			this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
 			this.label1 = new System.Windows.Forms.Label();
+			this.propertyGrid1 = new Azuria.Common.Controls.FilteredPropertyGrid();
 			this.splitContainer1.Panel2.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
 			this.SuspendLayout();
@@ -46,14 +46,6 @@ namespace FormTest
 			this.splitContainer1.SplitterDistance = 816;
 			this.splitContainer1.TabIndex = 0;
 			// 
-			// propertyGrid1
-			// 
-			this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.propertyGrid1.Location = new System.Drawing.Point( 0, 0 );
-			this.propertyGrid1.Name = "propertyGrid1";
-			this.propertyGrid1.Size = new System.Drawing.Size( 271, 325 );
-			this.propertyGrid1.TabIndex = 0;
-			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
@@ -62,6 +54,17 @@ namespace FormTest
 			this.label1.Size = new System.Drawing.Size( 35, 13 );
 			this.label1.TabIndex = 1;
 			this.label1.Text = "label1";
+			// 
+			// propertyGrid1
+			// 
+			this.propertyGrid1.BrowsableProperties = null;
+			this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.propertyGrid1.HiddenAttributes = null;
+			this.propertyGrid1.HiddenProperties = null;
+			this.propertyGrid1.Location = new System.Drawing.Point( 0, 0 );
+			this.propertyGrid1.Name = "propertyGrid1";
+			this.propertyGrid1.Size = new System.Drawing.Size( 271, 325 );
+			this.propertyGrid1.TabIndex = 0;
 			// 
 			// MainForm
 			// 
@@ -83,8 +86,8 @@ namespace FormTest
 		#endregion
 
 		private System.Windows.Forms.SplitContainer splitContainer1;
-		private System.Windows.Forms.PropertyGrid propertyGrid1;
 		private System.Windows.Forms.Label label1;
+		private Azuria.Common.Controls.FilteredPropertyGrid propertyGrid1;
 	}
 }
 

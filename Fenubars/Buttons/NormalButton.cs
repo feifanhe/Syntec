@@ -9,9 +9,7 @@ namespace Fenubars.Buttons
 		public NormalButton(int Index ) {
 			InitializeComponent();
 			
-			// Basic setup
-			this.Name = "F" + Index.ToString();
-			this.Text = this.Name;
+			// Non-variable visual setup
 			this.Size = new Size( 80, 60 );
 			this.Location = new Point( 3 + 83 * Index, 3 );
 		}
@@ -21,6 +19,9 @@ namespace Fenubars.Buttons
 			this.DataBindings.Add( "Name", State, "Name" );
 			this.DataBindings.Add( "Text", State, "Title" );
 			//this.DataBindings.Add( "Enabled", State, "ParseState" );
+			
+			// Post-filled
+			State.Name = State.Name ?? "F" + State.Position.ToString(); 
 		}
 
 		public void PaintComponent(System.Windows.Forms.Control.ControlCollection Canvas) {

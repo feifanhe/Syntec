@@ -58,7 +58,7 @@
       <holdmode>false</holdmode>
       <invisibledevice>invisibledevice2</invisibledevice>
     </button>
-    <button name="buttonfenu1">
+    <button name="buttonfenu2">
       <title>fenu1_button2</title>
       <position>4</position>
       <state>disable</state>

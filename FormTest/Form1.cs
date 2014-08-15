@@ -22,7 +22,7 @@ namespace FormTest
 
 			try
 			{
-				loader = new Handler( "root.xml" );
+				loader = new Handler( "output.xml" );
 				loader.Canvas = this.splitContainer1.Panel1.Controls;
 				loader.PropertyViewer = propertyGrid1;
 				loader.LoadFenu( "fenu1" );

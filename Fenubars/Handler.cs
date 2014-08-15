@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using Fenubars.Display;
 using System;
 using Fenubars.Buttons;
+using Azuria.Common.Controls;
+using System.Reflection;
 
 namespace Fenubars
 {
@@ -37,8 +39,8 @@ namespace Fenubars
 				_Canvas = value;
 			}
 		}
-		private PropertyGrid _PropertyViewer;
-		public PropertyGrid PropertyViewer {
+		private FilteredPropertyGrid _PropertyViewer;
+		public FilteredPropertyGrid PropertyViewer {
 			get {
 				return _PropertyViewer;
 			}
@@ -127,7 +129,49 @@ namespace Fenubars
 				PropertyViewer.SelectedObject = e.Normal;
 			else if( e.Type == typeof( NextButton ) )
 				PropertyViewer.SelectedObject = e.Next;
+
+			PropertyViewer.BrowsableProperties = SelectedProperties( e.Type );
+			PropertyViewer.Refresh();
+			//Console.WriteLine( typeof( NormalButton ).Name );
+			//Console.WriteLine(ButtonTypes.NormalButton.ToString());
 		}
+
+		private string[] SelectedProperties(Type DesiredType) {
+			List<string> Properties = new List<string>();
+
+			foreach( PropertyInfo PI in typeof( FenuButtonState ).GetProperties() )
+			{
+				if( PI.IsDefined( typeof( ButtonTypeAttribute ), false ) )
+				{
+					string Value =( PI.GetCustomAttributes(typeof(ButtonTypeAttribute), false)[0] as ButtonTypeAttribute).Type.ToString();
+					if( Value == DesiredType.Name )
+					{
+						MessageBox.Show( Value + " IS " + DesiredType.Name , PI.Name);
+						Properties.Add( Value );
+					}
+					else
+					{
+						MessageBox.Show( Value + " IS NOT " + DesiredType.Name, PI.Name );
+					}
+				}
+			}
+
+			return Properties.ToArray();
+		}
+
+		//private string[] SelectedProperties(){
+   //         foreach( PropertyInfo PI in typeof(T).GetProperties() ){
+   //             if(PI.IsDefined(typeof(ButtonTypeAttribute), false)
+   //             {
+   //                 ButtonTypeAttribute BTA = PI.GetCustomAttributes(typeof(ButtonTypeAttribute, false)[0] as ButtonTypeAttribute;
+   //                 if(BTA.Type & 
+
+   //             var attribute =
+   //(MethodTestingAttibute)
+   //typeof (Vehicles)
+   //   .GetMethod("m1")
+   //   .GetCustomAttributes(typeof (MethodTestingAttibute), false).First();
+		//}
 
 		#endregion
 

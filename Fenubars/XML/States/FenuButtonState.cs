@@ -13,26 +13,26 @@ namespace Fenubars.XML
 
 		private string _Name;
 		[XmlAttribute( "name" )]
-		[ButtonType( ButtonTypes.Escape | ButtonTypes.Normal | ButtonTypes.Next )]
+		[ButtonType( ButtonTypes.EscapeButton | ButtonTypes.NormalButton | ButtonTypes.NextButton )]
 		public string Name {
 			get {
 				return _Name;
 			}
 			set {
-				NameSpecified = this.CheckPropertyChanged<string>( "Name", ref _Name, ref value );
+				this.CheckPropertyChanged<string>( "Name", ref _Name, ref value );
 			}
 		}
 
-		private bool _NameSpecified = false;
-		[XmlIgnore]
-		public bool NameSpecified {
-			get {
-				return _NameSpecified;
-			}
-			set {
-				_NameSpecified = value;
-			}
-		}
+		//private bool _NameSpecified = false;
+		//[XmlIgnore]
+		//public bool NameSpecified {
+		//    get {
+		//        return _NameSpecified;
+		//    }
+		//    set {
+		//        _NameSpecified = value;
+		//    }
+		//}
 
 		#endregion
 
@@ -40,7 +40,7 @@ namespace Fenubars.XML
 
 		private int _Position;
 		[XmlElement( "position" )]
-		[ButtonType( ButtonTypes.Normal )]
+		[ButtonType( ButtonTypes.NormalButton )]
 		public int Position {
 			get {
 				return _Position;
@@ -67,7 +67,7 @@ namespace Fenubars.XML
 
 		private string _Title;
 		[XmlElement( "title" )]
-		[ButtonType( ButtonTypes.Escape | ButtonTypes.Normal | ButtonTypes.Next )]
+		[ButtonType( ButtonTypes.EscapeButton | ButtonTypes.NormalButton | ButtonTypes.NextButton )]
 		public string Title {
 			get {
 				return _Title;

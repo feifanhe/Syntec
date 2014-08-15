@@ -32,7 +32,7 @@ namespace Fenubars.Display
 
 			int buttons = 8;
 
-			// Add Escape and Next button
+			// Add EscapeButton and NextButton button
 			EscapeButton EB = new EscapeButton( _FenuContent.EscapeButton );
 			EB.PaintComponent( FormSplitContainer.Panel2.Controls, new Point( 3, 3 ) );
 			EB.Click += new EventHandler( FenuButton_Click );
