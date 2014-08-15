@@ -141,17 +141,6 @@ namespace Fenubars.Display
 			}
 		}
 
-		private object _FocusedObject;
-		[TypeConverter( typeof( ExpandableObjectConverter ) )]
-		public object FocusedObject {
-			get {
-				return _FocusedObject;
-			}
-			set {
-				_FocusedObject = value;
-			}
-		}
-
 		private void FenuButton_Click(object sender, EventArgs e) {
 
 			ObjectDetailEventArgs args = new ObjectDetailEventArgs();

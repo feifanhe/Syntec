@@ -80,6 +80,7 @@ namespace Fenubars.XML
 		private string _Title;
 		[Category( "Global" )]
 		[ReadOnly( true )]
+		[Browsable( false )]
 		public string Title {
 			get {
 				return _Title;
@@ -106,6 +107,7 @@ namespace Fenubars.XML
 
 		private List<FenuContent> _IncludedFenus = new List<FenuContent>();
 		[XmlElement( "fenu" )]
+		[Browsable( false )]
 		public List<FenuContent> IncludedFenus {
 			get {
 				return _IncludedFenus;
