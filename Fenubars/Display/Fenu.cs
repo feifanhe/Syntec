@@ -47,32 +47,43 @@ namespace Fenubars.Display
 			for( int i = 1; i <= buttons; i++ )
 			{
 				// TODO: Add double click
-				NormalButton NRB = new NormalButton(i);
+				NormalButton NRB = new NormalButton( i );
 				NRB.Click += new EventHandler( FenuButton_Click );
-				NRB.PaintComponent( FormSplitContainer.Panel2.Controls );
-			}
-
-			foreach( NormalButtonState nbs in _FenuContent.NormalButtonList )
-			{
-				string TargetName = "F" + nbs.Position.ToString();
-				Control[] ctrlS = this.FormSplitContainer.Panel2.Controls.Find( TargetName, false );
 				try
 				{
-					if( ctrlS.Length == 0 )
-					{
-						throw new Exception( "Cannot find control named [" + TargetName + "]" );
-					}
-					NormalButton btn = ctrlS[ 0 ] as NormalButton;
-					btn.SetState( nbs );
-					//btn.DataBindings.Add( "Name", nbs, "Name" );
-					//btn.DataBindings.Add( "Text", nbs, "Title" );
-					//btn.DataBindings.Add( "Enabled", nbs, "ParseState" );
+					FenuButtonState FBS = _FenuContent.NormalButtonList.Find( delegate(FenuButtonState DummyState)
+																				{
+																					return DummyState.Position == i;
+																				} );
+					NRB.SetState( FBS );
 				}
-				catch( Exception e )
+				catch( ArgumentNullException )
 				{
-					MessageBox.Show( e.Message );
+				}
+				finally
+				{
+					NRB.PaintComponent( FormSplitContainer.Panel2.Controls );
 				}
 			}
+
+			//foreach( FenuButtonState nbs in _FenuContent.NormalButtonList )
+			//{
+			//    string TargetName = "F" + nbs.Position.ToString();
+			//    Control[] ctrlS = this.FormSplitContainer.Panel2.Controls.Find( TargetName, false );
+			//    try
+			//    {
+			//        if( ctrlS.Length == 0 )
+			//        {
+			//            throw new Exception( "Cannot find control named [" + TargetName + "]" );
+			//        }
+			//        NormalButton btn = ctrlS[ 0 ] as NormalButton;
+			//        btn.SetState( nbs );
+			//    }
+			//    catch( Exception e )
+			//    {
+			//        MessageBox.Show( e.Message );
+			//    }
+			//}
 		}
 
 		#region Titlebar close event

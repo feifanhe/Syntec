@@ -14,26 +14,12 @@
         <Password>0</Password>
       </pwd>
     </escape>
-    <button name="buttonfenu1">
+    <button>
       <position>2</position>
-      <picture>picture2</picture>
-      <userlevel>0</userlevel>
-      <forecolor>forecolor2</forecolor>
-      <backcolor>backcolor2</backcolor>
-      <state>enable</state>
-      <HoldMode>false</HoldMode>
-      <Alignment>0</Alignment>
     </button>
-    <button name="buttonfenu1">
+    <button>
       <position>4</position>
       <title>fenu1_button2</title>
-      <picture>picture2</picture>
-      <userlevel>0</userlevel>
-      <forecolor>forecolor2</forecolor>
-      <backcolor>backcolor2</backcolor>
-      <state>enable</state>
-      <HoldMode>false</HoldMode>
-      <Alignment>0</Alignment>
     </button>
     <next name="nextfenu2">
       <userlevel>1</userlevel>
@@ -48,14 +34,7 @@
       </pwd>
     </escape>
     <button name="buttonfenu2">
-      <position>0</position>
       <title>fenu2_button1</title>
-      <picture>picture2</picture>
-      <userlevel>0</userlevel>
-      <forecolor>forecolor2</forecolor>
-      <backcolor>backcolor2</backcolor>
-      <HoldMode>false</HoldMode>
-      <Alignment>0</Alignment>
     </button>
     <next name="nextfenu2">
       <userlevel>1</userlevel>

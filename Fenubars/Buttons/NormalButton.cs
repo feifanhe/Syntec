@@ -21,9 +21,6 @@ namespace Fenubars.Buttons
 			this.DataBindings.Add( "Name", State, "Name" );
 			this.DataBindings.Add( "Text", State, "Title" );
 			//this.DataBindings.Add( "Enabled", State, "ParseState" );
-
-			//this.Enabled = true;
-			//State.ParseState = true;
 		}
 
 		public void PaintComponent(System.Windows.Forms.Control.ControlCollection Canvas) {
