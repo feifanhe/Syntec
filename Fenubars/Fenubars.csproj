@@ -67,10 +67,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="XML\ButtonState\EscapeButtonState.cs" />
-    <Compile Include="XML\ButtonState\MiscOptions.cs" />
-    <Compile Include="XML\ButtonState\NextButtonState.cs" />
-    <Compile Include="XML\ButtonState\NormalButtonState.cs" />
+    <Compile Include="XML\States\FenuButtonState.cs" />
+    <Compile Include="XML\States\EscapeButtonState.cs" />
+    <Compile Include="XML\States\MiscOptions.cs" />
+    <Compile Include="XML\States\NextButtonState.cs" />
+    <Compile Include="XML\States\NormalButtonState.cs" />
     <Compile Include="XML\FenuState.cs" />
     <Compile Include="XML\XMLGlobalState.cs" />
   </ItemGroup>
