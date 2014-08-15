@@ -67,6 +67,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="XML\States\ButtonTypeAttribute.cs" />
     <Compile Include="XML\States\FenuButtonState.cs" />
     <Compile Include="XML\States\EscapeButtonState.cs" />
     <Compile Include="XML\States\MiscOptions.cs" />

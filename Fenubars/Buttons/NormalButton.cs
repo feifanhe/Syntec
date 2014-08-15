@@ -16,14 +16,14 @@ namespace Fenubars.Buttons
 			this.Location = new Point( 3 + 83 * Index, 3 );
 		}
 
-		public void SetState(NormalButtonState State) {
+		public void SetState(FenuButtonState State) {
 			// Bindings
 			this.DataBindings.Add( "Name", State, "Name" );
 			this.DataBindings.Add( "Text", State, "Title" );
-			this.DataBindings.Add( "Enabled", State, "ParseState" );
+			//this.DataBindings.Add( "Enabled", State, "ParseState" );
 
-			this.Enabled = true;
-			State.ParseState = true;
+			//this.Enabled = true;
+			//State.ParseState = true;
 		}
 
 		public void PaintComponent(System.Windows.Forms.Control.ControlCollection Canvas) {

@@ -13,38 +13,67 @@ namespace Fenubars.XML
 
 		private string _Name;
 		[XmlAttribute( "name" )]
+		[ButtonType( ButtonTypes.Escape | ButtonTypes.Normal | ButtonTypes.Next )]
 		public string Name {
 			get {
 				return _Name;
 			}
 			set {
-				this.CheckPropertyChanged<string>( "Name", ref _Name, ref value );
+				NameSpecified = this.CheckPropertyChanged<string>( "Name", ref _Name, ref value );
+			}
+		}
+
+		private bool _NameSpecified = false;
+		[XmlIgnore]
+		public bool NameSpecified {
+			get {
+				return _NameSpecified;
+			}
+			set {
+				_NameSpecified = value;
 			}
 		}
 
 		#endregion
 
+		#region Position
+
 		private int _Position;
 		[XmlElement( "position" )]
+		[ButtonType( ButtonTypes.Normal )]
 		public int Position {
 			get {
 				return _Position;
 			}
 			set {
-				this.CheckPropertyChanged<int>( "Position", ref _Position, ref value );
+				PositionSpecified = this.CheckPropertyChanged<int>( "Position", ref _Position, ref value );
 			}
 		}
+
+		private bool _PositionSpecified = false;
+		[XmlIgnore]
+		public bool PositionSpecified {
+			get {
+				return _PositionSpecified;
+			}
+			set {
+				_PositionSpecified = value;
+			}
+		}
+
+		#endregion
 
 		#region Title
 
 		private string _Title;
 		[XmlElement( "title" )]
+		[ButtonType( ButtonTypes.Escape | ButtonTypes.Normal | ButtonTypes.Next )]
 		public string Title {
 			get {
 				return _Title;
 			}
 			set {
-				this.CheckPropertyChanged<string>( "Title",ref  _Title, ref value );
+				TitleSpecified = this.CheckPropertyChanged<string>( "Title", ref  _Title, ref value );
 			}
 		}
 
@@ -58,34 +87,6 @@ namespace Fenubars.XML
 				_TitleSpecified = value;
 			}
 		}
-
-		#endregion
-
-		#region State
-
-		//private ButtonState _State = ButtonState.disable;
-		//[XmlElement( "state" )]
-		//[DefaultValue( ButtonState.disable )]
-		//public ButtonState State {
-		//    get {
-		//        return _State;
-		//    }
-		//    set {
-		//        _State = value;
-		//        InvokePropertyChanged( "State" );
-		//    }
-		//}
-
-		//[XmlIgnore]
-		//public bool ParseState {
-		//    get {
-		//        return ( _State == ButtonState.enable );
-		//    }
-		//    set {
-		//        _State = ( value ) ? ButtonState.enable : ButtonState.disable;
-		//        InvokePropertyChanged( "State" );
-		//    }
-		//}
 
 		#endregion
 	}
