@@ -12,9 +12,9 @@ namespace Fenubars.Display
 {
 	public partial class Fenu : UserControl
 	{
-		private FenuContent _FenuContent;
+		private FenuState _FenuContent;
 
-		public Fenu( FenuContent AssignedFenuContent) {
+		public Fenu( FenuState AssignedFenuContent) {
 			InitializeComponent();
 
 			this._FenuContent = AssignedFenuContent;
@@ -27,7 +27,7 @@ namespace Fenubars.Display
 		}
 
 		public void PopulateButtons( ) {
-			// Modify the title to call-pathway
+			// TODO: Modify the title to call-pathway
 			FenuTitle.Text = _FenuContent.Name;
 
 			int buttons = 8;

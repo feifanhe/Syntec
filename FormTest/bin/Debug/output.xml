@@ -1,70 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <Button3D>false</Button3D>
-  <Level3D>4</Level3D>
-  <NoFunc>false</NoFunc>
+  <Button3D>true</Button3D>
+  <Level3D>1</Level3D>
+  <NoFunc>true</NoFunc>
   <NoLR>true</NoLR>
-  <BigLR>false</BigLR>
-  <TextOverPic>false</TextOverPic>
-  <Alignment>0</Alignment>
-  <fenu name="main">
-    <escape />
-    <button name="Btn1">
-      <position>1</position>
-      <title>STR::Fenu::main::ID1</title>
-      <userlevel>1</userlevel>
-      <forecolor>128,128,255</forecolor>
-      <backcolor>64,128,128</backcolor>
+  <BigLR>true</BigLR>
+  <TextOverPic>true</TextOverPic>
+  <Alignment>1</Alignment>
+  <fenu name="fenu1">
+    <escape name="escapefenu1">
       <state>enable</state>
-      <HoldMode>true</HoldMode>
-      <LightOnColor>255,0,128</LightOnColor>
-      <Alignment>3</Alignment>
       <pwd>
         <Password>0</Password>
       </pwd>
-      <InvisibleDevice>R100.4</InvisibleDevice>
-      <EnableRule>(R100.0eq1)</EnableRule>
-    </button>
-    <button name="BTN2">
+    </escape>
+    <button name="buttonfenu1">
       <position>2</position>
-      <title>STR::Fenu::main::ID2</title>
-      <userlevel>4</userlevel>
+      <picture>picture2</picture>
+      <userlevel>0</userlevel>
+      <forecolor>forecolor2</forecolor>
+      <backcolor>backcolor2</backcolor>
+      <state>enable</state>
       <HoldMode>false</HoldMode>
       <Alignment>0</Alignment>
     </button>
-    <next>
+    <button name="buttonfenu1">
+      <position>4</position>
+      <title>fenu1_button2</title>
+      <picture>picture2</picture>
       <userlevel>0</userlevel>
+      <forecolor>forecolor2</forecolor>
+      <backcolor>backcolor2</backcolor>
+      <state>enable</state>
+      <HoldMode>false</HoldMode>
+      <Alignment>0</Alignment>
+    </button>
+    <next name="nextfenu2">
+      <userlevel>1</userlevel>
+      <state>enable</state>
     </next>
   </fenu>
-  <fenu name="TEST2">
-    <escape>
+  <fenu name="fenu2">
+    <escape name="escapefenu2">
       <state>enable</state>
-      <EnableRule>(R434.1gt1)</EnableRule>
-    </escape>
-    <button name="BTN3">
-      <position>1</position>
-      <title>STR::Fenu::TEST2::ID3</title>
-      <picture>CUSTOMImage\Chrysanthemum.jpg</picture>
-      <userlevel>3</userlevel>
-      <forecolor>64,0,64</forecolor>
-      <backcolor>128,128,128</backcolor>
-      <HoldMode>true</HoldMode>
-      <LightOnColor>0,128,0</LightOnColor>
-      <Alignment>2</Alignment>
       <pwd>
         <Password>0</Password>
       </pwd>
-      <InvisibleDevice>R2.30</InvisibleDevice>
-      <EnableRule>(R3eq2)</EnableRule>
+    </escape>
+    <button name="buttonfenu2">
+      <position>0</position>
+      <title>fenu2_button1</title>
+      <picture>picture2</picture>
+      <userlevel>0</userlevel>
+      <forecolor>forecolor2</forecolor>
+      <backcolor>backcolor2</backcolor>
+      <HoldMode>false</HoldMode>
+      <Alignment>0</Alignment>
     </button>
-    <next>
-      <userlevel>0</userlevel>
-    </next>
-  </fenu>
-  <fenu name="test3">
-    <escape />
-    <next>
-      <userlevel>0</userlevel>
+    <next name="nextfenu2">
+      <userlevel>1</userlevel>
+      <state>enable</state>
     </next>
   </fenu>
 </root>

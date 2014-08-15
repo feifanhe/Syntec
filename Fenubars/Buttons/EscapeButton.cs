@@ -6,7 +6,7 @@ namespace Fenubars.Buttons
 {
 	public partial class EscapeButton : Button
 	{
-		public EscapeButton(EscapeButtonState State) {
+		public EscapeButton(EscapeButtonState EState) {
 			InitializeComponent();
 
 			// Basic setup
@@ -14,10 +14,12 @@ namespace Fenubars.Buttons
 			this.Text = this.Name;
 			this.Size = new Size( 80, 60 );
 
+			NormalButtonState State = new NormalButtonState();
+
 			// Bindings
 			this.DataBindings.Add( "Name", State, "Name" );
 			this.DataBindings.Add( "Text", State, "Title" );
-			this.DataBindings.Add( "FlatStyle", State, "ParseStyle" );
+			//this.DataBindings.Add( "FlatStyle", State, "ParseStyle" );
 
 			this.Enabled = true;
 			State.ParseState = true;

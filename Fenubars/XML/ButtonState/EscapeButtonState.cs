@@ -25,7 +25,7 @@ namespace Fenubars.XML
 		#endregion
 
 		private string _Title = "<<";
-		[ReadOnly(true)]
+		//[ReadOnly(true)]
 		[XmlIgnore]
 		public string Title {
 			get {

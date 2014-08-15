@@ -1,9 +1,11 @@
 using System.ComponentModel;
 using System.Xml.Serialization;
 
+using Fenubars;
+
 namespace Fenubars.XML
 {
-	public class NextButtonState : INotifyPropertyChanged
+	public class NextButtonState : Fenubars.Events.NotifyProperyChangedBase
 	{
 		#region XML readout storage
 
@@ -17,22 +19,27 @@ namespace Fenubars.XML
 			}
 			set {
 				_Name = value;
-				InvokePropertyChanged( "Name" );
+				this.FirePropertyChanged( "Name" );
+				//InvokePropertyChanged( "Name" );
 			}
 		}
 
 		#endregion
 
 		private string _Title = ">>";
-		[ReadOnly(true)]
+		//[ReadOnly(true)]
 		[XmlIgnore]
 		public string Title {
 			get {
 				return _Title;
 			}
 			set {
-				_Title = value;
-				InvokePropertyChanged( "Title" );
+				if( this.CheckPropertyChanged<string>( "Title", ref _Title, ref value ) )
+				{
+					this.FirePropertyChanged( "Title" );
+				}
+				//_Title = value;
+				//InvokePropertyChanged( "Title" );
 			}
 		}
 
@@ -54,7 +61,7 @@ namespace Fenubars.XML
 			}
 			set {
 				_Link = value;
-				InvokePropertyChanged( "Link" );
+				//InvokePropertyChanged( "Link" );
 			}
 		}
 
@@ -91,7 +98,7 @@ namespace Fenubars.XML
 			}
 			set {
 				_State = ( value ) ? ButtonState.enable : ButtonState.disable;
-				InvokePropertyChanged( "State" );
+				//InvokePropertyChanged( "State" );
 			}
 		}
 
@@ -110,7 +117,7 @@ namespace Fenubars.XML
 				_Visible = value;
 				if( _Visible )
 					State = ButtonState.enable;
-				InvokePropertyChanged( "Visible" );
+				//InvokePropertyChanged( "Visible" );
 			}
 		}
 
@@ -149,16 +156,16 @@ namespace Fenubars.XML
 
 		#endregion
 
-		#region INotifyPropertyChanged Members
+		//#region INotifyPropertyChanged Members
 
-		public event PropertyChangedEventHandler PropertyChanged;
-		public void InvokePropertyChanged(string PropertyName) {
-			PropertyChangedEventHandler handler = PropertyChanged;
-			if( handler != null )
-				handler( this, new PropertyChangedEventArgs( PropertyName ) );
-			State = ButtonState.enable;
-		}
+		//public event PropertyChangedEventHandler PropertyChanged;
+		//public void InvokePropertyChanged(string PropertyName) {
+		//    PropertyChangedEventHandler handler = PropertyChanged;
+		//    if( handler != null )
+		//        handler( this, new PropertyChangedEventArgs( PropertyName ) );
+		//    State = ButtonState.enable;
+		//}
 
-		#endregion
+		//#endregion
 	}
 }

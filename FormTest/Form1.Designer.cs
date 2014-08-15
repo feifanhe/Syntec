@@ -28,13 +28,14 @@ namespace FormTest
 		private void InitializeComponent( ) {
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
+			this.label1 = new System.Windows.Forms.Label();
 			this.splitContainer1.Panel2.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// splitContainer1
 			// 
-			this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Top;
 			this.splitContainer1.Location = new System.Drawing.Point( 0, 0 );
 			this.splitContainer1.Name = "splitContainer1";
 			// 
@@ -53,11 +54,21 @@ namespace FormTest
 			this.propertyGrid1.Size = new System.Drawing.Size( 271, 325 );
 			this.propertyGrid1.TabIndex = 0;
 			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point( 981, 351 );
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size( 35, 13 );
+			this.label1.TabIndex = 1;
+			this.label1.Text = "label1";
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF( 6F, 13F );
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size( 1091, 325 );
+			this.ClientSize = new System.Drawing.Size( 1091, 390 );
+			this.Controls.Add( this.label1 );
 			this.Controls.Add( this.splitContainer1 );
 			this.Name = "MainForm";
 			this.Text = "Form Test";
@@ -65,6 +76,7 @@ namespace FormTest
 			this.splitContainer1.Panel2.ResumeLayout( false );
 			this.splitContainer1.ResumeLayout( false );
 			this.ResumeLayout( false );
+			this.PerformLayout();
 
 		}
 
@@ -72,6 +84,7 @@ namespace FormTest
 
 		private System.Windows.Forms.SplitContainer splitContainer1;
 		private System.Windows.Forms.PropertyGrid propertyGrid1;
+		private System.Windows.Forms.Label label1;
 	}
 }
 

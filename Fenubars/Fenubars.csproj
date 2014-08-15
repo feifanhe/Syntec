@@ -59,6 +59,7 @@
     <Compile Include="Display\Fenu.Designer.cs">
       <DependentUpon>Fenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Events\NotifyProperyChangedBase.cs" />
     <Compile Include="Handler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -70,8 +71,8 @@
     <Compile Include="XML\ButtonState\MiscOptions.cs" />
     <Compile Include="XML\ButtonState\NextButtonState.cs" />
     <Compile Include="XML\ButtonState\NormalButtonState.cs" />
-    <Compile Include="XML\FenuContent.cs" />
     <Compile Include="XML\FenuState.cs" />
+    <Compile Include="XML\XMLGlobalState.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Display\Fenu.resx">

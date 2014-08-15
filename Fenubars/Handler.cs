@@ -17,8 +17,8 @@ namespace Fenubars
 		private XmlSerializer Serializer;
 
 		// File state holder
-		private FenuState CurrentFenuState;
-		public List<FenuContent> LoadedFenus {
+		private XMLGlobalState CurrentFenuState;
+		public List<FenuState> LoadedFenus {
 			get {
 				return CurrentFenuState.IncludedFenus;
 			}
@@ -76,7 +76,7 @@ namespace Fenubars
 			Namespace.Add( "", "" );
 
 			// Initiate serializer
-			Serializer = new XmlSerializer( typeof( FenuState ), "" );
+			Serializer = new XmlSerializer( typeof( XMLGlobalState ), "" );
 		}
 
 		#region Loader
@@ -85,12 +85,12 @@ namespace Fenubars
 			//Deserialize to object
 			using( StreamReader Reader = new StreamReader( XMLPath ) )
 			{
-				CurrentFenuState = (FenuState)Serializer.Deserialize( Reader );
+				CurrentFenuState = (XMLGlobalState)Serializer.Deserialize( Reader );
 			}
 		}
 
 		public void LoadFenu(string FenuName) {
-			foreach( FenuContent ParsedFenu in CurrentFenuState.IncludedFenus )
+			foreach( FenuState ParsedFenu in CurrentFenuState.IncludedFenus )
 			{
 				if( ParsedFenu.Name == FenuName )
 				{
