@@ -132,6 +132,11 @@ namespace Fenubars.Display
 				args.Escape = _FenuContent.EscapeButton;
 			else if( args.Type == typeof( NextButton ) )
 				args.Next = _FenuContent.NextButton;
+			else if(args.Type == typeof(NormalButton))
+				args.Normal = _FenuContent.NormalButtonList.Find( delegate(FenuButtonState DummyState)
+																	{
+																		return ( sender as NormalButton ).Name == DummyState.Name;
+																	} );
 				
 			//MessageBox.Show( ( sender as Button ).Name );
 			Console.WriteLine( sender.GetType() );
@@ -170,8 +175,8 @@ namespace Fenubars.Display
 			}
 		}
 
-		private NormalButtonState _Normal;
-		public NormalButtonState Normal {
+		private FenuButtonState _Normal;
+		public FenuButtonState Normal {
 			get {
 				return _Normal;
 			}
