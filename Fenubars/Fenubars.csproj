@@ -28,10 +28,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FilteredPropertyGrid, Version=1.0.5321.31287, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libraries\FilteredPropertyGrid.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -93,6 +89,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Icons\Close_Fenu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FilteredPropertyGrid\FilteredPropertyGrid.csproj">
+      <Project>{C74B67EE-E6E9-40BE-A76E-434EF1B4C78A}</Project>
+      <Name>FilteredPropertyGrid</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

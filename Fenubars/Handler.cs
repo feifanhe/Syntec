@@ -124,13 +124,16 @@ namespace Fenubars
 											Fenubars.Display.ObjectDetailEventArgs e) {
 			if( e.Type == typeof( Fenu ) )
 			{
+				PropertyViewer.HiddenAttributes = null;
+				PropertyViewer.BrowsableProperties = null;
+
 				PropertyViewer.SelectedObject = CurrentFenuState;
-				PropertyViewer.HiddenAttributes = new AttributeCollection( new Attribute[] { } );
-				PropertyViewer.BrowsableProperties = new string[] { };
-				PropertyViewer.Refresh();
 			}
 			else
 			{
+				PropertyViewer.HiddenAttributes = new AttributeCollection( new Attribute[] { new CategoryAttribute( "Fenu Button" ) } );
+				PropertyViewer.BrowsableProperties = SelectedProperties( e.Type );
+				
 				if( e.Type == typeof( EscapeButton ) )
 					PropertyViewer.SelectedObject = e.Escape;
 				else if( e.Type == typeof( NormalButton ) )
@@ -138,10 +141,9 @@ namespace Fenubars
 				else if( e.Type == typeof( NextButton ) )
 					PropertyViewer.SelectedObject = e.Next;
 
-				PropertyViewer.HiddenAttributes = new AttributeCollection( new Attribute[] { new CategoryAttribute( "Fenu Button" ) } );
-				PropertyViewer.BrowsableProperties = SelectedProperties( e.Type );
-				PropertyViewer.Refresh();
+				
 			}
+			PropertyViewer.Refresh();
 			//PropertyViewer.Refresh();
 			//Console.WriteLine( typeof( NormalButton ).Name );
 			//Console.WriteLine(ButtonTypes.NormalButton.ToString());
@@ -150,21 +152,18 @@ namespace Fenubars
 		private string[] SelectedProperties(Type DesiredType) {
 			List<string> Properties = new List<string>();
 
+			// Load the button type of selected button
 			ButtonTypes Template = (ButtonTypes)Enum.Parse(typeof(ButtonTypes), DesiredType.Name);
+			// Parse all the properties in the target object
 			foreach( PropertyInfo PI in typeof( FenuButtonState ).GetProperties() )
 			{
+				// Identified if the cycled property has defined ButtonTypeAttribute
 				if( PI.IsDefined( typeof( ButtonTypeAttribute ), false ) )
 				{
-					ButtonTypes Value =( PI.GetCustomAttributes(typeof(ButtonTypeAttribute), false)[0] as ButtonTypeAttribute).Type;
-					if( ( Value & Template)== Template  )
-					{
-						//MessageBox.Show( Value + " IS " + DesiredType.Name , PI.Name);
+					ButtonTypes Value = ( PI.GetCustomAttributes( typeof( ButtonTypeAttribute ), false )[ 0 ] as ButtonTypeAttribute ).Type;
+					// Using bitwise operation to varify whether the selected property is the wanted one or not
+					if( ( Value & Template ) == Template )
 						Properties.Add( PI.Name );
-					}
-					else
-					{
-						//MessageBox.Show( Value + " IS NOT " + DesiredType.Name, PI.Name );
-					}
 				}
 			}
 
@@ -175,20 +174,6 @@ namespace Fenubars
 
 			return Properties.ToArray();
 		}
-
-		//private string[] SelectedProperties(){
-   //         foreach( PropertyInfo PI in typeof(T).GetProperties() ){
-   //             if(PI.IsDefined(typeof(ButtonTypeAttribute), false)
-   //             {
-   //                 ButtonTypeAttribute BTA = PI.GetCustomAttributes(typeof(ButtonTypeAttribute, false)[0] as ButtonTypeAttribute;
-   //                 if(BTA.Type & 
-
-   //             var attribute =
-   //(MethodTestingAttibute)
-   //typeof (Vehicles)
-   //   .GetMethod("m1")
-   //   .GetCustomAttributes(typeof (MethodTestingAttibute), false).First();
-		//}
 
 		#endregion
 

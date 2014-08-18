@@ -9,3 +9,4 @@ C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\FormTest\obj\Debug\Fo
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\FormTest\bin\Debug\Fenubars.dll
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\FormTest\bin\Debug\Fenubars.pdb
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\FormTest\bin\Debug\FilteredPropertyGrid.dll
+C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\FormTest\bin\Debug\FilteredPropertyGrid.pdb

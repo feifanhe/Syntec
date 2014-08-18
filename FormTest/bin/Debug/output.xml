@@ -8,15 +8,20 @@
   <TextOverPic>true</TextOverPic>
   <Alignment>1</Alignment>
   <fenu name="fenu1">
-    <escape name="escapefenu1" />
+    <escape name="escapefenu1">
+      <title>&lt;&lt;</title>
+    </escape>
     <button name="F2">
       <position>2</position>
+      <title>dispose</title>
     </button>
     <button name="F4">
       <position>4</position>
       <title>BUTTON4</title>
     </button>
-    <next name="nextfenu2" />
+    <next name="nextfenu2">
+      <title>&gt;&gt;</title>
+    </next>
   </fenu>
   <fenu name="fenu2">
     <escape name="escapefenu2" />

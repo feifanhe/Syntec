@@ -1,0 +1,10 @@
+C:\Users\Andy\Desktop\FilteredPropertyGrid_src\FilteredPropertyGrid\bin\Release\FilteredPropertyGrid.dll
+C:\Users\Andy\Desktop\FilteredPropertyGrid_src\FilteredPropertyGrid\bin\Release\FilteredPropertyGrid.pdb
+C:\Users\Andy\Desktop\FilteredPropertyGrid_src\FilteredPropertyGrid\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Andy\Desktop\FilteredPropertyGrid_src\FilteredPropertyGrid\obj\Release\FilteredPropertyGrid.dll
+C:\Users\Andy\Desktop\FilteredPropertyGrid_src\FilteredPropertyGrid\obj\Release\FilteredPropertyGrid.pdb
+C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\FilteredPropertyGrid\bin\Debug\FilteredPropertyGrid.dll
+C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\FilteredPropertyGrid\bin\Debug\FilteredPropertyGrid.pdb
+C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\FilteredPropertyGrid\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\FilteredPropertyGrid\obj\Debug\FilteredPropertyGrid.dll
+C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\FilteredPropertyGrid\obj\Debug\FilteredPropertyGrid.pdb

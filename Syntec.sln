@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTest", "ConsoleTest\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormTest", "FormTest\FormTest.csproj", "{CF9FE4CB-3623-4E08-9CE6-6C8D57746192}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilteredPropertyGrid", "FilteredPropertyGrid\FilteredPropertyGrid.csproj", "{C74B67EE-E6E9-40BE-A76E-434EF1B4C78A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{CF9FE4CB-3623-4E08-9CE6-6C8D57746192}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF9FE4CB-3623-4E08-9CE6-6C8D57746192}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF9FE4CB-3623-4E08-9CE6-6C8D57746192}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C74B67EE-E6E9-40BE-A76E-434EF1B4C78A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C74B67EE-E6E9-40BE-A76E-434EF1B4C78A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C74B67EE-E6E9-40BE-A76E-434EF1B4C78A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C74B67EE-E6E9-40BE-A76E-434EF1B4C78A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
