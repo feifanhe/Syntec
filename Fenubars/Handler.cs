@@ -127,13 +127,10 @@ namespace Fenubars
 				PropertyViewer.HiddenAttributes = null;
 				PropertyViewer.BrowsableProperties = null;
 
-				PropertyViewer.SelectedObject = CurrentFenuState;
+				PropertyViewer.SelectedObject = CurrentFenuState;	
 			}
 			else
 			{
-				PropertyViewer.HiddenAttributes = new AttributeCollection( new Attribute[] { new CategoryAttribute( "Fenu Button" ) } );
-				PropertyViewer.BrowsableProperties = SelectedProperties( e.Type );
-				
 				if( e.Type == typeof( EscapeButton ) )
 					PropertyViewer.SelectedObject = e.Escape;
 				else if( e.Type == typeof( NormalButton ) )
@@ -141,12 +138,10 @@ namespace Fenubars
 				else if( e.Type == typeof( NextButton ) )
 					PropertyViewer.SelectedObject = e.Next;
 
-				
+				PropertyViewer.HiddenAttributes = new AttributeCollection( new Attribute[] { new CategoryAttribute( "Fenu Button" ) } );
+				PropertyViewer.BrowsableProperties = SelectedProperties( e.Type );
 			}
 			PropertyViewer.Refresh();
-			//PropertyViewer.Refresh();
-			//Console.WriteLine( typeof( NormalButton ).Name );
-			//Console.WriteLine(ButtonTypes.NormalButton.ToString());
 		}
 
 		private string[] SelectedProperties(Type DesiredType) {
