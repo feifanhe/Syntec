@@ -69,9 +69,7 @@
     </Compile>
     <Compile Include="XML\States\ButtonTypeAttribute.cs" />
     <Compile Include="XML\States\FenuButtonState.cs" />
-    <Compile Include="XML\States\EscapeButtonState.cs" />
     <Compile Include="XML\States\MiscOptions.cs" />
-    <Compile Include="XML\States\NextButtonState.cs" />
     <Compile Include="XML\States\NormalButtonState.cs" />
     <Compile Include="XML\FenuState.cs" />
     <Compile Include="XML\XMLGlobalState.cs" />
