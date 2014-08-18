@@ -23,8 +23,8 @@ namespace Syntec
 		#region Form related
 
 		private void MainForm_Load(object sender, EventArgs e) {
-			// Find plugins in the folder
-			Global.Plugins.FindPlugins( Application.StartupPath + "\\Plugins" );
+			// Initiate the plugin collection, find plugins in the folder
+			Global.Plugins.FindPlugins( Application.StartupPath + Global.PluginsFolderPath);
 		}
 
 		#endregion

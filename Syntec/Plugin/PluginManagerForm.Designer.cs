@@ -35,11 +35,11 @@ namespace Syntec.Plugin
 			this.CancelButton = new System.Windows.Forms.Button();
 			this.Description = new System.Windows.Forms.TextBox();
 			this.Description_Label = new System.Windows.Forms.Label();
+			this.RefreshButton = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// PluginList
 			// 
-			this.PluginList.CheckBoxes = true;
 			this.PluginList.Columns.AddRange( new System.Windows.Forms.ColumnHeader[] {
             this.NameHeader,
             this.VersionHeader,
@@ -75,8 +75,9 @@ namespace Syntec.Plugin
 			this.BrowseButton.Name = "BrowseButton";
 			this.BrowseButton.Size = new System.Drawing.Size( 75, 23 );
 			this.BrowseButton.TabIndex = 2;
-			this.BrowseButton.Text = "Open";
+			this.BrowseButton.Text = "Browse";
 			this.BrowseButton.UseVisualStyleBackColor = true;
+			this.BrowseButton.Click += new System.EventHandler( this.BrowseButton_Click );
 			// 
 			// OKButton
 			// 
@@ -86,6 +87,7 @@ namespace Syntec.Plugin
 			this.OKButton.TabIndex = 3;
 			this.OKButton.Text = "OK";
 			this.OKButton.UseVisualStyleBackColor = true;
+			this.OKButton.Click += new System.EventHandler( this.OKButton_Click );
 			// 
 			// CancelButton
 			// 
@@ -95,6 +97,7 @@ namespace Syntec.Plugin
 			this.CancelButton.TabIndex = 4;
 			this.CancelButton.Text = "Cancel";
 			this.CancelButton.UseVisualStyleBackColor = true;
+			this.CancelButton.Click += new System.EventHandler( this.CancelButton_Click );
 			// 
 			// Description
 			// 
@@ -115,11 +118,22 @@ namespace Syntec.Plugin
 			this.Description_Label.TabIndex = 6;
 			this.Description_Label.Text = "Description:";
 			// 
+			// RefreshButton
+			// 
+			this.RefreshButton.Location = new System.Drawing.Point( 93, 377 );
+			this.RefreshButton.Name = "RefreshButton";
+			this.RefreshButton.Size = new System.Drawing.Size( 75, 23 );
+			this.RefreshButton.TabIndex = 7;
+			this.RefreshButton.Text = "Refresh";
+			this.RefreshButton.UseVisualStyleBackColor = true;
+			this.RefreshButton.Click += new System.EventHandler( this.RefreshButton_Click );
+			// 
 			// PluginManagerForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF( 6F, 13F );
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size( 584, 412 );
+			this.Controls.Add( this.RefreshButton );
 			this.Controls.Add( this.Description_Label );
 			this.Controls.Add( this.Description );
 			this.Controls.Add( this.CancelButton );
@@ -149,5 +163,6 @@ namespace Syntec.Plugin
 		private System.Windows.Forms.Button CancelButton;
 		private System.Windows.Forms.TextBox Description;
 		private System.Windows.Forms.Label Description_Label;
+		private System.Windows.Forms.Button RefreshButton;
 	}
 }

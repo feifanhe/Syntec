@@ -44,9 +44,6 @@ namespace Syntec.Plugin
 			//First empty the collection, we're reloading them all
 			colAvailablePlugins.Clear();
 
-			Console.WriteLine( "PRINT FILES" );
-			foreach( string str in Directory.GetFiles( Path ) )
-				Console.WriteLine( str );
 			//Go through all the files in the plugin directory
 			foreach( string fileOn in Directory.GetFiles( Path ) )
 			{
@@ -55,10 +52,8 @@ namespace Syntec.Plugin
 				//Preliminary check, must be .dll
 				if( file.Extension.Equals( ".dll" ) )
 				{
-					//Add the 'plugin'
-					Console.Write( "EXECUTE ADD: " + file.Name + "... " );
+					//Add the plugin
 					this.AddPlugin( fileOn );
-					Console.WriteLine( "DONE" );
 				}
 			}
 		}
@@ -84,9 +79,6 @@ namespace Syntec.Plugin
 			//Create a new assembly from the plugin file we're adding..
 			Assembly pluginAssembly = Assembly.LoadFrom( FileName );
 
-			Console.WriteLine("PRINT TYPE");
-			foreach(Type ty in pluginAssembly.GetTypes())
-				Console.WriteLine(ty.Name);
 			//Next we'll loop through all the Types found in the assembly
 			foreach( Type pluginType in pluginAssembly.GetTypes() )
 			{
