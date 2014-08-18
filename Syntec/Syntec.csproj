@@ -40,6 +40,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Global.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -53,6 +54,7 @@
     <Compile Include="Plugin\PluginManagerForm.Designer.cs">
       <DependentUpon>PluginManagerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Plugin\PluginServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <SubType>Designer</SubType>
@@ -128,6 +130,10 @@
     <ProjectReference Include="..\Fenubars\Fenubars.csproj">
       <Project>{96BEB70E-5DFD-4E55-95BC-A711C2D83292}</Project>
       <Name>Fenubars</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PluginInterface\PluginInterface.csproj">
+      <Project>{00D0C21D-D94C-4B0F-A710-1EFBABB4C4C6}</Project>
+      <Name>PluginInterface</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

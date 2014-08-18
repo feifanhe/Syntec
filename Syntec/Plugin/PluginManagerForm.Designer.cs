@@ -26,43 +26,48 @@ namespace Syntec.Plugin
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent( ) {
-			this.listView1 = new System.Windows.Forms.ListView();
+			this.PluginList = new System.Windows.Forms.ListView();
 			this.NameHeader = new System.Windows.Forms.ColumnHeader();
 			this.VersionHeader = new System.Windows.Forms.ColumnHeader();
 			this.LocationHeader = new System.Windows.Forms.ColumnHeader();
 			this.BrowseButton = new System.Windows.Forms.Button();
 			this.OKButton = new System.Windows.Forms.Button();
 			this.CancelButton = new System.Windows.Forms.Button();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.Description = new System.Windows.Forms.TextBox();
 			this.Description_Label = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
-			// listView1
+			// PluginList
 			// 
-			this.listView1.CheckBoxes = true;
-			this.listView1.Columns.AddRange( new System.Windows.Forms.ColumnHeader[] {
+			this.PluginList.CheckBoxes = true;
+			this.PluginList.Columns.AddRange( new System.Windows.Forms.ColumnHeader[] {
             this.NameHeader,
             this.VersionHeader,
             this.LocationHeader} );
-			this.listView1.Location = new System.Drawing.Point( 12, 12 );
-			this.listView1.MultiSelect = false;
-			this.listView1.Name = "listView1";
-			this.listView1.Size = new System.Drawing.Size( 560, 186 );
-			this.listView1.TabIndex = 0;
-			this.listView1.UseCompatibleStateImageBehavior = false;
-			this.listView1.View = System.Windows.Forms.View.Details;
+			this.PluginList.GridLines = true;
+			this.PluginList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+			this.PluginList.Location = new System.Drawing.Point( 12, 12 );
+			this.PluginList.MultiSelect = false;
+			this.PluginList.Name = "PluginList";
+			this.PluginList.Size = new System.Drawing.Size( 560, 186 );
+			this.PluginList.TabIndex = 0;
+			this.PluginList.UseCompatibleStateImageBehavior = false;
+			this.PluginList.View = System.Windows.Forms.View.Details;
 			// 
 			// NameHeader
 			// 
 			this.NameHeader.Text = "Name";
+			this.NameHeader.Width = 180;
 			// 
 			// VersionHeader
 			// 
 			this.VersionHeader.Text = "Version";
+			this.VersionHeader.Width = 70;
 			// 
 			// LocationHeader
 			// 
 			this.LocationHeader.Text = "Location";
+			this.LocationHeader.Width = 280;
 			// 
 			// BrowseButton
 			// 
@@ -70,7 +75,7 @@ namespace Syntec.Plugin
 			this.BrowseButton.Name = "BrowseButton";
 			this.BrowseButton.Size = new System.Drawing.Size( 75, 23 );
 			this.BrowseButton.TabIndex = 2;
-			this.BrowseButton.Text = "Browse";
+			this.BrowseButton.Text = "Open";
 			this.BrowseButton.UseVisualStyleBackColor = true;
 			// 
 			// OKButton
@@ -91,20 +96,20 @@ namespace Syntec.Plugin
 			this.CancelButton.Text = "Cancel";
 			this.CancelButton.UseVisualStyleBackColor = true;
 			// 
-			// textBox1
+			// Description
 			// 
-			this.textBox1.Location = new System.Drawing.Point( 12, 238 );
-			this.textBox1.Multiline = true;
-			this.textBox1.Name = "textBox1";
-			this.textBox1.ReadOnly = true;
-			this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.textBox1.Size = new System.Drawing.Size( 560, 124 );
-			this.textBox1.TabIndex = 5;
+			this.Description.Location = new System.Drawing.Point( 12, 233 );
+			this.Description.Multiline = true;
+			this.Description.Name = "Description";
+			this.Description.ReadOnly = true;
+			this.Description.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.Description.Size = new System.Drawing.Size( 560, 124 );
+			this.Description.TabIndex = 5;
 			// 
 			// Description_Label
 			// 
 			this.Description_Label.AutoSize = true;
-			this.Description_Label.Location = new System.Drawing.Point( 9, 222 );
+			this.Description_Label.Location = new System.Drawing.Point( 9, 217 );
 			this.Description_Label.Name = "Description_Label";
 			this.Description_Label.Size = new System.Drawing.Size( 63, 13 );
 			this.Description_Label.TabIndex = 6;
@@ -116,17 +121,18 @@ namespace Syntec.Plugin
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size( 584, 412 );
 			this.Controls.Add( this.Description_Label );
-			this.Controls.Add( this.textBox1 );
+			this.Controls.Add( this.Description );
 			this.Controls.Add( this.CancelButton );
 			this.Controls.Add( this.OKButton );
 			this.Controls.Add( this.BrowseButton );
-			this.Controls.Add( this.listView1 );
+			this.Controls.Add( this.PluginList );
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "PluginManagerForm";
 			this.ShowIcon = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Plugin Manager";
+			this.Load += new System.EventHandler( this.PluginManagerForm_Load );
 			this.ResumeLayout( false );
 			this.PerformLayout();
 
@@ -134,14 +140,14 @@ namespace Syntec.Plugin
 
 		#endregion
 
-		private System.Windows.Forms.ListView listView1;
+		private System.Windows.Forms.ListView PluginList;
 		private System.Windows.Forms.ColumnHeader NameHeader;
 		private System.Windows.Forms.ColumnHeader VersionHeader;
 		private System.Windows.Forms.ColumnHeader LocationHeader;
 		private System.Windows.Forms.Button BrowseButton;
 		private System.Windows.Forms.Button OKButton;
 		private System.Windows.Forms.Button CancelButton;
-		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.TextBox Description;
 		private System.Windows.Forms.Label Description_Label;
 	}
 }

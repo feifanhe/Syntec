@@ -1,0 +1,10 @@
+C:\Users\Andy\Desktop\PluginPrototype\PluginInterface\bin\Debug\PluginInterface.dll
+C:\Users\Andy\Desktop\PluginPrototype\PluginInterface\bin\Debug\PluginInterface.pdb
+C:\Users\Andy\Desktop\PluginPrototype\PluginInterface\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Andy\Desktop\PluginPrototype\PluginInterface\obj\Debug\PluginInterface.dll
+C:\Users\Andy\Desktop\PluginPrototype\PluginInterface\obj\Debug\PluginInterface.pdb
+C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\PluginInterface\bin\Debug\PluginInterface.dll
+C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\PluginInterface\bin\Debug\PluginInterface.pdb
+C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\PluginInterface\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\PluginInterface\obj\Debug\PluginInterface.dll
+C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\PluginInterface\obj\Debug\PluginInterface.pdb
