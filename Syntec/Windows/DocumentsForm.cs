@@ -10,12 +10,12 @@ namespace Syntec.Windows
 {
 	public partial class DocumentsForm : DockContent
 	{
-		public Loader fenuloader;
+		public Handler fenuloader;
 		
 		public DocumentsForm( ) {
 			InitializeComponent();
 
-			fenuloader = new Loader( this);
+			fenuloader = new Handler( "root.xml" );
 
 			//List<Fenu> fenulist = new List<Fenu>();
 

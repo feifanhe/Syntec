@@ -20,13 +20,5 @@ namespace Syntec
 
 			
 		}
-
-		private void Help_MenuItem_Click(object sender, EventArgs e) {
-			MessageBox.Show( "START CHANGING" );
-
-			df.fenuloader.Properties.Fenus[ 0 ].NormalButton[ 1 ].Title = "CHANGED";
-
-			MessageBox.Show( "CHANGE COMPLETE" );
-		}
 	}
 }

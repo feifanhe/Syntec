@@ -161,6 +161,8 @@ namespace Syntec
 			this.toolStripSeparator22 = new System.Windows.Forms.ToolStripSeparator();
 			this.toolStripButton4 = new System.Windows.Forms.ToolStripDropDownButton();
 			this.toolStripButton5 = new System.Windows.Forms.ToolStripDropDownButton();
+			this.AddInManager_MenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.Tools_Seperator_1 = new System.Windows.Forms.ToolStripSeparator();
 			this.MenuStrip.SuspendLayout();
 			this.toolStripContainer1.ContentPanel.SuspendLayout();
 			this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
@@ -802,6 +804,8 @@ namespace Syntec
 			// Tools_MenuItem
 			// 
 			this.Tools_MenuItem.DropDownItems.AddRange( new System.Windows.Forms.ToolStripItem[] {
+            this.AddInManager_MenuItem,
+            this.Tools_Seperator_1,
             this.optionsToolStripMenuItem} );
 			this.Tools_MenuItem.Name = "Tools_MenuItem";
 			this.Tools_MenuItem.Size = new System.Drawing.Size( 48, 20 );
@@ -810,8 +814,8 @@ namespace Syntec
 			// optionsToolStripMenuItem
 			// 
 			this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-			this.optionsToolStripMenuItem.Size = new System.Drawing.Size( 116, 22 );
-			this.optionsToolStripMenuItem.Text = "Options";
+			this.optionsToolStripMenuItem.Size = new System.Drawing.Size( 170, 22 );
+			this.optionsToolStripMenuItem.Text = "Options...";
 			// 
 			// Window_MenuItem
 			// 
@@ -913,7 +917,6 @@ namespace Syntec
 			this.Help_MenuItem.Name = "Help_MenuItem";
 			this.Help_MenuItem.Size = new System.Drawing.Size( 44, 20 );
 			this.Help_MenuItem.Text = "Help";
-			this.Help_MenuItem.Click += new System.EventHandler( this.Help_MenuItem_Click );
 			// 
 			// howDoIToolStripMenuItem
 			// 
@@ -1102,6 +1105,17 @@ namespace Syntec
 			this.toolStripButton5.Size = new System.Drawing.Size( 29, 22 );
 			this.toolStripButton5.Text = "toolStripButton5";
 			// 
+			// AddInManager_MenuItem
+			// 
+			this.AddInManager_MenuItem.Name = "AddInManager_MenuItem";
+			this.AddInManager_MenuItem.Size = new System.Drawing.Size( 170, 22 );
+			this.AddInManager_MenuItem.Text = "Add-in Manager...";
+			// 
+			// Tools_Seperator_1
+			// 
+			this.Tools_Seperator_1.Name = "Tools_Seperator_1";
+			this.Tools_Seperator_1.Size = new System.Drawing.Size( 167, 6 );
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF( 6F, 13F );
@@ -1251,6 +1265,8 @@ namespace Syntec
 		private WeifenLuo.WinFormsUI.Docking.DockPanel DockPanel;
 		private System.Windows.Forms.ToolStripDropDownButton toolStripButton4;
 		private System.Windows.Forms.ToolStripDropDownButton toolStripButton5;
+		private System.Windows.Forms.ToolStripMenuItem AddInManager_MenuItem;
+		private System.Windows.Forms.ToolStripSeparator Tools_Seperator_1;
 	}
 }
 
