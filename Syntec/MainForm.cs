@@ -13,7 +13,7 @@ namespace Syntec
 			InitializeComponent();
 
 			PropertiesWindowForm pwf = new PropertiesWindowForm();
-			pwf.Show( DockPanel, DockState.DockRight );
+			pwf.Show( DockPanel, DockState.DockRightAutoHide );
 
 			df = new DocumentsForm();
 			df.Show( DockPanel, DockState.Document );

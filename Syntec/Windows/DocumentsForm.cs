@@ -15,7 +15,7 @@ namespace Syntec.Windows
 		public DocumentsForm( ) {
 			InitializeComponent();
 
-			fenuloader = new Handler( "root.xml" );
+			//fenuloader = new Handler( "root.xml" );
 
 			//List<Fenu> fenulist = new List<Fenu>();
 

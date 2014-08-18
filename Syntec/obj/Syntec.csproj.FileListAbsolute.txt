@@ -13,3 +13,4 @@ C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\obj\Debug\Synt
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\obj\Debug\Syntec.pdb
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\bin\Debug\FilteredPropertyGrid.dll
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\bin\Debug\FilteredPropertyGrid.pdb
+C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\obj\Debug\Syntec.Plugin.PluginManagerForm.resources
