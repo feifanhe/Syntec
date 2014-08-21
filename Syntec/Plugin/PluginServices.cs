@@ -123,8 +123,6 @@ namespace Syntec.Plugin
 				}
 			}
 
-			Console.WriteLine( "END OF ADD" );
-
 			pluginAssembly = null; //more cleanup
 		}
 

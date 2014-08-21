@@ -4,6 +4,7 @@ using System.Text;
 using System.Xml.Serialization;
 using System.ComponentModel;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace Fenubars.XML
 {
@@ -14,7 +15,7 @@ namespace Fenubars.XML
 		private string _Name;
 		[XmlAttribute( "name" )]
 		[Category( "Fenu Button" )]
-		[ReadOnly(true)]
+		[ReadOnly( true )]
 		[ButtonType( ButtonTypes.EscapeButton | ButtonTypes.NormalButton | ButtonTypes.NextButton )]
 		public string Name {
 			get {
@@ -55,7 +56,7 @@ namespace Fenubars.XML
 
 		private bool _PositionSpecified = false;
 		[XmlIgnore]
-		[Browsable(false)]
+		[Browsable( false )]
 		public bool PositionSpecified {
 			get {
 				return _PositionSpecified;
@@ -71,7 +72,7 @@ namespace Fenubars.XML
 
 		private string _Title;
 		[XmlElement( "title" )]
-		[Category("Fenu Button")]
+		[Category( "Fenu Button" )]
 		[ButtonType( ButtonTypes.EscapeButton | ButtonTypes.NormalButton | ButtonTypes.NextButton )]
 		public string Title {
 			get {
@@ -84,13 +85,42 @@ namespace Fenubars.XML
 
 		private bool _TitleSpecified = false;
 		[XmlIgnore]
-		[Browsable(false)]
+		[Browsable( false )]
 		public bool TitleSpecified {
 			get {
 				return _TitleSpecified;
 			}
 			set {
 				_TitleSpecified = value;
+			}
+		}
+
+		#endregion
+
+		#region State
+
+		private ButtonState _State = ButtonState.disable;
+		[XmlElement( "state" )]
+		[Category( "Fenu Button" )]
+		[DefaultValue( ButtonState.disable )]
+		public ButtonState State {
+			get {
+				return _State;
+			}
+			set {
+				StateSpecified = this.CheckPropertyChanged<ButtonState>( "State", ref _State, ref value );
+			}
+		}
+
+		private bool _StateSpecified = false;
+		[XmlIgnore]
+		[Browsable( false )]
+		public bool StateSpecified {
+			get {
+				return _StateSpecified;
+			}
+			set {
+				_StateSpecified = value;
 			}
 		}
 

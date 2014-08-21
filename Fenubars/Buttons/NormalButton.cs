@@ -14,12 +14,17 @@ namespace Fenubars.Buttons
 			this.Location = new Point( 3 + 83 * Index, 3 );
 		}
 
+		private Binding bind;
 		public void SetState(FenuButtonState State) {
 			// Bindings
 			this.DataBindings.Add( "Name", State, "Name" );
 			this.DataBindings.Add( "Text", State, "Title" );
-			//this.DataBindings.Add( "Enabled", State, "ParseState" );
-			
+
+			bind = new Binding( "Enabled", State, "State" );
+			bind.Format += new ConvertEventHandler( StateConverter.StateToBool );
+			bind.Parse += new ConvertEventHandler( StateConverter.BoolToState );
+			this.DataBindings.Add( bind );
+
 			// Post-filled
 			State.Name = State.Name ?? "F" + State.Position.ToString(); 
 		}

@@ -18,9 +18,11 @@
     <button name="F4">
       <position>4</position>
       <title>BUTTON4</title>
+      <state>enable</state>
     </button>
     <next name="nextfenu2">
       <title>&gt;&gt;</title>
+      <state>enable</state>
     </next>
   </fenu>
   <fenu name="fenu2">
