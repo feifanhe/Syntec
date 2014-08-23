@@ -22,10 +22,10 @@ namespace FormTest
 
 			try
 			{
-				loader = new Handler( "output.xml" );
+				loader = new Handler( "CncFenu.xml" );
 				loader.Canvas = this.splitContainer1.Panel1.Controls;
 				loader.PropertyViewer = propertyGrid1;
-				loader.LoadFenu( "fenu1" );
+				loader.LoadFenu( "main" );
 			}
 			catch( FileLoadException )
 			{
@@ -35,7 +35,7 @@ namespace FormTest
 
 		private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			loader.Save( "output.xml" );
+			//loader.Save( "output.xml" );
 		}
 	}
 }
