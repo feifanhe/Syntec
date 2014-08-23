@@ -111,7 +111,7 @@ namespace Fenubars.Display
 
 		#endregion
 
-		#region Event passing
+		#region Event that is passed to parent
 
 		public event EventHandler<ObjectDetailEventArgs> DataAvailable;
 		protected virtual void OnDataAvailable(ObjectDetailEventArgs e) {
@@ -145,11 +145,37 @@ namespace Fenubars.Display
 
 		#endregion
 
+		#region Local events
+
 		private void FenuTitle_Click(object sender, EventArgs e) {
 			ObjectDetailEventArgs args = new ObjectDetailEventArgs();
 			args.Type = typeof( Fenu );
 			OnDataAvailable( args );
 		}
+
+		private void FormSplitContainer_Panel2_Click(object sender, EventArgs e) {
+			Point CursorPos = this.PointToClient( Cursor.Position );
+			Control Child = this.FormSplitContainer.Panel2.GetChildAtPoint( CursorPos );
+			if( Child == null )
+				return;
+
+			ObjectDetailEventArgs args = new ObjectDetailEventArgs();
+			args.Type = Child.GetType();
+
+			if( args.Type == typeof( EscapeButton ) )
+				args.Escape = _FenuContent.EscapeButton;
+			else if( args.Type == typeof( NextButton ) )
+				args.Next = _FenuContent.NextButton;
+			else if( args.Type == typeof( NormalButton ) )
+				args.Normal = _FenuContent.NormalButtonList.Find( delegate(FenuButtonState DummyState)
+																	{
+																		return ( Child as NormalButton ).Name == DummyState.Name;
+																	} );
+
+			OnDataAvailable( args );
+		}
+
+		#endregion
 	}
 
 	public class ObjectDetailEventArgs : EventArgs

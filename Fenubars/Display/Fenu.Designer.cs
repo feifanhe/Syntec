@@ -56,6 +56,7 @@ namespace Fenubars.Display
 			// FormSplitContainer.Panel2
 			// 
 			this.FormSplitContainer.Panel2.AutoScroll = true;
+			this.FormSplitContainer.Panel2.Click += new System.EventHandler( this.FormSplitContainer_Panel2_Click );
 			this.FormSplitContainer.Panel2MinSize = 0;
 			this.FormSplitContainer.Size = new System.Drawing.Size( 489, 110 );
 			this.FormSplitContainer.SplitterDistance = 22;

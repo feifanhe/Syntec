@@ -25,6 +25,11 @@ namespace Fenubars.Buttons
 			bind.Parse += new ConvertEventHandler( StateConverter.BoolToState );
 			this.DataBindings.Add( bind );
 
+			bind = new Binding("BackColor", State, "BackColor");
+			bind.Format += new ConvertEventHandler( Fenubars.XML.ColorConverter.StringToColor );
+			bind.Parse += new ConvertEventHandler( Fenubars.XML.ColorConverter.ColorToString );
+			this.DataBindings.Add( bind );
+
 			// Post-filled
 			State.Name = State.Name ?? "F" + State.Position.ToString(); 
 		}

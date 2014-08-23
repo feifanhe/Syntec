@@ -73,7 +73,7 @@ namespace Fenubars.XML
 		private string _Title;
 		[XmlElement( "title" )]
 		[Category( "Fenu Button" )]
-		[ButtonType( ButtonTypes.EscapeButton | ButtonTypes.NormalButton | ButtonTypes.NextButton )]
+		[ButtonType( ButtonTypes.NormalButton )]
 		public string Title {
 			get {
 				return _Title;
@@ -102,6 +102,7 @@ namespace Fenubars.XML
 		private ButtonState _State = ButtonState.disable;
 		[XmlElement( "state" )]
 		[Category( "Fenu Button" )]
+		[ButtonType( ButtonTypes.EscapeButton | ButtonTypes.NormalButton | ButtonTypes.NextButton )]
 		[DefaultValue( ButtonState.disable )]
 		public ButtonState State {
 			get {
@@ -121,6 +122,36 @@ namespace Fenubars.XML
 			}
 			set {
 				_StateSpecified = value;
+			}
+		}
+
+		#endregion
+
+		#region BackColor
+
+		private string _BackColor = "240,240,240";
+		[XmlElement( "backcolor" )]
+		[Category( "Fenu Button" )]
+		[ButtonType( ButtonTypes.EscapeButton | ButtonTypes.NormalButton | ButtonTypes.NextButton )]
+		[DefaultValue( "240,240,240" )]
+		public string BackColor {
+			get {
+				return _BackColor;
+			}
+			set {
+				BackColorSpecified = this.CheckPropertyChanged<string>( "BackColor", ref _BackColor, ref value );
+			}
+		}
+
+		private bool _BackColorSpecified;
+		[XmlIgnore]
+		[Browsable( false )]
+		public bool BackColorSpecified {
+			get {
+				return _BackColorSpecified;
+			}
+			set {
+				_BackColorSpecified = value;
 			}
 		}
 
