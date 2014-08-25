@@ -114,6 +114,7 @@ namespace Fenubars.Display
 																		} );
 			// Copy the object to clipboard
 			ClipBoardManager<FenuButtonState>.CopyToClipboard(FBS);
+
 			//ClipBoardManager<FenuButtonState>.IsSerializable( FBS );
 		}
 
@@ -133,15 +134,28 @@ namespace Fenubars.Display
 			FBS.Position = Index;
 			FBS.Name = "F" + Index.ToString();
 
-			// Add the container to list
-			_FenuContent.NormalButtonList.Add( FBS );
+			// Add the FenuButtonState to properties container, search before append
+			int ListIndex = _FenuContent.NormalButtonList.FindIndex( delegate(FenuButtonState DummyState)
+																	{
+																		return DummyState.Position == FBS.Position;
+																	} );
+			Console.Write( "BEFORE: " + _FenuContent.NormalButtonList.Count.ToString() );
+			if( ListIndex == -1 )
+				_FenuContent.NormalButtonList.Add( FBS );
+			else
+				_FenuContent.NormalButtonList[ ListIndex ] = FBS;
+			Console.WriteLine( " :: AFTER: " + _FenuContent.NormalButtonList.Count.ToString() );
 
 			// Assign the binding
 			( Child as NormalButton ).SetState( FBS );
 		}
 
 		private void Delete_ButtonContextMenuItem_Click(object sender, EventArgs e) {
-			ObliterateState( FindChildOnScreen( CursorPosition ) );
+			Control Child = FindChildOnScreen( CursorPosition );
+			if( Child == null )
+				return;
+
+			ObliterateState( Child );
 		}
 
 		#endregion
@@ -267,6 +281,7 @@ namespace Fenubars.Display
 		private bool InstantiateState(object Target) {
 			return InstantiateState( Target, true );
 		}
+
 		private bool InstantiateState(object Target, bool AskToCreate) {
 			Type TargetType = Target.GetType();
 
@@ -294,7 +309,6 @@ namespace Fenubars.Display
 				// Config the position
 				FBS.Position = Index;
 
-				// Add the FenuButtonState to properties container
 				_FenuContent.NormalButtonList.Add( FBS );
 
 				// Set state to newly create FenuButtonState

@@ -219,21 +219,6 @@
     </button>
     <button name="F2">
       <position>2</position>
-      <title>Str::Fenu::AutoTool::FeedHold</title>
-      <state>enable</state>
-    </button>
-    <button name="F4">
-      <position>4</position>
-      <title>blah</title>
-      <state>enable</state>
-    </button>
-    <button name="F2">
-      <position>4</position>
-      <title>Str::Fenu::AutoTool::FeedHold</title>
-      <state>enable</state>
-    </button>
-    <button name="F2">
-      <position>2</position>
     </button>
     <button name="F2">
       <position>2</position>
@@ -245,24 +230,19 @@
       <title>Str::Fenu::AutoTool::FeedHold</title>
       <state>enable</state>
     </button>
-    <button name="F4">
-      <position>4</position>
-      <title>Str::Fenu::AutoTool::FeedHold</title>
-      <state>enable</state>
-    </button>
-    <button name="F4">
-      <position>4</position>
-      <title>Str::Fenu::AutoTool::FeedHold</title>
-      <state>enable</state>
-    </button>
-    <button name="F5">
+    <button name="F2">
+      <position>2</position>
       <title>blah</title>
       <state>enable</state>
     </button>
-    <button name="F6">
-      <position>6</position>
-      <title>blah</title>
+    <button name="F3">
+      <position>3</position>
+      <title>Str::Fenu::AutoTool::FeedHold</title>
       <state>enable</state>
+    </button>
+    <button name="F7">
+      <position>7</position>
+      <title>BLAH</title>
     </button>
     <next>
       <state>enable</state>
