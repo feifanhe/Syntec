@@ -23,6 +23,9 @@ namespace Fenubars.Display
 
 			// Set default docking position
 			this.Dock = DockStyle.Top;
+
+			// Register context menu, for disabled buttons
+			this.FormSplitContainer.Panel2.ContextMenuStrip = ButtonContextMenu;
 		}
 
 		public void PopulateButtons( ) {
@@ -48,6 +51,7 @@ namespace Fenubars.Display
 				// TODO: Add double click
 				NormalButton NRB = new NormalButton( i );
 				NRB.Click += new EventHandler( FenuButton_Click );
+				NRB.ContextMenuStrip = ButtonContextMenu;
 				try
 				{
 					FenuButtonState FBS = _FenuContent.NormalButtonList.Find( delegate(FenuButtonState DummyState)
@@ -111,6 +115,14 @@ namespace Fenubars.Display
 
 		#endregion
 
+		#region Context menu item click event
+
+		private void Create_ButtonContextMenuItem_Click(object sender, EventArgs e) {
+
+		}
+
+		#endregion
+
 		#region Event that is passed to parent
 
 		public event EventHandler<ObjectDetailEventArgs> DataAvailable;
@@ -123,7 +135,7 @@ namespace Fenubars.Display
 		}
 		
 		private void FenuButton_Click(object sender, EventArgs e) {
-			IdentifyObject( sender );
+			IdentifyButtonObject( sender );
 		}
 		
 		#endregion
@@ -142,17 +154,52 @@ namespace Fenubars.Display
 			if( Child == null )
 				return;
 
-			IdentifyObject( Child );
+			IdentifyButtonObject( Child );
+		}
+
+		private void ButtonContextMenu_Opening(object sender, CancelEventArgs e) {
+			// Restore all the visible state of the menu items
+			foreach( ToolStripItem TSI in ( sender as ContextMenuStrip ).Items )
+				TSI.Visible = true;
+
+			// Get child under the cursor
+			Point CursorPos = this.PointToClient( Cursor.Position );
+			Control Child = this.FormSplitContainer.Panel2.GetChildAtPoint( CursorPos );
+			if( Child == null )
+				return;
+
+			if( Child.GetType() == typeof( NormalButton ) )
+			{
+				// Find out whether the child is has bind to state or not
+				if( ( Child as Button ).FlatStyle == FlatStyle.Standard )
+				{
+					( sender as ContextMenuStrip ).Items[ "Create_ButtonContextMenuItem" ].Visible = false;
+					( sender as ContextMenuStrip ).Items[ "GoTo_ButtonContextMenuItem" ].Visible = true;
+				}
+				else
+				{
+					( sender as ContextMenuStrip ).Items[ "Create_ButtonContextMenuItem" ].Visible = true;
+					( sender as ContextMenuStrip ).Items[ "GoTo_ButtonContextMenuItem" ].Visible = false;
+				}
+			}
+
+			e.Cancel = false;
 		}
 
 		#endregion
 
 		#region Methods
 
-		private void IdentifyObject(object target){
+		private void IdentifyButtonObject(object target){
+			// Acquire button type and instantiate event args
 			ObjectDetailEventArgs args = new ObjectDetailEventArgs();
 			args.Type = target.GetType();
 
+			// Ask to create new state or not
+			if( ( (Button)target ).FlatStyle == FlatStyle.Popup )
+				InstantiateState( args.Type, target );
+			
+			// Pass state of the button to event args
 			if( args.Type == typeof( EscapeButton ) )
 				args.Escape = _FenuContent.EscapeButton;
 			else if( args.Type == typeof( NextButton ) )
@@ -162,10 +209,48 @@ namespace Fenubars.Display
 																	{
 																		return ( target as NormalButton ).Name == DummyState.Name;
 																	} );
+			
+			// Kick start the event 
 			OnDataAvailable( args );
 		}
 
-		#endregion
+		private bool InstantiateState(Type TargetType, object Target) { 
+
+			// Return false if declined to instantaiate the button
+			if( MessageBox.Show( "Would you like to create a button here?",
+									"Create",
+									MessageBoxButtons.YesNo,
+									MessageBoxIcon.Question ) == DialogResult.No )
+				return false;
+
+			FenuButtonState FBS = new FenuButtonState();
+
+			if( TargetType == typeof( EscapeButton ) )
+			{
+				
+			}
+			else if( TargetType == typeof( NextButton ) )
+			{
+			}
+			else if( TargetType == typeof( NormalButton ) )
+			{
+				int Xpos = ( Target as Button ).Location.X;
+				int Index = ( Xpos - 3 ) / 83;
+
+				// Config the position
+				FBS.Position = Index;
+
+				// Add the FenuButtonState to properties container
+				_FenuContent.NormalButtonList.Add( FBS );
+
+				// Set state to newly create FenuButtonState
+				( Target as NormalButton ).SetState( FBS );
+			}
+
+			return true;
+		}
+
+		#endregion	
 	}
 
 	public class ObjectDetailEventArgs : EventArgs

@@ -8,3 +8,4 @@ C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Fenubars\obj\Debug\Fe
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Fenubars\obj\Debug\Fenubars.Properties.Resources.resources
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Fenubars\bin\Debug\FilteredPropertyGrid.dll
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Fenubars\bin\Debug\FilteredPropertyGrid.pdb
+C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Fenubars\obj\Debug\Fenubars.Display.FenuContextMenuStrip.resources

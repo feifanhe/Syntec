@@ -1,35 +1,2464 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
   <Button3D>true</Button3D>
-  <Level3D>1</Level3D>
-  <NoFunc>true</NoFunc>
-  <NoLR>true</NoLR>
-  <BigLR>true</BigLR>
-  <TextOverPic>true</TextOverPic>
+  <Level3D>4</Level3D>
+  <NoFunc>false</NoFunc>
+  <NoLR>false</NoLR>
+  <BigLR>false</BigLR>
+  <TextOverPic>false</TextOverPic>
   <Alignment>1</Alignment>
-  <fenu name="fenu1">
-    <escape name="escapefenu1">
-      <title>&lt;&lt;</title>
-    </escape>
+  <fenu name="main">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::Main::MenuMachine</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::Main::MenuProgram</title>
+      <state>enable</state>
+    </button>
+    <button name="CusF3">
+      <position>3</position>
+      <title>STR::Fenu::Main::MenuCustom</title>
+    </button>
+    <button>
+      <position>4</position>
+      <title>Str::Fenu::Main::MenuRun</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>5</position>
+      <title>Str::Fenu::Main::MenuAlarm</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>6</position>
+      <title>Str::Fenu::Main::MenuParameter</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>7</position>
+      <title>Str::Fenu::Main::MenuDiagnostic</title>
+      <state>enable</state>
+    </button>
+    <button name="DoAbout">
+      <position>8</position>
+      <title>Str::Fenu::Main::About</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="mainnext">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::MainNext::CycleStart</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::MainNext::Reset</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>3</position>
+      <title>Str::Fenu::Main::End</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="About">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::About::OK</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="MessageBox">
+    <escape />
+    <next />
+  </fenu>
+  <fenu name="BreakpointSearchBox">
+    <escape />
+    <next />
+  </fenu>
+  <fenu name="FenuSpace">
+    <escape />
+    <next />
+  </fenu>
+  <fenu name="Machine">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::Machine::CoordinateSwitch</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::Machine::HalfCoordiante</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>3</position>
+      <title>Str::Fenu::Machine::ClearCoordinate</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>4</position>
+      <title>Str::Fenu::Machine::ClearAllCoordinate</title>
+      <state>enable</state>
+    </button>
+    <button name="WorkPiece">
+      <position>5</position>
+      <title>Str::Fenu::Machine::SetWorkPieceCord</title>
+      <state>enable</state>
+    </button>
+    <button name="FeatureCoord">
+      <position>6</position>
+      <title>Str::Fenu::Machine::SetFeatureCoord</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="OK">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::MMI::Common::BtnOK</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="YesNo">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::MMI::Common::BtnYes</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::MMI::Common::BtnNo</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="OkCancel">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::MMI::Common::BtnOK</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::MMI::Common::BtnCancel</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="MenuWorkPieceCord">
+    <escape />
+    <button name="LatchMachCord">
+      <position>1</position>
+      <title>Str::Fenu::Machine::LatchMachCord</title>
+      <state>enable</state>
+    </button>
+    <button name="LatchRelCord">
+      <position>2</position>
+      <title>Str::Fenu::Machine::LatchRelCord</title>
+      <state>enable</state>
+    </button>
+    <button name="LatchAuxCord">
+      <position>3</position>
+      <title>Str::Fenu::Machine::LatchAuxCord</title>
+      <state>enable</state>
+    </button>
+    <button name="WorkpieceNextPage">
+      <position>4</position>
+      <title>Str::Fenu::Machine::NextWorkPiecePage</title>
+      <state>enable</state>
+    </button>
+    <button name="AutoCenter">
+      <position>5</position>
+      <title>Str::Fenu::Machine::AutoCenter</title>
+      <state>enable</state>
+    </button>
+    <button name="AutoTool">
+      <position>6</position>
+      <title>Str::Fenu::Machine::AutoTool</title>
+      <state>enable</state>
+    </button>
+    <button name="MachCoordTeach">
+      <position>7</position>
+      <title>Str::Fenu::Machine::MachCoordTeach</title>
+      <state>enable</state>
+    </button>
+    <button name="CoordIncInput">
+      <position>8</position>
+      <title>Str::Fenu::Machine::CoordIncInput</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="AutoTool">
+    <escape />
+    <button name="F1">
+      <position>1</position>
+      <title>Str::Fenu::AutoTool::Start</title>
+      <state>enable</state>
+    </button>
     <button name="F2">
       <position>2</position>
-      <title>dispose</title>
+      <title>Str::Fenu::AutoTool::FeedHold</title>
+      <state>enable</state>
+    </button>
+    <button name="F3">
+      <position>3</position>
+      <title>Str::Fenu::AutoTool::ZDeltaSet</title>
+      <state>enable</state>
+    </button>
+    <button name="GaugeZTeach">
+      <position>7</position>
+      <title>Str::Fenu::AutoTool::GaugeZTeach</title>
+    </button>
+    <button name="F8">
+      <position>8</position>
+      <title>Str::Fenu::AutoTool::XYRefTeach</title>
+      <state>enable</state>
     </button>
     <button name="F4">
       <position>4</position>
-      <title>BUTTON4</title>
-      <state>enable</state>
     </button>
-    <next name="nextfenu2">
-      <title>&gt;&gt;</title>
+    <next>
       <state>enable</state>
     </next>
   </fenu>
-  <fenu name="fenu2">
-    <escape name="escapefenu2" />
-    <button name="buttonfenu2">
-      <title>fenu2_button1</title>
+  <fenu name="AutoToolNext">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::AutoTool::ZMachTeach</title>
+      <state>enable</state>
     </button>
-    <next name="nextfenu2" />
+    <next />
+  </fenu>
+  <fenu name="ManualCenter">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::ManualCenterPx1</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::ManualCenterPx2</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>3</position>
+      <title>Str::Fenu::ManualCenterPy1</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>4</position>
+      <title>Str::Fenu::ManualCenterPy2</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="AutoCenter">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::AutoCenterStart</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::AutoCenterFeedHold</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>5</position>
+      <title>Str::Fenu::ZSafeHeightTeach</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="ThreePtsCenter">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::3PtsCenterP1</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::3PtsCenterP2</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>3</position>
+      <title>Str::Fenu::3PtsCenterP3</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>4</position>
+      <title>Str::Fenu::3PtsCenterResult</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="CycleInputOk">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::Program::InputOk</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="Program_Mill">
+    <escape />
+    <button name="InsertCycle">
+      <position>1</position>
+      <title>Str::Fenu::Program::InsertCycle</title>
+      <state>enable</state>
+    </button>
+    <button name="DeleteLine">
+      <position>2</position>
+      <title>Str::Fenu::Program::DeleteLine</title>
+      <state>enable</state>
+    </button>
+    <button name="EditCycle">
+      <position>3</position>
+      <title>Str::Fenu::Program::EditCycle</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>4</position>
+      <title />
+    </button>
+    <button name="MenuEdit">
+      <position>5</position>
+      <title>Str::Fenu::Program::MenuEdit</title>
+      <state>enable</state>
+    </button>
+    <button name="MenuTeach">
+      <position>6</position>
+      <title>Str::Fenu::Program::MenuTeach</title>
+      <state>enable</state>
+    </button>
+    <button name="MenuSimulation">
+      <position>7</position>
+      <title>Str::Fenu::Program::MenuSimulation</title>
+      <state>enable</state>
+    </button>
+    <button name="ProgramFileManager">
+      <position>8</position>
+      <title>Str::Fenu::Program::ProgramFileMang</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="Program_Lathe">
+    <escape />
+    <button name="Prog_ToRun">
+      <position>1</position>
+      <title>Str::Fenu::ProgramFileManager::ToMainProgAndRun</title>
+      <state>enable</state>
+    </button>
+    <button name="DeleteLine">
+      <position>2</position>
+      <title>Str::Fenu::Program::DeleteLine</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>3</position>
+      <title>Str::Fenu::Program::Cycle</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>4</position>
+      <title />
+    </button>
+    <button name="MenuEdit">
+      <position>5</position>
+      <title>Str::Fenu::Program::MenuEdit</title>
+      <state>enable</state>
+    </button>
+    <button name="MenuTeach">
+      <position>6</position>
+      <title>Str::Fenu::Program::MenuTeach</title>
+      <state>enable</state>
+    </button>
+    <button name="MenuSimulation">
+      <position>7</position>
+      <title>Str::Fenu::Program::MenuSimulation</title>
+      <state>enable</state>
+    </button>
+    <button name="ProgramFileManager">
+      <position>8</position>
+      <title>Str::Fenu::Program::ProgramFileMang</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="CycleOKCancel">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::CycleOKCancel::OK</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::CycleOKCancel::Cancel</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="ExitPopup">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::CycleOKCancel::OK</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="ProgramEdit">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::ProgramEdit::MenuFind</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::ProgramEdit::MenuReplace</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>3</position>
+      <title>Str::Fenu::ProgramEdit::GotoLine</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>4</position>
+      <title>Str::Fenu::ProgramEdit::CopyLine</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>5</position>
+      <title>Str::Fenu::ProgramEdit::InsertLine</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>6</position>
+      <title>Str::Fenu::ProgramEdit::BlockMenu</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>7</position>
+      <title>Str::Fenu::ProgramEdit::CopyPasteMenu</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="BlockEdit">
+    <escape />
+    <button name="BlockStart">
+      <position>1</position>
+      <title>Str::Fenu::BlockEdit::BlockStart</title>
+      <state>enable</state>
+    </button>
+    <button name="BlockEnd">
+      <position>2</position>
+      <title>Str::Fenu::BlockEdit::BlockEnd</title>
+    </button>
+    <button name="BlockCut">
+      <position>3</position>
+      <title>Str::Fenu::BlockEdit::BlockCut</title>
+    </button>
+    <button name="BlockCopy">
+      <position>4</position>
+      <title>Str::Fenu::BlockEdit::BlockCopy</title>
+    </button>
+    <button name="BlockPaste">
+      <position>5</position>
+      <title>Str::Fenu::BlockEdit::BlockPaste</title>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="CopyPasteEdit">
+    <escape />
+    <button name="Cut">
+      <position>1</position>
+      <title>Str::Fenu::CopyPasteEdit::Cut</title>
+      <state>enable</state>
+    </button>
+    <button name="Copy">
+      <position>2</position>
+      <title>Str::Fenu::CopyPasteEdit::Copy</title>
+      <state>enable</state>
+    </button>
+    <button name="Paste">
+      <position>3</position>
+      <title>Str::Fenu::CopyPasteEdit::Paste</title>
+      <state>enable</state>
+    </button>
+    <button name="Undo">
+      <position>4</position>
+      <title>Str::Fenu::CopyPasteEdit::Undo</title>
+      <state>enable</state>
+    </button>
+    <button name="SelAll">
+      <position>5</position>
+      <title>Str::Fenu::CopyPasteEdit::SelAll</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="ProgramFind">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::ProgramFind::FindNext</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::ProgramFind::CancelFind</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="ProgramReplace">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::ProgramReplace::FindNext</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::ProgramReplace::Replace</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>3</position>
+      <title>Str::Fenu::ProgramReplace::ReplaceAll</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>4</position>
+      <title>Str::Fenu::ProgramReplace::CancelReplace</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="ProgramTeach">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::Teach::Rapid</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::Teach::LineCut</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>3</position>
+      <title>Str::Fenu::Teach::ArcCut</title>
+      <state>enable</state>
+    </button>
+    <button name="TeachArcCancel">
+      <position>4</position>
+      <title>Str::Fenu::Teach::ArcCancel</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>5</position>
+      <title>Str::Fenu::Teach::Radius</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>6</position>
+      <title>Str::Fenu::Teach::DeleteLine</title>
+      <state>enable</state>
+    </button>
+    <button name="TeachCoordSwitch">
+      <position>7</position>
+      <title>Str::Fenu::Teach::CoordSwitch</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>8</position>
+      <title>Str::Fenu::Teach::Point</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="ProgramSimulation">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::ProgramSimulation::Step</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::ProgramSimulation::Continue</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>3</position>
+      <title>Str::Fenu::ProgramSimulation::Zoom</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>5</position>
+      <title>Str::Fenu::ProgramSimulation::Reset</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>6</position>
+      <title>Str::Fenu::ProgramSimulation::Abort</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>8</position>
+      <title>Str::Fenu::ProgramSimulation::SimuSetting</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="ProgramSimulationSetting">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::ProgramSimulationSetting::OK</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::ProgramSimulationSetting::Cancel</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="ProgramFileMang_Mill">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::ProgramFileManager::NewFile</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::ProgramFileManager::CopyFile</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>3</position>
+      <title>Str::Fenu::ProgramFileManager::DelFile</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>4</position>
+      <title>Str::Fenu::ProgramFileManager::Import</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>5</position>
+      <title>Str::Fenu::ProgramFileManager::Outport</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="ProgramFileMang_Lathe">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::ProgramFileManager::NewFile</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::ProgramFileManager::CopyFile</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>3</position>
+      <title>Str::Fenu::ProgramFileManager::DelFile</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>4</position>
+      <title>Str::Fenu::ProgramFileManager::OpenFile</title>
+      <state>enable</state>
+    </button>
+    <button name="Prog_ToRun">
+      <position>5</position>
+      <title>Str::Fenu::ProgramFileManager::ToMainProgAndRun</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>7</position>
+      <title>Str::Fenu::ProgramFileManager::Import</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>8</position>
+      <title>Str::Fenu::ProgramFileManager::Outport</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="FileDeleteMenu">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::FileDel::Select</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::FileDel::SelectAll</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>3</position>
+      <title>Str::Fenu::FileDel::CancelSelect</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>4</position>
+      <title>Str::Fenu::FileDel::DelFile</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>5</position>
+      <title>Str::Fenu::FileDel::DelAll</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="FileDeleteMacro">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::FileDel::Select</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::FileDel::SelectAll</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>3</position>
+      <title>Str::Fenu::FileDel::CancelSelect</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>4</position>
+      <title>Str::Fenu::FileDel::DelFile</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>5</position>
+      <title>Str::Fenu::FileDel::DelAll</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="FileImportExport">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::FileMgr::Copy</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::FileMgr::Select</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>3</position>
+      <title>Str::Fenu::FileMgr::SelectAll</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>4</position>
+      <title>Str::Fenu::FileMgr::CancelSelect</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>5</position>
+      <title>Str::Fenu::FileMgr::DeviceChange</title>
+      <state>enable</state>
+    </button>
+    <button name="DoSwitchFocus">
+      <position>6</position>
+      <title>STR::Fenu::FileImportExport::switchFocus</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>8</position>
+      <title>Str::Fenu::FileMgr::Exit</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="SelectMainProg">
+    <escape />
+    <next />
+  </fenu>
+  <fenu name="Run_Mill">
+    <escape />
+    <button name="SelectMainProg">
+      <position>1</position>
+      <title>Str::Fenu::Run::SelectMainProg</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::Run::MenuGraphAdjust</title>
+      <state>enable</state>
+    </button>
+    <button name="MDI">
+      <position>3</position>
+      <title>Str::Fenu::Run::MDI</title>
+    </button>
+    <button>
+      <position>4</position>
+      <title>Str::Fenu::Run::ParameterSet</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>5</position>
+      <title>Str::Fenu::Run::MenuToolSet</title>
+      <state>enable</state>
+    </button>
+    <button name="MPGShift">
+      <position>6</position>
+      <title>Str::Fenu::Run::MPGShift::StartMPGShift</title>
+    </button>
+    <button name="F4F7">
+      <position>7</position>
+    </button>
+    <button>
+      <position>8</position>
+      <title>Str::Fenu::Run::WorkRecord</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="Run_Lathe">
+    <escape />
+    <button name="MainProgToEdit">
+      <position>1</position>
+      <title>Str::Fenu::ProgramFileManager::OpenFile</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::Run::MenuGraphAdjust</title>
+      <state>enable</state>
+    </button>
+    <button name="MDI">
+      <position>3</position>
+      <title>Str::Fenu::Run::MDI</title>
+    </button>
+    <button>
+      <position>4</position>
+      <title>Str::Fenu::Run::ParameterSet</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>5</position>
+      <title>Str::Fenu::Run::MenuToolSet</title>
+      <state>enable</state>
+    </button>
+    <button name="MPGShift">
+      <position>6</position>
+      <title>Str::Fenu::Run::MPGShift::StartMPGShift</title>
+    </button>
+    <button name="F4F7">
+      <position>7</position>
+    </button>
+    <button>
+      <position>8</position>
+      <title>Str::Fenu::Run::WorkRecord</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="FenuMDI">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::MDI::Ok</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::MDI::Clear</title>
+      <state>enable</state>
+    </button>
+    <button name="SelectMDI">
+      <position>3</position>
+      <title>STR::Fenu::MultiProgram::Select Program</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="WorkRecord">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::WorkRecord::SaveWorkRecord</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>8</position>
+      <title>Str::Fenu::WorkRecord::ClearWorkRecord</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="GraphAdjust">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::ProgramSimulation::Zoom</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::ProgramSimulation::Reset</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="MenuRunParaSet">
+    <escape />
+    <button name="ClearCycleTime">
+      <position>1</position>
+      <title>Str::Fenu::MenuRunParaSet::ClearCycleTime</title>
+      <state>enable</state>
+    </button>
+    <button name="GCodeDisplaySwitch">
+      <position>2</position>
+      <title>Str::Fenu::MenuRunParaSet::GCode Display Switch</title>
+      <state>enable</state>
+    </button>
+    <button name="SetDeltaAngle">
+      <position>3</position>
+      <title>STR::Fenu::MenuRunParaSet::SetDeltaAngle</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="MenuToolSet_Lathe">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::ToolSet::SetToolWear</title>
+      <state>enable</state>
+    </button>
+    <button name="SetToolLength">
+      <position>2</position>
+      <title>Str::Fenu::ToolSet::SetToolLength</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>3</position>
+      <title>Str::Fenu::ToolSet::SetToolNose</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>4</position>
+      <title>Str::Fenu::ToolSet::SetWorkShift</title>
+      <state>enable</state>
+    </button>
+    <button name="ToolManagement">
+      <position>6</position>
+      <title>STR::Fenu::MenuToolSet::ID1</title>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="MenuToolSet_Mill">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::ToolSet::ClearXRelPos</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::ToolSet::ClearYRelPos</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>3</position>
+      <title>Str::Fenu::ToolSet::ClearZRelPos</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>5</position>
+      <title>Str::Fenu::ToolSet::ToolNo</title>
+      <state>enable</state>
+    </button>
+    <button name="ToolManagement">
+      <position>6</position>
+      <title>STR::Fenu::MenuToolSet::ID1</title>
+    </button>
+    <button>
+      <position>7</position>
+      <title>Str::Fenu::ToolSet::SetToolMachCoord</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>8</position>
+      <title>Str::Fenu::ToolSet::SetToolRelCoord</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="ToolNo">
+    <escape />
+    <next />
+  </fenu>
+  <fenu name="ToolManagement">
+    <escape />
+    <next />
+  </fenu>
+  <fenu name="Alarm">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::Alarm::PendingAlarm</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::Alarm::HistoryAlarm</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>5</position>
+      <title>Str::Fenu::Alarm::SaveAlarm</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="Parameter">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::Parameter::ShowEndUser</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::Parameter::ShowService</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>3</position>
+      <title>Str::Fenu::Parameter::ShowMaker</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>4</position>
+      <title>Str::Fenu::Parameter::ShowPitchTable</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>5</position>
+      <title>Str::Fenu::Parameter::GotoParameter</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>6</position>
+      <title>Str::Fenu::Parameter::SystemSet</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>7</position>
+      <title>Str::Fenu::Parameter::FiveAxis</title>
+      <state>enable</state>
+    </button>
+    <button name="RestartCNC">
+      <position>8</position>
+      <title>Str::Fenu::Parameter::RestartCNC</title>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="ParameterSet">
+    <escape />
+    <button name="TouchAdjust">
+      <position>1</position>
+      <title>Str::Fenu::Parameter::TouchAdjust</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>8</position>
+      <title>STR::Fenu::Parameter::SetMMIConfig</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="PitchTable">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::Parameter::ShowPitchTable::Page1</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::Parameter::ShowPitchTable::LoadFile</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="ParameterNext">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::Parameter::ShowElectronic</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::Parameter::SetUseTime</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>3</position>
+      <title>Str::Fenu::Parameter::NetworkSet</title>
+      <state>enable</state>
+    </button>
+    <button name="HSHPSetting">
+      <position>4</position>
+      <title>Str::Fenu::Parameter::LoadHSHP</title>
+      <state>enable</state>
+    </button>
+    <button name="SerialTunning">
+      <position>5</position>
+      <title>Str::Fenu::Parameter::SerialTunning</title>
+    </button>
+    <button>
+      <position>6</position>
+      <title>STR::Fenu::Parameter::ConnSetting</title>
+      <state>enable</state>
+    </button>
+    <button name="KernelServSet">
+      <position>7</position>
+      <title>STR::Fenu::Parameter::KernelSerSet</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>8</position>
+      <title>Str::Fenu::Parameter::ShowPLCRBit</title>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="QuickHSHPSetting">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::Parameter::QuickHSHP</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::Parameter::PrecisionHSHP</title>
+      <state>enable</state>
+    </button>
+    <button name="ResetToDefault">
+      <position>5</position>
+      <title>Str::Fenu::Parameter::ResetToDefault</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="HSHPSetting">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::Parameter::QuickHSHP</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::Parameter::PrecisionHSHP</title>
+      <state>enable</state>
+    </button>
+    <button name="ResetToDefault">
+      <position>5</position>
+      <title>Str::Fenu::Parameter::ResetToDefault</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="NetworkSetFenu">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::Parameter::NetworkInputOK</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::Parameter::NetworkInputCancel</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="UseTimePassword">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::Parameter::UseTimeInput</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="UseTimeInputOk">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::Parameter::UseTimeInput</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="Diagnostic">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::Diagnostic::MenuPLC</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::Diagnostic::DisplaySysData</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>3</position>
+      <title>Str::Fenu::Diagnostic::DisplayComVar</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>4</position>
+      <title>Str::Fenu::Diagnostic::DisplayCoordVar</title>
+      <state>enable</state>
+    </button>
+    <button name="SystemManager">
+      <position>8</position>
+      <title>Str::Fenu::Diagnostic::SysAdmin</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="SystemInfo">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::SystemInfo::SetOption</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>STR::Fenu::SystemInfo::DisplayLogData</title>
+    </button>
+    <button>
+      <position>7</position>
+      <title>Str::Fenu::SystemInfo::SetSerial</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>8</position>
+      <title>Str::Fenu::SystemInfo::SetRestore</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="PassOptionOkCancel">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::MMI::Common::BtnOK</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::MMI::Common::BtnCancel</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="SysLog">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>STR::Fenu::SystemInfo::ExportLogData</title>
+    </button>
+    <button>
+      <position>2</position>
+      <title>STR::Fenu::SystemInfo::FindOPLogDateTime</title>
+    </button>
+    <button>
+      <position>3</position>
+      <title>STR::Fenu::SystemInfo::FindOPLogAlarm</title>
+    </button>
+    <button>
+      <position>4</position>
+      <title>STR::Fenu::SystemInfo::FindOPLogIBit</title>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="SysLogFindDateTime">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::SystemInfo::FindNext</title>
+    </button>
+    <button>
+      <position>2</position>
+      <title>STR::Fenu::SystemInfo::FindPrev</title>
+    </button>
+    <button>
+      <position>4</position>
+      <title>STR::Fenu::SystemInfo::FindOPLogDateTime</title>
+    </button>
+    <button>
+      <position>5</position>
+      <title>STR::Fenu::SystemInfo::FindOPLogAlarm</title>
+    </button>
+    <button>
+      <position>6</position>
+      <title>STR::Fenu::SystemInfo::FindOPLogIBit</title>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="SysLogFindAlarm">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::SystemInfo::FindNext</title>
+    </button>
+    <button>
+      <position>2</position>
+      <title>STR::Fenu::SystemInfo::FindPrev</title>
+    </button>
+    <button>
+      <position>4</position>
+      <title>STR::Fenu::SystemInfo::FindOPLogDateTime</title>
+    </button>
+    <button>
+      <position>5</position>
+      <title>STR::Fenu::SystemInfo::FindOPLogAlarm</title>
+    </button>
+    <button>
+      <position>6</position>
+      <title>STR::Fenu::SystemInfo::FindOPLogIBit</title>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="SysLogFindIBit">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::SystemInfo::FindNext</title>
+    </button>
+    <button>
+      <position>2</position>
+      <title>STR::Fenu::SystemInfo::FindPrev</title>
+    </button>
+    <button>
+      <position>4</position>
+      <title>STR::Fenu::SystemInfo::FindOPLogDateTime</title>
+    </button>
+    <button>
+      <position>5</position>
+      <title>STR::Fenu::SystemInfo::FindOPLogAlarm</title>
+    </button>
+    <button>
+      <position>6</position>
+      <title>STR::Fenu::SystemInfo::FindOPLogIBit</title>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="SysData">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::Diagnostic::SysDataGoTo</title>
+      <state>enable</state>
+    </button>
+    <button name="Oscillograph">
+      <position>3</position>
+      <title>Str::Fenu::Diagnostic::oscillograph</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="ComVar">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::Diagnostic::ComVarGoTo</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="CoordVar">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::Diagnostic::CoordVarGoTo</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="DiagnosticPLC">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::DiagnosticPLC::PLC.I.Bit</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::DiagnosticPLC::PLC.O.Bit</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>3</position>
+      <title>Str::Fenu::DiagnosticPLC::PLC.C.Bit</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>4</position>
+      <title>Str::Fenu::DiagnosticPLC::PLC.S.Bit</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>5</position>
+      <title>Str::Fenu::DiagnosticPLC::PLC.A.Bit</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>6</position>
+      <title>Str::Fenu::DiagnosticPLC::PLC.Reg</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>7</position>
+      <title>Str::Fenu::DiagnosticPLC::PLC.Timer</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>8</position>
+      <title>Str::Fenu::DiagnosticPLC::PLC.Counter</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="DiagnosticPLCNext">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::DiagnosticPLC::PLC.Ladder</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="PLC.Reg">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::Diagnostic::PLCRegGoTo</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="DiagnosticLadder">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::DiagnosticLadder::LadderFind</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::DiagnosticLadder::LadderFindNext</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>3</position>
+      <title>Str::Fenu::DiagnosticLadder::LadderFindPrev</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="DisagnosticSysAdmin">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::DiagnosticSysAdmin::InstallSoftware</title>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::DiagnosticSysAdmin::BackSys</title>
+    </button>
+    <button>
+      <position>3</position>
+      <title>Str::Fenu::DiagnosticSysAdmin::RestoreSys</title>
+    </button>
+    <button>
+      <position>4</position>
+      <title>Str::Fenu::DiagnosticSysAdmin::SysImportExport</title>
+    </button>
+    <button name="InstallImage">
+      <position>5</position>
+      <title>Str::Fenu::DiagnosticSysAdmin::InstallImage</title>
+    </button>
+    <button>
+      <position>6</position>
+      <title>Str::Fenu::Diagnostic::DoViewSystemInfo</title>
+      <state>enable</state>
+    </button>
+    <button name="UpdateBootPic">
+      <position>7</position>
+      <title>Str::Fenu::UpdateBootPic::SelectBootPicture</title>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="DriverTuning1">
+    <escape>
+      <state>enable</state>
+    </escape>
+    <button>
+      <position>1</position>
+      <title>STR::Fenu::DriverTuning::Gerneral</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>STR::Fenu::DriverTuning::Quick</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>3</position>
+      <title>STR::Fenu::DriverTuning::GoDELTATuning</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>7</position>
+      <title>STR::Fenu::DriverTuning::SaveParameter</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>8</position>
+      <title>STR::Fenu::DriverTuning::LoadParameter</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="DriverTuning2a">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>STR::Fenu::DriverTuning2a::Save2Controller</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>STR::Fenu::DriverTuning2a::Save2Driver</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="DriverTuning2b">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>STR::Fenu::DriverTuning2b::LoadController</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>STR::Fenu::DriverTuning2b::LoadDriver</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>3</position>
+      <title>STR::Fenu::DriverTuning2b::LoadInital</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="DELTATuningMain">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::TuningMain::TuningAxis1</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::TuningMain::TuningAxis2</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>3</position>
+      <title>Str::Fenu::TuningMain::TuningAxis3</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="TuningMenu">
+    <escape>
+      <state>enable</state>
+    </escape>
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::TuningMenu::LimitRegistration</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::TuningMenu::IEstimation</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>3</position>
+      <title>Str::Fenu::TuningMenu::TuningPrms</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>4</position>
+      <title>Str::Fenu::TuningMenu::TuningFinish</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>8</position>
+      <title>Str::Fenu::TuningMenu::DrvPrmList</title>
+      <state>enable</state>
+    </button>
+    <next>
+      <state>enable</state>
+    </next>
+  </fenu>
+  <fenu name="TuningJOGLimit">
+    <escape>
+      <state>enable</state>
+    </escape>
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::TuningJOGLimit::FRegistration</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::TuningJOGLimit::BRegistration</title>
+      <state>enable</state>
+    </button>
+    <next>
+      <state>enable</state>
+    </next>
+  </fenu>
+  <fenu name="TuningEstimation">
+    <escape>
+      <state>enable</state>
+    </escape>
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::TuningPrms::CalGain</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::TuningEstimation::StartEstimate</title>
+      <state>enable</state>
+    </button>
+    <next>
+      <state>enable</state>
+    </next>
+  </fenu>
+  <fenu name="TuningPrms">
+    <escape>
+      <state>enable</state>
+    </escape>
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::TuningPrms::CalGain</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::TuningPrms::StartTuning</title>
+      <state>enable</state>
+    </button>
+    <next>
+      <state>enable</state>
+    </next>
+  </fenu>
+  <fenu name="TuningList">
+    <escape>
+      <state>enable</state>
+    </escape>
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::TuningList::UploadPrm</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="Cycle">
+    <escape />
+    <button name="InsertCycle">
+      <position>1</position>
+      <title>STR::Fenu::MultiProgram::InsertCycle</title>
+      <state>enable</state>
+    </button>
+    <button name="EditCycle">
+      <position>2</position>
+      <title>STR::Fenu::MultiProgram::Edit Cycle</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="MultiProgram_Mill">
+    <escape>
+      <state>enable</state>
+    </escape>
+    <button name="InsertCycle">
+      <position>1</position>
+      <title>STR::Fenu::MultiProgram::InsertCycle</title>
+      <state>enable</state>
+    </button>
+    <button name="DeleteLine">
+      <position>2</position>
+      <title>STR::Fenu::MultiProgram::Delete Line</title>
+      <state>enable</state>
+    </button>
+    <button name="EditCycle">
+      <position>3</position>
+      <title>STR::Fenu::MultiProgram::Edit Cycle</title>
+      <state>enable</state>
+    </button>
+    <button name="SelectProgram">
+      <position>4</position>
+      <title>STR::Fenu::MultiProgram::Select Program</title>
+      <state>enable</state>
+    </button>
+    <button name="ScreenController">
+      <position>5</position>
+      <title>STR::Fenu::MultiProgram::MultiScreen</title>
+      <state>enable</state>
+    </button>
+    <button name="MenuEdit">
+      <position>6</position>
+      <title>STR::Fenu::MultiProgramNext::MenuEdit</title>
+      <state>enable</state>
+    </button>
+    <button name="MenuSimulation">
+      <position>7</position>
+      <title>STR::Fenu::MultiProgramNext::MenuSimulation</title>
+      <state>enable</state>
+    </button>
+    <button name="ProgramFileManager">
+      <position>8</position>
+      <title>STR::Fenu::MultiProgramNext::ProgramFileMang</title>
+      <state>enable</state>
+    </button>
+    <next>
+      <state>enable</state>
+    </next>
+  </fenu>
+  <fenu name="MultiProgram_Lathe">
+    <escape>
+      <state>enable</state>
+    </escape>
+    <button name="Prog_ToRun">
+      <position>1</position>
+      <title>Str::Fenu::ProgramFileManager::ToMainProgAndRun</title>
+      <state>enable</state>
+    </button>
+    <button name="DeleteLine">
+      <position>2</position>
+      <title>Str::Fenu::Program::DeleteLine</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>3</position>
+      <title>Str::Fenu::Program::Cycle</title>
+      <state>enable</state>
+    </button>
+    <button name="SelectProgram">
+      <position>4</position>
+      <title>STR::Fenu::MultiProgram::Select Program</title>
+      <state>enable</state>
+    </button>
+    <button name="ScreenController">
+      <position>5</position>
+      <title>STR::Fenu::MultiProgram::MultiScreen</title>
+      <state>enable</state>
+    </button>
+    <button name="MenuEdit">
+      <position>6</position>
+      <title>STR::Fenu::MultiProgramNext::MenuEdit</title>
+      <state>enable</state>
+    </button>
+    <button name="MenuSimulation">
+      <position>7</position>
+      <title>STR::Fenu::MultiProgramNext::MenuSimulation</title>
+      <state>enable</state>
+    </button>
+    <button name="ProgramFileManager">
+      <position>8</position>
+      <title>STR::Fenu::MultiProgramNext::ProgramFileMang</title>
+      <state>enable</state>
+    </button>
+    <next>
+      <state>enable</state>
+    </next>
+  </fenu>
+  <fenu name="CycleInputOk2">
+    <escape>
+      <state>enable</state>
+    </escape>
+    <button>
+      <position>1</position>
+      <title>STR::Fenu::CycleInputOk2::InputOk</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="MenuFeatureCoord">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::Fenu::MenuFeatureCoord::SetupCoord</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::MenuFeatureCoord::CompleteSetup</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>8</position>
+      <title>Str::Fenu::MenuFeatureCoord::CancelFeature</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="ConnSet">
+    <escape>
+      <state>enable</state>
+    </escape>
+    <button>
+      <position>1</position>
+      <title>STR::Fenu::ConnSet::TestConn</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>STR::Fenu::ConnSet::NetConn</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>3</position>
+      <title>STR::Fenu::ConnSet::LocalKernel</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>4</position>
+      <title>STR::Fenu::ConnSet::AutoConnect</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>5</position>
+      <title>STR::Fenu::ConnSet::Cancel</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="KernelServSet">
+    <escape>
+      <state>enable</state>
+    </escape>
+    <button>
+      <position>1</position>
+      <title>STR::Fenu::KernelServSet::StartServ</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>3</position>
+      <title>STR::Fenu::KernelServSet::OK</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>4</position>
+      <title>STR::Fenu::KernelServSet::Cancel</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="MPGMessage">
+    <escape />
+    <next />
+  </fenu>
+  <fenu name="SerialTunning">
+    <escape>
+      <state>enable</state>
+    </escape>
+    <button>
+      <position>1</position>
+      <title>STR::Fenu::SerialTunning::NewRow</title>
+    </button>
+    <button name="ST_DelRow">
+      <position>2</position>
+      <title>STR::Fenu::SerialTunning::DeleteRow</title>
+    </button>
+    <button>
+      <position>3</position>
+      <title>STR::Fenu::SerialTunning::BackupTunningParam</title>
+    </button>
+    <button>
+      <position>4</position>
+      <title>STR::Fenu::SerialTunning::RestoreTunningParam</title>
+    </button>
+    <button>
+      <position>5</position>
+      <title>STR::Fenu::SerialTunning::DefaultTunningLayout</title>
+    </button>
+    <button name="AbsoluteHomeSet">
+      <position>7</position>
+      <title>STR::Fenu::SerialTunning::AbsoluteHomeSet</title>
+    </button>
+    <button>
+      <position>8</position>
+      <title>STR::Fenu::SerialTunning::AutoTuning</title>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="ST_AutoTuning">
+    <escape>
+      <state>enable</state>
+    </escape>
+    <button name="BTN1">
+      <position>1</position>
+      <title>STR::Fenu::ST_AutoTuning::Next</title>
+    </button>
+    <button name="BTN2">
+      <position>2</position>
+      <title>STR::Fenu::ST_AutoTuning::Last</title>
+    </button>
+    <button name="BTN3">
+      <position>3</position>
+      <title>STR::Fenu::ST_AutoTuning::SetLimit1</title>
+    </button>
+    <button name="BTN4">
+      <position>4</position>
+      <title>STR::Fenu::ST_AutoTuning::SetLimit2</title>
+    </button>
+    <button name="BTN8">
+      <position>8</position>
+      <title>STR::Fenu::ST_AutoTuning::Cancel</title>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="SerialTunningInput">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::MMI::Common::BtnOK</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::MMI::Common::BtnCancel</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="SerialTunningNewRow">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>Str::MMI::Common::BtnOK</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::MMI::Common::BtnCancel</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="AbsHomeSet">
+    <escape />
+    <button name="HomeSet">
+      <position>1</position>
+      <title>STR::Fenu::SerialTunning::HomeSet</title>
+      <state>enable</state>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="FileDialogMgr">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>STR::Fenu::SelectItem::OK</title>
+    </button>
+    <button>
+      <position>2</position>
+      <title>STR::Fenu::SelectItem::ChangeItem</title>
+    </button>
+    <button>
+      <position>8</position>
+      <title>STR::Fenu::SelectItem::Cancel</title>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="SelectItem_Backup">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>STR::Fenu::Select:Next</title>
+    </button>
+    <button>
+      <position>2</position>
+      <title>STR::Fenu::SelectItem::ChangeItem</title>
+    </button>
+    <button>
+      <position>3</position>
+      <title>STR::Fenu::SelectItem::Enter</title>
+    </button>
+    <button>
+      <position>8</position>
+      <title>STR::Fenu::SelectItem::Cancel</title>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="SelectItem_FileName">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>STR::Fenu::Select:Next</title>
+    </button>
+    <button>
+      <position>8</position>
+      <title>STR::Fenu::SelectItem::Cancel</title>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="SelectItem_InsternalSB">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>STR::Fenu::SelectItem::OK</title>
+    </button>
+    <button>
+      <position>5</position>
+      <title>STR::Fenu::SelectItem::Cancel</title>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="SelectItem_FileComment">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>STR::Fenu::Select:Next</title>
+    </button>
+    <button>
+      <position>8</position>
+      <title>STR::Fenu::SelectItem::Cancel</title>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="SelectItem_BackupCompelete">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>STR::Fenu::SelectItem::OK</title>
+    </button>
+    <button>
+      <position>8</position>
+      <title>STR::Fenu::SelectItem::Cancel</title>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="SelectItem_Restore">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>STR::Fenu::Select:Next</title>
+    </button>
+    <button>
+      <position>2</position>
+      <title>STR::Fenu::SelectItem::ChangeItem</title>
+    </button>
+    <button>
+      <position>3</position>
+      <title>STR::Fenu::SelectItem::Enter</title>
+    </button>
+    <button>
+      <position>8</position>
+      <title>STR::Fenu::SelectItem::Cancel</title>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="SelectItem_RestoreCompelete">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>STR::Fenu::SelectItem::OK</title>
+    </button>
+    <button>
+      <position>8</position>
+      <title>STR::Fenu::SelectItem::Cancel</title>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="SelectItem_UserBackupCompelete">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>STR::Fenu::SelectItem::OK</title>
+    </button>
+    <button>
+      <position>8</position>
+      <title>STR::Fenu::SelectItem::Cancel</title>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="BackupTips">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>STR::Fenu::Select:Next</title>
+    </button>
+    <button>
+      <position>8</position>
+      <title>STR::Fenu::Select:Advance</title>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="UserBackupFileDialog">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>STR::Fenu::Select:Next</title>
+    </button>
+    <button>
+      <position>2</position>
+      <title>STR::Fenu::SelectItem::ChangeItem</title>
+    </button>
+    <button>
+      <position>8</position>
+      <title>STR::Fenu::SelectItem::Cancel</title>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="BackupFileDialog">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>STR::Fenu::Select:Next</title>
+    </button>
+    <button>
+      <position>2</position>
+      <title>STR::Fenu::SelectItem::ChangeItem</title>
+    </button>
+    <button>
+      <position>8</position>
+      <title>STR::Fenu::SelectItem::Cancel</title>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="RestoreFileDialog">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>STR::Fenu::Select:Next</title>
+    </button>
+    <button>
+      <position>2</position>
+      <title>STR::Fenu::SelectItem::ChangeItem</title>
+    </button>
+    <button>
+      <position>8</position>
+      <title>STR::Fenu::SelectItem::Cancel</title>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="EnterSysFileManager">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>STR::Fenu::SysFile:SysFileManager</title>
+    </button>
+    <button>
+      <position>2</position>
+      <title>STR::Fenu::SysFile:MacroManager</title>
+    </button>
+    <button>
+      <position>3</position>
+      <title>STR::Fenu::SysFile:OCResManager</title>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="SysFileManager">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>STR::Fenu::SysFile:Import</title>
+    </button>
+    <button>
+      <position>2</position>
+      <title>STR::Fenu::SysFile:Export</title>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="OCResManager">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>STR::Fenu::SysFile:Import</title>
+    </button>
+    <button>
+      <position>2</position>
+      <title>STR::Fenu::SysFile:Export</title>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="MacroManager">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>STR::Fenu::SysFile:Import</title>
+    </button>
+    <button>
+      <position>2</position>
+      <title>STR::Fenu::SysFile:Export</title>
+    </button>
+    <button>
+      <position>3</position>
+      <title>Str::Fenu::ProgramFileManager::DelFile</title>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="SysFileE_Item_Select">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>STR::Fenu::Select:Next</title>
+    </button>
+    <button>
+      <position>2</position>
+      <title>STR::Fenu::SelectItem::ChangeItem</title>
+    </button>
+    <button>
+      <position>3</position>
+      <title>STR::Fenu::SelectItem::Enter</title>
+    </button>
+    <button>
+      <position>8</position>
+      <title>STR::Fenu::SelectItem::Cancel</title>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="SysFileE_Item_FileDialog">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>STR::Fenu::Select:Next</title>
+    </button>
+    <button>
+      <position>2</position>
+      <title>STR::Fenu::SelectItem::ChangeItem</title>
+    </button>
+    <button>
+      <position>8</position>
+      <title>STR::Fenu::SelectItem::Cancel</title>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="SysFileE_Item_Compelete">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>STR::Fenu::SelectItem::OK</title>
+    </button>
+    <button>
+      <position>8</position>
+      <title>STR::Fenu::SelectItem::Cancel</title>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="SysFileImport">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>STR::Fenu::Select:Next</title>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::FileMgr::Select</title>
+    </button>
+    <button>
+      <position>3</position>
+      <title>Str::Fenu::FileMgr::SelectAll</title>
+    </button>
+    <button>
+      <position>4</position>
+      <title>Str::Fenu::FileMgr::CancelSelect</title>
+    </button>
+    <button>
+      <position>5</position>
+      <title>Str::Fenu::FileMgr::DeviceChange</title>
+    </button>
+    <button>
+      <position>8</position>
+      <title>STR::Fenu::SelectItem::Cancel</title>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="SysFileI_Compelete">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>STR::Fenu::SelectItem::OK</title>
+    </button>
+    <button>
+      <position>8</position>
+      <title>STR::Fenu::SelectItem::Cancel</title>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="MacroImport">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>STR::Fenu::Select:Next</title>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::FileMgr::Select</title>
+    </button>
+    <button>
+      <position>3</position>
+      <title>Str::Fenu::FileMgr::SelectAll</title>
+    </button>
+    <button>
+      <position>4</position>
+      <title>Str::Fenu::FileMgr::CancelSelect</title>
+    </button>
+    <button>
+      <position>5</position>
+      <title>Str::Fenu::FileMgr::DeviceChange</title>
+    </button>
+    <button>
+      <position>8</position>
+      <title>STR::Fenu::SelectItem::Cancel</title>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="MacroExport">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>STR::Fenu::Select:Next</title>
+    </button>
+    <button>
+      <position>2</position>
+      <title>Str::Fenu::FileMgr::Select</title>
+    </button>
+    <button>
+      <position>3</position>
+      <title>Str::Fenu::FileMgr::SelectAll</title>
+    </button>
+    <button>
+      <position>4</position>
+      <title>Str::Fenu::FileMgr::CancelSelect</title>
+    </button>
+    <button>
+      <position>5</position>
+      <title>Str::Fenu::FileMgr::DeviceChange</title>
+    </button>
+    <button name="DoSwitchFocus">
+      <position>6</position>
+      <title>STR::Fenu::FileImportExport::switchFocus</title>
+      <state>enable</state>
+    </button>
+    <button>
+      <position>8</position>
+      <title>STR::Fenu::SelectItem::Cancel</title>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="HelpFenu">
+    <escape />
+    <next />
+  </fenu>
+  <fenu name="BootPicSuccess">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>STR::Fenu::SelectItem::OK</title>
+    </button>
+    <button>
+      <position>2</position>
+      <title>STR::Fenu::UpdateBootPic::CancelUpdate</title>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="ExitBootPic">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>STR::Fenu::SelectItem::OK</title>
+    </button>
+    <next />
+  </fenu>
+  <fenu name="FenuEmpty">
+    <escape />
+    <next />
+  </fenu>
+  <fenu name="SetMMIConfig">
+    <escape />
+    <button>
+      <position>1</position>
+      <title>STR::Fenu::SetMMIConfig::Modify</title>
+    </button>
+    <button>
+      <position>4</position>
+      <title>STR::Fenu::SetMMIConfig::SetDefault</title>
+    </button>
+    <button>
+      <position>5</position>
+      <title>STR::Fenu::SetMMIConfig::SetDefaultAll</title>
+    </button>
+    <next />
   </fenu>
 </root>

@@ -22,7 +22,7 @@ namespace FormTest
 
 			try
 			{
-				loader = new Handler( "CncFenu.xml" );
+				loader = new Handler( "output.xml" );
 				loader.Canvas = this.splitContainer1.Panel1.Controls;
 				loader.PropertyViewer = propertyGrid1;
 				loader.LoadFenu( "AutoTool" );
@@ -35,7 +35,7 @@ namespace FormTest
 
 		private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			//loader.Save( "output.xml" );
+			loader.Save( "output.xml" );
 		}
 	}
 }

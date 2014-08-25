@@ -26,17 +26,28 @@ namespace Fenubars.Display
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent( ) {
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager( typeof( Fenu ) );
 			this.FormSplitContainer = new System.Windows.Forms.SplitContainer();
 			this.TitleBarSplitterContainer = new System.Windows.Forms.SplitContainer();
 			this.FenuTitle = new System.Windows.Forms.Label();
 			this.CloseFenu = new System.Windows.Forms.Panel();
 			this.ButtonPanel = new System.Windows.Forms.Panel();
+			this.ButtonContextMenu = new System.Windows.Forms.ContextMenuStrip( this.components );
+			this.Create_ButtonContextMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.GoTo_ButtonContextMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.ButtonContextMenu_Separator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.Cut_ButtonContextMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.Copy_ButtonContextMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.Paste_ButtonContextMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.ButtonContextMenu_Separator2 = new System.Windows.Forms.ToolStripSeparator();
+			this.Delete_ButtonContextMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.FormSplitContainer.Panel1.SuspendLayout();
 			this.FormSplitContainer.SuspendLayout();
 			this.TitleBarSplitterContainer.Panel1.SuspendLayout();
 			this.TitleBarSplitterContainer.Panel2.SuspendLayout();
 			this.TitleBarSplitterContainer.SuspendLayout();
+			this.ButtonContextMenu.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// FormSplitContainer
@@ -56,7 +67,7 @@ namespace Fenubars.Display
 			// FormSplitContainer.Panel2
 			// 
 			this.FormSplitContainer.Panel2.AutoScroll = true;
-			this.FormSplitContainer.Panel2.Click += new System.EventHandler( this.FormSplitContainer_Panel2_Click );
+			this.FormSplitContainer.Panel2.MouseDown += new System.Windows.Forms.MouseEventHandler( this.FormSplitContainer_Panel2_Click );
 			this.FormSplitContainer.Panel2MinSize = 0;
 			this.FormSplitContainer.Size = new System.Drawing.Size( 489, 110 );
 			this.FormSplitContainer.SplitterDistance = 22;
@@ -117,6 +128,68 @@ namespace Fenubars.Display
 			this.ButtonPanel.Size = new System.Drawing.Size( 200, 100 );
 			this.ButtonPanel.TabIndex = 0;
 			// 
+			// ButtonContextMenu
+			// 
+			this.ButtonContextMenu.Items.AddRange( new System.Windows.Forms.ToolStripItem[] {
+            this.Create_ButtonContextMenuItem,
+            this.GoTo_ButtonContextMenuItem,
+            this.ButtonContextMenu_Separator1,
+            this.Cut_ButtonContextMenuItem,
+            this.Copy_ButtonContextMenuItem,
+            this.Paste_ButtonContextMenuItem,
+            this.ButtonContextMenu_Separator2,
+            this.Delete_ButtonContextMenuItem} );
+			this.ButtonContextMenu.Name = "ButtonContextMenu";
+			this.ButtonContextMenu.Size = new System.Drawing.Size( 153, 170 );
+			this.ButtonContextMenu.Opening += new System.ComponentModel.CancelEventHandler( this.ButtonContextMenu_Opening );
+			// 
+			// Create_ButtonContextMenuItem
+			// 
+			this.Create_ButtonContextMenuItem.Name = "Create_ButtonContextMenuItem";
+			this.Create_ButtonContextMenuItem.Size = new System.Drawing.Size( 152, 22 );
+			this.Create_ButtonContextMenuItem.Text = "Create..";
+			this.Create_ButtonContextMenuItem.Click += new System.EventHandler( this.Create_ButtonContextMenuItem_Click );
+			// 
+			// GoTo_ButtonContextMenuItem
+			// 
+			this.GoTo_ButtonContextMenuItem.Name = "GoTo_ButtonContextMenuItem";
+			this.GoTo_ButtonContextMenuItem.Size = new System.Drawing.Size( 152, 22 );
+			this.GoTo_ButtonContextMenuItem.Text = "Go to link";
+			// 
+			// ButtonContextMenu_Separator1
+			// 
+			this.ButtonContextMenu_Separator1.Name = "ButtonContextMenu_Separator1";
+			this.ButtonContextMenu_Separator1.Size = new System.Drawing.Size( 149, 6 );
+			// 
+			// Cut_ButtonContextMenuItem
+			// 
+			this.Cut_ButtonContextMenuItem.Name = "Cut_ButtonContextMenuItem";
+			this.Cut_ButtonContextMenuItem.Size = new System.Drawing.Size( 152, 22 );
+			this.Cut_ButtonContextMenuItem.Text = "Cut";
+			// 
+			// Copy_ButtonContextMenuItem
+			// 
+			this.Copy_ButtonContextMenuItem.Name = "Copy_ButtonContextMenuItem";
+			this.Copy_ButtonContextMenuItem.Size = new System.Drawing.Size( 152, 22 );
+			this.Copy_ButtonContextMenuItem.Text = "Copy";
+			// 
+			// Paste_ButtonContextMenuItem
+			// 
+			this.Paste_ButtonContextMenuItem.Name = "Paste_ButtonContextMenuItem";
+			this.Paste_ButtonContextMenuItem.Size = new System.Drawing.Size( 152, 22 );
+			this.Paste_ButtonContextMenuItem.Text = "Paste";
+			// 
+			// ButtonContextMenu_Separator2
+			// 
+			this.ButtonContextMenu_Separator2.Name = "ButtonContextMenu_Separator2";
+			this.ButtonContextMenu_Separator2.Size = new System.Drawing.Size( 149, 6 );
+			// 
+			// Delete_ButtonContextMenuItem
+			// 
+			this.Delete_ButtonContextMenuItem.Name = "Delete_ButtonContextMenuItem";
+			this.Delete_ButtonContextMenuItem.Size = new System.Drawing.Size( 152, 22 );
+			this.Delete_ButtonContextMenuItem.Text = "Delete";
+			// 
 			// Fenu
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF( 6F, 13F );
@@ -129,6 +202,7 @@ namespace Fenubars.Display
 			this.TitleBarSplitterContainer.Panel1.ResumeLayout( false );
 			this.TitleBarSplitterContainer.Panel2.ResumeLayout( false );
 			this.TitleBarSplitterContainer.ResumeLayout( false );
+			this.ButtonContextMenu.ResumeLayout( false );
 			this.ResumeLayout( false );
 
 		}
@@ -140,5 +214,14 @@ namespace Fenubars.Display
 		private System.Windows.Forms.Label FenuTitle;
 		private System.Windows.Forms.Panel ButtonPanel;
 		private System.Windows.Forms.Panel CloseFenu;
+		private System.Windows.Forms.ContextMenuStrip ButtonContextMenu;
+		private System.Windows.Forms.ToolStripMenuItem Create_ButtonContextMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem GoTo_ButtonContextMenuItem;
+		private System.Windows.Forms.ToolStripSeparator ButtonContextMenu_Separator1;
+		private System.Windows.Forms.ToolStripMenuItem Cut_ButtonContextMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem Copy_ButtonContextMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem Paste_ButtonContextMenuItem;
+		private System.Windows.Forms.ToolStripSeparator ButtonContextMenu_Separator2;
+		private System.Windows.Forms.ToolStripMenuItem Delete_ButtonContextMenuItem;
 	}
 }
