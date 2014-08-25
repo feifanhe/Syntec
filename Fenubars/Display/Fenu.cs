@@ -85,16 +85,6 @@ namespace Fenubars.Display
 			this.Dispose();
 		}
 
-		//private void CloseFenu_Paint(object sender, PaintEventArgs e) {
-		//    base.OnPaint( e );
-
-		//    // Override border 3d into raised border
-		//    ControlPaint.DrawBorder3D( e.Graphics, CloseFenu.ClientRectangle,
-		//                                    Border3DStyle.Raised, Border3DSide.All );
-
-		//    CloseFenu.ForeColor = SystemColors.ActiveCaption;
-		//}
-
 		#endregion
 
 		#region Context menu item click event
@@ -165,7 +155,10 @@ namespace Fenubars.Display
 			switch( e.Button )
 			{
 				case MouseButtons.Left:
-					IdentifyButtonObject( FindChildOnScreen() );
+					Control Child = FindChildOnScreen();
+					if( Child == null )
+						return;
+					IdentifyButtonObject( Child );
 					break;
 				case MouseButtons.Right:
 					CursorPosition = this.PointToClient( Cursor.Position );
@@ -208,7 +201,7 @@ namespace Fenubars.Display
 
 		// Overload for realtime cursor position (normal left click operation)
 		private Control FindChildOnScreen( ) {
-			Point CursorPos = this.FormSplitContainer.Panel2.PointToClient( Cursor.Position );
+			Point CursorPos = this.PointToClient( Cursor.Position );
 			return FindChildOnScreen( CursorPos );
 		}
 
