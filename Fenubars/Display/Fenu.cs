@@ -121,28 +121,11 @@ namespace Fenubars.Display
 				eh( this, e );
 			}
 		}
-
+		
 		private void FenuButton_Click(object sender, EventArgs e) {
-
-			ObjectDetailEventArgs args = new ObjectDetailEventArgs();
-			args.Type = sender.GetType();
-
-			if( args.Type == typeof( EscapeButton ) )
-				args.Escape = _FenuContent.EscapeButton;
-			else if( args.Type == typeof( NextButton ) )
-				args.Next = _FenuContent.NextButton;
-			else if(args.Type == typeof(NormalButton))
-				args.Normal = _FenuContent.NormalButtonList.Find( delegate(FenuButtonState DummyState)
-																	{
-																		return ( sender as NormalButton ).Name == DummyState.Name;
-																	} );
-				
-			//MessageBox.Show( ( sender as Button ).Name );
-			Console.WriteLine( sender.GetType() );
-			
-			OnDataAvailable( args );
+			IdentifyObject( sender );
 		}
-
+		
 		#endregion
 
 		#region Local events
@@ -159,8 +142,16 @@ namespace Fenubars.Display
 			if( Child == null )
 				return;
 
+			IdentifyObject( Child );
+		}
+
+		#endregion
+
+		#region Methods
+
+		private void IdentifyObject(object target){
 			ObjectDetailEventArgs args = new ObjectDetailEventArgs();
-			args.Type = Child.GetType();
+			args.Type = target.GetType();
 
 			if( args.Type == typeof( EscapeButton ) )
 				args.Escape = _FenuContent.EscapeButton;
@@ -169,9 +160,8 @@ namespace Fenubars.Display
 			else if( args.Type == typeof( NormalButton ) )
 				args.Normal = _FenuContent.NormalButtonList.Find( delegate(FenuButtonState DummyState)
 																	{
-																		return ( Child as NormalButton ).Name == DummyState.Name;
+																		return ( target as NormalButton ).Name == DummyState.Name;
 																	} );
-
 			OnDataAvailable( args );
 		}
 

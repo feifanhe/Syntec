@@ -25,7 +25,7 @@ namespace FormTest
 				loader = new Handler( "CncFenu.xml" );
 				loader.Canvas = this.splitContainer1.Panel1.Controls;
 				loader.PropertyViewer = propertyGrid1;
-				loader.LoadFenu( "main" );
+				loader.LoadFenu( "AutoTool" );
 			}
 			catch( FileLoadException )
 			{
