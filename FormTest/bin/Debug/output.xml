@@ -226,16 +226,6 @@
       <title>Str::Fenu::AutoTool::XYRefTeach</title>
       <state>enable</state>
     </button>
-    <button name="F5">
-      <position>5</position>
-      <title>button 5</title>
-      <state>enable</state>
-    </button>
-    <button name="F3">
-      <position>3</position>
-      <title>button 3</title>
-      <state>enable</state>
-    </button>
     <next>
       <state>enable</state>
     </next>

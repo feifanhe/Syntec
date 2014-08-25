@@ -115,7 +115,7 @@ namespace Fenubars.Display
 
 		#endregion
 
-		#region Event that is passed to parent
+		#region Event that will pass to parent
 
 		public event EventHandler<ObjectDetailEventArgs> DataAvailable;
 		protected virtual void OnDataAvailable(ObjectDetailEventArgs e) {

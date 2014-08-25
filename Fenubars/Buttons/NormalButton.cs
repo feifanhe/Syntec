@@ -18,6 +18,7 @@ namespace Fenubars.Buttons
 		public void SetState(FenuButtonState State) {
 			// Wipe bindings
 			this.DataBindings.Clear();
+			this.ResetText();
 			this.FlatStyle = FlatStyle.Popup;
 
 			// Adjust button style to indicate configured or not
