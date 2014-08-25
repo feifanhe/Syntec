@@ -12,8 +12,9 @@ namespace Fenubars.Display
 	public partial class Fenu : UserControl
 	{
 		private FenuState _FenuContent;
+		private Point CursorPosition;
 
-		public Fenu( FenuState AssignedFenuContent) {
+		public Fenu(FenuState AssignedFenuContent) {
 			InitializeComponent();
 
 			this._FenuContent = AssignedFenuContent;
@@ -37,11 +38,11 @@ namespace Fenubars.Display
 			// Add EscapeButton and NextButton button
 			EscapeButton EB = new EscapeButton( _FenuContent.EscapeButton );
 			EB.PaintComponent( FormSplitContainer.Panel2.Controls, new Point( 3, 3 ) );
-			EB.Click += new EventHandler( FenuButton_Click );
+			EB.MouseDown += new MouseEventHandler( FenuButton_MouseDown );
 
 			NextButton NB = new NextButton( _FenuContent.NextButton );
 			NB.PaintComponent( FormSplitContainer.Panel2.Controls, new Point( 3 + 83 * ( buttons + 1 ), 3 ) );
-			NB.Click += new EventHandler( FenuButton_Click );
+			NB.MouseDown += new MouseEventHandler( FenuButton_MouseDown );
 
 
 			// Add normal buttons
@@ -50,7 +51,7 @@ namespace Fenubars.Display
 			{
 				// TODO: Add double click
 				NormalButton NRB = new NormalButton( i );
-				NRB.Click += new EventHandler( FenuButton_Click );
+				NRB.MouseDown += new MouseEventHandler( FenuButton_MouseDown );
 				NRB.ContextMenuStrip = ButtonContextMenu;
 				try
 				{
@@ -99,8 +100,7 @@ namespace Fenubars.Display
 		#region Context menu item click event
 
 		private void Create_ButtonContextMenuItem_Click(object sender, EventArgs e) {
-			Control Child = FindChildOnScreen();
-			IdentifyButtonObject( Child );
+			IdentifyButtonObject( FindChildOnScreen( CursorPosition ) );
 		}
 
 		private void GoTo_ButtonContextMenuItem_Click(object sender, EventArgs e) {
@@ -120,7 +120,7 @@ namespace Fenubars.Display
 		}
 
 		private void Delete_ButtonContextMenuItem_Click(object sender, EventArgs e) {
-
+			ObliterateState( FindChildOnScreen( CursorPosition ) );
 		}
 
 		#endregion
@@ -135,11 +135,21 @@ namespace Fenubars.Display
 				eh( this, e );
 			}
 		}
-		
-		private void FenuButton_Click(object sender, EventArgs e) {
-			IdentifyButtonObject( sender );
+
+		private void FenuButton_MouseDown(object sender, MouseEventArgs e) {
+
+			switch( e.Button )
+			{
+				case MouseButtons.Left:
+					IdentifyButtonObject( sender );
+					break;
+				case MouseButtons.Right:
+					CursorPosition = this.PointToClient( Cursor.Position );
+					Console.WriteLine( "REGISTER AT: " + CursorPosition );
+					break;
+			}
 		}
-		
+
 		#endregion
 
 		#region Local events
@@ -150,12 +160,18 @@ namespace Fenubars.Display
 			OnDataAvailable( args );
 		}
 
-		private void FormSplitContainer_Panel2_Click(object sender, EventArgs e) {
-			Control Child = FindChildOnScreen();
-			if( Child == null )
-				return;
-
-			IdentifyButtonObject( Child );
+		// For disabled buttons, when button is enabled, event is catch by FenuButton_MouseDown
+		private void FormSplitContainer_Panel2_MouseDown(object sender, MouseEventArgs e) {
+			switch( e.Button )
+			{
+				case MouseButtons.Left:
+					IdentifyButtonObject( FindChildOnScreen() );
+					break;
+				case MouseButtons.Right:
+					CursorPosition = this.PointToClient( Cursor.Position );
+					Console.WriteLine( "REGISTER AT: " + CursorPosition );
+					break;
+			}
 		}
 
 		private void ButtonContextMenu_Opening(object sender, CancelEventArgs e) {
@@ -170,7 +186,7 @@ namespace Fenubars.Display
 
 			if( Child.GetType() == typeof( NormalButton ) )
 			{
-				// Find out whether the child is has bind to state or not
+				// Find out whether the child has bind to state or not
 				if( ( Child as Button ).FlatStyle == FlatStyle.Standard )
 				{
 					( sender as ContextMenuStrip ).Items[ "Create_ButtonContextMenuItem" ].Visible = false;
@@ -190,21 +206,25 @@ namespace Fenubars.Display
 
 		#region Methods
 
+		// Overload for realtime cursor position (normal left click operation)
 		private Control FindChildOnScreen( ) {
-			Point CursorPos = this.PointToClient( Cursor.Position );
-			Control Child = this.FormSplitContainer.Panel2.GetChildAtPoint( CursorPos );
-			return Child;
+			Point CursorPos = this.FormSplitContainer.Panel2.PointToClient( Cursor.Position );
+			return FindChildOnScreen( CursorPos );
 		}
 
-		private void IdentifyButtonObject(object target){
+		private Control FindChildOnScreen(Point Position) {
+			return this.FormSplitContainer.Panel2.GetChildAtPoint( Position );
+		}
+
+		private void IdentifyButtonObject(object target) {
 			// Acquire button type and instantiate event args
 			ObjectDetailEventArgs args = new ObjectDetailEventArgs();
 			args.Type = target.GetType();
 
 			// Ask to create new state or not
 			if( ( (Button)target ).FlatStyle == FlatStyle.Popup )
-				InstantiateState( args.Type, target );
-			
+				InstantiateState( target );
+
 			// Pass state of the button to event args
 			if( args.Type == typeof( EscapeButton ) )
 				args.Escape = _FenuContent.EscapeButton;
@@ -215,12 +235,13 @@ namespace Fenubars.Display
 																	{
 																		return ( target as NormalButton ).Name == DummyState.Name;
 																	} );
-			
+
 			// Kick start the event 
 			OnDataAvailable( args );
 		}
 
-		private bool InstantiateState(Type TargetType, object Target) { 
+		private bool InstantiateState(object Target) {
+			Type TargetType = Target.GetType();
 
 			// Return false if declined to instantaiate the button
 			if( MessageBox.Show( "Would you like to create a button here?",
@@ -233,7 +254,7 @@ namespace Fenubars.Display
 
 			if( TargetType == typeof( EscapeButton ) )
 			{
-				
+
 			}
 			else if( TargetType == typeof( NextButton ) )
 			{
@@ -256,7 +277,43 @@ namespace Fenubars.Display
 			return true;
 		}
 
-		#endregion		
+		private bool ObliterateState(object Target) {
+			Type TargetType = Target.GetType();
+
+			// Return false if declined to instantaiate the button
+			if( MessageBox.Show( "Are you sure you want to remove the button?",
+									"Delete",
+									MessageBoxButtons.YesNo,
+									MessageBoxIcon.Question ) == DialogResult.No )
+				return false;
+
+			if( TargetType == typeof( EscapeButton ) )
+			{
+
+			}
+			else if( TargetType == typeof( NextButton ) )
+			{
+			}
+			else if( TargetType == typeof( NormalButton ) )
+			{
+				// Find the target button
+				int Index = _FenuContent.NormalButtonList.FindIndex( delegate(FenuButtonState DummyState)
+																		{
+																			return ( Target as Button ).Name == DummyState.Name;
+																		} );
+
+				// Restore state to null
+				( Target as NormalButton ).SetState( null );
+
+				// Remove state from list
+				_FenuContent.NormalButtonList.RemoveAt( Index );
+
+			}
+
+			return true;
+		}
+
+		#endregion
 	}
 
 	public class ObjectDetailEventArgs : EventArgs

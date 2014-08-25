@@ -53,12 +53,6 @@
     <Compile Include="Buttons\NormalButton.Designer.cs">
       <DependentUpon>NormalButton.cs</DependentUpon>
     </Compile>
-    <Compile Include="Display\ContextMenuStrip.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Display\ContextMenuStrip.Designer.cs">
-      <DependentUpon>ContextMenuStrip.cs</DependentUpon>
-    </Compile>
     <Compile Include="Display\Fenu.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -82,10 +76,6 @@
     <Compile Include="XML\XMLGlobalState.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Display\ContextMenuStrip.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>ContextMenuStrip.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Display\Fenu.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Fenu.cs</DependentUpon>
