@@ -5,7 +5,7 @@ using System.ComponentModel;
 
 namespace Fenubars.Events
 {
-    public abstract class NotifyProperyChangedBase : INotifyPropertyChanged
+	public abstract class NotifyProperyChangedBase : INotifyPropertyChanged
     {
         #region INotifyPropertyChanged Members
 

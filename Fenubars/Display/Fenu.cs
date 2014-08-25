@@ -6,6 +6,7 @@ using System.Text;
 using System.Windows.Forms;
 using Fenubars.Buttons;
 using Fenubars.XML;
+using Fenubars.Editor;
 
 namespace Fenubars.Display
 {
@@ -102,11 +103,28 @@ namespace Fenubars.Display
 		}
 
 		private void Copy_ButtonContextMenuItem_Click(object sender, EventArgs e) {
-
+			Control target = FindChildOnScreen( CursorPosition );
+			FenuButtonState FBS = _FenuContent.NormalButtonList.Find( delegate(FenuButtonState DummyState)
+																		{
+																			return ( target as NormalButton ).Name == DummyState.Name;
+																		} );
+			//FBS.CopyToClipboard();
+			//Console.WriteLine( FenuButtonState.GetFromClipboard().Name );
+			ClipBoardManager<FenuButtonState>.CopyToClipboard(FBS);
+			ClipBoardManager<FenuButtonState>.IsSerializable( FBS );
 		}
 
 		private void Paste_ButtonContextMenuItem_Click(object sender, EventArgs e) {
+			// Acquire the control
+			Control Child = FindChildOnScreen( CursorPosition );
+			// Check if the targeted control is applicable for clipboard data
+			if( Child == null )
+				return;
 
+			FenuButtonState FBS = ClipBoardManager<FenuButtonState>.GetFromClipboard();
+			string NameBackup = ( Child as NormalButton ).Name;
+			( Child as NormalButton ).SetState( FBS );
+			( Child as NormalButton ).Name = NameBackup;
 		}
 
 		private void Delete_ButtonContextMenuItem_Click(object sender, EventArgs e) {
@@ -234,13 +252,16 @@ namespace Fenubars.Display
 		}
 
 		private bool InstantiateState(object Target) {
+			return InstantiateState( Target, true );
+		}
+		private bool InstantiateState(object Target, bool AskToCreate) {
 			Type TargetType = Target.GetType();
 
 			// Return false if declined to instantaiate the button
 			if( MessageBox.Show( "Would you like to create a button here?",
 									"Create",
 									MessageBoxButtons.YesNo,
-									MessageBoxIcon.Question ) == DialogResult.No )
+									MessageBoxIcon.Question ) == DialogResult.No | !AskToCreate)
 				return false;
 
 			FenuButtonState FBS = new FenuButtonState();

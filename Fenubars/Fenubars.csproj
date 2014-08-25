@@ -59,6 +59,7 @@
     <Compile Include="Display\Fenu.Designer.cs">
       <DependentUpon>Fenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Editor\ClipBoardManager.cs" />
     <Compile Include="Events\NotifyProperyChangedBase.cs" />
     <Compile Include="Handler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
