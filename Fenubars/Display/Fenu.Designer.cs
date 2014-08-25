@@ -155,6 +155,7 @@ namespace Fenubars.Display
 			this.GoTo_ButtonContextMenuItem.Name = "GoTo_ButtonContextMenuItem";
 			this.GoTo_ButtonContextMenuItem.Size = new System.Drawing.Size( 152, 22 );
 			this.GoTo_ButtonContextMenuItem.Text = "Go to link";
+			this.GoTo_ButtonContextMenuItem.Click += new System.EventHandler( this.GoTo_ButtonContextMenuItem_Click );
 			// 
 			// ButtonContextMenu_Separator1
 			// 
@@ -166,18 +167,21 @@ namespace Fenubars.Display
 			this.Cut_ButtonContextMenuItem.Name = "Cut_ButtonContextMenuItem";
 			this.Cut_ButtonContextMenuItem.Size = new System.Drawing.Size( 152, 22 );
 			this.Cut_ButtonContextMenuItem.Text = "Cut";
+			this.Cut_ButtonContextMenuItem.Click += new System.EventHandler( this.Cut_ButtonContextMenuItem_Click );
 			// 
 			// Copy_ButtonContextMenuItem
 			// 
 			this.Copy_ButtonContextMenuItem.Name = "Copy_ButtonContextMenuItem";
 			this.Copy_ButtonContextMenuItem.Size = new System.Drawing.Size( 152, 22 );
 			this.Copy_ButtonContextMenuItem.Text = "Copy";
+			this.Copy_ButtonContextMenuItem.Click += new System.EventHandler( this.Copy_ButtonContextMenuItem_Click );
 			// 
 			// Paste_ButtonContextMenuItem
 			// 
 			this.Paste_ButtonContextMenuItem.Name = "Paste_ButtonContextMenuItem";
 			this.Paste_ButtonContextMenuItem.Size = new System.Drawing.Size( 152, 22 );
 			this.Paste_ButtonContextMenuItem.Text = "Paste";
+			this.Paste_ButtonContextMenuItem.Click += new System.EventHandler( this.Paste_ButtonContextMenuItem_Click );
 			// 
 			// ButtonContextMenu_Separator2
 			// 
@@ -189,6 +193,7 @@ namespace Fenubars.Display
 			this.Delete_ButtonContextMenuItem.Name = "Delete_ButtonContextMenuItem";
 			this.Delete_ButtonContextMenuItem.Size = new System.Drawing.Size( 152, 22 );
 			this.Delete_ButtonContextMenuItem.Text = "Delete";
+			this.Delete_ButtonContextMenuItem.Click += new System.EventHandler( this.Delete_ButtonContextMenuItem_Click );
 			// 
 			// Fenu
 			// 

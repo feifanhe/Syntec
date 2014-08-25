@@ -68,25 +68,6 @@ namespace Fenubars.Display
 					NRB.PaintComponent( FormSplitContainer.Panel2.Controls );
 				}
 			}
-
-			//foreach( FenuButtonState nbs in _FenuContent.NormalButtonList )
-			//{
-			//    string TargetName = "F" + nbs.Position.ToString();
-			//    Control[] ctrlS = this.FormSplitContainer.Panel2.Controls.Find( TargetName, false );
-			//    try
-			//    {
-			//        if( ctrlS.Length == 0 )
-			//        {
-			//            throw new Exception( "Cannot find control named [" + TargetName + "]" );
-			//        }
-			//        NormalButton btn = ctrlS[ 0 ] as NormalButton;
-			//        btn.SetState( nbs );
-			//    }
-			//    catch( Exception e )
-			//    {
-			//        MessageBox.Show( e.Message );
-			//    }
-			//}
 		}
 
 		#region Titlebar close event
@@ -118,6 +99,27 @@ namespace Fenubars.Display
 		#region Context menu item click event
 
 		private void Create_ButtonContextMenuItem_Click(object sender, EventArgs e) {
+			Control Child = FindChildOnScreen();
+			IdentifyButtonObject( Child );
+		}
+
+		private void GoTo_ButtonContextMenuItem_Click(object sender, EventArgs e) {
+
+		}
+
+		private void Cut_ButtonContextMenuItem_Click(object sender, EventArgs e) {
+
+		}
+
+		private void Copy_ButtonContextMenuItem_Click(object sender, EventArgs e) {
+
+		}
+
+		private void Paste_ButtonContextMenuItem_Click(object sender, EventArgs e) {
+
+		}
+
+		private void Delete_ButtonContextMenuItem_Click(object sender, EventArgs e) {
 
 		}
 
@@ -149,8 +151,7 @@ namespace Fenubars.Display
 		}
 
 		private void FormSplitContainer_Panel2_Click(object sender, EventArgs e) {
-			Point CursorPos = this.PointToClient( Cursor.Position );
-			Control Child = this.FormSplitContainer.Panel2.GetChildAtPoint( CursorPos );
+			Control Child = FindChildOnScreen();
 			if( Child == null )
 				return;
 
@@ -163,8 +164,7 @@ namespace Fenubars.Display
 				TSI.Visible = true;
 
 			// Get child under the cursor
-			Point CursorPos = this.PointToClient( Cursor.Position );
-			Control Child = this.FormSplitContainer.Panel2.GetChildAtPoint( CursorPos );
+			Control Child = FindChildOnScreen();
 			if( Child == null )
 				return;
 
@@ -189,6 +189,12 @@ namespace Fenubars.Display
 		#endregion
 
 		#region Methods
+
+		private Control FindChildOnScreen( ) {
+			Point CursorPos = this.PointToClient( Cursor.Position );
+			Control Child = this.FormSplitContainer.Panel2.GetChildAtPoint( CursorPos );
+			return Child;
+		}
 
 		private void IdentifyButtonObject(object target){
 			// Acquire button type and instantiate event args
@@ -250,7 +256,7 @@ namespace Fenubars.Display
 			return true;
 		}
 
-		#endregion	
+		#endregion		
 	}
 
 	public class ObjectDetailEventArgs : EventArgs
