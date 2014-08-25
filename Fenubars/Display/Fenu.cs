@@ -99,7 +99,11 @@ namespace Fenubars.Display
 		}
 
 		private void Cut_ButtonContextMenuItem_Click(object sender, EventArgs e) {
-
+			Copy_ButtonContextMenuItem_Click( sender, e );
+			
+			// Remove cutted button
+			Control Child = FindChildOnScreen( CursorPosition );
+			ObliterateState( Child );
 		}
 
 		private void Copy_ButtonContextMenuItem_Click(object sender, EventArgs e) {
@@ -114,6 +118,8 @@ namespace Fenubars.Display
 																		} );
 			// Copy the object to clipboard
 			ClipBoardManager<FenuButtonState>.CopyToClipboard(FBS);
+
+			sender = Child;
 
 			//ClipBoardManager<FenuButtonState>.IsSerializable( FBS );
 		}
@@ -139,12 +145,11 @@ namespace Fenubars.Display
 																	{
 																		return DummyState.Position == FBS.Position;
 																	} );
-			Console.Write( "BEFORE: " + _FenuContent.NormalButtonList.Count.ToString() );
+
 			if( ListIndex == -1 )
 				_FenuContent.NormalButtonList.Add( FBS );
 			else
 				_FenuContent.NormalButtonList[ ListIndex ] = FBS;
-			Console.WriteLine( " :: AFTER: " + _FenuContent.NormalButtonList.Count.ToString() );
 
 			// Assign the binding
 			( Child as NormalButton ).SetState( FBS );
@@ -320,13 +325,6 @@ namespace Fenubars.Display
 
 		private bool ObliterateState(object Target) {
 			Type TargetType = Target.GetType();
-
-			// Return false if declined to instantaiate the button
-			if( MessageBox.Show( "Are you sure you want to remove the button?",
-									"Delete",
-									MessageBoxButtons.YesNo,
-									MessageBoxIcon.Question ) == DialogResult.No )
-				return false;
 
 			if( TargetType == typeof( EscapeButton ) )
 			{

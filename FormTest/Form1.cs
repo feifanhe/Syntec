@@ -5,11 +5,12 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using Fenubars.Display;
-using Fenubars.XML;
 using System.Xml.Serialization;
 using System.IO;
+
 using Fenubars;
+using Fenubars.XML;
+using Fenubars.Display;
 
 namespace FormTest
 {
