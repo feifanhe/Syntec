@@ -212,11 +212,6 @@
       <title>Str::Fenu::AutoTool::Start</title>
       <state>enable</state>
     </button>
-    <button name="F2">
-      <position>2</position>
-      <title>Str::Fenu::AutoTool::FeedHold</title>
-      <state>enable</state>
-    </button>
     <button name="GaugeZTeach">
       <position>7</position>
       <title>Str::Fenu::AutoTool::GaugeZTeach</title>
@@ -224,6 +219,34 @@
     <button name="F8">
       <position>8</position>
       <title>Str::Fenu::AutoTool::XYRefTeach</title>
+      <state>enable</state>
+    </button>
+    <button name="F2">
+      <position>2</position>
+      <title>Str::Fenu::AutoTool::FeedHold</title>
+      <state>enable</state>
+    </button>
+    <button name="F4">
+      <position>4</position>
+      <title>blah</title>
+      <state>enable</state>
+    </button>
+    <button name="F2">
+      <position>4</position>
+      <title>Str::Fenu::AutoTool::FeedHold</title>
+      <state>enable</state>
+    </button>
+    <button name="F2">
+      <position>2</position>
+    </button>
+    <button name="F2">
+      <position>2</position>
+      <title>Str::Fenu::AutoTool::FeedHold</title>
+      <state>enable</state>
+    </button>
+    <button name="F2">
+      <position>2</position>
+      <title>Str::Fenu::AutoTool::FeedHold</title>
       <state>enable</state>
     </button>
     <next>

@@ -103,15 +103,15 @@ namespace Fenubars.Display
 		}
 
 		private void Copy_ButtonContextMenuItem_Click(object sender, EventArgs e) {
-			Control target = FindChildOnScreen( CursorPosition );
+			Control Child = FindChildOnScreen( CursorPosition );
+			// Find the properties container of the target
 			FenuButtonState FBS = _FenuContent.NormalButtonList.Find( delegate(FenuButtonState DummyState)
 																		{
-																			return ( target as NormalButton ).Name == DummyState.Name;
+																			return ( Child as NormalButton ).Name == DummyState.Name;
 																		} );
-			//FBS.CopyToClipboard();
-			//Console.WriteLine( FenuButtonState.GetFromClipboard().Name );
+			// Copy the object to clipboard
 			ClipBoardManager<FenuButtonState>.CopyToClipboard(FBS);
-			ClipBoardManager<FenuButtonState>.IsSerializable( FBS );
+			//ClipBoardManager<FenuButtonState>.IsSerializable( FBS );
 		}
 
 		private void Paste_ButtonContextMenuItem_Click(object sender, EventArgs e) {
@@ -122,6 +122,16 @@ namespace Fenubars.Display
 				return;
 
 			FenuButtonState FBS = ClipBoardManager<FenuButtonState>.GetFromClipboard();
+
+			// Config the position
+			int Xpos = ( Child as Button ).Location.X;
+			int Index = ( Xpos - 3 ) / 83;
+			FBS.Position = Index;
+			FBS.Name = "F" + Index.ToString();
+
+			_FenuContent.NormalButtonList.Add( FBS );
+
+			// Assign the binding
 			string NameBackup = ( Child as NormalButton ).Name;
 			( Child as NormalButton ).SetState( FBS );
 			( Child as NormalButton ).Name = NameBackup;
