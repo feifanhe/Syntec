@@ -104,6 +104,9 @@ namespace Fenubars.Display
 
 		private void Copy_ButtonContextMenuItem_Click(object sender, EventArgs e) {
 			Control Child = FindChildOnScreen( CursorPosition );
+			if( Child == null )
+				return;
+
 			// Find the properties container of the target
 			FenuButtonState FBS = _FenuContent.NormalButtonList.Find( delegate(FenuButtonState DummyState)
 																		{
@@ -121,6 +124,7 @@ namespace Fenubars.Display
 			if( Child == null )
 				return;
 
+			// Acquire deserialized data from clip board manager
 			FenuButtonState FBS = ClipBoardManager<FenuButtonState>.GetFromClipboard();
 
 			// Config the position
@@ -129,12 +133,11 @@ namespace Fenubars.Display
 			FBS.Position = Index;
 			FBS.Name = "F" + Index.ToString();
 
+			// Add the container to list
 			_FenuContent.NormalButtonList.Add( FBS );
 
 			// Assign the binding
-			string NameBackup = ( Child as NormalButton ).Name;
 			( Child as NormalButton ).SetState( FBS );
-			( Child as NormalButton ).Name = NameBackup;
 		}
 
 		private void Delete_ButtonContextMenuItem_Click(object sender, EventArgs e) {
@@ -313,7 +316,6 @@ namespace Fenubars.Display
 
 			if( TargetType == typeof( EscapeButton ) )
 			{
-
 			}
 			else if( TargetType == typeof( NextButton ) )
 			{
