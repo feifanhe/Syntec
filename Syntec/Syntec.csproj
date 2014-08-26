@@ -127,10 +127,6 @@
     <None Include="Resources\Icons\View\PropertiesHS.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Fenubars\Fenubars.csproj">
-      <Project>{96BEB70E-5DFD-4E55-95BC-A711C2D83292}</Project>
-      <Name>Fenubars</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PluginInterface\PluginInterface.csproj">
       <Project>{00D0C21D-D94C-4B0F-A710-1EFBABB4C4C6}</Project>
       <Name>PluginInterface</Name>

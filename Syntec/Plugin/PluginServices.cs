@@ -2,6 +2,8 @@ using System;
 using System.IO;
 using System.Reflection;
 using PluginInterface;
+using Syntec.Windows;
+using System.Windows.Forms;
 
 namespace Syntec.Plugin
 {
@@ -160,7 +162,8 @@ namespace Syntec.Plugin
 		#region IPluginHost Members
 
 		public void DrawOnCanvas(System.Windows.Forms.Control PluginControl, IPlugin Plugin) {
-			throw new Exception( "The method or operation is not implemented." );
+			Form CurrentForm = DocumentsForm.ActiveForm;
+			CurrentForm.Controls.Add( PluginControl );
 		}
 
 		#endregion

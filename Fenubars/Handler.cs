@@ -194,7 +194,7 @@ namespace Fenubars
 			}
 		}
 
-		public void LoadFenu(string FenuName) {
+		public void Load(string FenuName) {
 			foreach( FenuState ParsedFenu in CurrentFenuState.IncludedFenus )
 			{
 				if( ParsedFenu.Name == FenuName )
@@ -202,7 +202,8 @@ namespace Fenubars
 					Fenu DummyFenu = new Fenu( ParsedFenu );
 					DummyFenu.DataAvailable += new EventHandler<Fenubars.Display.ObjectDetailEventArgs>( FocusedObjectAvailable );
 					DummyFenu.PopulateButtons();
-					Canvas.Add( DummyFenu );
+					//Canvas.Add( DummyFenu );
+					PluginHost.DrawOnCanvas( DummyFenu, this );
 				}
 			}
 		}

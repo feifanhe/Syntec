@@ -8,7 +8,6 @@ using System.Windows.Forms;
 
 namespace Fenubars.XML
 {
-	[Serializable]
 	public class FenuButtonState : Fenubars.Events.NotifyProperyChangedBase
 	{
 		#region Name

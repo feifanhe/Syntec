@@ -27,7 +27,7 @@ namespace FormTest
 				loader.Initialize( "output.xml" );
 				loader.Canvas = this.splitContainer1.Panel1.Controls;
 				loader.PropertyViewer = propertyGrid1;
-				loader.LoadFenu( "AutoTool" );
+				loader.Load( "AutoTool" );
 			}
 			catch( FileLoadException )
 			{

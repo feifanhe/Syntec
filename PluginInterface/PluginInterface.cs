@@ -25,6 +25,7 @@ namespace PluginInterface
 
 		// Return false if the plugin can't initialize from designated XMLPath
 		bool Initialize(string XMLPath);
+		void Load(string Name);
 		void Dispose( );
 
 		#endregion

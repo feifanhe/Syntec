@@ -50,6 +50,9 @@ namespace PluginTest
 			return true; // false to fail the initialization progress
 		}
 
+		public void Load(string Name) {
+		}
+
 		public void Dispose( ) {
 		}
 

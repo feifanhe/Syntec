@@ -3,11 +3,6 @@
 <root>
   <Level3D>4</Level3D>
   <NoLR>true</NoLR>
-  <LastOpenState focus="2">
-    <fenu name="main" />
-    <fenu name="TEST2" />
-    <fenu name="test3" />
-  </LastOpenState>
   <fenu name="main">
     <button name="Btn1">
       <title>STR::Fenu::main::ID1</title>
@@ -47,44 +42,5 @@
       <action>DoExitPopupWithoutFenu</action>
       <userlevel>4</userlevel>
     </button>
-  </fenu>
-  <fenu name="TEST2">
-    <escape>
-      <actions>
-        <action>CUSTOMFENU_blah</action>
-        <action>CUSTOMDEV_r15--</action>
-      </actions>
-      <state>enable</state>
-      <EnableRule>(R434.1gt1)</EnableRule>
-    </escape>
-    <button name="BTN3">
-      <title>STR::Fenu::TEST2::ID3</title>
-      <position>1</position>
-      <action>CUSTOMACT_EXECUTEBLOCK=34</action>
-      <pwd>
-        <value>345</value>
-        <cor>
-          <Actions>
-            <Action>CUSTOMDEV_few</Action>
-            <Action>CUSTOMPASS_fwefw</Action>
-          </Actions>
-        </cor>
-        <incor>
-          <Action>CUSTOMPASS_wfew</Action>
-        </incor>
-      </pwd>
-      <picture>CUSTOMImage\Chrysanthemum.jpg</picture>
-      <link>main</link>
-      <userlevel>3</userlevel>
-      <forecolor>64,0,64</forecolor>
-      <backcolor>128,128,128</backcolor>
-      <LightOnColor>0,128,0</LightOnColor>
-      <HoldMode>true</HoldMode>
-      <Alignment>2</Alignment>
-      <EnableRule>(R3eq2)</EnableRule>
-      <InvisibleDevice>R2.30</InvisibleDevice>
-    </button>
-  </fenu>
-  <fenu name="test3">
   </fenu>
 </root>

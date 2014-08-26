@@ -11,7 +11,7 @@ using System.Diagnostics;
 
 namespace Syntec.Plugin
 {
-	public partial class PluginManagerForm : Form, IPluginHost
+	public partial class PluginManagerForm : Form
 	{
 		public PluginManagerForm( ) {
 			InitializeComponent();
@@ -62,14 +62,6 @@ namespace Syntec.Plugin
 
 		private void CancelButton_Click(object sender, EventArgs e) {
 
-		}
-
-		#endregion
-
-		#region IPluginHost Members
-
-		public void DrawOnCanvas(Control PluginControl, IPlugin Plugin) {
-			throw new Exception( "The method or operation is not implemented." );
 		}
 
 		#endregion
