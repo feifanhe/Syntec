@@ -48,6 +48,6 @@ namespace PluginInterface
 
 	public interface IPluginHost
 	{
-		//void Feedback(string Feedback, IPlugin Plugin);	
+		void DrawOnCanvas(System.Windows.Forms.Control PluginControl, IPlugin Plugin);	
 	}
 }

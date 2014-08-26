@@ -42,6 +42,7 @@ namespace Fenubars.Editor
 		public static void Clear( ) {
 			Clipboard.Clear();
 		}
+
 		public static bool IsSerializable(object obj) {
 			MemoryStream mem = new MemoryStream();
 			BinaryFormatter bin = new BinaryFormatter();

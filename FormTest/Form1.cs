@@ -16,14 +16,15 @@ namespace FormTest
 {
 	public partial class MainForm : Form
 	{
-		Handler loader;
+		Fenubars.Handler loader;
 
 		public MainForm( ) {
 			InitializeComponent();
 
 			try
 			{
-				loader = new Handler( "output.xml" );
+				loader = new Handler();
+				loader.Initialize( "output.xml" );
 				loader.Canvas = this.splitContainer1.Panel1.Controls;
 				loader.PropertyViewer = propertyGrid1;
 				loader.LoadFenu( "AutoTool" );
@@ -36,7 +37,7 @@ namespace FormTest
 
 		private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			loader.Save( "output.xml" );
+			loader.Save();
 		}
 	}
 }

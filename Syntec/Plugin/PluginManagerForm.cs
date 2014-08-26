@@ -65,5 +65,13 @@ namespace Syntec.Plugin
 		}
 
 		#endregion
+
+		#region IPluginHost Members
+
+		public void DrawOnCanvas(Control PluginControl, IPlugin Plugin) {
+			throw new Exception( "The method or operation is not implemented." );
+		}
+
+		#endregion
 	}
 }

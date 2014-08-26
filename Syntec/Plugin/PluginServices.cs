@@ -156,6 +156,14 @@ namespace Syntec.Plugin
 			//newForm = null;
 
 		}
+
+		#region IPluginHost Members
+
+		public void DrawOnCanvas(System.Windows.Forms.Control PluginControl, IPlugin Plugin) {
+			throw new Exception( "The method or operation is not implemented." );
+		}
+
+		#endregion
 	}
 
 	// Collection for AvailablePlugin type
@@ -191,12 +199,10 @@ namespace Syntec.Plugin
 		}
 	}
 
-	// Data Class for Available Plugin. Holds the instance of the loaded Plugin, as well as the Plugin's Assembly Path
+	// Data class for AvailablePlugin
 	public class AvailablePlugin
 	{
-		//This is the actual AvailablePlugin object.. 
-		//Holds an instance of the plugin to access
-		//Also holds assembly path... not really necessary
+		// Actual AvailablePlugin object, holds instance of the plugin and its assembly path
 		private IPlugin myInstance = null;
 		private string myAssemblyPath = "";
 

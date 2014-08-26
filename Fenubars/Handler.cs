@@ -10,10 +10,11 @@ using Fenubars.Buttons;
 using Azuria.Common.Controls;
 using System.Reflection;
 using System.ComponentModel;
+using PluginInterface;
 
 namespace Fenubars
 {
-	public class Handler
+	public class Handler : IPlugin
 	{
 		// XML serializer fields
 		private XmlSerializerNamespaces Namespace;
@@ -29,6 +30,8 @@ namespace Fenubars
 				CurrentFenuState.IncludedFenus = value;
 			}
 		}
+
+		private string XMLPath = string.Empty;
 
 		// Parent container
 		private System.Windows.Forms.Control.ControlCollection _Canvas;
@@ -50,73 +53,12 @@ namespace Fenubars
 			}
 		}
 
-		public Handler(string XMLPath) {
+		// Plugin fields
+		private readonly string PluginName = "Fenubar";
+		private string PluginDescription = "Use this plugin to support fenubar edit function."; 
+		private IPluginHost PluginHost = null;
+		private UserControl _MainInterface;// = new ctlMain();
 
-			// Using XmlReader to probe for root node
-			using( XmlReader reader = XmlReader.Create( XMLPath ) )
-			{
-				while( reader.Read() )
-				{
-					if( reader.NodeType == XmlNodeType.Element )
-					{
-						// Check if first element is named "root"
-						if( reader.Name != "root" )
-							throw new FileLoadException( "Invalid fenu XML format." );
-						else
-							break;
-					}
-				}
-			}
-
-			InitiateSerializer();
-			LoadXML( XMLPath );
-
-		}
-
-		private void InitiateSerializer( ) {
-			// Configure serializer namespaces, remove the xml:ns definition
-			Namespace = new XmlSerializerNamespaces();
-			Namespace.Add( "", "" );
-
-			// Initiate serializer
-			Serializer = new XmlSerializer( typeof( XMLGlobalState ), "" );
-		}
-
-		#region Loader
-
-		private void LoadXML(string XMLPath) {
-			//Deserialize to object
-			using( StreamReader Reader = new StreamReader( XMLPath ) )
-			{
-				CurrentFenuState = (XMLGlobalState)Serializer.Deserialize( Reader );
-			}
-		}
-
-		public void LoadFenu(string FenuName) {
-			foreach( FenuState ParsedFenu in CurrentFenuState.IncludedFenus )
-			{
-				if( ParsedFenu.Name == FenuName )
-				{
-					Fenu DummyFenu = new Fenu( ParsedFenu );
-					DummyFenu.DataAvailable += new EventHandler<Fenubars.Display.ObjectDetailEventArgs>( FocusedObjectAvailable );
-					DummyFenu.PopulateButtons();
-					Canvas.Add( DummyFenu );
-				}
-			}
-		}
-
-		#endregion
-
-		#region Saver
-
-		public void Save(string XMLPath) {
-			using( StreamWriter Writer = new StreamWriter(XMLPath) )
-			{
-				Serializer.Serialize( Writer, CurrentFenuState, Namespace );
-			}
-		}
-
-		#endregion
 
 		#region Acquire focus object by event
 
@@ -172,6 +114,136 @@ namespace Fenubars
 
 		#endregion
 
+		#region IPlugin Members
+
+		public IPluginHost Host {
+			get {
+				throw new Exception( "The method or operation is not implemented." );
+			}
+			set {
+				throw new Exception( "The method or operation is not implemented." );
+			}
+		}
+
+		public string Name {
+			get {
+				return this.PluginName;
+			}
+		}
+
+		public string Description {
+			get {
+				return this.PluginDescription;
+			}
+		}
+
+		public string Version {
+			get {
+				return Assembly.GetEntryAssembly().GetName().Version.ToString();
+			}
+		}
+
+		public UserControl MainInterface {
+			get {
+				return _MainInterface;
+			}
+		}
+
+		#region Loader
+
+		public bool Initialize(string XMLPath) {
+
+			this.XMLPath = XMLPath;
+
+			// Using XmlReader to probe for root node
+			using( XmlReader reader = XmlReader.Create( XMLPath ) )
+			{
+				while( reader.Read() )
+				{
+					if( reader.NodeType == XmlNodeType.Element )
+					{
+						// Check if first element is named "root"
+						if( reader.Name != "root" )
+							return false;
+						else
+							break;
+					}
+				}
+			}
+
+			InitiateSerializer();
+			LoadXML( XMLPath );
+
+			return true;
+		}
+
+		private void InitiateSerializer( ) {
+			// Configure serializer namespaces, remove the xml:ns definition
+			Namespace = new XmlSerializerNamespaces();
+			Namespace.Add( "", "" );
+
+			// Initiate serializer
+			Serializer = new XmlSerializer( typeof( XMLGlobalState ), "" );
+		}
+
+		private void LoadXML(string XMLPath) {
+			//Deserialize to object
+			using( StreamReader Reader = new StreamReader( XMLPath ) )
+			{
+				CurrentFenuState = (XMLGlobalState)Serializer.Deserialize( Reader );
+			}
+		}
+
+		public void LoadFenu(string FenuName) {
+			foreach( FenuState ParsedFenu in CurrentFenuState.IncludedFenus )
+			{
+				if( ParsedFenu.Name == FenuName )
+				{
+					Fenu DummyFenu = new Fenu( ParsedFenu );
+					DummyFenu.DataAvailable += new EventHandler<Fenubars.Display.ObjectDetailEventArgs>( FocusedObjectAvailable );
+					DummyFenu.PopulateButtons();
+					Canvas.Add( DummyFenu );
+				}
+			}
+		}
+
+		#endregion
+
+		public void Dispose( ) {
+		}
+
+		#region Saver
+
+		public void Save() {
+			SaveAs( this.XMLPath );
+		}
+
+		public void SaveAs(string XMLPath) {
+			using( StreamWriter Writer = new StreamWriter( XMLPath ) )
+			{
+				Serializer.Serialize( Writer, CurrentFenuState, Namespace );
+			}
+		}
+
+		#endregion
+
+		public void Cut( ) {
+			throw new Exception( "The method or operation is not implemented." );
+		}
+
+		public void Copy( ) {
+			throw new Exception( "The method or operation is not implemented." );
+		}
+
+		public void Paste( ) {
+			throw new Exception( "The method or operation is not implemented." );
+		}
+
+		public void Delete( ) {
+			throw new Exception( "The method or operation is not implemented." );
+		}
+
+		#endregion
 	}
 
 	#region Object type for property grid
