@@ -164,6 +164,7 @@ namespace Syntec.Plugin
 		public void DrawOnCanvas(System.Windows.Forms.Control PluginControl, IPlugin Plugin) {
 			Form CurrentForm = DocumentsForm.ActiveForm;
 			CurrentForm.Controls.Add( PluginControl );
+			//Plugin.Host = CurrentForm.pl;
 			PluginControl.BringToFront();
 		}
 

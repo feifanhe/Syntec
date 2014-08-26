@@ -77,6 +77,10 @@
       <SubType>Designer</SubType>
       <DependentUpon>PropertiesWindowForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Windows\WorkspaceExplorer.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>WorkspaceExplorer.cs</DependentUpon>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -123,6 +127,9 @@
     <Content Include="Resources\Icons\File\SaveAllHS.png" />
     <Content Include="Resources\Icons\File\saveHS.png" />
     <Content Include="Resources\Icons\Logo\Syntec.ico" />
+    <None Include="Resources\Icons\View\FullScreenHS.png" />
+    <None Include="Resources\Icons\View\OrgchartHS.png" />
+    <None Include="Resources\Icons\View\EditCodeHS.png" />
     <None Include="Resources\Icons\View\VSProject_form.bmp" />
     <None Include="Resources\Icons\View\PropertiesHS.png" />
   </ItemGroup>

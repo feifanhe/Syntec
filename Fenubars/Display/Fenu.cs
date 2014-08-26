@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using Fenubars.Buttons;
 using Fenubars.XML;
 using Fenubars.Editor;
+using PluginInterface;
 
 namespace Fenubars.Display
 {
@@ -257,7 +258,8 @@ namespace Fenubars.Display
 		}
 
 		private Control FindChildOnScreen(Point Position) {
-			return this.FormSplitContainer.Panel2.GetChildAtPoint( Position );
+			Point newPos = new Point( Position.X, Position.Y - 25 );
+			return this.FormSplitContainer.Panel2.GetChildAtPoint( newPos );
 		}
 
 		private void IdentifyButtonObject(object target) {
@@ -353,6 +355,26 @@ namespace Fenubars.Display
 		}
 
 		#endregion
+
+		IPluginHost myHost = null;
+		IPlugin myPlugin = null;
+
+		public IPluginHost PluginHost {
+			get {
+				return myHost;
+			}
+			set {
+				myHost = value;
+			}
+		}
+		public IPlugin Plugin {
+			get {
+				return myPlugin;
+			}
+			set {
+				myPlugin = value;
+			}
+		}
 	}
 
 	public class ObjectDetailEventArgs : EventArgs

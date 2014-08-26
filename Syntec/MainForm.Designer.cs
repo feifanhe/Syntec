@@ -44,31 +44,19 @@ namespace Syntec
 			this.MenuStrip = new System.Windows.Forms.MenuStrip();
 			this.File_MenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.File_New_MenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.NewWorkspace_MenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.NewFile_MenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.File_Open_MenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.ChooseWorkspace_MenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.OpenFile_MenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.File_Separator_1 = new System.Windows.Forms.ToolStripSeparator();
 			this.Close_MenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.CloseWorkspace_MenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.File_Separator_2 = new System.Windows.Forms.ToolStripSeparator();
-			this.Save_MenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.SaveAs_MenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.SaveAll_MenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.File_Separator_3 = new System.Windows.Forms.ToolStripSeparator();
 			this.RecentFiles_MenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.RecentWorkspaces_MenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.File_Separator_4 = new System.Windows.Forms.ToolStripSeparator();
 			this.Exit_MenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.Edit_MenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.Edit_Separator_1 = new System.Windows.Forms.ToolStripSeparator();
-			this.cutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.Edit_Separator_2 = new System.Windows.Forms.ToolStripSeparator();
 			this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.Edit_Separator_3 = new System.Windows.Forms.ToolStripSeparator();
@@ -79,14 +67,11 @@ namespace Syntec
 			this.replaceInFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.goToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.View_MenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.codeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.structureToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
 			this.designerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
 			this.workspaceExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
 			this.objectBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.propertiesWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolboxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
 			this.toolbarsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -156,13 +141,29 @@ namespace Syntec
 			this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
 			this.DockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
 			this.ToolStrip_Standard = new System.Windows.Forms.ToolStrip();
+			this.toolStripSeparator22 = new System.Windows.Forms.ToolStripSeparator();
+			this.Test_MenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
 			this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-			this.toolStripSeparator22 = new System.Windows.Forms.ToolStripSeparator();
 			this.toolStripButton4 = new System.Windows.Forms.ToolStripDropDownButton();
 			this.toolStripButton5 = new System.Windows.Forms.ToolStripDropDownButton();
+			this.NewWorkspace_MenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.NewFile_MenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.ChooseWorkspace_MenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.OpenFile_MenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.Save_MenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.SaveAll_MenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.cutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.codeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.structureToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+			this.propertiesWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.MenuStrip.SuspendLayout();
 			this.toolStripContainer1.ContentPanel.SuspendLayout();
 			this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
@@ -179,7 +180,8 @@ namespace Syntec
             this.Format_MenuItem,
             this.Tools_MenuItem,
             this.Window_MenuItem,
-            this.Help_MenuItem} );
+            this.Help_MenuItem,
+            this.Test_MenuItem} );
 			this.MenuStrip.Location = new System.Drawing.Point( 0, 0 );
 			this.MenuStrip.Name = "MenuStrip";
 			this.MenuStrip.Size = new System.Drawing.Size( 1009, 24 );
@@ -216,20 +218,6 @@ namespace Syntec
 			this.File_New_MenuItem.Size = new System.Drawing.Size( 176, 22 );
 			this.File_New_MenuItem.Text = "New";
 			// 
-			// NewWorkspace_MenuItem
-			// 
-			this.NewWorkspace_MenuItem.Image = global::Syntec.Properties.Resources.OpenSelectedItemHS;
-			this.NewWorkspace_MenuItem.Name = "NewWorkspace_MenuItem";
-			this.NewWorkspace_MenuItem.Size = new System.Drawing.Size( 132, 22 );
-			this.NewWorkspace_MenuItem.Text = "Workspace";
-			// 
-			// NewFile_MenuItem
-			// 
-			this.NewFile_MenuItem.Image = global::Syntec.Properties.Resources.NewDocumentHS;
-			this.NewFile_MenuItem.Name = "NewFile_MenuItem";
-			this.NewFile_MenuItem.Size = new System.Drawing.Size( 132, 22 );
-			this.NewFile_MenuItem.Text = "File...";
-			// 
 			// File_Open_MenuItem
 			// 
 			this.File_Open_MenuItem.DropDownItems.AddRange( new System.Windows.Forms.ToolStripItem[] {
@@ -238,20 +226,6 @@ namespace Syntec
 			this.File_Open_MenuItem.Name = "File_Open_MenuItem";
 			this.File_Open_MenuItem.Size = new System.Drawing.Size( 176, 22 );
 			this.File_Open_MenuItem.Text = "Open";
-			// 
-			// ChooseWorkspace_MenuItem
-			// 
-			this.ChooseWorkspace_MenuItem.Image = global::Syntec.Properties.Resources.OpenSelectedItemHS;
-			this.ChooseWorkspace_MenuItem.Name = "ChooseWorkspace_MenuItem";
-			this.ChooseWorkspace_MenuItem.Size = new System.Drawing.Size( 175, 22 );
-			this.ChooseWorkspace_MenuItem.Text = "Choose Workspace";
-			// 
-			// OpenFile_MenuItem
-			// 
-			this.OpenFile_MenuItem.Image = global::Syntec.Properties.Resources.openHS;
-			this.OpenFile_MenuItem.Name = "OpenFile_MenuItem";
-			this.OpenFile_MenuItem.Size = new System.Drawing.Size( 175, 22 );
-			this.OpenFile_MenuItem.Text = "Open File";
 			// 
 			// File_Separator_1
 			// 
@@ -275,25 +249,11 @@ namespace Syntec
 			this.File_Separator_2.Name = "File_Separator_2";
 			this.File_Separator_2.Size = new System.Drawing.Size( 173, 6 );
 			// 
-			// Save_MenuItem
-			// 
-			this.Save_MenuItem.Image = global::Syntec.Properties.Resources.saveHS;
-			this.Save_MenuItem.Name = "Save_MenuItem";
-			this.Save_MenuItem.Size = new System.Drawing.Size( 176, 22 );
-			this.Save_MenuItem.Text = "Save";
-			// 
 			// SaveAs_MenuItem
 			// 
 			this.SaveAs_MenuItem.Name = "SaveAs_MenuItem";
 			this.SaveAs_MenuItem.Size = new System.Drawing.Size( 176, 22 );
 			this.SaveAs_MenuItem.Text = "Save As...";
-			// 
-			// SaveAll_MenuItem
-			// 
-			this.SaveAll_MenuItem.Image = global::Syntec.Properties.Resources.SaveAllHS;
-			this.SaveAll_MenuItem.Name = "SaveAll_MenuItem";
-			this.SaveAll_MenuItem.Size = new System.Drawing.Size( 176, 22 );
-			this.SaveAll_MenuItem.Text = "Save All";
 			// 
 			// File_Separator_3
 			// 
@@ -342,52 +302,10 @@ namespace Syntec
 			this.Edit_MenuItem.Size = new System.Drawing.Size( 39, 20 );
 			this.Edit_MenuItem.Text = "Edit";
 			// 
-			// undoToolStripMenuItem
-			// 
-			this.undoToolStripMenuItem.Image = global::Syntec.Properties.Resources.Edit_UndoHS;
-			this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
-			this.undoToolStripMenuItem.Size = new System.Drawing.Size( 164, 22 );
-			this.undoToolStripMenuItem.Text = "Undo";
-			// 
-			// redoToolStripMenuItem
-			// 
-			this.redoToolStripMenuItem.Image = global::Syntec.Properties.Resources.Edit_RedoHS;
-			this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
-			this.redoToolStripMenuItem.Size = new System.Drawing.Size( 164, 22 );
-			this.redoToolStripMenuItem.Text = "Redo";
-			// 
 			// Edit_Separator_1
 			// 
 			this.Edit_Separator_1.Name = "Edit_Separator_1";
 			this.Edit_Separator_1.Size = new System.Drawing.Size( 161, 6 );
-			// 
-			// cutToolStripMenuItem
-			// 
-			this.cutToolStripMenuItem.Image = global::Syntec.Properties.Resources.CutHS;
-			this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
-			this.cutToolStripMenuItem.Size = new System.Drawing.Size( 164, 22 );
-			this.cutToolStripMenuItem.Text = "Cut";
-			// 
-			// copyToolStripMenuItem
-			// 
-			this.copyToolStripMenuItem.Image = global::Syntec.Properties.Resources.CopyHS;
-			this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-			this.copyToolStripMenuItem.Size = new System.Drawing.Size( 164, 22 );
-			this.copyToolStripMenuItem.Text = "Copy";
-			// 
-			// pasteToolStripMenuItem
-			// 
-			this.pasteToolStripMenuItem.Image = global::Syntec.Properties.Resources.PasteHS;
-			this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-			this.pasteToolStripMenuItem.Size = new System.Drawing.Size( 164, 22 );
-			this.pasteToolStripMenuItem.Text = "Paste";
-			// 
-			// deleteToolStripMenuItem
-			// 
-			this.deleteToolStripMenuItem.Image = global::Syntec.Properties.Resources.DeleteHS;
-			this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-			this.deleteToolStripMenuItem.Size = new System.Drawing.Size( 164, 22 );
-			this.deleteToolStripMenuItem.Text = "Delete";
 			// 
 			// Edit_Separator_2
 			// 
@@ -464,20 +382,9 @@ namespace Syntec
 			this.View_MenuItem.Size = new System.Drawing.Size( 44, 20 );
 			this.View_MenuItem.Text = "View";
 			// 
-			// codeToolStripMenuItem
-			// 
-			this.codeToolStripMenuItem.Name = "codeToolStripMenuItem";
-			this.codeToolStripMenuItem.Size = new System.Drawing.Size( 177, 22 );
-			this.codeToolStripMenuItem.Text = "Code";
-			// 
-			// structureToolStripMenuItem1
-			// 
-			this.structureToolStripMenuItem1.Name = "structureToolStripMenuItem1";
-			this.structureToolStripMenuItem1.Size = new System.Drawing.Size( 177, 22 );
-			this.structureToolStripMenuItem1.Text = "Structure";
-			// 
 			// designerToolStripMenuItem
 			// 
+			this.designerToolStripMenuItem.Image = global::Syntec.Properties.Resources.FullScreenHS;
 			this.designerToolStripMenuItem.Name = "designerToolStripMenuItem";
 			this.designerToolStripMenuItem.Size = new System.Drawing.Size( 177, 22 );
 			this.designerToolStripMenuItem.Text = "Designer";
@@ -503,13 +410,6 @@ namespace Syntec
 			this.objectBrowserToolStripMenuItem.Name = "objectBrowserToolStripMenuItem";
 			this.objectBrowserToolStripMenuItem.Size = new System.Drawing.Size( 177, 22 );
 			this.objectBrowserToolStripMenuItem.Text = "Object Browser";
-			// 
-			// propertiesWindowToolStripMenuItem
-			// 
-			this.propertiesWindowToolStripMenuItem.Image = global::Syntec.Properties.Resources.PropertiesHS;
-			this.propertiesWindowToolStripMenuItem.Name = "propertiesWindowToolStripMenuItem";
-			this.propertiesWindowToolStripMenuItem.Size = new System.Drawing.Size( 177, 22 );
-			this.propertiesWindowToolStripMenuItem.Text = "Properties Window";
 			// 
 			// toolboxToolStripMenuItem
 			// 
@@ -930,7 +830,6 @@ namespace Syntec
 			this.Help_MenuItem.Name = "Help_MenuItem";
 			this.Help_MenuItem.Size = new System.Drawing.Size( 44, 20 );
 			this.Help_MenuItem.Text = "Help";
-			this.Help_MenuItem.Click += new System.EventHandler( this.Help_MenuItem_Click );
 			// 
 			// howDoIToolStripMenuItem
 			// 
@@ -1060,6 +959,18 @@ namespace Syntec
 			this.ToolStrip_Standard.Size = new System.Drawing.Size( 177, 25 );
 			this.ToolStrip_Standard.TabIndex = 0;
 			// 
+			// toolStripSeparator22
+			// 
+			this.toolStripSeparator22.Name = "toolStripSeparator22";
+			this.toolStripSeparator22.Size = new System.Drawing.Size( 6, 25 );
+			// 
+			// Test_MenuItem
+			// 
+			this.Test_MenuItem.Name = "Test_MenuItem";
+			this.Test_MenuItem.Size = new System.Drawing.Size( 41, 20 );
+			this.Test_MenuItem.Text = "Test";
+			this.Test_MenuItem.Click += new System.EventHandler( this.Test_MenuItem_Click );
+			// 
 			// toolStripSplitButton1
 			// 
 			this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -1096,11 +1007,6 @@ namespace Syntec
 			this.toolStripButton3.Size = new System.Drawing.Size( 23, 22 );
 			this.toolStripButton3.Text = "toolStripButton3";
 			// 
-			// toolStripSeparator22
-			// 
-			this.toolStripSeparator22.Name = "toolStripSeparator22";
-			this.toolStripSeparator22.Size = new System.Drawing.Size( 6, 25 );
-			// 
 			// toolStripButton4
 			// 
 			this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -1118,6 +1024,111 @@ namespace Syntec
 			this.toolStripButton5.Name = "toolStripButton5";
 			this.toolStripButton5.Size = new System.Drawing.Size( 29, 22 );
 			this.toolStripButton5.Text = "toolStripButton5";
+			// 
+			// NewWorkspace_MenuItem
+			// 
+			this.NewWorkspace_MenuItem.Image = global::Syntec.Properties.Resources.OpenSelectedItemHS;
+			this.NewWorkspace_MenuItem.Name = "NewWorkspace_MenuItem";
+			this.NewWorkspace_MenuItem.Size = new System.Drawing.Size( 132, 22 );
+			this.NewWorkspace_MenuItem.Text = "Workspace";
+			// 
+			// NewFile_MenuItem
+			// 
+			this.NewFile_MenuItem.Image = global::Syntec.Properties.Resources.NewDocumentHS;
+			this.NewFile_MenuItem.Name = "NewFile_MenuItem";
+			this.NewFile_MenuItem.Size = new System.Drawing.Size( 132, 22 );
+			this.NewFile_MenuItem.Text = "File...";
+			// 
+			// ChooseWorkspace_MenuItem
+			// 
+			this.ChooseWorkspace_MenuItem.Image = global::Syntec.Properties.Resources.OpenSelectedItemHS;
+			this.ChooseWorkspace_MenuItem.Name = "ChooseWorkspace_MenuItem";
+			this.ChooseWorkspace_MenuItem.Size = new System.Drawing.Size( 175, 22 );
+			this.ChooseWorkspace_MenuItem.Text = "Choose Workspace";
+			// 
+			// OpenFile_MenuItem
+			// 
+			this.OpenFile_MenuItem.Image = global::Syntec.Properties.Resources.openHS;
+			this.OpenFile_MenuItem.Name = "OpenFile_MenuItem";
+			this.OpenFile_MenuItem.Size = new System.Drawing.Size( 175, 22 );
+			this.OpenFile_MenuItem.Text = "Open File";
+			// 
+			// Save_MenuItem
+			// 
+			this.Save_MenuItem.Image = global::Syntec.Properties.Resources.saveHS;
+			this.Save_MenuItem.Name = "Save_MenuItem";
+			this.Save_MenuItem.Size = new System.Drawing.Size( 176, 22 );
+			this.Save_MenuItem.Text = "Save";
+			// 
+			// SaveAll_MenuItem
+			// 
+			this.SaveAll_MenuItem.Image = global::Syntec.Properties.Resources.SaveAllHS;
+			this.SaveAll_MenuItem.Name = "SaveAll_MenuItem";
+			this.SaveAll_MenuItem.Size = new System.Drawing.Size( 176, 22 );
+			this.SaveAll_MenuItem.Text = "Save All";
+			// 
+			// undoToolStripMenuItem
+			// 
+			this.undoToolStripMenuItem.Image = global::Syntec.Properties.Resources.Edit_UndoHS;
+			this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
+			this.undoToolStripMenuItem.Size = new System.Drawing.Size( 164, 22 );
+			this.undoToolStripMenuItem.Text = "Undo";
+			// 
+			// redoToolStripMenuItem
+			// 
+			this.redoToolStripMenuItem.Image = global::Syntec.Properties.Resources.Edit_RedoHS;
+			this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
+			this.redoToolStripMenuItem.Size = new System.Drawing.Size( 164, 22 );
+			this.redoToolStripMenuItem.Text = "Redo";
+			// 
+			// cutToolStripMenuItem
+			// 
+			this.cutToolStripMenuItem.Image = global::Syntec.Properties.Resources.CutHS;
+			this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
+			this.cutToolStripMenuItem.Size = new System.Drawing.Size( 164, 22 );
+			this.cutToolStripMenuItem.Text = "Cut";
+			// 
+			// copyToolStripMenuItem
+			// 
+			this.copyToolStripMenuItem.Image = global::Syntec.Properties.Resources.CopyHS;
+			this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+			this.copyToolStripMenuItem.Size = new System.Drawing.Size( 164, 22 );
+			this.copyToolStripMenuItem.Text = "Copy";
+			// 
+			// pasteToolStripMenuItem
+			// 
+			this.pasteToolStripMenuItem.Image = global::Syntec.Properties.Resources.PasteHS;
+			this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
+			this.pasteToolStripMenuItem.Size = new System.Drawing.Size( 164, 22 );
+			this.pasteToolStripMenuItem.Text = "Paste";
+			// 
+			// deleteToolStripMenuItem
+			// 
+			this.deleteToolStripMenuItem.Image = global::Syntec.Properties.Resources.DeleteHS;
+			this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+			this.deleteToolStripMenuItem.Size = new System.Drawing.Size( 164, 22 );
+			this.deleteToolStripMenuItem.Text = "Delete";
+			// 
+			// codeToolStripMenuItem
+			// 
+			this.codeToolStripMenuItem.Image = global::Syntec.Properties.Resources.EditCodeHS;
+			this.codeToolStripMenuItem.Name = "codeToolStripMenuItem";
+			this.codeToolStripMenuItem.Size = new System.Drawing.Size( 177, 22 );
+			this.codeToolStripMenuItem.Text = "Code";
+			// 
+			// structureToolStripMenuItem1
+			// 
+			this.structureToolStripMenuItem1.Image = global::Syntec.Properties.Resources.OrgchartHS;
+			this.structureToolStripMenuItem1.Name = "structureToolStripMenuItem1";
+			this.structureToolStripMenuItem1.Size = new System.Drawing.Size( 177, 22 );
+			this.structureToolStripMenuItem1.Text = "Structure";
+			// 
+			// propertiesWindowToolStripMenuItem
+			// 
+			this.propertiesWindowToolStripMenuItem.Image = global::Syntec.Properties.Resources.PropertiesHS;
+			this.propertiesWindowToolStripMenuItem.Name = "propertiesWindowToolStripMenuItem";
+			this.propertiesWindowToolStripMenuItem.Size = new System.Drawing.Size( 177, 22 );
+			this.propertiesWindowToolStripMenuItem.Text = "Properties Window";
 			// 
 			// MainForm
 			// 
@@ -1271,6 +1282,7 @@ namespace Syntec
 		private System.Windows.Forms.ToolStripDropDownButton toolStripButton5;
 		private System.Windows.Forms.ToolStripMenuItem PluginManager_MenuItem;
 		private System.Windows.Forms.ToolStripSeparator Tools_Seperator_1;
+		private System.Windows.Forms.ToolStripMenuItem Test_MenuItem;
 	}
 }
 

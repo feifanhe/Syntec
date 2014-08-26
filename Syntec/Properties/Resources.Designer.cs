@@ -95,6 +95,20 @@ namespace Syntec.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap EditCodeHS {
+            get {
+                object obj = ResourceManager.GetObject("EditCodeHS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap FullScreenHS {
+            get {
+                object obj = ResourceManager.GetObject("FullScreenHS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap NewDocumentHS {
             get {
                 object obj = ResourceManager.GetObject("NewDocumentHS", resourceCulture);
@@ -112,6 +126,13 @@ namespace Syntec.Properties {
         internal static System.Drawing.Bitmap OpenSelectedItemHS {
             get {
                 object obj = ResourceManager.GetObject("OpenSelectedItemHS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap OrgchartHS {
+            get {
+                object obj = ResourceManager.GetObject("OrgchartHS", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

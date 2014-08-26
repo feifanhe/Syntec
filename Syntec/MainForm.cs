@@ -40,7 +40,7 @@ namespace Syntec
 
 		#endregion
 
-		private void Help_MenuItem_Click(object sender, EventArgs e) {
+		private void Test_MenuItem_Click(object sender, EventArgs e) {
 			AvailablePlugin SelectedPlugin = Global.Plugins.AvailablePlugins.Find( "Fenubar" );
 
 			if( SelectedPlugin != null )

@@ -57,7 +57,7 @@ namespace Fenubars
 		private readonly string PluginName = "Fenubar";
 		private string PluginDescription = "Use this plugin to support fenubar edit function."; 
 		private IPluginHost PluginHost = null;
-		private UserControl _MainInterface;// = new ctlMain();
+		private UserControl _MainInterface;
 
 
 		#region Acquire focus object by event
@@ -118,10 +118,13 @@ namespace Fenubars
 
 		public IPluginHost Host {
 			get {
-				throw new Exception( "The method or operation is not implemented." );
+				return PluginHost;
 			}
 			set {
-				throw new Exception( "The method or operation is not implemented." );
+				PluginHost = value;
+				Fenu DummyFenu = (Fenu)_MainInterface;
+				DummyFenu.PluginHost = this.PluginHost;
+				DummyFenu.Plugin = this;
 			}
 		}
 
@@ -199,11 +202,11 @@ namespace Fenubars
 			{
 				if( ParsedFenu.Name == FenuName )
 				{
-					Fenu DummyFenu = new Fenu( ParsedFenu );
-					DummyFenu.DataAvailable += new EventHandler<Fenubars.Display.ObjectDetailEventArgs>( FocusedObjectAvailable );
-					DummyFenu.PopulateButtons();
-					//Canvas.Add( DummyFenu );
-					PluginHost.DrawOnCanvas( DummyFenu, this );
+					_MainInterface = new Fenu( ParsedFenu );
+					( (Fenu)_MainInterface ).DataAvailable += new EventHandler<Fenubars.Display.ObjectDetailEventArgs>( FocusedObjectAvailable );
+					( (Fenu)_MainInterface ).PopulateButtons();
+					Canvas.Add( _MainInterface );
+					//PluginHost.DrawOnCanvas( _MainInterface, this );
 				}
 			}
 		}
