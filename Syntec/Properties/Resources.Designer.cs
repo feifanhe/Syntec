@@ -60,6 +60,13 @@ namespace Syntec.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap Control_ViewCode {
+            get {
+                object obj = ResourceManager.GetObject("Control_ViewCode", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap CopyHS {
             get {
                 object obj = ResourceManager.GetObject("CopyHS", resourceCulture);
@@ -91,20 +98,6 @@ namespace Syntec.Properties {
         internal static System.Drawing.Bitmap Edit_UndoHS {
             get {
                 object obj = ResourceManager.GetObject("Edit_UndoHS", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap EditCodeHS {
-            get {
-                object obj = ResourceManager.GetObject("EditCodeHS", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap FullScreenHS {
-            get {
-                object obj = ResourceManager.GetObject("FullScreenHS", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -151,6 +144,13 @@ namespace Syntec.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap Refresh {
+            get {
+                object obj = ResourceManager.GetObject("Refresh", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap SaveAllHS {
             get {
                 object obj = ResourceManager.GetObject("SaveAllHS", resourceCulture);
@@ -161,6 +161,20 @@ namespace Syntec.Properties {
         internal static System.Drawing.Bitmap saveHS {
             get {
                 object obj = ResourceManager.GetObject("saveHS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap ShowAllFiles_349_32 {
+            get {
+                object obj = ResourceManager.GetObject("ShowAllFiles_349_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap ViewDesigner_6280_32 {
+            get {
+                object obj = ResourceManager.GetObject("ViewDesigner_6280_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
