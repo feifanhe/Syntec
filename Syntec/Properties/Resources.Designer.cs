@@ -60,13 +60,6 @@ namespace Syntec.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap Control_ViewCode {
-            get {
-                object obj = ResourceManager.GetObject("Control_ViewCode", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap CopyHS {
             get {
                 object obj = ResourceManager.GetObject("CopyHS", resourceCulture);
@@ -102,6 +95,20 @@ namespace Syntec.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap Misc_Refresh {
+            get {
+                object obj = ResourceManager.GetObject("Misc_Refresh", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Mise_ShowAllFiles {
+            get {
+                object obj = ResourceManager.GetObject("Mise_ShowAllFiles", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap NewDocumentHS {
             get {
                 object obj = ResourceManager.GetObject("NewDocumentHS", resourceCulture);
@@ -123,30 +130,9 @@ namespace Syntec.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap OrgchartHS {
-            get {
-                object obj = ResourceManager.GetObject("OrgchartHS", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap PasteHS {
             get {
                 object obj = ResourceManager.GetObject("PasteHS", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap PropertiesHS {
-            get {
-                object obj = ResourceManager.GetObject("PropertiesHS", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap Refresh {
-            get {
-                object obj = ResourceManager.GetObject("Refresh", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -165,16 +151,30 @@ namespace Syntec.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap ShowAllFiles_349_32 {
+        internal static System.Drawing.Bitmap View_Code {
             get {
-                object obj = ResourceManager.GetObject("ShowAllFiles_349_32", resourceCulture);
+                object obj = ResourceManager.GetObject("View_Code", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap ViewDesigner_6280_32 {
+        internal static System.Drawing.Bitmap View_Designer {
             get {
-                object obj = ResourceManager.GetObject("ViewDesigner_6280_32", resourceCulture);
+                object obj = ResourceManager.GetObject("View_Designer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap View_Properties {
+            get {
+                object obj = ResourceManager.GetObject("View_Properties", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap View_Structure {
+            get {
+                object obj = ResourceManager.GetObject("View_Structure", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

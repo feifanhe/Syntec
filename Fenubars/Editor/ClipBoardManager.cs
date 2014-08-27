@@ -8,8 +8,6 @@ namespace Fenubars.Editor
 {
 	public class ClipBoardManager<T> where T : class
 	{
-		private XmlSerializer Serializer;
-		
 		/// <summary>
 		/// Gets object from clipboard.
 		/// </summary>

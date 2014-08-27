@@ -1104,28 +1104,28 @@ namespace Syntec
 			// 
 			// codeToolStripMenuItem
 			// 
-			this.codeToolStripMenuItem.Image = global::Syntec.Properties.Resources.Control_ViewCode;
+			this.codeToolStripMenuItem.Image = global::Syntec.Properties.Resources.View_Code;
 			this.codeToolStripMenuItem.Name = "codeToolStripMenuItem";
 			this.codeToolStripMenuItem.Size = new System.Drawing.Size( 177, 22 );
 			this.codeToolStripMenuItem.Text = "Code";
 			// 
 			// designerToolStripMenuItem
 			// 
-			this.designerToolStripMenuItem.Image = global::Syntec.Properties.Resources.ViewDesigner_6280_32;
+			this.designerToolStripMenuItem.Image = global::Syntec.Properties.Resources.View_Designer;
 			this.designerToolStripMenuItem.Name = "designerToolStripMenuItem";
 			this.designerToolStripMenuItem.Size = new System.Drawing.Size( 177, 22 );
 			this.designerToolStripMenuItem.Text = "Designer";
 			// 
 			// structureToolStripMenuItem1
 			// 
-			this.structureToolStripMenuItem1.Image = global::Syntec.Properties.Resources.OrgchartHS;
+			this.structureToolStripMenuItem1.Image = global::Syntec.Properties.Resources.View_Structure;
 			this.structureToolStripMenuItem1.Name = "structureToolStripMenuItem1";
 			this.structureToolStripMenuItem1.Size = new System.Drawing.Size( 177, 22 );
 			this.structureToolStripMenuItem1.Text = "Structure";
 			// 
 			// propertiesWindowToolStripMenuItem
 			// 
-			this.propertiesWindowToolStripMenuItem.Image = global::Syntec.Properties.Resources.PropertiesHS;
+			this.propertiesWindowToolStripMenuItem.Image = global::Syntec.Properties.Resources.View_Properties;
 			this.propertiesWindowToolStripMenuItem.Name = "propertiesWindowToolStripMenuItem";
 			this.propertiesWindowToolStripMenuItem.Size = new System.Drawing.Size( 177, 22 );
 			this.propertiesWindowToolStripMenuItem.Text = "Properties Window";

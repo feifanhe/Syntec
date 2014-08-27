@@ -121,24 +121,24 @@
     <Content Include="Resources\Icons\Edit\Edit_RedoHS.png" />
     <Content Include="Resources\Icons\Edit\Edit_UndoHS.png" />
     <Content Include="Resources\Icons\Edit\PasteHS.png" />
-    <None Include="Resources\Icons\FileTypes\ClosedFolder_6423_24.bmp" />
-    <None Include="Resources\Icons\FileTypes\FolderBrowserDialogControl_678_24.bmp" />
-    <None Include="Resources\Icons\FileTypes\XMLtag_5803_24.bmp" />
+    <Content Include="Resources\Icons\FileTypes\Base_Workspace.bmp" />
+    <Content Include="Resources\Icons\FileTypes\File_Hidden.bmp" />
+    <Content Include="Resources\Icons\FileTypes\File_XML.bmp" />
+    <Content Include="Resources\Icons\FileTypes\Folder.bmp" />
+    <Content Include="Resources\Icons\FileTypes\Folder_Open.bmp" />
+    <Content Include="Resources\Icons\FileTypes\Product.bmp" />
     <Content Include="Resources\Icons\File\New\NewDocumentHS.png" />
     <Content Include="Resources\Icons\File\Open\openHS.png" />
     <Content Include="Resources\Icons\File\Open\OpenSelectedItemHS.png" />
     <Content Include="Resources\Icons\File\SaveAllHS.png" />
     <Content Include="Resources\Icons\File\saveHS.png" />
     <Content Include="Resources\Icons\Logo\Syntec.ico" />
-    <None Include="Resources\Icons\View\Control_ViewCode.bmp" />
-    <None Include="Resources\Icons\Misc\ShowAllFiles_349_32.bmp" />
-    <None Include="Resources\Icons\Misc\Refresh.bmp" />
-    <None Include="Resources\Icons\View\ViewDesigner_6280_32.bmp" />
-    <None Include="Resources\Icons\View\FullScreenHS.png" />
-    <None Include="Resources\Icons\View\OrgchartHS.png" />
-    <None Include="Resources\Icons\View\EditCodeHS.png" />
-    <None Include="Resources\Icons\View\VSProject_form.bmp" />
-    <None Include="Resources\Icons\View\PropertiesHS.png" />
+    <None Include="Resources\Icons\Misc\Mise_ShowAllFiles.bmp" />
+    <None Include="Resources\Icons\Misc\Misc_Refresh.bmp" />
+    <None Include="Resources\Icons\View\View_Structure.png" />
+    <None Include="Resources\Icons\View\View_Properties.png" />
+    <None Include="Resources\Icons\View\View_Designer.bmp" />
+    <None Include="Resources\Icons\View\View_Code.bmp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PluginInterface\PluginInterface.csproj">

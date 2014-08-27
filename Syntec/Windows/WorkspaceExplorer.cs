@@ -15,20 +15,38 @@ namespace Syntec.Windows
 		// Base path that the entire tree will be built on
 		private string basePath;
 
+		// Indicate to show every files or targeted only
+		private bool showAllFiles = false;
+
 		public WorkspaceExplorer(string path) {
 			InitializeComponent();
+
+			// Add items to tool strip (unknown code generation issue)
+			this.Workspace_ToolStrip.Items.AddRange( new System.Windows.Forms.ToolStripItem[] { 
+				this.ShowAll_ToolStripButton,
+				this.Refresh_ToolStripButton,
+				this.Workspace_Separator_1,
+				this.ViewCode_ToolStripButton,
+				this.ViewDesigner_ToolStripButton,
+				this.ViewStructure_ToolStripButton} );
+
+			// Set checked state for ShowAllFile_ToolStripMenuItem
+			ShowAll_ToolStripButton.Checked = showAllFiles;
 
 			RefreshTree( path );
 		}
 
 		public void RefreshTree( ) {
-			RefreshTree( basePath );
+			// Wipe tree
+			WorkspaceTreeView.Nodes.Clear();
+
+			ParseDirectoryToTree();
 		}
 
 		public void RefreshTree(string path) {
 			DissectBasePath( path );
 
-			ParseDirectoryToTree();
+			RefreshTree();
 		}
 
 		private void DissectBasePath(string path) {
@@ -51,6 +69,9 @@ namespace Syntec.Windows
 
 		private void ParseDirectoryToTree( ) {
 			TreeNode root = new TreeNode( basePath );
+			root.ImageIndex = 5;
+			root.SelectedImageIndex = root.ImageIndex;
+
 			WorkspaceTreeView.Nodes.Add( root );
 			AddTopDirectories( root, basePath );
 		}
@@ -65,12 +86,14 @@ namespace Syntec.Windows
 			// Change expanded icon
 			if( e.Node.ImageIndex == 1 )
 				e.Node.ImageIndex = 3;
+			e.Node.SelectedImageIndex = e.Node.ImageIndex;
 		}
 
 		private void WorkspaceTreeView_BeforeCollapse(object sender, TreeViewCancelEventArgs e) {
 			// Switch back icon to folder
 			if( e.Node.ImageIndex == 3 )
 				e.Node.ImageIndex = 1;
+			e.Node.SelectedImageIndex = e.Node.ImageIndex;
 		}
 
 		#endregion
@@ -104,9 +127,19 @@ namespace Syntec.Windows
 
 					child.SelectedImageIndex = child.ImageIndex;
 
+					// Add dummy node if targeted file exists
+					bool existTargetedFile = false;
+					foreach( string file in Directory.GetFiles( subdir ) )
+					{
+						if( file.ToUpper().Contains( "XML" ) || showAllFiles )
+						{
+							existTargetedFile = true;
+							break;
+						}
+					}
+
 					// Add dummy node when sub-dir exists, in order to show the expand sign
-					if( Directory.GetDirectories( subdir ).Length > 0 ||
-						Directory.GetFiles( subdir ).Length > 0 )
+					if( Directory.GetDirectories( subdir ).Length > 0 || existTargetedFile )
 					{
 						child.Nodes.Add( new TreeNode() );
 					}
@@ -127,10 +160,20 @@ namespace Syntec.Windows
 					child.Text = Path.GetFileName( file );
 
 					// Set product/normal folder image
-					if( child.Text.ToUpper().IndexOf( "XML" ) < 0 )
-						continue; // Skip this itereation if it's not an XML file
-					else
-						child.ImageIndex = 2;
+					switch( Path.GetExtension( file ).ToUpper() )
+					{
+						case "XML":
+							child.ImageIndex = 2;
+							Console.WriteLine( "AN XML" );
+							break;
+						default:
+							Console.WriteLine( "NON XML" );
+							if( showAllFiles )
+								child.ImageIndex = 4;
+							else
+								continue; // Skip this iteration to hide non-targeted files
+							break;
+					}
 
 					child.SelectedImageIndex = child.ImageIndex;
 
@@ -153,8 +196,28 @@ namespace Syntec.Windows
 
 		#region Tool strip events
 
+		private void ShowAll_ToolStripButton_Click(object sender, EventArgs e) {
+			// Toggle and apply state
+			showAllFiles = !showAllFiles;
+			ShowAll_ToolStripButton.Checked = showAllFiles;
+
+			RefreshTree();
+		}
+
 		private void Refresh_ToolStripButton_Click(object sender, EventArgs e) {
-			Refresh();
+			RefreshTree();
+		}
+
+		private void ViewCode_ToolStripButton_Click(object sender, EventArgs e) {
+
+		}
+
+		private void ViewDesigner_ToolStripButton_Click(object sender, EventArgs e) {
+
+		}
+
+		private void ViewStructure_ToolStripButton_Click(object sender, EventArgs e) {
+
 		}
 
 		#endregion
