@@ -121,6 +121,9 @@
     <Content Include="Resources\Icons\Edit\Edit_RedoHS.png" />
     <Content Include="Resources\Icons\Edit\Edit_UndoHS.png" />
     <Content Include="Resources\Icons\Edit\PasteHS.png" />
+    <None Include="Resources\Icons\FileTypes\ClosedFolder_6423_24.bmp" />
+    <None Include="Resources\Icons\FileTypes\FolderBrowserDialogControl_678_24.bmp" />
+    <None Include="Resources\Icons\FileTypes\XMLtag_5803_24.bmp" />
     <Content Include="Resources\Icons\File\New\NewDocumentHS.png" />
     <Content Include="Resources\Icons\File\Open\openHS.png" />
     <Content Include="Resources\Icons\File\Open\OpenSelectedItemHS.png" />

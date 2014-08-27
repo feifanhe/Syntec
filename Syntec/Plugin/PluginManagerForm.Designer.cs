@@ -30,12 +30,12 @@ namespace Syntec.Plugin
 			this.NameHeader = new System.Windows.Forms.ColumnHeader();
 			this.VersionHeader = new System.Windows.Forms.ColumnHeader();
 			this.LocationHeader = new System.Windows.Forms.ColumnHeader();
-			this.BrowseButton = new System.Windows.Forms.Button();
-			this.OKButton = new System.Windows.Forms.Button();
-			this.CancelButton = new System.Windows.Forms.Button();
+			this.Browse_Button = new System.Windows.Forms.Button();
+			this.OK_Button = new System.Windows.Forms.Button();
+			this.Cancel_Button = new System.Windows.Forms.Button();
 			this.Description = new System.Windows.Forms.TextBox();
 			this.Description_Label = new System.Windows.Forms.Label();
-			this.RefreshButton = new System.Windows.Forms.Button();
+			this.Refresh_Button = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// PluginList
@@ -69,35 +69,35 @@ namespace Syntec.Plugin
 			this.LocationHeader.Text = "Location";
 			this.LocationHeader.Width = 280;
 			// 
-			// BrowseButton
+			// Browse_Button
 			// 
-			this.BrowseButton.Location = new System.Drawing.Point( 12, 377 );
-			this.BrowseButton.Name = "BrowseButton";
-			this.BrowseButton.Size = new System.Drawing.Size( 75, 23 );
-			this.BrowseButton.TabIndex = 2;
-			this.BrowseButton.Text = "Browse";
-			this.BrowseButton.UseVisualStyleBackColor = true;
-			this.BrowseButton.Click += new System.EventHandler( this.BrowseButton_Click );
+			this.Browse_Button.Location = new System.Drawing.Point( 12, 377 );
+			this.Browse_Button.Name = "BrowseButton";
+			this.Browse_Button.Size = new System.Drawing.Size( 75, 23 );
+			this.Browse_Button.TabIndex = 2;
+			this.Browse_Button.Text = "Browse";
+			this.Browse_Button.UseVisualStyleBackColor = true;
+			this.Browse_Button.Click += new System.EventHandler( this.BrowseButton_Click );
 			// 
-			// OKButton
+			// OK_Button
 			// 
-			this.OKButton.Location = new System.Drawing.Point( 416, 377 );
-			this.OKButton.Name = "OKButton";
-			this.OKButton.Size = new System.Drawing.Size( 75, 23 );
-			this.OKButton.TabIndex = 3;
-			this.OKButton.Text = "OK";
-			this.OKButton.UseVisualStyleBackColor = true;
-			this.OKButton.Click += new System.EventHandler( this.OKButton_Click );
+			this.OK_Button.Location = new System.Drawing.Point( 416, 377 );
+			this.OK_Button.Name = "OKButton";
+			this.OK_Button.Size = new System.Drawing.Size( 75, 23 );
+			this.OK_Button.TabIndex = 3;
+			this.OK_Button.Text = "OK";
+			this.OK_Button.UseVisualStyleBackColor = true;
+			this.OK_Button.Click += new System.EventHandler( this.OKButton_Click );
 			// 
-			// CancelButton
+			// Cancel_Button
 			// 
-			this.CancelButton.Location = new System.Drawing.Point( 497, 377 );
-			this.CancelButton.Name = "CancelButton";
-			this.CancelButton.Size = new System.Drawing.Size( 75, 23 );
-			this.CancelButton.TabIndex = 4;
-			this.CancelButton.Text = "Cancel";
-			this.CancelButton.UseVisualStyleBackColor = true;
-			this.CancelButton.Click += new System.EventHandler( this.CancelButton_Click );
+			this.Cancel_Button.Location = new System.Drawing.Point( 497, 377 );
+			this.Cancel_Button.Name = "CancelButton";
+			this.Cancel_Button.Size = new System.Drawing.Size( 75, 23 );
+			this.Cancel_Button.TabIndex = 4;
+			this.Cancel_Button.Text = "Cancel";
+			this.Cancel_Button.UseVisualStyleBackColor = true;
+			this.Cancel_Button.Click += new System.EventHandler( this.CancelButton_Click );
 			// 
 			// Description
 			// 
@@ -118,27 +118,27 @@ namespace Syntec.Plugin
 			this.Description_Label.TabIndex = 6;
 			this.Description_Label.Text = "Description:";
 			// 
-			// RefreshButton
+			// Refresh_Button
 			// 
-			this.RefreshButton.Location = new System.Drawing.Point( 93, 377 );
-			this.RefreshButton.Name = "RefreshButton";
-			this.RefreshButton.Size = new System.Drawing.Size( 75, 23 );
-			this.RefreshButton.TabIndex = 7;
-			this.RefreshButton.Text = "Refresh";
-			this.RefreshButton.UseVisualStyleBackColor = true;
-			this.RefreshButton.Click += new System.EventHandler( this.RefreshButton_Click );
+			this.Refresh_Button.Location = new System.Drawing.Point( 93, 377 );
+			this.Refresh_Button.Name = "RefreshButton";
+			this.Refresh_Button.Size = new System.Drawing.Size( 75, 23 );
+			this.Refresh_Button.TabIndex = 7;
+			this.Refresh_Button.Text = "Refresh";
+			this.Refresh_Button.UseVisualStyleBackColor = true;
+			this.Refresh_Button.Click += new System.EventHandler( this.RefreshButton_Click );
 			// 
 			// PluginManagerForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF( 6F, 13F );
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size( 584, 412 );
-			this.Controls.Add( this.RefreshButton );
+			this.Controls.Add( this.Refresh_Button );
 			this.Controls.Add( this.Description_Label );
 			this.Controls.Add( this.Description );
-			this.Controls.Add( this.CancelButton );
-			this.Controls.Add( this.OKButton );
-			this.Controls.Add( this.BrowseButton );
+			this.Controls.Add( this.Cancel_Button );
+			this.Controls.Add( this.OK_Button );
+			this.Controls.Add( this.Browse_Button );
 			this.Controls.Add( this.PluginList );
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
@@ -158,11 +158,11 @@ namespace Syntec.Plugin
 		private System.Windows.Forms.ColumnHeader NameHeader;
 		private System.Windows.Forms.ColumnHeader VersionHeader;
 		private System.Windows.Forms.ColumnHeader LocationHeader;
-		private System.Windows.Forms.Button BrowseButton;
-		private System.Windows.Forms.Button OKButton;
-		private System.Windows.Forms.Button CancelButton;
+		private System.Windows.Forms.Button Browse_Button;
+		private System.Windows.Forms.Button OK_Button;
+		private System.Windows.Forms.Button Cancel_Button;
 		private System.Windows.Forms.TextBox Description;
 		private System.Windows.Forms.Label Description_Label;
-		private System.Windows.Forms.Button RefreshButton;
+		private System.Windows.Forms.Button Refresh_Button;
 	}
 }

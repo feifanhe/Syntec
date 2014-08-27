@@ -39,9 +39,9 @@ namespace Syntec.Plugin
 			FindPlugins( AppDomain.CurrentDomain.BaseDirectory );
 		}
 		/// <summary>
-		/// Searches the passed Path for Plugins
+		/// Searches the passed path for Plugins
 		/// </summary>
-		/// <param name="Path">Directory to search for Plugins in</param>
+		/// <param name="path">Directory to search for Plugins in</param>
 		public void FindPlugins(string Path) {
 			//First empty the collection, we're reloading them all
 			colAvailablePlugins.Clear();

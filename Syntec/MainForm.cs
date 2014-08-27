@@ -16,7 +16,7 @@ namespace Syntec
 			PropertiesWindowForm pwf = new PropertiesWindowForm();
 			pwf.Show( DockPanel, DockState.DockRight );
 
-			WorkspaceExplorer we = new WorkspaceExplorer();
+			WorkspaceExplorer we = new WorkspaceExplorer( @"C:\Res" );
 			we.Show( pwf.Pane, DockAlignment.Top, 0.6 );
 
 			df = new DocumentsForm();

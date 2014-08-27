@@ -26,11 +26,14 @@ namespace Syntec.Windows
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent( ) {
+			this.components = new System.ComponentModel.Container();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager( typeof( WorkspaceExplorer ) );
 			this.Workspace_ToolStrip = new System.Windows.Forms.ToolStrip();
-			this.treeView1 = new System.Windows.Forms.TreeView();
 			this.Workspace_Separator_1 = new System.Windows.Forms.ToolStripSeparator();
-			this.Refresh_ToolStripButton = new System.Windows.Forms.ToolStripButton();
+			this.WorkspaceTreeView = new System.Windows.Forms.TreeView();
+			this.FileType_ImageList = new System.Windows.Forms.ImageList( this.components );
 			this.ShowAll_ToolStripButton = new System.Windows.Forms.ToolStripButton();
+			this.Refresh_ToolStripButton = new System.Windows.Forms.ToolStripButton();
 			this.ViewCode_ToolStripButton = new System.Windows.Forms.ToolStripButton();
 			this.ViewDesigner_ToolStripButton = new System.Windows.Forms.ToolStripButton();
 			this.ViewStructure_ToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -52,27 +55,32 @@ namespace Syntec.Windows
 			this.Workspace_ToolStrip.Size = new System.Drawing.Size( 248, 25 );
 			this.Workspace_ToolStrip.TabIndex = 0;
 			// 
-			// treeView1
-			// 
-			this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.treeView1.Location = new System.Drawing.Point( 0, 25 );
-			this.treeView1.Name = "treeView1";
-			this.treeView1.Size = new System.Drawing.Size( 248, 301 );
-			this.treeView1.TabIndex = 1;
-			// 
 			// Workspace_Separator_1
 			// 
 			this.Workspace_Separator_1.Name = "Workspace_Separator_1";
 			this.Workspace_Separator_1.Size = new System.Drawing.Size( 6, 25 );
 			// 
-			// Refresh_ToolStripButton
+			// WorkspaceTreeView
 			// 
-			this.Refresh_ToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.Refresh_ToolStripButton.Image = global::Syntec.Properties.Resources.Refresh;
-			this.Refresh_ToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.Refresh_ToolStripButton.Name = "Refresh_ToolStripButton";
-			this.Refresh_ToolStripButton.Size = new System.Drawing.Size( 23, 22 );
-			this.Refresh_ToolStripButton.Text = "toolStripButton4";
+			this.WorkspaceTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.WorkspaceTreeView.ImageIndex = 1;
+			this.WorkspaceTreeView.ImageList = this.FileType_ImageList;
+			this.WorkspaceTreeView.Location = new System.Drawing.Point( 0, 25 );
+			this.WorkspaceTreeView.Name = "WorkspaceTreeView";
+			this.WorkspaceTreeView.SelectedImageIndex = 1;
+			this.WorkspaceTreeView.Size = new System.Drawing.Size( 248, 301 );
+			this.WorkspaceTreeView.TabIndex = 1;
+			this.WorkspaceTreeView.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler( this.WorkspaceTreeView_BeforeExpand );
+			this.WorkspaceTreeView.BeforeCollapse += new System.Windows.Forms.TreeViewCancelEventHandler( this.WorkspaceTreeView_BeforeCollapse );
+			// 
+			// FileType_ImageList
+			// 
+			this.FileType_ImageList.ImageStream = ( (System.Windows.Forms.ImageListStreamer)( resources.GetObject( "FileType_ImageList.ImageStream" ) ) );
+			this.FileType_ImageList.TransparentColor = System.Drawing.Color.Transparent;
+			this.FileType_ImageList.Images.SetKeyName( 0, "Product" );
+			this.FileType_ImageList.Images.SetKeyName( 1, "Folder" );
+			this.FileType_ImageList.Images.SetKeyName( 2, "XML" );
+			this.FileType_ImageList.Images.SetKeyName( 3, "FolderOpen" );
 			// 
 			// ShowAll_ToolStripButton
 			// 
@@ -81,7 +89,17 @@ namespace Syntec.Windows
 			this.ShowAll_ToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.ShowAll_ToolStripButton.Name = "ShowAll_ToolStripButton";
 			this.ShowAll_ToolStripButton.Size = new System.Drawing.Size( 23, 22 );
-			this.ShowAll_ToolStripButton.Text = "toolStripButton5";
+			this.ShowAll_ToolStripButton.ToolTipText = "Show All Files";
+			// 
+			// Refresh_ToolStripButton
+			// 
+			this.Refresh_ToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.Refresh_ToolStripButton.Image = global::Syntec.Properties.Resources.Refresh;
+			this.Refresh_ToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.Refresh_ToolStripButton.Name = "Refresh_ToolStripButton";
+			this.Refresh_ToolStripButton.Size = new System.Drawing.Size( 23, 22 );
+			this.Refresh_ToolStripButton.ToolTipText = "Refresh";
+			this.Refresh_ToolStripButton.Click += new System.EventHandler( this.Refresh_ToolStripButton_Click );
 			// 
 			// ViewCode_ToolStripButton
 			// 
@@ -90,7 +108,7 @@ namespace Syntec.Windows
 			this.ViewCode_ToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.ViewCode_ToolStripButton.Name = "ViewCode_ToolStripButton";
 			this.ViewCode_ToolStripButton.Size = new System.Drawing.Size( 23, 22 );
-			this.ViewCode_ToolStripButton.Text = "toolStripButton1";
+			this.ViewCode_ToolStripButton.ToolTipText = "View Code";
 			// 
 			// ViewDesigner_ToolStripButton
 			// 
@@ -99,7 +117,7 @@ namespace Syntec.Windows
 			this.ViewDesigner_ToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.ViewDesigner_ToolStripButton.Name = "ViewDesigner_ToolStripButton";
 			this.ViewDesigner_ToolStripButton.Size = new System.Drawing.Size( 23, 22 );
-			this.ViewDesigner_ToolStripButton.Text = "toolStripButton2";
+			this.ViewDesigner_ToolStripButton.ToolTipText = "View Designer";
 			// 
 			// ViewStructure_ToolStripButton
 			// 
@@ -108,15 +126,16 @@ namespace Syntec.Windows
 			this.ViewStructure_ToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.ViewStructure_ToolStripButton.Name = "ViewStructure_ToolStripButton";
 			this.ViewStructure_ToolStripButton.Size = new System.Drawing.Size( 23, 22 );
-			this.ViewStructure_ToolStripButton.Text = "toolStripButton3";
+			this.ViewStructure_ToolStripButton.ToolTipText = "View Structure";
 			// 
 			// WorkspaceExplorer
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF( 6F, 13F );
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size( 248, 326 );
-			this.Controls.Add( this.treeView1 );
+			this.Controls.Add( this.WorkspaceTreeView );
 			this.Controls.Add( this.Workspace_ToolStrip );
+			this.Font = new System.Drawing.Font( "Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ( (byte)( 136 ) ) );
 			this.Name = "WorkspaceExplorer";
 			this.Text = "WorkspaceExplorer";
 			this.Workspace_ToolStrip.ResumeLayout( false );
@@ -132,9 +151,10 @@ namespace Syntec.Windows
 		private System.Windows.Forms.ToolStripButton ViewCode_ToolStripButton;
 		private System.Windows.Forms.ToolStripButton ViewDesigner_ToolStripButton;
 		private System.Windows.Forms.ToolStripButton ViewStructure_ToolStripButton;
-		private System.Windows.Forms.TreeView treeView1;
+		private System.Windows.Forms.TreeView WorkspaceTreeView;
 		private System.Windows.Forms.ToolStripSeparator Workspace_Separator_1;
 		private System.Windows.Forms.ToolStripButton Refresh_ToolStripButton;
 		private System.Windows.Forms.ToolStripButton ShowAll_ToolStripButton;
+		private System.Windows.Forms.ImageList FileType_ImageList;
 	}
 }
