@@ -21,14 +21,14 @@ namespace Syntec.Windows
 		public WorkspaceExplorer(string path) {
 			InitializeComponent();
 
-			// Add items to tool strip (unknown code generation issue)
-			this.Workspace_ToolStrip.Items.AddRange( new System.Windows.Forms.ToolStripItem[] { 
-				this.ShowAll_ToolStripButton,
-				this.Refresh_ToolStripButton,
-				this.Workspace_Separator_1,
-				this.ViewCode_ToolStripButton,
-				this.ViewDesigner_ToolStripButton,
-				this.ViewStructure_ToolStripButton} );
+			//// Add items to tool strip (unknown code generation issue)
+			//this.Workspace_ToolStrip.Items.AddRange( new System.Windows.Forms.ToolStripItem[] { 
+			//    this.ShowAll_ToolStripButton,
+			//    this.Refresh_ToolStripButton,
+			//    this.Workspace_Separator_1,
+			//    this.ViewCode_ToolStripButton,
+			//    this.ViewDesigner_ToolStripButton,
+			//    this.ViewStructure_ToolStripButton} );
 
 			// Set checked state for ShowAllFile_ToolStripMenuItem
 			ShowAll_ToolStripButton.Checked = showAllFiles;
@@ -131,7 +131,7 @@ namespace Syntec.Windows
 					bool existTargetedFile = false;
 					foreach( string file in Directory.GetFiles( subdir ) )
 					{
-						if( file.ToUpper().Contains( "XML" ) || showAllFiles )
+						if( file.ToUpper().Contains( ".XML" ) || showAllFiles )
 						{
 							existTargetedFile = true;
 							break;
@@ -162,12 +162,10 @@ namespace Syntec.Windows
 					// Set product/normal folder image
 					switch( Path.GetExtension( file ).ToUpper() )
 					{
-						case "XML":
+						case ".XML":
 							child.ImageIndex = 2;
-							Console.WriteLine( "AN XML" );
 							break;
 						default:
-							Console.WriteLine( "NON XML" );
 							if( showAllFiles )
 								child.ImageIndex = 4;
 							else

@@ -14,13 +14,13 @@ namespace Syntec
 			InitializeComponent();
 
 			PropertiesWindowForm pwf = new PropertiesWindowForm();
-			pwf.Show( DockPanel, DockState.DockRight );
+			pwf.Show( Main_DockPanel, DockState.DockRight );
 
 			WorkspaceExplorer we = new WorkspaceExplorer( @"C:\Res" );
 			we.Show( pwf.Pane, DockAlignment.Top, 0.6 );
 
-			df = new DocumentsForm();
-			df.Show( DockPanel, DockState.Document );	
+			//df = new DocumentsForm();
+			//df.Show( Main_DockPanel, DockState.Document );	
 		}
 
 		#region Form related
