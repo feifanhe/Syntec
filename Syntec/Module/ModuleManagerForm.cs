@@ -6,10 +6,10 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-using PluginInterface;
+using ModuleInterface;
 using System.Diagnostics;
 
-namespace Syntec.Plugin
+namespace Syntec.Module
 {
 	public partial class ModuleManagerForm : Form
 	{

@@ -1,12 +1,7 @@
-namespace PluginInterface
+namespace ModuleInterface
 {
-	public interface IPlugin
+	public interface IModule
 	{
-		IPluginHost Host {
-			get;
-			set;
-		}
-
 		string Name {
 			get;
 		}
@@ -25,8 +20,8 @@ namespace PluginInterface
 
 		// Return false if the plugin can't initialize from designated XMLPath
 		bool Initialize(string XMLPath);
-		void Load(string Name);
-		void Dispose( );
+		void Open(string Name);
+		void Close( );
 
 		#endregion
 
@@ -45,10 +40,5 @@ namespace PluginInterface
 		void Delete( );
 
 		#endregion
-	}
-
-	public interface IPluginHost
-	{
-		void DrawOnCanvas(System.Windows.Forms.Control PluginControl, IPlugin Plugin);	
 	}
 }

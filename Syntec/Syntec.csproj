@@ -41,6 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.cs" />
+    <Compile Include="Module\AppDomainCore.cs" />
+    <Compile Include="Module\AssemblyCore.cs" />
+    <Compile Include="Module\Proxy.cs" />
     <Compile Include="Windows\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -48,21 +51,20 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Initialization.cs" />
-    <Compile Include="Plugin\PluginManagerForm.cs">
+    <Compile Include="Module\ModuleManagerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Plugin\PluginManagerForm.Designer.cs">
-      <DependentUpon>PluginManagerForm.cs</DependentUpon>
+    <Compile Include="Module\ModuleManagerForm.Designer.cs">
+      <DependentUpon>ModuleManagerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Plugin\PluginServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Windows\MainForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Plugin\PluginManagerForm.resx">
+    <EmbeddedResource Include="Module\ModuleManagerForm.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>PluginManagerForm.cs</DependentUpon>
+      <DependentUpon>ModuleManagerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <SubType>Designer</SubType>
@@ -115,9 +117,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PluginInterface\PluginInterface.csproj">
+    <ProjectReference Include="..\PluginInterface\ModuleInterface.csproj">
       <Project>{00D0C21D-D94C-4B0F-A710-1EFBABB4C4C6}</Project>
-      <Name>PluginInterface</Name>
+      <Name>ModuleInterface</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

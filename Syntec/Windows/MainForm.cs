@@ -3,13 +3,13 @@ using System.Windows.Forms;
 
 using WeifenLuo.WinFormsUI.Docking;
 
-using Syntec.Plugin;
+using Syntec.Module;
 
 namespace Syntec.Windows
 {
 	public partial class MainForm : Form
 	{
-		DocumentsForm df;
+		DocumentsForm df, df2;
 
 		// General windows
 		internal static WorkspaceExplorerForm WorkspaceExplorer = new WorkspaceExplorerForm( null );
@@ -24,7 +24,11 @@ namespace Syntec.Windows
 
 			df = new DocumentsForm();
 			df.Show( Main_DockPanel, DockState.Document );
-			df.TabText = "test";
+			df.TabText = "test1";
+
+			df2 = new DocumentsForm();
+			df2.Show( Main_DockPanel, DockState.Document );
+			df2.TabText = "test2";
 		}
 
 		#region Form related
@@ -44,6 +48,11 @@ namespace Syntec.Windows
 
 		private void Open_File_ToolStripMenuItem_Click(object sender, EventArgs e) {
 			OpenDialog( "Open File", false, "XML Files (*.xml)|*.xml" );
+		}
+
+		private void File_Close_ToolStripMenuItem_Click(object sender, EventArgs e) {
+			//Form df = this.ActiveMdiChild;
+			//df.Dispose();
 		}
 
 		#endregion

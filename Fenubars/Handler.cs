@@ -10,7 +10,7 @@ using Fenubars.Buttons;
 using Azuria.Common.Controls;
 using System.Reflection;
 using System.ComponentModel;
-using PluginInterface;
+using ModuleInterface;
 
 namespace Fenubars
 {

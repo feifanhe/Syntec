@@ -6,13 +6,13 @@ namespace Syntec
 		public Global( ) {
 		}
 
-		#region Plugin Manager
+		//#region Module Manager
 
-		// Plugin services 
-		public static Syntec.Plugin.PluginServices Plugins = new Syntec.Plugin.PluginServices();
+		//// Module services 
+		//public static Syntec.Module.PluginServices Plugins = new Syntec.Module.PluginServices();
 
-		public static readonly string PluginsFolderPath = @"\Plugins";
+		//public static readonly string PluginsFolderPath = @"\Plugins";
 
-		#endregion
+		//#endregion
 	}
 }

@@ -1,4 +1,4 @@
-namespace Syntec.Plugin
+namespace Syntec.Module
 {
 	partial class ModuleManagerForm
 	{

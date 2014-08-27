@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using Fenubars.Buttons;
 using Fenubars.XML;
 using Fenubars.Editor;
-using PluginInterface;
+using ModuleInterface;
 
 namespace Fenubars.Display
 {

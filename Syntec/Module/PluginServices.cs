@@ -1,11 +1,11 @@
 using System;
 using System.IO;
 using System.Reflection;
-using PluginInterface;
+using ModuleInterface;
 using Syntec.Windows;
 using System.Windows.Forms;
 
-namespace Syntec.Plugin
+namespace Syntec.Module
 {
 	/// <summary>
 	/// Summary description for PluginServices.
@@ -107,7 +107,7 @@ namespace Syntec.Plugin
 							//For now we'll just make an instance of all the plugins
 							newPlugin.Instance = (IPlugin)Activator.CreateInstance( pluginAssembly.GetType( pluginType.ToString() ) );
 
-							//Set the Plugin's host to this class which inherited IPluginHost
+							//Set the Module's host to this class which inherited IPluginHost
 							//newPlugin.Instance.Host = this;
 
 							//Call the initialization sub of the plugin
@@ -132,7 +132,7 @@ namespace Syntec.Plugin
 		/// Displays a feedback dialog from the plugin
 		/// </summary>
 		/// <param name="Feedback">String message for feedback</param>
-		/// <param name="Plugin">The plugin that called the feedback</param>
+		/// <param name="Module">The plugin that called the feedback</param>
 		public void Feedback(string Feedback, IPlugin Plugin) {
 			////This sub makes a new feedback form and fills it out
 			////With the appropriate information
@@ -142,10 +142,10 @@ namespace Syntec.Plugin
 			//frmFeedback newFeedbackForm = new frmFeedback();
 
 			////Here we set the frmFeedback's properties that i made custom
-			//newFeedbackForm.PluginAuthor = "By: " + Plugin.Author;
-			//newFeedbackForm.PluginDesc = Plugin.Description;
-			//newFeedbackForm.PluginName = Plugin.Name;
-			//newFeedbackForm.PluginVersion = Plugin.Version;
+			//newFeedbackForm.PluginAuthor = "By: " + Module.Author;
+			//newFeedbackForm.PluginDesc = Module.Description;
+			//newFeedbackForm.PluginName = Module.Name;
+			//newFeedbackForm.PluginVersion = Module.Version;
 			//newFeedbackForm.Feedback = Feedback;
 
 			////We also made a Form object to hold the frmFeedback instance
@@ -164,7 +164,7 @@ namespace Syntec.Plugin
 		public void DrawOnCanvas(System.Windows.Forms.Control PluginControl, IPlugin Plugin) {
 			Form CurrentForm = DocumentsForm.ActiveForm;
 			CurrentForm.Controls.Add( PluginControl );
-			//Plugin.Host = CurrentForm.pl;
+			//Module.Host = CurrentForm.pl;
 			PluginControl.BringToFront();
 		}
 
@@ -176,12 +176,12 @@ namespace Syntec.Plugin
 	{
 		// Class that can hold some info about the Available Plugins
 
-		// Add a Plugin to the collection of Available plugins
+		// Add a Module to the collection of Available plugins
 		public void Add(AvailablePlugin pluginToAdd) {
 			this.List.Add( pluginToAdd );
 		}
 
-		// Remove a Plugin to the collection of Available plugins
+		// Remove a Module to the collection of Available plugins
 		public void Remove(AvailablePlugin pluginToRemove) {
 			this.List.Remove( pluginToRemove );
 		}

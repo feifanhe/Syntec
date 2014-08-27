@@ -11,5 +11,5 @@ C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\obj\Debug\Synt
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\obj\Debug\Syntec.pdb
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\obj\Debug\Syntec.Properties.Resources.resources
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\obj\Debug\Syntec.Windows.WorkspaceExplorerForm.resources
-C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\obj\Debug\Syntec.Plugin.ModuleManagerForm.resources
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\obj\Debug\Syntec.Windows.MainForm.resources
+C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\obj\Debug\Syntec.Module.ModuleManagerForm.resources
