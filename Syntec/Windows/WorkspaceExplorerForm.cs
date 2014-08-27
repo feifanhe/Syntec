@@ -10,7 +10,7 @@ using System.IO;
 
 namespace Syntec.Windows
 {
-	public partial class WorkspaceExplorer : DockContent
+	public partial class WorkspaceExplorerForm : DockContent
 	{
 		// Base path that the entire tree will be built on
 		private string basePath;
@@ -18,17 +18,8 @@ namespace Syntec.Windows
 		// Indicate to show every files or targeted only
 		private bool showAllFiles = false;
 
-		public WorkspaceExplorer(string path) {
+		public WorkspaceExplorerForm(string path) {
 			InitializeComponent();
-
-			//// Add items to tool strip (unknown code generation issue)
-			//this.Workspace_ToolStrip.Items.AddRange( new System.Windows.Forms.ToolStripItem[] { 
-			//    this.ShowAll_ToolStripButton,
-			//    this.Refresh_ToolStripButton,
-			//    this.Workspace_Separator_1,
-			//    this.ViewCode_ToolStripButton,
-			//    this.ViewDesigner_ToolStripButton,
-			//    this.ViewStructure_ToolStripButton} );
 
 			// Set checked state for ShowAllFile_ToolStripMenuItem
 			ShowAll_ToolStripButton.Checked = showAllFiles;
@@ -44,9 +35,26 @@ namespace Syntec.Windows
 		}
 
 		public void RefreshTree(string path) {
+			// Set explorer to default view
+			if( path == null )
+			{
+				Default();
+				return;
+			}
+
+			foreach( ToolStripItem TSMI in Workspace_ToolStrip.Items )
+				TSMI.Enabled = true;
+
 			DissectBasePath( path );
 
 			RefreshTree();
+		}
+
+		private void Default( ) {
+			basePath = string.Empty;
+
+			foreach( ToolStripItem TSMI in Workspace_ToolStrip.Items )
+				TSMI.Enabled = false;
 		}
 
 		private void DissectBasePath(string path) {
@@ -94,6 +102,10 @@ namespace Syntec.Windows
 			if( e.Node.ImageIndex == 3 )
 				e.Node.ImageIndex = 1;
 			e.Node.SelectedImageIndex = e.Node.ImageIndex;
+		}
+
+		private void WorkspaceTreeView_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e) {
+			OpenDesigner( e.Node.Tag as string);
 		}
 
 		#endregion
@@ -211,11 +223,22 @@ namespace Syntec.Windows
 		}
 
 		private void ViewDesigner_ToolStripButton_Click(object sender, EventArgs e) {
-
+			// Get selected path
+			string path = WorkspaceTreeView.SelectedNode.Tag as string;
+			OpenDesigner( path );
 		}
 
 		private void ViewStructure_ToolStripButton_Click(object sender, EventArgs e) {
 
+		}
+
+		#endregion
+
+		// All the operations ends up here, modify these methods when something changed else where
+		#region Executions
+
+		private void OpenDesigner( string path ) {
+			// PASS INFO TO PROXY
 		}
 
 		#endregion

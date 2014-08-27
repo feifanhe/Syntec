@@ -1,6 +1,6 @@
 namespace Syntec.Windows
 {
-	partial class WorkspaceExplorer
+	partial class WorkspaceExplorerForm
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -27,62 +27,33 @@ namespace Syntec.Windows
 		/// </summary>
 		private void InitializeComponent( ) {
 			this.components = new System.ComponentModel.Container();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager( typeof( WorkspaceExplorer ) );
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager( typeof( WorkspaceExplorerForm ) );
 			this.Workspace_ToolStrip = new System.Windows.Forms.ToolStrip();
-			this.Workspace_Separator_1 = new System.Windows.Forms.ToolStripSeparator();
-			this.WorkspaceTreeView = new System.Windows.Forms.TreeView();
-			this.FileType_ImageList = new System.Windows.Forms.ImageList( this.components );
 			this.ShowAll_ToolStripButton = new System.Windows.Forms.ToolStripButton();
 			this.Refresh_ToolStripButton = new System.Windows.Forms.ToolStripButton();
+			this.Workspace_Separator_1 = new System.Windows.Forms.ToolStripSeparator();
 			this.ViewCode_ToolStripButton = new System.Windows.Forms.ToolStripButton();
 			this.ViewDesigner_ToolStripButton = new System.Windows.Forms.ToolStripButton();
 			this.ViewStructure_ToolStripButton = new System.Windows.Forms.ToolStripButton();
+			this.WorkspaceTreeView = new System.Windows.Forms.TreeView();
+			this.FileType_ImageList = new System.Windows.Forms.ImageList( this.components );
 			this.Workspace_ToolStrip.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// Workspace_ToolStrip
 			// 
 			this.Workspace_ToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+			this.Workspace_ToolStrip.Items.AddRange( new System.Windows.Forms.ToolStripItem[] {
+            this.ShowAll_ToolStripButton,
+            this.Refresh_ToolStripButton,
+            this.Workspace_Separator_1,
+            this.ViewCode_ToolStripButton,
+            this.ViewDesigner_ToolStripButton,
+            this.ViewStructure_ToolStripButton} );
 			this.Workspace_ToolStrip.Location = new System.Drawing.Point( 0, 0 );
 			this.Workspace_ToolStrip.Name = "Workspace_ToolStrip";
 			this.Workspace_ToolStrip.Size = new System.Drawing.Size( 248, 25 );
 			this.Workspace_ToolStrip.TabIndex = 0;
-			this.Workspace_ToolStrip.Items.AddRange( new System.Windows.Forms.ToolStripItem[] { 
-				this.ShowAll_ToolStripButton,
-				this.Refresh_ToolStripButton,
-				this.Workspace_Separator_1,
-				this.ViewCode_ToolStripButton,
-				this.ViewDesigner_ToolStripButton,
-				this.ViewStructure_ToolStripButton} );
-			// 
-			// Workspace_Separator_1
-			// 
-			this.Workspace_Separator_1.Name = "Workspace_Separator_1";
-			this.Workspace_Separator_1.Size = new System.Drawing.Size( 6, 25 );
-			// 
-			// WorkspaceTreeView
-			// 
-			this.WorkspaceTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.WorkspaceTreeView.ImageIndex = 1;
-			this.WorkspaceTreeView.ImageList = this.FileType_ImageList;
-			this.WorkspaceTreeView.Location = new System.Drawing.Point( 0, 25 );
-			this.WorkspaceTreeView.Name = "WorkspaceTreeView";
-			this.WorkspaceTreeView.SelectedImageIndex = 1;
-			this.WorkspaceTreeView.Size = new System.Drawing.Size( 248, 301 );
-			this.WorkspaceTreeView.TabIndex = 1;
-			this.WorkspaceTreeView.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler( this.WorkspaceTreeView_BeforeExpand );
-			this.WorkspaceTreeView.BeforeCollapse += new System.Windows.Forms.TreeViewCancelEventHandler( this.WorkspaceTreeView_BeforeCollapse );
-			// 
-			// FileType_ImageList
-			// 
-			this.FileType_ImageList.ImageStream = ( (System.Windows.Forms.ImageListStreamer)( resources.GetObject( "FileType_ImageList.ImageStream" ) ) );
-			this.FileType_ImageList.TransparentColor = System.Drawing.Color.Transparent;
-			this.FileType_ImageList.Images.SetKeyName( 0, "Product" );
-			this.FileType_ImageList.Images.SetKeyName( 1, "Folder" );
-			this.FileType_ImageList.Images.SetKeyName( 2, "XML" );
-			this.FileType_ImageList.Images.SetKeyName( 3, "FolderOpen" );
-			this.FileType_ImageList.Images.SetKeyName( 4, "File_Hidden.bmp" );
-			this.FileType_ImageList.Images.SetKeyName( 5, "Base_Workspace.bmp" );
 			// 
 			// ShowAll_ToolStripButton
 			// 
@@ -103,6 +74,11 @@ namespace Syntec.Windows
 			this.Refresh_ToolStripButton.Size = new System.Drawing.Size( 23, 22 );
 			this.Refresh_ToolStripButton.ToolTipText = "Refresh";
 			this.Refresh_ToolStripButton.Click += new System.EventHandler( this.Refresh_ToolStripButton_Click );
+			// 
+			// Workspace_Separator_1
+			// 
+			this.Workspace_Separator_1.Name = "Workspace_Separator_1";
+			this.Workspace_Separator_1.Size = new System.Drawing.Size( 6, 25 );
 			// 
 			// ViewCode_ToolStripButton
 			// 
@@ -134,7 +110,32 @@ namespace Syntec.Windows
 			this.ViewStructure_ToolStripButton.ToolTipText = "View Structure";
 			this.ViewStructure_ToolStripButton.Click += new System.EventHandler( this.ViewStructure_ToolStripButton_Click );
 			// 
-			// WorkspaceExplorer
+			// WorkspaceTreeView
+			// 
+			this.WorkspaceTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.WorkspaceTreeView.ImageIndex = 1;
+			this.WorkspaceTreeView.ImageList = this.FileType_ImageList;
+			this.WorkspaceTreeView.Location = new System.Drawing.Point( 0, 25 );
+			this.WorkspaceTreeView.Name = "WorkspaceTreeView";
+			this.WorkspaceTreeView.SelectedImageIndex = 1;
+			this.WorkspaceTreeView.Size = new System.Drawing.Size( 248, 301 );
+			this.WorkspaceTreeView.TabIndex = 1;
+			this.WorkspaceTreeView.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler( this.WorkspaceTreeView_NodeMouseDoubleClick );
+			this.WorkspaceTreeView.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler( this.WorkspaceTreeView_BeforeExpand );
+			this.WorkspaceTreeView.BeforeCollapse += new System.Windows.Forms.TreeViewCancelEventHandler( this.WorkspaceTreeView_BeforeCollapse );
+			// 
+			// FileType_ImageList
+			// 
+			this.FileType_ImageList.ImageStream = ( (System.Windows.Forms.ImageListStreamer)( resources.GetObject( "FileType_ImageList.ImageStream" ) ) );
+			this.FileType_ImageList.TransparentColor = System.Drawing.Color.Transparent;
+			this.FileType_ImageList.Images.SetKeyName( 0, "Product" );
+			this.FileType_ImageList.Images.SetKeyName( 1, "Folder" );
+			this.FileType_ImageList.Images.SetKeyName( 2, "XML" );
+			this.FileType_ImageList.Images.SetKeyName( 3, "FolderOpen" );
+			this.FileType_ImageList.Images.SetKeyName( 4, "File_Hidden.bmp" );
+			this.FileType_ImageList.Images.SetKeyName( 5, "Base_Workspace.bmp" );
+			// 
+			// WorkspaceExplorerForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF( 6F, 13F );
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -142,7 +143,7 @@ namespace Syntec.Windows
 			this.Controls.Add( this.WorkspaceTreeView );
 			this.Controls.Add( this.Workspace_ToolStrip );
 			this.Font = new System.Drawing.Font( "Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ( (byte)( 136 ) ) );
-			this.Name = "WorkspaceExplorer";
+			this.Name = "WorkspaceExplorerForm";
 			this.Text = "WorkspaceExplorer";
 			this.Workspace_ToolStrip.ResumeLayout( false );
 			this.Workspace_ToolStrip.PerformLayout();
