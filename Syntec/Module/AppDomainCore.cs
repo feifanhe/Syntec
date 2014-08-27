@@ -41,10 +41,10 @@ namespace Syntec.Module
 		}
 
 		~AppDomainCore( ) {
-			ClearAppDomain();
+			WipeAppDomain();
 		}
 		
-		private bool ClearAppDomain( ) {
+		private bool WipeAppDomain( ) {
 			try
 			{
 				AppDomain.Unload( _DefaultAppDomain );

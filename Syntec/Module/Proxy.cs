@@ -1,6 +1,8 @@
+using ModuleInterface;
+
 namespace Syntec.Module
 {
-	public class Proxy : ModuleInterface.IModule
+	public class Proxy : IModule
 	{
 		// Main controller for AppDomain
 		AppDomainCore appDomainController;
@@ -9,45 +11,98 @@ namespace Syntec.Module
 		AssemblyCore assemblyController;
 
 		// Module interface definition
-		ModuleInterface.IModule proxy;
+		IModule proxy;
+
+		// Gets the currently active AppDomain name
+		public string DefaultAppDomainName {
+			get {
+				return appDomainController.DefaultAppDomainName;
+			}
+		}
+
+		// Gets the default assembly's file name
+		public string DefaultAssemblyFileName {
+			get {
+				return assemblyController.ActiveAssemblyFileName;
+			}
+		}
+
+		public Proxy(string assemblyFileName, string appDomainName) {
+			InitProxy( assemblyFileName, appDomainName, "ClassLibrary" );
+		}
+
+		public Proxy(string assemblyFileName, string appDomainName, string currentType) {
+			InitProxy( assemblyFileName, appDomainName, currentType );
+		}
+
+		private bool InitProxy(string assemblyFileName, string appDomainName, string currentType) {
+			// Creates an instance of assembly controller and AppDomain controller
+			this.assemblyController = new AssemblyCore( assemblyFileName, currentType );
+			this.appDomainController = new AppDomainCore( appDomainName );
+
+			// 1. Create an instance of the assembly in the second AppDomain
+			// 2. Unwrap the remote object of the specific type
+			proxy = (IModule)appDomainController.
+								DefaultAppDomain.
+								CreateInstanceFromAndUnwrap( assemblyController.DefaultAssemblyFileName,
+																assemblyController.CurrentType );
+
+			return true;
+		}
 
 		#region IModule Members
 
+		#region Module info
+
 		public string Name {
 			get {
-				throw new Exception( "The method or operation is not implemented." );
+				if( proxy != null )
+					return proxy.Name;
+				return null;
 			}
 		}
 
 		public string Description {
 			get {
-				throw new Exception( "The method or operation is not implemented." );
+				if( proxy != null )
+					return proxy.Description;
+				return null;
 			}
 		}
 
 		public string Version {
 			get {
-				throw new Exception( "The method or operation is not implemented." );
+				if( proxy != null )
+					return proxy.Version;
+				return null;
 			}
 		}
 
-		public System.Windows.Forms.UserControl MainInterface {
-			get {
-				throw new Exception( "The method or operation is not implemented." );
-			}
-		}
+		#endregion
+
+		#region Basic operations
 
 		public bool Initialize(string XMLPath) {
-			throw new Exception( "The method or operation is not implemented." );
+			if( proxy != null )
+				return proxy.Initialize( XMLPath );
+			return false;
 		}
 
 		public void Open(string Name) {
-			throw new Exception( "The method or operation is not implemented." );
+			if( proxy != null )
+				proxy.Open( Name );
+			return;
 		}
 
 		public void Close( ) {
-			throw new Exception( "The method or operation is not implemented." );
+			if( proxy != null )
+				proxy.Close();
+			return;
 		}
+
+		#endregion
+
+		#region File processing
 
 		public void Save( ) {
 			throw new Exception( "The method or operation is not implemented." );
@@ -56,6 +111,10 @@ namespace Syntec.Module
 		public void SaveAs(string XMLPath) {
 			throw new Exception( "The method or operation is not implemented." );
 		}
+
+		#endregion
+
+		#region Edit operations
 
 		public void Cut( ) {
 			throw new Exception( "The method or operation is not implemented." );
@@ -72,6 +131,8 @@ namespace Syntec.Module
 		public void Delete( ) {
 			throw new Exception( "The method or operation is not implemented." );
 		}
+
+		#endregion
 
 		#endregion
 	}

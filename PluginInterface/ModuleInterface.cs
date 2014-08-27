@@ -2,6 +2,8 @@ namespace ModuleInterface
 {
 	public interface IModule
 	{
+		#region Module info
+
 		string Name {
 			get;
 		}
@@ -12,9 +14,7 @@ namespace ModuleInterface
 			get;
 		}
 
-		System.Windows.Forms.UserControl MainInterface {
-			get;
-		}
+		#endregion
 
 		#region Basic operations
 
