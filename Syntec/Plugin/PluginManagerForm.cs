@@ -11,9 +11,9 @@ using System.Diagnostics;
 
 namespace Syntec.Plugin
 {
-	public partial class PluginManagerForm : Form
+	public partial class ModuleManagerForm : Form
 	{
-		public PluginManagerForm( ) {
+		public ModuleManagerForm( ) {
 			InitializeComponent();
 		}
 

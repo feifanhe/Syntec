@@ -219,7 +219,7 @@ namespace Syntec.Windows
 		}
 
 		private void ViewCode_ToolStripButton_Click(object sender, EventArgs e) {
-
+			
 		}
 
 		private void ViewDesigner_ToolStripButton_Click(object sender, EventArgs e) {

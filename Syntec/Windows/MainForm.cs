@@ -1,11 +1,11 @@
 using System;
+using System.Windows.Forms;
+
 using WeifenLuo.WinFormsUI.Docking;
 
-using Syntec.Windows;
-using System.Windows.Forms;
 using Syntec.Plugin;
 
-namespace Syntec
+namespace Syntec.Windows
 {
 	public partial class MainForm : Form
 	{
@@ -50,8 +50,8 @@ namespace Syntec
 
 		#region Tools
 
-		private void PluginManager_MenuItem_Click(object sender, EventArgs e) {
-			using( PluginManagerForm PMF = new PluginManagerForm() )
+		private void Tools_ModuleManager_ToolStripMenuItem_Click(object sender, EventArgs e) {
+			using( ModuleManagerForm PMF = new ModuleManagerForm() )
 			{
 				PMF.ShowDialog();
 			}

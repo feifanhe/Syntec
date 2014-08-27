@@ -4,8 +4,6 @@ C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\bin\Debug\Plug
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\bin\Debug\WeifenLuo.WinFormsUI.Docking.dll
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\bin\Debug\PluginInterface.pdb
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\obj\Debug\Syntec.MainForm.resources
-C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\obj\Debug\Syntec.Plugin.PluginManagerForm.resources
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\obj\Debug\Syntec.Windows.DocumentsForm.resources
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\obj\Debug\Syntec.Windows.PropertiesWindowForm.resources
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\obj\Debug\Syntec.csproj.GenerateResource.Cache
@@ -13,3 +11,5 @@ C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\obj\Debug\Synt
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\obj\Debug\Syntec.pdb
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\obj\Debug\Syntec.Properties.Resources.resources
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\obj\Debug\Syntec.Windows.WorkspaceExplorerForm.resources
+C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\obj\Debug\Syntec.Plugin.ModuleManagerForm.resources
+C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\obj\Debug\Syntec.Windows.MainForm.resources

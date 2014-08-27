@@ -1,6 +1,6 @@
 namespace Syntec.Plugin
 {
-	partial class PluginManagerForm
+	partial class ModuleManagerForm
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -128,7 +128,7 @@ namespace Syntec.Plugin
 			this.Refresh_Button.UseVisualStyleBackColor = true;
 			this.Refresh_Button.Click += new System.EventHandler( this.RefreshButton_Click );
 			// 
-			// PluginManagerForm
+			// ModuleManagerForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF( 6F, 13F );
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
