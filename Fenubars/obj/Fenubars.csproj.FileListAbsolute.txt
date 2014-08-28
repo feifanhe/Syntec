@@ -12,3 +12,5 @@ C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Fenubars\obj\Debug\Fe
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Fenubars\obj\Debug\Fenubars.csproj.GenerateResource.Cache
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Fenubars\obj\Debug\Fenubars.dll
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Fenubars\obj\Debug\Fenubars.pdb
+C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\bin\Debug\Modules\Fenubars.dll
+C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\bin\Debug\Modules\Fenubars.pdb

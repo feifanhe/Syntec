@@ -53,7 +53,7 @@ namespace Syntec.Windows
 		#region Button actions
 
 		private void BrowseButton_Click(object sender, EventArgs e) {
-			Process.Start( Application.StartupPath + ModuleManager.PluginsFolderPath );
+			Process.Start( Application.StartupPath + ModuleManager.ModuleFolderPath );
 		}
 
 		private void RefreshButton_Click(object sender, EventArgs e) {
@@ -65,7 +65,7 @@ namespace Syntec.Windows
 		}
 
 		private void CancelButton_Click(object sender, EventArgs e) {
-
+			this.Close();
 		}
 
 		#endregion

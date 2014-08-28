@@ -26,20 +26,22 @@ namespace Syntec.Windows
 				this.Dispose(); // Destroy this form if nothing applicable
 				MessageBox.Show( "UNABLE TO LOAD" );
 			}
+			else
+			{
+				//// Already activated (when testing)
+				//instance.Initialize( XMLPath );
 
-			//// Already activated (when testing)
-			//instance.Initialize( XMLPath );
+				// Set target host
+				instance.Host = this;
 
-			// Set target host
-			instance.Host = this;
+				// Execute
+				instance.Open( "main" );
+				instance.Open( "About" );
 
-			// Execute
-			instance.Open( "main" );
-			instance.Open( "About" );
+				//this.Controls.Add( instance.Open( "main" ) as Control );
 
-			//this.Controls.Add( instance.Open( "main" ) as Control );
-
-			this.ResumeLayout();
+				this.ResumeLayout();
+			}
 		}
 
 		#region IModuleHost Members

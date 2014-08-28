@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using Fenubars.Display;
 using System;
 using Fenubars.Buttons;
-using Azuria.Common.Controls;
+//using Azuria.Common.Controls;
 using System.Reflection;
 using System.ComponentModel;
 using ModuleInterface;
@@ -33,25 +33,25 @@ namespace Fenubars
 
 		private string XMLPath = string.Empty;
 
-		// Parent container
-		private System.Windows.Forms.Control.ControlCollection _Canvas;
-		public System.Windows.Forms.Control.ControlCollection Canvas {
-			get {
-				return _Canvas;
-			}
-			set {
-				_Canvas = value;
-			}
-		}
-		private FilteredPropertyGrid _PropertyViewer;
-		public FilteredPropertyGrid PropertyViewer {
-			get {
-				return _PropertyViewer;
-			}
-			set {
-				_PropertyViewer = value;
-			}
-		}
+		//// Parent container
+		//private System.Windows.Forms.Control.ControlCollection _Canvas;
+		//public System.Windows.Forms.Control.ControlCollection Canvas {
+		//    get {
+		//        return _Canvas;
+		//    }
+		//    set {
+		//        _Canvas = value;
+		//    }
+		//}
+		//private FilteredPropertyGrid _PropertyViewer;
+		//public FilteredPropertyGrid PropertyViewer {
+		//    get {
+		//        return _PropertyViewer;
+		//    }
+		//    set {
+		//        _PropertyViewer = value;
+		//    }
+		//}
 
 		#region Acquire focus object by event
 

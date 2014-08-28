@@ -269,7 +269,8 @@ namespace Fenubars.Display
 
 			// Ask to create new state or not
 			if( ( (Button)target ).FlatStyle == FlatStyle.Popup )
-				InstantiateState( target );
+				if( !InstantiateState( target ) )
+					return; // Don't show property
 
 			// Pass state of the button to event args
 			if( args.Type == typeof( EscapeButton ) )

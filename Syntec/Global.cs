@@ -11,7 +11,7 @@ namespace Syntec
 		//// Module services 
 		//public static Syntec.Module.PluginServices Plugins = new Syntec.Module.PluginServices();
 
-		//public static readonly string PluginsFolderPath = @"\Plugins";
+		//public static readonly string ModuleFolderPath = @"\Plugins";
 
 		//#endregion
 	}
