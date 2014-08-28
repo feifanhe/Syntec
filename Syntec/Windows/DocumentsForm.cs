@@ -19,7 +19,6 @@ namespace Syntec.Windows
 		public DocumentsForm(string XMLPath) {
 			InitializeComponent();
 
-
 			this.SuspendLayout();
 
 			if( ( instance = ModuleManager.FindProcessor( XMLPath ) ) == null )

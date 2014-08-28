@@ -144,6 +144,8 @@ namespace Syntec.Windows
 			this.Controls.Add( this.Workspace_ToolStrip );
 			this.Font = new System.Drawing.Font( "Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ( (byte)( 136 ) ) );
 			this.Name = "WorkspaceExplorerForm";
+			this.ShowIcon = false;
+			this.ShowInTaskbar = false;
 			this.Text = "WorkspaceExplorer";
 			this.Workspace_ToolStrip.ResumeLayout( false );
 			this.Workspace_ToolStrip.PerformLayout();
