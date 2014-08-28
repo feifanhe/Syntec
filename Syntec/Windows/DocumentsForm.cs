@@ -8,10 +8,11 @@ using System.Windows.Forms;
 using Syntec.Module;
 using System.Reflection;
 using ModuleInterface;
+using System.ComponentModel;
 
 namespace Syntec.Windows
 {
-	public partial class DocumentsForm : DockContent
+	public partial class DocumentsForm : DockContent, IModuleHost
 	{
 		private IModule instance;
 
@@ -30,9 +31,34 @@ namespace Syntec.Windows
 			//// Already activated (when testing)
 			//instance.Initialize( XMLPath );
 
-			this.Controls.Add( instance.Open( "main" ) as Control );
+			// Set target host
+			instance.Host = this;
+
+			// Execute
+			instance.Open( "main" );
+
+			//this.Controls.Add( instance.Open( "main" ) as Control );
 
 			this.ResumeLayout();
 		}
+
+		#region IModuleHost Members
+
+		public void DrawOnCanvas(Control control) {
+			this.Controls.Add( control );
+			//control.BringToFront();
+		}
+
+		public void ShowProperties(object control) {
+			MainForm.PropertiesWindow.SetSelectedObject( control );
+		}
+
+		public void SetPropertyGrid(AttributeCollection hidden, string[] browsable) {
+			MainForm.PropertiesWindow.SetHiddenAttributes( hidden );
+			MainForm.PropertiesWindow.SetBrowsableProperties( browsable );
+		}
+
+
+		#endregion
 	}
 }

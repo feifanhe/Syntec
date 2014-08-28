@@ -59,24 +59,31 @@ namespace Fenubars
 											Fenubars.Display.ObjectDetailEventArgs e) {
 			if( e.Type == typeof( Fenu ) )
 			{
-				PropertyViewer.HiddenAttributes = null;
-				PropertyViewer.BrowsableProperties = null;
-
-				PropertyViewer.SelectedObject = CurrentFenuState;
+				//PropertyViewer.HiddenAttributes = null;
+				//PropertyViewer.BrowsableProperties = null;
+				_Host.SetPropertyGrid( null, null );
+				
+				//PropertyViewer.SelectedObject = CurrentFenuState;
+				_Host.ShowProperties( CurrentFenuState );
 			}
 			else
 			{
 				if( e.Type == typeof( EscapeButton ) )
-					PropertyViewer.SelectedObject = e.Escape;
+					//PropertyViewer.SelectedObject = e.Escape;
+					_Host.ShowProperties( e.Escape );
 				else if( e.Type == typeof( NormalButton ) )
-					PropertyViewer.SelectedObject = e.Normal;
+					//PropertyViewer.SelectedObject = e.Normal;
+					_Host.ShowProperties( e.Normal );
 				else if( e.Type == typeof( NextButton ) )
-					PropertyViewer.SelectedObject = e.Next;
+					//PropertyViewer.SelectedObject = e.Next;
+					_Host.ShowProperties( e.Next );
 
-				PropertyViewer.HiddenAttributes = new AttributeCollection( new Attribute[] { new CategoryAttribute( "Fenu Button" ) } );
-				PropertyViewer.BrowsableProperties = SelectedProperties( e.Type );
+				//PropertyViewer.HiddenAttributes = new AttributeCollection( new Attribute[] { new CategoryAttribute( "Fenu Button" ) } );
+				//PropertyViewer.BrowsableProperties = SelectedProperties( e.Type );
+				_Host.SetPropertyGrid( new AttributeCollection( new Attribute[] { new CategoryAttribute( "Fenu Button" ) } ),
+										SelectedProperties( e.Type ) );
 			}
-			PropertyViewer.Refresh();
+			//PropertyViewer.Refresh();
 		}
 
 		private string[] SelectedProperties(Type DesiredType) {
@@ -125,7 +132,21 @@ namespace Fenubars
 
 		public string Version {
 			get {
-				return "1.0";//Assembly.GetEntryAssembly().GetName().Version.ToString();
+				return Assembly.GetEntryAssembly().GetName().Version.ToString();
+			}
+		}
+
+		#endregion
+
+		#region Host adapter
+
+		private IModuleHost _Host;
+		public IModuleHost Host {
+			get {
+				return _Host;
+			}
+			set {
+				_Host = value;
 			}
 		}
 
@@ -186,6 +207,7 @@ namespace Fenubars
 					newFenuPanel.PopulateButtons();
 					//Canvas.Add( _MainInterface );
 					//PluginHost.DrawOnCanvas( _MainInterface, this );
+					_Host.DrawOnCanvas( newFenuPanel );
 					return newFenuPanel;
 				}
 			}

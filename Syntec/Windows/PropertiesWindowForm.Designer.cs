@@ -26,12 +26,15 @@ namespace Syntec.Windows
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent( ) {
-			this.PropertiesViewer = new System.Windows.Forms.PropertyGrid();
+			this.PropertiesViewer = new Azuria.Common.Controls.FilteredPropertyGrid();
 			this.SuspendLayout();
 			// 
 			// PropertiesViewer
 			// 
+			this.PropertiesViewer.BrowsableProperties = null;
 			this.PropertiesViewer.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.PropertiesViewer.HiddenAttributes = null;
+			this.PropertiesViewer.HiddenProperties = null;
 			this.PropertiesViewer.Location = new System.Drawing.Point( 0, 0 );
 			this.PropertiesViewer.Name = "PropertiesViewer";
 			this.PropertiesViewer.Size = new System.Drawing.Size( 284, 262 );
@@ -43,6 +46,7 @@ namespace Syntec.Windows
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size( 284, 262 );
 			this.Controls.Add( this.PropertiesViewer );
+			this.Font = new System.Drawing.Font( "Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ( (byte)( 136 ) ) );
 			this.Name = "PropertiesWindowForm";
 			this.Text = "Properties";
 			this.ResumeLayout( false );
@@ -51,6 +55,7 @@ namespace Syntec.Windows
 
 		#endregion
 
-		private System.Windows.Forms.PropertyGrid PropertiesViewer;
+		private Azuria.Common.Controls.FilteredPropertyGrid PropertiesViewer;
+
 	}
 }

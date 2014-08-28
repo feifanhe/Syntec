@@ -1,3 +1,5 @@
+using System.ComponentModel;
+
 namespace ModuleInterface
 {
 	public interface IModule
@@ -12,6 +14,15 @@ namespace ModuleInterface
 		}
 		string Version {
 			get;
+		}
+
+		#endregion
+
+		#region Host adapter
+
+		IModuleHost Host {
+			get;
+			set;
 		}
 
 		#endregion
@@ -45,5 +56,7 @@ namespace ModuleInterface
 	public interface IModuleHost
 	{
 		void DrawOnCanvas(System.Windows.Forms.Control control);
+		void ShowProperties(object control);
+		void SetPropertyGrid(AttributeCollection hidden, string[] browsable);
 	}
 }

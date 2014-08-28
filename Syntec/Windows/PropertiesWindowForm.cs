@@ -1,4 +1,5 @@
 using WeifenLuo.WinFormsUI.Docking;
+using System.ComponentModel;
 
 namespace Syntec.Windows
 {
@@ -10,6 +11,16 @@ namespace Syntec.Windows
 
 		public void SetSelectedObject(object Content) {
 			PropertiesViewer.SelectedObject = Content;
+
+			PropertiesViewer.Refresh();
+		}
+
+		public void SetHiddenAttributes(AttributeCollection hidden) {
+			PropertiesViewer.HiddenAttributes = hidden;
+		}
+
+		public void SetBrowsableProperties(string[] browsable) {
+			PropertiesViewer.BrowsableProperties = browsable;
 		}
 	}
 }
