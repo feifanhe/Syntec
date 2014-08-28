@@ -52,8 +52,6 @@ namespace Syntec.Module
 				if( moduleType.IsPublic && !moduleType.IsAbstract )
 				{
 					Type typeInterface = moduleType.GetInterface( "ModuleInterface.IModule", true );
-					//foreach(Type t in moduleType.GetInterfaces())
-					//Console.WriteLine( t.ToString() );
 
 					// Check if the dll implements the interface
 					if( typeInterface != null )
