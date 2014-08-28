@@ -1,23 +1,22 @@
+using System;
+using System.Collections;
+using Syntec.Configurator;
+using System.Reflection;
 using System.IO;
 using System.Windows.Forms;
-using System.Collections;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.Collections.Generic;
-using System.Reflection;
-using System;
-using System.Configuration;
-using System.Text;
+
 using ModuleInterface;
 
 namespace Syntec.Module
 {
-	public class ModuleManager
+	public static class ModuleManager
 	{
 		public static readonly string ModuleFolderPath = @"\Modules";
 
 		// Available module states
 		private static Modules moduleList = new Modules();
+
+		private static IniConfigurator configs = new IniConfigurator( Application.StartupPath + ModuleFolderPath + @"\Modules.ini" );
 
 		public static void Refresh( ) {
 			// Wipe storage
@@ -63,8 +62,18 @@ namespace Syntec.Module
 
 						newModule.Assembly = assembly;
 						newModule.EntryType = moduleType.ToString();
+						
 						// Since assembly was assigned, name can be read now
-						newModule.Enabled = ReadConfig( newModule.Name );
+						bool parsedState;
+						if( Boolean.TryParse( configs.GetValue( "LoadOnStart", newModule.Name ), out parsedState ) )
+							newModule.Enabled = parsedState;
+						else
+						{
+							newModule.Enabled = false;
+							configs.AddValue( "LoadOnStart", newModule.Name, "false" );
+							configs.Save();
+						}
+
 						// Add the new module to collection here
 						moduleList.Add( newModule );
 
@@ -73,53 +82,6 @@ namespace Syntec.Module
 					typeInterface = null;
 				}
 			}
-		}
-
-		private static bool ReadConfig(string name) {
-			string configFilePath = Application.StartupPath + ModuleFolderPath + @"\Modules.config";
-			Configuration loadedConfigs = ConfigurationManager.OpenExeConfiguration( ConfigurationUserLevel.None );
-			//loadedConfigs.AppSettings.File = configFilePath;
-
-			// Create config file if configuration file doesn't exist
-			if( !loadedConfigs.HasFile )
-			{
-				StringBuilder SB = new StringBuilder();
-				SB.AppendLine( "<?xml version=\"1.0\" encoding=\"utf-8\" ?>" );
-				SB.AppendLine( "<configuration>" );
-				SB.AppendLine( "</configuration>" );
-
-				File.WriteAllText( String.Concat( configFilePath ), SB.ToString() );
-			}
-
-			bool probeEnabled;
-
-			// Find if key exist
-			string[] keys = loadedConfigs.AppSettings.Settings.AllKeys;
-			bool exist = false;
-			foreach( string key in keys )
-			{
-				if( key == name )
-				{
-					exist = true;
-					break;
-				}
-			}
-
-			if( !exist )
-			{
-				probeEnabled = false;
-				// Add new config entry
-				loadedConfigs.AppSettings.Settings.Add( name, "false" );
-				// Save config
-				//loadedConfigs.AppSettings.Save();
-			}
-			else
-			{
-				string readout = loadedConfigs.AppSettings.Settings[ name ].Value;
-				probeEnabled = Boolean.Parse( readout );
-			}
-
-			return probeEnabled;
 		}
 
 		// Try the XML file with every loaded module
@@ -135,7 +97,7 @@ namespace Syntec.Module
 				string typeName = parsedModule.Name + ".Initialize";
 				instance = Activator.CreateInstance( parsedAssembly.GetType( parsedModule.EntryType ) ) as IModule;
 				// Try to know if this DLL can interpret the XML
-				if( instance.Initialize( XMLPath ) && parsedModule.Enabled)
+				if( instance.Initialize( XMLPath ) && parsedModule.Enabled )
 					return instance;
 
 				// Wipe the instance
@@ -202,6 +164,7 @@ namespace Syntec.Module
 			}
 		}
 
+		// Entry type to indicate what type to instantiate
 		private string _EntryType;
 		public string EntryType {
 			get {
