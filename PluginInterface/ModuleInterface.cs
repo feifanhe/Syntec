@@ -31,7 +31,7 @@ namespace ModuleInterface
 
 		// Return false if the plugin can't initialize from designated XMLPath
 		bool Initialize(string XMLPath);
-		object Open(string Name);
+		void Open(string Name);
 		void Close( );
 
 		#endregion

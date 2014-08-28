@@ -36,6 +36,7 @@ namespace Syntec.Windows
 
 			// Execute
 			instance.Open( "main" );
+			instance.Open( "About" );
 
 			//this.Controls.Add( instance.Open( "main" ) as Control );
 
@@ -46,7 +47,9 @@ namespace Syntec.Windows
 
 		public void DrawOnCanvas(Control control) {
 			this.Controls.Add( control );
-			//control.BringToFront();
+
+			// Maintain last in append instead of insert
+			control.BringToFront();
 		}
 
 		public void ShowProperties(object control) {
@@ -57,7 +60,6 @@ namespace Syntec.Windows
 			MainForm.PropertiesWindow.SetHiddenAttributes( hidden );
 			MainForm.PropertiesWindow.SetBrowsableProperties( browsable );
 		}
-
 
 		#endregion
 	}
