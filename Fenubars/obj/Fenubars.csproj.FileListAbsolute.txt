@@ -4,6 +4,8 @@ C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Fenubars\bin\Debug\Fi
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Fenubars\bin\Debug\PluginInterface.dll
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Fenubars\bin\Debug\FilteredPropertyGrid.pdb
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Fenubars\bin\Debug\PluginInterface.pdb
+C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\bin\Debug\Plugins\Fenubars.dll
+C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\bin\Debug\Plugins\Fenubars.pdb
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Fenubars\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Fenubars\obj\Debug\Fenubars.Display.Fenu.resources
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Fenubars\obj\Debug\Fenubars.Properties.Resources.resources

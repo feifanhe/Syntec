@@ -29,6 +29,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
@@ -41,9 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.cs" />
-    <Compile Include="Module\AppDomainCore.cs" />
-    <Compile Include="Module\AssemblyCore.cs" />
-    <Compile Include="Module\Proxy.cs" />
+    <Compile Include="Module\ModuleManager.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="Windows\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -51,10 +51,10 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Initialization.cs" />
-    <Compile Include="Module\ModuleManagerForm.cs">
+    <Compile Include="Windows\ModuleManagerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Module\ModuleManagerForm.Designer.cs">
+    <Compile Include="Windows\ModuleManagerForm.Designer.cs">
       <DependentUpon>ModuleManagerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -62,7 +62,7 @@
       <SubType>Designer</SubType>
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Module\ModuleManagerForm.resx">
+    <EmbeddedResource Include="Windows\ModuleManagerForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ModuleManagerForm.cs</DependentUpon>
     </EmbeddedResource>

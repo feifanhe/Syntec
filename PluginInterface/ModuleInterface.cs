@@ -20,7 +20,7 @@ namespace ModuleInterface
 
 		// Return false if the plugin can't initialize from designated XMLPath
 		bool Initialize(string XMLPath);
-		void Open(string Name);
+		object Open(string Name);
 		void Close( );
 
 		#endregion
@@ -40,5 +40,10 @@ namespace ModuleInterface
 		void Delete( );
 
 		#endregion
+	}
+
+	public interface IModuleHost
+	{
+		void DrawOnCanvas(System.Windows.Forms.Control control);
 	}
 }

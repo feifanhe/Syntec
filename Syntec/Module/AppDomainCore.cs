@@ -33,6 +33,7 @@ namespace Syntec.Module
 
 			// Configure the assembly to copy the dll, in order to release the file lock
 			ADS.ShadowCopyFiles = "true";
+			//ADS.ShadowCopyDirectories = System.IO.Path.GetTempPath();
 
 			// Create the second AppDomain.
 			_DefaultAppDomain = AppDomain.CreateDomain( _DefaultAppDomainName, null, ADS );

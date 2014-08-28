@@ -1,4 +1,5 @@
 using ModuleInterface;
+using System.IO;
 
 namespace Syntec.Module
 {
@@ -27,6 +28,11 @@ namespace Syntec.Module
 			}
 		}
 
+		public Proxy(string assemblyFileName) {
+			string appDomainName = Path.GetFileNameWithoutExtension( assemblyFileName ) + "_Domain";
+			InitProxy( assemblyFileName, appDomainName, "Fenubars.Handler" );
+		}
+
 		public Proxy(string assemblyFileName, string appDomainName) {
 			InitProxy( assemblyFileName, appDomainName, "ClassLibrary" );
 		}
@@ -42,11 +48,17 @@ namespace Syntec.Module
 
 			// 1. Create an instance of the assembly in the second AppDomain
 			// 2. Unwrap the remote object of the specific type
-			proxy = (IModule)appDomainController.
-								DefaultAppDomain.
-								CreateInstanceFromAndUnwrap( assemblyController.DefaultAssemblyFileName,
-																assemblyController.CurrentType );
-
+			try
+			{
+				proxy = (IModule)appDomainController.
+									DefaultAppDomain.
+									CreateInstanceFromAndUnwrap( assemblyController.DefaultAssemblyFileName,
+																	assemblyController.CurrentType );
+			}
+			catch(System.Exception e )
+			{
+				System.Console.WriteLine( e );
+			}
 			return true;
 		}
 
@@ -88,10 +100,10 @@ namespace Syntec.Module
 			return false;
 		}
 
-		public void Open(string Name) {
+		public object Open(string Name) {
 			if( proxy != null )
-				proxy.Open( Name );
-			return;
+				return proxy.Open( Name );
+			return null;
 		}
 
 		public void Close( ) {
@@ -105,11 +117,11 @@ namespace Syntec.Module
 		#region File processing
 
 		public void Save( ) {
-			throw new Exception( "The method or operation is not implemented." );
+
 		}
 
 		public void SaveAs(string XMLPath) {
-			throw new Exception( "The method or operation is not implemented." );
+
 		}
 
 		#endregion
@@ -117,19 +129,19 @@ namespace Syntec.Module
 		#region Edit operations
 
 		public void Cut( ) {
-			throw new Exception( "The method or operation is not implemented." );
+
 		}
 
 		public void Copy( ) {
-			throw new Exception( "The method or operation is not implemented." );
+
 		}
 
 		public void Paste( ) {
-			throw new Exception( "The method or operation is not implemented." );
+
 		}
 
 		public void Delete( ) {
-			throw new Exception( "The method or operation is not implemented." );
+
 		}
 
 		#endregion

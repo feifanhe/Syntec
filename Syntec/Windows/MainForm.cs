@@ -19,23 +19,17 @@ namespace Syntec.Windows
 			InitializeComponent();
 
 			PropertiesWindow.Show( Main_DockPanel, DockState.DockRight );
-
 			WorkspaceExplorer.Show( PropertiesWindow.Pane, DockAlignment.Top, 0.6 );
 
-			df = new DocumentsForm();
-			df.Show( Main_DockPanel, DockState.Document );
-			df.TabText = "test1";
-
-			df2 = new DocumentsForm();
-			df2.Show( Main_DockPanel, DockState.Document );
-			df2.TabText = "test2";
+			//df = new DocumentsForm();
+			//df.Show( Main_DockPanel, DockState.Document );
+			//df.TabText = "test1";
 		}
 
 		#region Form related
 
 		private void MainForm_Load(object sender, EventArgs e) {
-			// Initiate the plugin collection, find plugins in the folder
-			Global.Plugins.FindPlugins( Application.StartupPath + Global.PluginsFolderPath );
+			ModuleManager.Refresh();
 		}
 
 		#endregion
@@ -107,16 +101,14 @@ namespace Syntec.Windows
 
 		#region Test codes
 
-		private void Test_MenuItem_Click(object sender, EventArgs e) {
-			AvailablePlugin SelectedPlugin = Global.Plugins.AvailablePlugins.Find( "Fenubar" );
+		private void Test_Button_Click(object sender, EventArgs e) {
+			df2 = new DocumentsForm( @"C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\bin\Debug\output.xml" );
+			if( df2.IsDisposed )
+				return;
+			df2.Show( Main_DockPanel, DockState.Document );
+			df2.TabText = "test2";
 
-			if( SelectedPlugin != null )
-			{
-				if( SelectedPlugin.Instance.Initialize( "output.xml" ) )
-				{
-					SelectedPlugin.Instance.Load( "main" );
-				}
-			}
+			//Application.Restart();
 		}
 
 		#endregion

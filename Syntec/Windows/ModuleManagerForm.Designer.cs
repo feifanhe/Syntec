@@ -1,4 +1,4 @@
-namespace Syntec.Module
+namespace Syntec.Windows
 {
 	partial class ModuleManagerForm
 	{
@@ -40,10 +40,12 @@ namespace Syntec.Module
 			// 
 			// PluginList
 			// 
+			this.PluginList.CheckBoxes = true;
 			this.PluginList.Columns.AddRange( new System.Windows.Forms.ColumnHeader[] {
             this.NameHeader,
             this.VersionHeader,
             this.LocationHeader} );
+			this.PluginList.FullRowSelect = true;
 			this.PluginList.GridLines = true;
 			this.PluginList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
 			this.PluginList.Location = new System.Drawing.Point( 12, 12 );
@@ -72,7 +74,7 @@ namespace Syntec.Module
 			// Browse_Button
 			// 
 			this.Browse_Button.Location = new System.Drawing.Point( 12, 377 );
-			this.Browse_Button.Name = "BrowseButton";
+			this.Browse_Button.Name = "Browse_Button";
 			this.Browse_Button.Size = new System.Drawing.Size( 75, 23 );
 			this.Browse_Button.TabIndex = 2;
 			this.Browse_Button.Text = "Browse";
@@ -82,7 +84,7 @@ namespace Syntec.Module
 			// OK_Button
 			// 
 			this.OK_Button.Location = new System.Drawing.Point( 416, 377 );
-			this.OK_Button.Name = "OKButton";
+			this.OK_Button.Name = "OK_Button";
 			this.OK_Button.Size = new System.Drawing.Size( 75, 23 );
 			this.OK_Button.TabIndex = 3;
 			this.OK_Button.Text = "OK";
@@ -92,7 +94,7 @@ namespace Syntec.Module
 			// Cancel_Button
 			// 
 			this.Cancel_Button.Location = new System.Drawing.Point( 497, 377 );
-			this.Cancel_Button.Name = "CancelButton";
+			this.Cancel_Button.Name = "Cancel_Button";
 			this.Cancel_Button.Size = new System.Drawing.Size( 75, 23 );
 			this.Cancel_Button.TabIndex = 4;
 			this.Cancel_Button.Text = "Cancel";
@@ -121,7 +123,7 @@ namespace Syntec.Module
 			// Refresh_Button
 			// 
 			this.Refresh_Button.Location = new System.Drawing.Point( 93, 377 );
-			this.Refresh_Button.Name = "RefreshButton";
+			this.Refresh_Button.Name = "Refresh_Button";
 			this.Refresh_Button.Size = new System.Drawing.Size( 75, 23 );
 			this.Refresh_Button.TabIndex = 7;
 			this.Refresh_Button.Text = "Refresh";
@@ -142,7 +144,7 @@ namespace Syntec.Module
 			this.Controls.Add( this.PluginList );
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.Name = "PluginManagerForm";
+			this.Name = "ModuleManagerForm";
 			this.ShowIcon = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Plugin Manager";

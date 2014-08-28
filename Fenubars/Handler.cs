@@ -14,7 +14,7 @@ using ModuleInterface;
 
 namespace Fenubars
 {
-	public class Handler : IPlugin
+	public class Handler : IModule
 	{
 		// XML serializer fields
 		private XmlSerializerNamespaces Namespace;
@@ -53,13 +53,6 @@ namespace Fenubars
 			}
 		}
 
-		// Plugin fields
-		private readonly string PluginName = "Fenubar";
-		private string PluginDescription = "Use this plugin to support fenubar edit function."; 
-		private IPluginHost PluginHost = null;
-		private UserControl _MainInterface;
-
-
 		#region Acquire focus object by event
 
 		private void FocusedObjectAvailable(object sender,
@@ -69,7 +62,7 @@ namespace Fenubars
 				PropertyViewer.HiddenAttributes = null;
 				PropertyViewer.BrowsableProperties = null;
 
-				PropertyViewer.SelectedObject = CurrentFenuState;	
+				PropertyViewer.SelectedObject = CurrentFenuState;
 			}
 			else
 			{
@@ -90,7 +83,7 @@ namespace Fenubars
 			List<string> Properties = new List<string>();
 
 			// Load the button type of selected button
-			ButtonTypes Template = (ButtonTypes)Enum.Parse(typeof(ButtonTypes), DesiredType.Name);
+			ButtonTypes Template = (ButtonTypes)Enum.Parse( typeof( ButtonTypes ), DesiredType.Name );
 			// Parse all the properties in the target object
 			foreach( PropertyInfo PI in typeof( FenuButtonState ).GetProperties() )
 			{
@@ -114,45 +107,31 @@ namespace Fenubars
 
 		#endregion
 
-		#region IPlugin Members
+		#region IModule Members
 
-		public IPluginHost Host {
-			get {
-				return PluginHost;
-			}
-			set {
-				PluginHost = value;
-				Fenu DummyFenu = (Fenu)_MainInterface;
-				DummyFenu.PluginHost = this.PluginHost;
-				DummyFenu.Plugin = this;
-			}
-		}
+		#region Module info
 
 		public string Name {
 			get {
-				return this.PluginName;
+				return "Fenubar";
 			}
 		}
 
 		public string Description {
 			get {
-				return this.PluginDescription;
+				return "Use this plugin to support fenubar edit function.";
 			}
 		}
 
 		public string Version {
 			get {
-				return Assembly.GetEntryAssembly().GetName().Version.ToString();
+				return "1.0";//Assembly.GetEntryAssembly().GetName().Version.ToString();
 			}
 		}
 
-		public UserControl MainInterface {
-			get {
-				return _MainInterface;
-			}
-		}
+		#endregion
 
-		#region Loader
+		#region Basic operations
 
 		public bool Initialize(string XMLPath) {
 
@@ -197,28 +176,30 @@ namespace Fenubars
 			}
 		}
 
-		public void Load(string FenuName) {
+		public object Open(string FenuName) {
 			foreach( FenuState ParsedFenu in CurrentFenuState.IncludedFenus )
 			{
 				if( ParsedFenu.Name == FenuName )
 				{
-					_MainInterface = new Fenu( ParsedFenu );
-					( (Fenu)_MainInterface ).DataAvailable += new EventHandler<Fenubars.Display.ObjectDetailEventArgs>( FocusedObjectAvailable );
-					( (Fenu)_MainInterface ).PopulateButtons();
-					Canvas.Add( _MainInterface );
+					Fenu newFenuPanel = new Fenu( ParsedFenu );
+					newFenuPanel.DataAvailable += new EventHandler<Fenubars.Display.ObjectDetailEventArgs>( FocusedObjectAvailable );
+					newFenuPanel.PopulateButtons();
+					//Canvas.Add( _MainInterface );
 					//PluginHost.DrawOnCanvas( _MainInterface, this );
+					return newFenuPanel;
 				}
 			}
+			return null;
+		}
+
+		public void Close( ) {
 		}
 
 		#endregion
 
-		public void Dispose( ) {
-		}
+		#region File processing
 
-		#region Saver
-
-		public void Save() {
+		public void Save( ) {
 			SaveAs( this.XMLPath );
 		}
 
@@ -230,6 +211,8 @@ namespace Fenubars
 		}
 
 		#endregion
+
+		#region Edit operations
 
 		public void Cut( ) {
 			throw new Exception( "The method or operation is not implemented." );
@@ -246,6 +229,8 @@ namespace Fenubars
 		public void Delete( ) {
 			throw new Exception( "The method or operation is not implemented." );
 		}
+
+		#endregion
 
 		#endregion
 	}

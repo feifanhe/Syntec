@@ -31,6 +31,7 @@ namespace Syntec.Module
 		public string DefaultAssemblyFileName {
 			get {
 				return OriginalAssemblyFileName;
+				//return _DefaultAssemblyFile.Name;
 			}
 		}
 
@@ -57,7 +58,7 @@ namespace Syntec.Module
 				// Acquire temporary file location
 				string destPath = Path.GetTempPath() + Guid.NewGuid().ToString() + ".dll";
 
-				File.Copy( assemblyFileName, destPath, true );
+				File.Copy( assemblyFileName, OriginalAssemblyFileName, true );
 				_DefaultAssemblyFile = new FileInfo( OriginalAssemblyFileName );
 				return true;
 			}
