@@ -1,7 +1,0 @@
-C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\ConsoleTest\bin\Debug\ConsoleTest.exe
-C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\ConsoleTest\bin\Debug\ConsoleTest.pdb
-C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\ConsoleTest\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\ConsoleTest\obj\Debug\ConsoleTest.exe
-C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\ConsoleTest\obj\Debug\ConsoleTest.pdb
-C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\ConsoleTest\bin\Debug\Fenubars.dll
-C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\ConsoleTest\bin\Debug\Fenubars.pdb

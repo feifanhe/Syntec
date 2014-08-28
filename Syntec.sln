@@ -13,12 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fenubars", "Fenubars\Fenuba
 		Release.AspNetCompiler.Debug = "False"
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTest", "ConsoleTest\ConsoleTest.csproj", "{27070BFD-E3AD-4300-8675-1F13C265C57C}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormTest", "FormTest\FormTest.csproj", "{CF9FE4CB-3623-4E08-9CE6-6C8D57746192}"
 	ProjectSection(WebsiteProperties) = preProject
 		Debug.AspNetCompiler.Debug = "True"
@@ -57,10 +51,6 @@ Global
 		{126634A3-FB20-4127-9699-81E7E79A472B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{126634A3-FB20-4127-9699-81E7E79A472B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{126634A3-FB20-4127-9699-81E7E79A472B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{27070BFD-E3AD-4300-8675-1F13C265C57C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{27070BFD-E3AD-4300-8675-1F13C265C57C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{27070BFD-E3AD-4300-8675-1F13C265C57C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{27070BFD-E3AD-4300-8675-1F13C265C57C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CF9FE4CB-3623-4E08-9CE6-6C8D57746192}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CF9FE4CB-3623-4E08-9CE6-6C8D57746192}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF9FE4CB-3623-4E08-9CE6-6C8D57746192}.Release|Any CPU.ActiveCfg = Release|Any CPU
