@@ -72,8 +72,13 @@ namespace Syntec.Windows
 									"Save Change",
 									MessageBoxButtons.OK,
 									MessageBoxIcon.Exclamation );
-				// SAVE
 
+				// Compile state list
+				Dictionary<string, bool> stateList = new Dictionary<string, bool>();
+				foreach( ListViewItem LVI in PluginList.Items )
+					stateList.Add( LVI.Text, LVI.Checked );
+
+				ModuleManager.RewriteConfigs( stateList );
 			}
 
 			this.Close();

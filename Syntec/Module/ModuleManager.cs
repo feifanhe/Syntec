@@ -6,16 +6,19 @@ using System.IO;
 using System.Windows.Forms;
 
 using ModuleInterface;
+using System.Collections.Generic;
 
 namespace Syntec.Module
 {
 	public static class ModuleManager
 	{
 		public static readonly string ModuleFolderPath = @"\Modules";
+		private static readonly string CategoryString = "LoadOnStart";
 
 		// Available module states
 		private static Modules moduleList = new Modules();
 
+		// Start up configurator
 		private static IniConfigurator configs = new IniConfigurator( Application.StartupPath + ModuleFolderPath + @"\Modules.ini" );
 
 		public static void Refresh( ) {
@@ -60,12 +63,12 @@ namespace Syntec.Module
 
 						// Since assembly was assigned, name can be read now
 						bool parsedState;
-						if( Boolean.TryParse( configs.GetValue( "LoadOnStart", newModule.Name ), out parsedState ) )
+						if( Boolean.TryParse( configs.GetValue( CategoryString, newModule.Name ), out parsedState ) )
 							newModule.Enabled = parsedState;
 						else
 						{
 							newModule.Enabled = false;
-							configs.AddValue( "LoadOnStart", newModule.Name, "false" );
+							configs.AddValue( CategoryString, newModule.Name, false.ToString() );
 							configs.Save();
 						}
 
@@ -107,6 +110,20 @@ namespace Syntec.Module
 				return moduleList;
 			}
 		}
+
+		public static void RewriteConfigs(Dictionary<string, bool> stateList ) {
+			File.Delete( Application.StartupPath + ModuleFolderPath + @"\Modules.ini" );
+
+			// Dump all loaded modules' settings into .tmp file
+			IniConfigurator tempIni = new IniConfigurator( Application.StartupPath + ModuleFolderPath + @"\Modules.ini" );
+			foreach( KeyValuePair<string, bool> pair in stateList )
+				tempIni.AddValue( CategoryString, pair.Key, pair.Value.ToString() );
+
+			tempIni.Save();
+
+			// Reload the configurator using overwritten file
+			configs.Reload();
+		}
 	}
 
 	public class Modules : CollectionBase
@@ -131,8 +148,6 @@ namespace Syntec.Module
 
 	public class Module
 	{
-
-
 		#region Module info
 
 		public string Name {
@@ -144,6 +159,7 @@ namespace Syntec.Module
 
 		public string Description {
 			get {
+				// Object must exist, so no need for exception handling
 				object descriptionObject = _Assembly.GetCustomAttributes( typeof( AssemblyDescriptionAttribute ), false )[ 0 ];
 				return ( descriptionObject as AssemblyDescriptionAttribute ).Description;
 			}

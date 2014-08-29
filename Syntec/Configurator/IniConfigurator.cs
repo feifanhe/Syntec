@@ -69,6 +69,12 @@ namespace Syntec.Configurator
 			SR.Close();
 		}
 
+		public void Reload( ) {
+			settings.Rows.Clear();
+
+			LoadFromFile();
+		}
+
 		public void AddValue(string category, string key, string value) {
 			foreach( DataRow row in settings.Rows )
 			{
