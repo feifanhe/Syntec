@@ -14,3 +14,11 @@ C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Fenubars\obj\Debug\Fe
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Fenubars\obj\Debug\Fenubars.csproj.GenerateResource.Cache
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Fenubars\obj\Debug\Fenubars.dll
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Fenubars\obj\Debug\Fenubars.pdb
+C:\Users\admin\Desktop\Syntec\Syntec\bin\Debug\Modules\Fenubars.dll
+C:\Users\admin\Desktop\Syntec\Syntec\bin\Debug\Modules\Fenubars.pdb
+C:\Users\admin\Desktop\Syntec\Fenubars\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\admin\Desktop\Syntec\Fenubars\obj\Debug\Fenubars.Display.Fenu.resources
+C:\Users\admin\Desktop\Syntec\Fenubars\obj\Debug\Fenubars.Properties.Resources.resources
+C:\Users\admin\Desktop\Syntec\Fenubars\obj\Debug\Fenubars.csproj.GenerateResource.Cache
+C:\Users\admin\Desktop\Syntec\Fenubars\obj\Debug\Fenubars.dll
+C:\Users\admin\Desktop\Syntec\Fenubars\obj\Debug\Fenubars.pdb

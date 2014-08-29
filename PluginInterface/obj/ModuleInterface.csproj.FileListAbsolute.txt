@@ -3,3 +3,8 @@ C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\PluginInterface\bin\D
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\PluginInterface\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\PluginInterface\obj\Debug\ModuleInterface.dll
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\PluginInterface\obj\Debug\ModuleInterface.pdb
+C:\Users\admin\Desktop\Syntec\PluginInterface\bin\Debug\ModuleInterface.dll
+C:\Users\admin\Desktop\Syntec\PluginInterface\bin\Debug\ModuleInterface.pdb
+C:\Users\admin\Desktop\Syntec\PluginInterface\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\admin\Desktop\Syntec\PluginInterface\obj\Debug\ModuleInterface.dll
+C:\Users\admin\Desktop\Syntec\PluginInterface\obj\Debug\ModuleInterface.pdb

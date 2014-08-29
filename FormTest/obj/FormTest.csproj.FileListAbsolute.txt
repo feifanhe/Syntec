@@ -12,3 +12,9 @@ C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\FormTest\obj\Debug\Fo
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\FormTest\obj\Debug\FormTest.csproj.GenerateResource.Cache
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\FormTest\obj\Debug\FormTest.exe
 C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\FormTest\obj\Debug\FormTest.pdb
+C:\Users\admin\Desktop\Syntec\FormTest\obj\Debug\FormTest.exe
+C:\Users\admin\Desktop\Syntec\FormTest\obj\Debug\FormTest.pdb
+C:\Users\admin\Desktop\Syntec\FormTest\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\admin\Desktop\Syntec\FormTest\obj\Debug\FormTest.MainForm.resources
+C:\Users\admin\Desktop\Syntec\FormTest\obj\Debug\FormTest.Properties.Resources.resources
+C:\Users\admin\Desktop\Syntec\FormTest\obj\Debug\FormTest.csproj.GenerateResource.Cache

@@ -76,7 +76,7 @@
       <Project>{C74B67EE-E6E9-40BE-A76E-434EF1B4C78A}</Project>
       <Name>FilteredPropertyGrid</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PluginInterface\PluginInterface.csproj">
+    <ProjectReference Include="..\PluginInterface\ModuleInterface.csproj">
       <Project>{00D0C21D-D94C-4B0F-A710-1EFBABB4C4C6}</Project>
       <Name>PluginInterface</Name>
     </ProjectReference>
