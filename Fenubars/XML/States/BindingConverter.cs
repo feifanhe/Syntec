@@ -5,20 +5,23 @@ namespace Fenubars.XML
 {
 	public static class StateConverter
 	{
-		public static void BoolToState(object sender, ConvertEventArgs cevent) {
+		public static void BoolToState( object sender, ConvertEventArgs cevent )
+		{
 			if( cevent.DesiredType != typeof( ButtonState ) )
 				return;
 			cevent.Value = ( (bool)cevent.Value ) ? ButtonState.enable : ButtonState.disable;
 		}
 
-		public static void StateToBool(object sender, ConvertEventArgs cevent) {
-			cevent.Value = ((ButtonState)cevent.Value == ButtonState.enable );
+		public static void StateToBool( object sender, ConvertEventArgs cevent )
+		{
+			cevent.Value = ( (ButtonState)cevent.Value == ButtonState.enable );
 		}
 	}
 
 	public static class ColorConverter
 	{
-		public static void StringToColor(object sender, ConvertEventArgs cevent) {
+		public static void StringToColor( object sender, ConvertEventArgs cevent )
+		{
 			string[] RGB = ( (string)cevent.Value ).Split( ',' );
 			if( RGB.Length != 3 ) {
 				cevent.Value = Color.FromArgb( 0, 0, 0 );
@@ -29,11 +32,12 @@ namespace Fenubars.XML
 											int.Parse( RGB[ 2 ] ) );
 		}
 
-		public static void ColorToString(object sender, ConvertEventArgs cevent) {
+		public static void ColorToString( object sender, ConvertEventArgs cevent )
+		{
 			string ColorString = string.Empty;
-			ColorString = ((Color)cevent.Value).R.ToString() + ",";
-			ColorString += ((Color)cevent.Value).G.ToString() + ",";
-			ColorString += ((Color)cevent.Value).B.ToString();
+			ColorString = ( (Color)cevent.Value ).R.ToString() + ",";
+			ColorString += ( (Color)cevent.Value ).G.ToString() + ",";
+			ColorString += ( (Color)cevent.Value ).B.ToString();
 			cevent.Value = ColorString;
 		}
 	}

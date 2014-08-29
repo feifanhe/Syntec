@@ -6,7 +6,8 @@ namespace Fenubars.Buttons
 {
 	public partial class NextButton : Button
 	{
-		public NextButton(FenuButtonState State) {
+		public NextButton( FenuButtonState State )
+		{
 			InitializeComponent();
 
 			// Basic setup
@@ -23,8 +24,9 @@ namespace Fenubars.Buttons
 			//State.ParseState = true;
 		}
 
-		public void PaintComponent(System.Windows.Forms.Control.ControlCollection Canvas,
-									Point Location) {
+		public void PaintComponent( System.Windows.Forms.Control.ControlCollection Canvas,
+									Point Location )
+		{
 			this.Location = Location;
 			Canvas.Add( this );
 		}

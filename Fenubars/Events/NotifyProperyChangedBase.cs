@@ -6,42 +6,39 @@ using System.ComponentModel;
 namespace Fenubars.Events
 {
 	public abstract class NotifyProperyChangedBase : INotifyPropertyChanged
-    {
-        #region INotifyPropertyChanged Members
+	{
+		#region INotifyPropertyChanged Members
 
-        public event PropertyChangedEventHandler PropertyChanged;
+		public event PropertyChangedEventHandler PropertyChanged;
 
-        #endregion
+		#endregion
 
-        #region Methods
+		#region Methods
 
-        protected bool CheckPropertyChanged<T>(string propertyName, ref T oldValue, ref T newValue)
-        {
-            if (oldValue == null && newValue == null)
-            {
-                return false;
-            }
+		protected bool CheckPropertyChanged<T>( string propertyName, ref T oldValue, ref T newValue )
+		{
+			if( oldValue == null && newValue == null ) {
+				return false;
+			}
 
-            if ((oldValue == null && newValue != null) || !oldValue.Equals((T)newValue))
-            {
-                oldValue = newValue;
+			if( ( oldValue == null && newValue != null ) || !oldValue.Equals( (T)newValue ) ) {
+				oldValue = newValue;
 
-                FirePropertyChanged(propertyName);
-                
-                return true;                
-            }
+				FirePropertyChanged( propertyName );
 
-            return false;
-        }
+				return true;
+			}
 
-        protected void FirePropertyChanged(string propertyName)
-        {
-            if (this.PropertyChanged != null)
-            {
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
+			return false;
+		}
 
-        #endregion
-    }
+		protected void FirePropertyChanged( string propertyName )
+		{
+			if( this.PropertyChanged != null ) {
+				this.PropertyChanged( this, new PropertyChangedEventArgs( propertyName ) );
+			}
+		}
+
+		#endregion
+	}
 }

@@ -21,7 +21,8 @@ namespace Syntec.Module
 		// Start up configurator
 		private static IniConfigurator configs = new IniConfigurator( Application.StartupPath + ModuleFolderPath + @"\Modules.ini" );
 
-		public static void Refresh( ) {
+		public static void Refresh()
+		{
 			// Wipe storage
 			moduleList.Clear();
 
@@ -29,10 +30,10 @@ namespace Syntec.Module
 			//ReadConfig();
 		}
 
-		private static void SearchFolder( ) {
+		private static void SearchFolder()
+		{
 			//Go through all the files in the module directory
-			foreach( string fileName in Directory.GetFiles( Application.StartupPath + ModuleFolderPath ) )
-			{
+			foreach( string fileName in Directory.GetFiles( Application.StartupPath + ModuleFolderPath ) ) {
 				FileInfo file = new FileInfo( fileName );
 
 				//Preliminary check, must be .dll
@@ -41,21 +42,19 @@ namespace Syntec.Module
 			}
 		}
 
-		private static void AddModule(string path) {
+		private static void AddModule( string path )
+		{
 			// Create the assembly
 			Assembly assembly = Assembly.LoadFrom( path );
 
 			// Loop through all the types in the assembly
-			foreach( Type moduleType in assembly.GetTypes() )
-			{
+			foreach( Type moduleType in assembly.GetTypes() ) {
 				// Only look for public, non-abstract type
-				if( moduleType.IsPublic && !moduleType.IsAbstract )
-				{
+				if( moduleType.IsPublic && !moduleType.IsAbstract ) {
 					Type typeInterface = moduleType.GetInterface( "ModuleInterface.IModule", true );
 
 					// Check if the dll implements the interface
-					if( typeInterface != null )
-					{
+					if( typeInterface != null ) {
 						Module newModule = new Module();
 
 						newModule.Assembly = assembly;
@@ -65,8 +64,7 @@ namespace Syntec.Module
 						bool parsedState;
 						if( Boolean.TryParse( configs.GetValue( CategoryString, newModule.Name ), out parsedState ) )
 							newModule.Enabled = parsedState;
-						else
-						{
+						else {
 							newModule.Enabled = false;
 							configs.AddValue( CategoryString, newModule.Name, false.ToString() );
 							configs.Save();
@@ -83,12 +81,12 @@ namespace Syntec.Module
 		}
 
 		// Try the XML file with every loaded module
-		public static IModule FindProcessor(string XMLPath) {
+		public static IModule FindProcessor( string XMLPath )
+		{
 			IModule instance;
 
 			// Loop throuh all loaded modules
-			foreach( Module parsedModule in moduleList )
-			{
+			foreach( Module parsedModule in moduleList ) {
 				Assembly parsedAssembly = parsedModule.Assembly;
 
 				// Create instance to test
@@ -105,13 +103,16 @@ namespace Syntec.Module
 			return null;
 		}
 
-		public static Modules AvailableModules {
-			get {
+		public static Modules AvailableModules
+		{
+			get
+			{
 				return moduleList;
 			}
 		}
 
-		public static void RewriteConfigs(Dictionary<string, bool> stateList ) {
+		public static void RewriteConfigs( Dictionary<string, bool> stateList )
+		{
 			File.Delete( Application.StartupPath + ModuleFolderPath + @"\Modules.ini" );
 
 			// Dump all loaded modules' settings into .tmp file
@@ -128,19 +129,24 @@ namespace Syntec.Module
 
 	public class Modules : CollectionBase
 	{
-		public void Add(Module module) {
+		public void Add( Module module )
+		{
 			this.List.Add( module );
 		}
 
-		public void Remove(Module module) {
+		public void Remove( Module module )
+		{
 			this.List.Remove( module );
 		}
 
-		public Module this[ int index ] {
-			get {
+		public Module this[ int index ]
+		{
+			get
+			{
 				return this.List[ index ] as Module;
 			}
-			set {
+			set
+			{
 				this.List[ index ] = value;
 			}
 		}
@@ -150,23 +156,29 @@ namespace Syntec.Module
 	{
 		#region Module info
 
-		public string Name {
-			get {
+		public string Name
+		{
+			get
+			{
 				// Get the namespace only
 				return _Assembly.FullName.Split( ',' )[ 0 ];
 			}
 		}
 
-		public string Description {
-			get {
+		public string Description
+		{
+			get
+			{
 				// Object must exist, so no need for exception handling
 				object descriptionObject = _Assembly.GetCustomAttributes( typeof( AssemblyDescriptionAttribute ), false )[ 0 ];
 				return ( descriptionObject as AssemblyDescriptionAttribute ).Description;
 			}
 		}
 
-		public string Version {
-			get {
+		public string Version
+		{
+			get
+			{
 				return Assembly.GetEntryAssembly().GetName().Version.ToString();
 			}
 		}
@@ -176,11 +188,14 @@ namespace Syntec.Module
 		#region Module state
 
 		private bool _Enabled = false;
-		public bool Enabled {
-			get {
+		public bool Enabled
+		{
+			get
+			{
 				return _Enabled;
 			}
-			set {
+			set
+			{
 				_Enabled = value;
 			}
 		}
@@ -190,22 +205,28 @@ namespace Syntec.Module
 		#region Instance info
 
 		private Assembly _Assembly;
-		public Assembly Assembly {
-			get {
+		public Assembly Assembly
+		{
+			get
+			{
 				return _Assembly;
 			}
-			set {
+			set
+			{
 				_Assembly = value;
 			}
 		}
 
 		// Entry type to indicate what type to instantiate
 		private string _EntryType;
-		public string EntryType {
-			get {
+		public string EntryType
+		{
+			get
+			{
 				return _EntryType;
 			}
-			set {
+			set
+			{
 				_EntryType = value;
 			}
 		}

@@ -12,11 +12,14 @@ namespace Fenubars.XML
 
 		private string _Name;
 		[XmlAttribute( "name" )]
-		public string Name {
-			get {
+		public string Name
+		{
+			get
+			{
 				return _Name;
 			}
-			set {
+			set
+			{
 				_Name = value;
 			}
 		}
@@ -27,33 +30,42 @@ namespace Fenubars.XML
 
 		private FenuButtonState _EscapeButton = new FenuButtonState();
 		[XmlElement( "escape" )]
-		public FenuButtonState EscapeButton {
-			get {
+		public FenuButtonState EscapeButton
+		{
+			get
+			{
 				return _EscapeButton;
 			}
-			set {
+			set
+			{
 				_EscapeButton = value;
 			}
 		}
 
 		private List<FenuButtonState> _NormalButtonList = new List<FenuButtonState>();
 		[XmlElement( "button" )]
-		public List<FenuButtonState> NormalButtonList {
-			get {
+		public List<FenuButtonState> NormalButtonList
+		{
+			get
+			{
 				return _NormalButtonList;
 			}
-			set {
+			set
+			{
 				_NormalButtonList = value;
 			}
 		}
 
 		private FenuButtonState _NextButton = new FenuButtonState();
 		[XmlElement( "next" )]
-		public FenuButtonState NextButton {
-			get {
+		public FenuButtonState NextButton
+		{
+			get
+			{
 				return _NextButton;
 			}
-			set {
+			set
+			{
 				_NextButton = value;
 			}
 		}

@@ -15,7 +15,8 @@ namespace Syntec.Windows
 		internal static WorkspaceExplorerForm WorkspaceExplorer = new WorkspaceExplorerForm( null );
 		internal static PropertiesWindowForm PropertiesWindow = new PropertiesWindowForm();
 
-		public MainForm( ) {
+		public MainForm()
+		{
 			InitializeComponent();
 
 			PropertiesWindow.Show( Main_DockPanel, DockState.DockRight );
@@ -28,7 +29,8 @@ namespace Syntec.Windows
 
 		#region Form related
 
-		private void MainForm_Load(object sender, EventArgs e) {
+		private void MainForm_Load( object sender, EventArgs e )
+		{
 			// Initiate module manager
 			ModuleManager.Refresh();
 		}
@@ -37,15 +39,18 @@ namespace Syntec.Windows
 
 		#region File
 
-		private void Open_Workspace_ToolStripMenuItem_Click(object sender, EventArgs e) {
+		private void Open_Workspace_ToolStripMenuItem_Click( object sender, EventArgs e )
+		{
 			OpenDialog( "Open Workspace", true );
 		}
 
-		private void Open_File_ToolStripMenuItem_Click(object sender, EventArgs e) {
+		private void Open_File_ToolStripMenuItem_Click( object sender, EventArgs e )
+		{
 			OpenDialog( "Open File", false, "XML Files (*.xml)|*.xml" );
 		}
 
-		private void File_Close_ToolStripMenuItem_Click(object sender, EventArgs e) {
+		private void File_Close_ToolStripMenuItem_Click( object sender, EventArgs e )
+		{
 			//Form df = this.ActiveMdiChild;
 			//df.Dispose();
 		}
@@ -54,9 +59,9 @@ namespace Syntec.Windows
 
 		#region Tools
 
-		private void Tools_ModuleManager_ToolStripMenuItem_Click(object sender, EventArgs e) {
-			using( ModuleManagerForm PMF = new ModuleManagerForm() )
-			{
+		private void Tools_ModuleManager_ToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			using( ModuleManagerForm PMF = new ModuleManagerForm() ) {
 				PMF.ShowDialog();
 			}
 		}
@@ -65,14 +70,15 @@ namespace Syntec.Windows
 
 		#region Executions
 
-		private void OpenDialog(string title, bool dirMode) {
+		private void OpenDialog( string title, bool dirMode )
+		{
 			OpenDialog( title, dirMode, null );
 		}
 
-		private void OpenDialog(string title, bool dirMode, string filter) {
+		private void OpenDialog( string title, bool dirMode, string filter )
+		{
 			// Determine which type of dialog it is
-			if( dirMode )
-			{
+			if( dirMode ) {
 				FolderBrowserDialog dialog = new FolderBrowserDialog();
 
 				dialog.Description = @"Workspace should located under ""Res"" folder.";
@@ -83,8 +89,7 @@ namespace Syntec.Windows
 
 				WorkspaceExplorer.RefreshTree( dialog.SelectedPath );
 			}
-			else
-			{
+			else {
 				OpenFileDialog dialog = new OpenFileDialog();
 
 				dialog.InitialDirectory = @"C:\";
@@ -102,8 +107,9 @@ namespace Syntec.Windows
 
 		#region Test codes
 
-		private void Test_Button_Click(object sender, EventArgs e) {
-			df2 = new DocumentsForm( @"C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\bin\Debug\output.xml" );
+		private void Test_Button_Click( object sender, EventArgs e )
+		{
+			df2 = new DocumentsForm( @"C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\bin\Debug\CncFenu.xml" );
 			if( df2.IsDisposed )
 				return;
 			df2.Show( Main_DockPanel, DockState.Document );

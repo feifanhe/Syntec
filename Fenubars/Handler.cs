@@ -22,11 +22,14 @@ namespace Fenubars
 
 		// File state holder
 		private XMLGlobalState CurrentFenuState;
-		public List<FenuState> LoadedFenus {
-			get {
+		public List<FenuState> LoadedFenus
+		{
+			get
+			{
 				return CurrentFenuState.IncludedFenus;
 			}
-			set {
+			set
+			{
 				CurrentFenuState.IncludedFenus = value;
 			}
 		}
@@ -35,18 +38,17 @@ namespace Fenubars
 
 		#region Acquire focus object by event
 
-		private void FocusedObjectAvailable(object sender,
-											Fenubars.Display.ObjectDetailEventArgs e) {
-			if( e.Type == typeof( Fenu ) )
-			{
+		private void FocusedObjectAvailable( object sender,
+											Fenubars.Display.ObjectDetailEventArgs e )
+		{
+			if( e.Type == typeof( Fenu ) ) {
 				//PropertyViewer.HiddenAttributes = null;
 				//PropertyViewer.BrowsableProperties = null;
 				_Host.SetPropertyGrid( null, null );
 
 				_Host.ShowProperties( CurrentFenuState );
 			}
-			else
-			{
+			else {
 				if( e.Type == typeof( EscapeButton ) )
 					_Host.ShowProperties( e.Escape );
 				else if( e.Type == typeof( NormalButton ) )
@@ -61,17 +63,16 @@ namespace Fenubars
 			}
 		}
 
-		private string[] SelectedProperties(Type DesiredType) {
+		private string[] SelectedProperties( Type DesiredType )
+		{
 			List<string> Properties = new List<string>();
 
 			// Load the button type of selected button
 			ButtonTypes Template = (ButtonTypes)Enum.Parse( typeof( ButtonTypes ), DesiredType.Name );
 			// Parse all the properties in the target object
-			foreach( PropertyInfo PI in typeof( FenuButtonState ).GetProperties() )
-			{
+			foreach( PropertyInfo PI in typeof( FenuButtonState ).GetProperties() ) {
 				// Identified if the cycled property has defined ButtonTypeAttribute
-				if( PI.IsDefined( typeof( ButtonTypeAttribute ), false ) )
-				{
+				if( PI.IsDefined( typeof( ButtonTypeAttribute ), false ) ) {
 					ButtonTypes Value = ( PI.GetCustomAttributes( typeof( ButtonTypeAttribute ), false )[ 0 ] as ButtonTypeAttribute ).Type;
 					// Using bitwise operation to varify whether the selected property is the wanted one or not
 					if( ( Value & Template ) == Template )
@@ -93,20 +94,26 @@ namespace Fenubars
 
 		#region Module info
 
-		public string Name {
-			get {
+		public string Name
+		{
+			get
+			{
 				return "Fenubar";
 			}
 		}
 
-		public string Description {
-			get {
+		public string Description
+		{
+			get
+			{
 				return "Use this plugin to support fenubar edit function.";
 			}
 		}
 
-		public string Version {
-			get {
+		public string Version
+		{
+			get
+			{
 				return Assembly.GetEntryAssembly().GetName().Version.ToString();
 			}
 		}
@@ -116,11 +123,14 @@ namespace Fenubars
 		#region Host adapter
 
 		private IModuleHost _Host;
-		public IModuleHost Host {
-			get {
+		public IModuleHost Host
+		{
+			get
+			{
 				return _Host;
 			}
-			set {
+			set
+			{
 				_Host = value;
 			}
 		}
@@ -129,17 +139,15 @@ namespace Fenubars
 
 		#region Basic operations
 
-		public bool Initialize(string XMLPath) {
+		public bool Initialize( string XMLPath )
+		{
 
 			this.XMLPath = XMLPath;
 
 			// Using XmlReader to probe for root node
-			using( XmlReader reader = XmlReader.Create( XMLPath ) )
-			{
-				while( reader.Read() )
-				{
-					if( reader.NodeType == XmlNodeType.Element )
-					{
+			using( XmlReader reader = XmlReader.Create( XMLPath ) ) {
+				while( reader.Read() ) {
+					if( reader.NodeType == XmlNodeType.Element ) {
 						// Check if first element is named "root"
 						if( reader.Name != "root" )
 							return false;
@@ -155,7 +163,8 @@ namespace Fenubars
 			return true;
 		}
 
-		private void InitiateSerializer( ) {
+		private void InitiateSerializer()
+		{
 			// Configure serializer namespaces, remove the xml:ns definition
 			Namespace = new XmlSerializerNamespaces();
 			Namespace.Add( "", "" );
@@ -164,19 +173,18 @@ namespace Fenubars
 			Serializer = new XmlSerializer( typeof( XMLGlobalState ), "" );
 		}
 
-		private void LoadXML(string XMLPath) {
+		private void LoadXML( string XMLPath )
+		{
 			//Deserialize to object
-			using( StreamReader Reader = new StreamReader( XMLPath ) )
-			{
+			using( StreamReader Reader = new StreamReader( XMLPath ) ) {
 				CurrentFenuState = (XMLGlobalState)Serializer.Deserialize( Reader );
 			}
 		}
 
-		public void Open(string FenuName) {
-			foreach( FenuState ParsedFenu in CurrentFenuState.IncludedFenus )
-			{
-				if( ParsedFenu.Name == FenuName )
-				{
+		public void Open( string FenuName )
+		{
+			foreach( FenuState ParsedFenu in CurrentFenuState.IncludedFenus ) {
+				if( ParsedFenu.Name == FenuName ) {
 					Fenu newFenuPanel = new Fenu( ParsedFenu );
 					newFenuPanel.DataAvailable += new EventHandler<Fenubars.Display.ObjectDetailEventArgs>( FocusedObjectAvailable );
 					newFenuPanel.PopulateButtons();
@@ -187,20 +195,22 @@ namespace Fenubars
 			}
 		}
 
-		public void Close( ) {
+		public void Close()
+		{
 		}
 
 		#endregion
 
 		#region File processing
 
-		public void Save( ) {
+		public void Save()
+		{
 			SaveAs( this.XMLPath );
 		}
 
-		public void SaveAs(string XMLPath) {
-			using( StreamWriter Writer = new StreamWriter( XMLPath ) )
-			{
+		public void SaveAs( string XMLPath )
+		{
+			using( StreamWriter Writer = new StreamWriter( XMLPath ) ) {
 				Serializer.Serialize( Writer, CurrentFenuState, Namespace );
 			}
 		}
@@ -209,19 +219,23 @@ namespace Fenubars
 
 		#region Edit operations
 
-		public void Cut( ) {
+		public void Cut()
+		{
 			throw new Exception( "The method or operation is not implemented." );
 		}
 
-		public void Copy( ) {
+		public void Copy()
+		{
 			throw new Exception( "The method or operation is not implemented." );
 		}
 
-		public void Paste( ) {
+		public void Paste()
+		{
 			throw new Exception( "The method or operation is not implemented." );
 		}
 
-		public void Delete( ) {
+		public void Delete()
+		{
 			throw new Exception( "The method or operation is not implemented." );
 		}
 

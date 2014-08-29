@@ -18,7 +18,8 @@ namespace Syntec.Windows
 		// Indicate to show every files or targeted only
 		private bool showAllFiles = false;
 
-		public WorkspaceExplorerForm(string path) {
+		public WorkspaceExplorerForm( string path )
+		{
 			InitializeComponent();
 
 			// Set checked state for ShowAllFile_ToolStripMenuItem
@@ -27,17 +28,18 @@ namespace Syntec.Windows
 			RefreshTree( path );
 		}
 
-		public void RefreshTree( ) {
+		public void RefreshTree()
+		{
 			// Wipe tree
 			WorkspaceTreeView.Nodes.Clear();
 
 			ParseDirectoryToTree();
 		}
 
-		public void RefreshTree(string path) {
+		public void RefreshTree( string path )
+		{
 			// Set explorer to default view
-			if( path == null )
-			{
+			if( path == null ) {
 				Default();
 				return;
 			}
@@ -50,20 +52,21 @@ namespace Syntec.Windows
 			RefreshTree();
 		}
 
-		private void Default( ) {
+		private void Default()
+		{
 			basePath = string.Empty;
 
 			foreach( ToolStripItem TSMI in Workspace_ToolStrip.Items )
 				TSMI.Enabled = false;
 		}
 
-		private void DissectBasePath(string path) {
+		private void DissectBasePath( string path )
+		{
 			// Reset base path
 			basePath = string.Empty;
 
 			int index = path.ToUpper().LastIndexOf( "RES" );
-			if( index < 0 )
-			{
+			if( index < 0 ) {
 				// This section should never occur
 				MessageBox.Show( "Designated path isn't located in Res.",
 									"Wrong File Path",
@@ -75,7 +78,8 @@ namespace Syntec.Windows
 			basePath = path.Substring( 0, index ) + @"Res\";
 		}
 
-		private void ParseDirectoryToTree( ) {
+		private void ParseDirectoryToTree()
+		{
 			TreeNode root = new TreeNode( basePath );
 			root.ImageIndex = 5;
 			root.SelectedImageIndex = root.ImageIndex;
@@ -87,7 +91,8 @@ namespace Syntec.Windows
 		#region Tree view events
 
 		// Parsing the directory before expand
-		private void WorkspaceTreeView_BeforeExpand(object sender, TreeViewCancelEventArgs e) {
+		private void WorkspaceTreeView_BeforeExpand( object sender, TreeViewCancelEventArgs e )
+		{
 			if( e.Node.Tag != null )
 				AddTopDirectories( e.Node, (string)e.Node.Tag );
 
@@ -97,40 +102,40 @@ namespace Syntec.Windows
 			e.Node.SelectedImageIndex = e.Node.ImageIndex;
 		}
 
-		private void WorkspaceTreeView_BeforeCollapse(object sender, TreeViewCancelEventArgs e) {
+		private void WorkspaceTreeView_BeforeCollapse( object sender, TreeViewCancelEventArgs e )
+		{
 			// Switch back icon to folder
 			if( e.Node.ImageIndex == 3 )
 				e.Node.ImageIndex = 1;
 			e.Node.SelectedImageIndex = e.Node.ImageIndex;
 		}
 
-		private void WorkspaceTreeView_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e) {
-			OpenDesigner( e.Node.Tag as string);
+		private void WorkspaceTreeView_NodeMouseDoubleClick( object sender, TreeNodeMouseClickEventArgs e )
+		{
+			OpenDesigner( e.Node.Tag as string );
 		}
 
 		#endregion
 
-		private void AddTopDirectories(TreeNode node, string path) {
+		private void AddTopDirectories( TreeNode node, string path )
+		{
 			node.TreeView.BeginUpdate(); // for best performance
 			// Clear dummy node if exists
 			node.Nodes.Clear();
 
-			try
-			{
+			try {
 				#region Dump directories
 
 				string[] subdirs = Directory.GetDirectories( path );
 
-				foreach( string subdir in subdirs )
-				{
+				foreach( string subdir in subdirs ) {
 					TreeNode child = new TreeNode( subdir );
 					// Save directory info into tag
 					child.Tag = subdir;
 					child.Text = Path.GetFileName( subdir );
 
 					// Set product/normal folder image
-					if( child.Text.IndexOf( '_' ) == 0 )
-					{
+					if( child.Text.IndexOf( '_' ) == 0 ) {
 						child.ImageIndex = 0;
 						child.Text = child.Text.Substring( 1 );
 					}
@@ -141,18 +146,15 @@ namespace Syntec.Windows
 
 					// Add dummy node if targeted file exists
 					bool existTargetedFile = false;
-					foreach( string file in Directory.GetFiles( subdir ) )
-					{
-						if( file.ToUpper().Contains( ".XML" ) || showAllFiles )
-						{
+					foreach( string file in Directory.GetFiles( subdir ) ) {
+						if( file.ToUpper().Contains( ".XML" ) || showAllFiles ) {
 							existTargetedFile = true;
 							break;
 						}
 					}
 
 					// Add dummy node when sub-dir exists, in order to show the expand sign
-					if( Directory.GetDirectories( subdir ).Length > 0 || existTargetedFile )
-					{
+					if( Directory.GetDirectories( subdir ).Length > 0 || existTargetedFile ) {
 						child.Nodes.Add( new TreeNode() );
 					}
 					node.Nodes.Add( child );
@@ -164,16 +166,14 @@ namespace Syntec.Windows
 
 				string[] files = Directory.GetFiles( path );
 
-				foreach( string file in files )
-				{
+				foreach( string file in files ) {
 					TreeNode child = new TreeNode( file );
 					// Save directory info into tag
 					child.Tag = file;
 					child.Text = Path.GetFileName( file );
 
 					// Set product/normal folder image
-					switch( Path.GetExtension( file ).ToUpper() )
-					{
+					switch( Path.GetExtension( file ).ToUpper() ) {
 						case ".XML":
 							child.ImageIndex = 2;
 							break;
@@ -195,8 +195,7 @@ namespace Syntec.Windows
 			catch( UnauthorizedAccessException ) // Ignore that directory if limited
 			{
 			}
-			finally
-			{
+			finally {
 				// Restore paint state
 				node.TreeView.EndUpdate();
 				// Clear dummy tag
@@ -206,7 +205,8 @@ namespace Syntec.Windows
 
 		#region Tool strip events
 
-		private void ShowAll_ToolStripButton_Click(object sender, EventArgs e) {
+		private void ShowAll_ToolStripButton_Click( object sender, EventArgs e )
+		{
 			// Toggle and apply state
 			showAllFiles = !showAllFiles;
 			ShowAll_ToolStripButton.Checked = showAllFiles;
@@ -214,21 +214,25 @@ namespace Syntec.Windows
 			RefreshTree();
 		}
 
-		private void Refresh_ToolStripButton_Click(object sender, EventArgs e) {
+		private void Refresh_ToolStripButton_Click( object sender, EventArgs e )
+		{
 			RefreshTree();
 		}
 
-		private void ViewCode_ToolStripButton_Click(object sender, EventArgs e) {
-			
+		private void ViewCode_ToolStripButton_Click( object sender, EventArgs e )
+		{
+
 		}
 
-		private void ViewDesigner_ToolStripButton_Click(object sender, EventArgs e) {
+		private void ViewDesigner_ToolStripButton_Click( object sender, EventArgs e )
+		{
 			// Get selected path
 			string path = WorkspaceTreeView.SelectedNode.Tag as string;
 			OpenDesigner( path );
 		}
 
-		private void ViewStructure_ToolStripButton_Click(object sender, EventArgs e) {
+		private void ViewStructure_ToolStripButton_Click( object sender, EventArgs e )
+		{
 
 		}
 
@@ -237,7 +241,8 @@ namespace Syntec.Windows
 		// All the operations ends up here, modify these methods when something changed else where
 		#region Executions
 
-		private void OpenDesigner( string path ) {
+		private void OpenDesigner( string path )
+		{
 			// PASS INFO TO PROXY
 		}
 

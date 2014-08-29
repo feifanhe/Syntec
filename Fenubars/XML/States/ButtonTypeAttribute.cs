@@ -13,15 +13,19 @@ namespace Fenubars.XML
 	public class ButtonTypeAttribute : Attribute
 	{
 		private ButtonTypes _Type;
-		public ButtonTypes Type {
-			get {
+		public ButtonTypes Type
+		{
+			get
+			{
 				return _Type;
 			}
-			private set {
+			private set
+			{
 				_Type = value;
 			}
 		}
-		public ButtonTypeAttribute(ButtonTypes Type) {
+		public ButtonTypeAttribute( ButtonTypes Type )
+		{
 			this.Type = Type;
 		}
 	}

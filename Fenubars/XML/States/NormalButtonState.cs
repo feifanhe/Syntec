@@ -15,11 +15,14 @@ namespace Fenubars.XML
 
 		private string _Name;
 		[XmlAttribute( "name" )]
-		public string Name {
-			get {
+		public string Name
+		{
+			get
+			{
 				return _Name;
 			}
-			set {
+			set
+			{
 				_Name = value;
 				InvokePropertyChanged( "Name" );
 			}
@@ -29,11 +32,14 @@ namespace Fenubars.XML
 
 		private int _Position;
 		[XmlElement( "position" )]
-		public int Position {
-			get {
+		public int Position
+		{
+			get
+			{
 				return _Position;
 			}
-			set {
+			set
+			{
 				_Position = value;
 				InvokePropertyChanged( "Position" );
 			}
@@ -41,11 +47,14 @@ namespace Fenubars.XML
 
 		private string _Title;
 		[XmlElement( "title" )]
-		public string Title {
-			get {
+		public string Title
+		{
+			get
+			{
 				return _Title;
 			}
-			set {
+			set
+			{
 				_Title = value;
 				InvokePropertyChanged( "Title" );
 			}
@@ -53,54 +62,69 @@ namespace Fenubars.XML
 
 		private ActionCollection _ActionCollection;
 		[XmlElement]
-		public ActionCollection ActionCollection {
-			get {
+		public ActionCollection ActionCollection
+		{
+			get
+			{
 				return _ActionCollection;
 			}
-			set {
+			set
+			{
 				_ActionCollection = value;
 			}
 		}
 
 		private string _Link;
-		public string Link {
-			get {
+		public string Link
+		{
+			get
+			{
 				return _Link;
 			}
-			set {
+			set
+			{
 				_Link = value;
 			}
 		}
 
 		private string _Picture;
 		[XmlElement( "picture" )]
-		public string Picture {
-			get {
+		public string Picture
+		{
+			get
+			{
 				return _Picture;
 			}
-			set {
+			set
+			{
 				_Picture = value;
 			}
 		}
 
 		private int _UserLevel;
 		[XmlElement( "userlevel" )]
-		public int UserLevel {
-			get {
+		public int UserLevel
+		{
+			get
+			{
 				return _UserLevel;
 			}
-			set {
+			set
+			{
 				_UserLevel = value;
 			}
 		}
 
 		private string _ForeColor;
 		[XmlElement( "forecolor" )]
-		public string ForeColor {
-			get {
+		public string ForeColor
+		{
+			get
+			{
 				return _ForeColor;
 			}
-			set {
+			set
+			{
 				_ForeColor = value;
 			}
 		}
@@ -110,24 +134,30 @@ namespace Fenubars.XML
 		private string _BackColor = "240,240,240";
 		[XmlElement( "backcolor" )]
 		[DefaultValue( "240,240,240" )]
-		public string BackColor {
-			get {
+		public string BackColor
+		{
+			get
+			{
 				return _BackColor;
 			}
-			set {
+			set
+			{
 				_BackColor = value;
 			}
 		}
 
 		[XmlIgnore]
-		public Color ParseBackColor {
-			get {
+		public Color ParseBackColor
+		{
+			get
+			{
 				string[] RGB = _BackColor.Split( ',' );
 				return Color.FromArgb( int.Parse( RGB[ 0 ] ),
 										int.Parse( RGB[ 1 ] ),
 										int.Parse( RGB[ 2 ] ) );
 			}
-			set {
+			set
+			{
 				Color color = value;
 				_BackColor = value.R.ToString() + ",";
 				_BackColor += value.G.ToString() + ",";
@@ -141,22 +171,28 @@ namespace Fenubars.XML
 		private ButtonState _State = ButtonState.disable;
 		[XmlElement( "state" )]
 		[DefaultValue( ButtonState.disable )]
-		public ButtonState State {
-			get {
+		public ButtonState State
+		{
+			get
+			{
 				return _State;
 			}
-			set {
+			set
+			{
 				_State = value;
 				InvokePropertyChanged( "State" );
 			}
 		}
 
 		[XmlIgnore]
-		public bool ParseState {
-			get {
+		public bool ParseState
+		{
+			get
+			{
 				return ( _State == ButtonState.enable );
 			}
-			set {
+			set
+			{
 				_State = ( value ) ? ButtonState.enable : ButtonState.disable;
 				InvokePropertyChanged( "State" );
 			}
@@ -169,11 +205,14 @@ namespace Fenubars.XML
 		private bool _Visible;
 		[XmlElement( "visible" )]
 		[DefaultValue( false )]
-		public bool Visible {
-			get {
+		public bool Visible
+		{
+			get
+			{
 				return _Visible;
 			}
-			set {
+			set
+			{
 				_Visible = value;
 				if( _Visible )
 					State = ButtonState.enable;
@@ -195,72 +234,93 @@ namespace Fenubars.XML
 		#endregion
 
 		private bool _HoldMode;
-		public bool HoldMode {
-			get {
+		public bool HoldMode
+		{
+			get
+			{
 				return _HoldMode;
 			}
-			set {
+			set
+			{
 				_HoldMode = value;
 			}
 		}
 
 		private string _LightOnColor;
-		public string LightOnColor {
-			get {
+		public string LightOnColor
+		{
+			get
+			{
 				return _LightOnColor;
 			}
-			set {
+			set
+			{
 				_LightOnColor = value;
 			}
 		}
 
 		private int _Alignment;
-		public int Alignment {
-			get {
+		public int Alignment
+		{
+			get
+			{
 				return _Alignment;
 			}
-			set {
+			set
+			{
 				_Alignment = value;
 			}
 		}
 
 		private PasswordActions _PasswordActions;
 		[XmlElement( "pwd" )]
-		public PasswordActions PasswordActions {
-			get {
+		public PasswordActions PasswordActions
+		{
+			get
+			{
 				return _PasswordActions;
 			}
-			set {
+			set
+			{
 				_PasswordActions = value;
 			}
 		}
 
 		private string _InvisibleDevice;
-		public string InvisibleDevice {
-			get {
+		public string InvisibleDevice
+		{
+			get
+			{
 				return _InvisibleDevice;
 			}
-			set {
+			set
+			{
 				_InvisibleDevice = value;
 			}
 		}
 
 		private string _VisibleRule;
-		public string VisibleRule {
-			get {
+		public string VisibleRule
+		{
+			get
+			{
 				return _VisibleRule;
 			}
-			set {
+			set
+			{
 				_VisibleRule = value;
 			}
 		}
 
 		private string _EnableRule;
-		public string EnableRule {
-			get {
+		public string EnableRule
+		{
+			get
+			{
 				return _EnableRule;
 			}
-			set {
+			set
+			{
 				_EnableRule = value;
 			}
 		}
@@ -270,7 +330,8 @@ namespace Fenubars.XML
 		#region INotifyPropertyChanged Members
 
 		public event PropertyChangedEventHandler PropertyChanged;
-		public void InvokePropertyChanged(string PropertyName) {
+		public void InvokePropertyChanged( string PropertyName )
+		{
 			PropertyChangedEventHandler handler = PropertyChanged;
 			if( handler != null )
 				handler( this, new PropertyChangedEventArgs( PropertyName ) );

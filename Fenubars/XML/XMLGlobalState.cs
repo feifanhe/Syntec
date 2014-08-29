@@ -13,66 +13,84 @@ namespace Fenubars.XML
 
 		private bool _Button3D;
 		[Category( "Global" )]
-		public bool Button3D {
-			get {
+		public bool Button3D
+		{
+			get
+			{
 				return _Button3D;
 			}
-			set {
+			set
+			{
 				_Button3D = value;
 			}
 		}
 
 		private int _Level3D;
 		[Category( "Global" )]
-		public int Level3D {
-			get {
+		public int Level3D
+		{
+			get
+			{
 				return _Level3D;
 			}
-			set {
+			set
+			{
 				_Level3D = value;
 			}
 		}
 
 		private bool _NoFunc;
 		[Category( "Global" )]
-		public bool NoFunc {
-			get {
+		public bool NoFunc
+		{
+			get
+			{
 				return _NoFunc;
 			}
-			set {
+			set
+			{
 				_NoFunc = value;
 			}
 		}
 
 		private bool _NoLR;
 		[Category( "Global" )]
-		public bool NoLR {
-			get {
+		public bool NoLR
+		{
+			get
+			{
 				return _NoLR;
 			}
-			set {
+			set
+			{
 				_NoLR = value;
 			}
 		}
 
 		private bool _BigLR;
 		[Category( "Global" )]
-		public bool BigLR {
-			get {
+		public bool BigLR
+		{
+			get
+			{
 				return _BigLR;
 			}
-			set {
+			set
+			{
 				_BigLR = value;
 			}
 		}
 
 		private bool _TextOverPic;
 		[Category( "Global" )]
-		public bool TextOverPic {
-			get {
+		public bool TextOverPic
+		{
+			get
+			{
 				return _TextOverPic;
 			}
-			set {
+			set
+			{
 				_TextOverPic = value;
 			}
 		}
@@ -81,22 +99,28 @@ namespace Fenubars.XML
 		[Category( "Global" )]
 		[ReadOnly( true )]
 		[Browsable( false )]
-		public string Title {
-			get {
+		public string Title
+		{
+			get
+			{
 				return _Title;
 			}
-			set {
+			set
+			{
 				_Title = value;
 			}
 		}
 
 		private int _Alignment;
 		[Category( "Global" )]
-		public int Alignment {
-			get {
+		public int Alignment
+		{
+			get
+			{
 				return _Alignment;
 			}
-			set {
+			set
+			{
 				_Alignment = value;
 			}
 		}
@@ -108,11 +132,14 @@ namespace Fenubars.XML
 		private List<FenuState> _IncludedFenus = new List<FenuState>();
 		[XmlElement( "fenu" )]
 		[Browsable( false )]
-		public List<FenuState> IncludedFenus {
-			get {
+		public List<FenuState> IncludedFenus
+		{
+			get
+			{
 				return _IncludedFenus;
 			}
-			set {
+			set
+			{
 				_IncludedFenus = value;
 			}
 		}

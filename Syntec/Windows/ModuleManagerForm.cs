@@ -15,14 +15,16 @@ namespace Syntec.Windows
 	{
 		// Indicate whether the check state has varied
 		private bool checkboxModified;
-		
-		public ModuleManagerForm( ) {
+
+		public ModuleManagerForm()
+		{
 			InitializeComponent();
 		}
 
 		#region Form related
 
-		private void PluginManagerForm_Load(object sender, EventArgs e) {
+		private void PluginManagerForm_Load( object sender, EventArgs e )
+		{
 			RefreshPluginList();
 
 			checkboxModified = false;
@@ -32,7 +34,8 @@ namespace Syntec.Windows
 
 		#region Methods
 
-		private void RefreshPluginList( ) {
+		private void RefreshPluginList()
+		{
 			//ModuleManager.Refresh();
 
 			PluginList.Items.Clear();
@@ -41,10 +44,9 @@ namespace Syntec.Windows
 			ListViewItem LVI;
 
 			// Populate available plugins to plugin list
-			foreach( Syntec.Module.Module module in ModuleManager.AvailableModules )
-			{
-				LVI = new ListViewItem( module.Name);
-				LVI.SubItems.Add( module.Version);
+			foreach( Syntec.Module.Module module in ModuleManager.AvailableModules ) {
+				LVI = new ListViewItem( module.Name );
+				LVI.SubItems.Add( module.Version );
 				LVI.SubItems.Add( module.Description );
 
 				LVI.Checked = module.Enabled;
@@ -57,17 +59,19 @@ namespace Syntec.Windows
 
 		#region Button actions
 
-		private void BrowseButton_Click(object sender, EventArgs e) {
+		private void BrowseButton_Click( object sender, EventArgs e )
+		{
 			Process.Start( Application.StartupPath + ModuleManager.ModuleFolderPath );
 		}
 
-		private void RefreshButton_Click(object sender, EventArgs e) {
+		private void RefreshButton_Click( object sender, EventArgs e )
+		{
 			RefreshPluginList();
 		}
 
-		private void OKButton_Click(object sender, EventArgs e) {
-			if( checkboxModified )
-			{
+		private void OKButton_Click( object sender, EventArgs e )
+		{
+			if( checkboxModified ) {
 				MessageBox.Show( "Any changed won't be applied until restart!",
 									"Save Change",
 									MessageBoxButtons.OK,
@@ -84,7 +88,8 @@ namespace Syntec.Windows
 			this.Close();
 		}
 
-		private void CancelButton_Click(object sender, EventArgs e) {
+		private void CancelButton_Click( object sender, EventArgs e )
+		{
 			this.Close();
 		}
 
@@ -92,7 +97,8 @@ namespace Syntec.Windows
 
 		#region List view events
 
-		private void PluginList_ItemChecked(object sender, ItemCheckedEventArgs e) {
+		private void PluginList_ItemChecked( object sender, ItemCheckedEventArgs e )
+		{
 			checkboxModified = true;
 		}
 
