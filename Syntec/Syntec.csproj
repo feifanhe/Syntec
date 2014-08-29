@@ -80,6 +80,10 @@
       <SubType>Designer</SubType>
       <DependentUpon>DocumentsForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Windows\ObjectBrowserForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ObjectBrowserForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Windows\PropertiesWindowForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>PropertiesWindowForm.cs</DependentUpon>
@@ -98,6 +102,12 @@
     </Compile>
     <Compile Include="Windows\DocumentsForm.Designer.cs">
       <DependentUpon>DocumentsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ObjectBrowserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\ObjectBrowserForm.Designer.cs">
+      <DependentUpon>ObjectBrowserForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Windows\PropertiesWindowForm.cs">
       <SubType>Form</SubType>

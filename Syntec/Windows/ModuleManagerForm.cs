@@ -38,7 +38,7 @@ namespace Syntec.Windows
 		{
 			//ModuleManager.Refresh();
 
-			PluginList.Items.Clear();
+			Module_ListView.Items.Clear();
 
 			// Dummy items
 			ListViewItem LVI;
@@ -51,7 +51,7 @@ namespace Syntec.Windows
 
 				LVI.Checked = module.Enabled;
 
-				PluginList.Items.Add( LVI );
+				Module_ListView.Items.Add( LVI );
 			}
 		}
 
@@ -79,7 +79,7 @@ namespace Syntec.Windows
 
 				// Compile state list
 				Dictionary<string, bool> stateList = new Dictionary<string, bool>();
-				foreach( ListViewItem LVI in PluginList.Items )
+				foreach( ListViewItem LVI in Module_ListView.Items )
 					stateList.Add( LVI.Text, LVI.Checked );
 
 				ModuleManager.RewriteConfigs( stateList );

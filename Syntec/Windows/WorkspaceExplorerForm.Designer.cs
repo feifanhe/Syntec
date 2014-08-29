@@ -36,7 +36,7 @@ namespace Syntec.Windows
 			this.ViewCode_ToolStripButton = new System.Windows.Forms.ToolStripButton();
 			this.ViewDesigner_ToolStripButton = new System.Windows.Forms.ToolStripButton();
 			this.ViewStructure_ToolStripButton = new System.Windows.Forms.ToolStripButton();
-			this.WorkspaceTreeView = new System.Windows.Forms.TreeView();
+			this.Workspace_TreeView = new System.Windows.Forms.TreeView();
 			this.FileType_ImageList = new System.Windows.Forms.ImageList( this.components );
 			this.Workspace_ToolStrip.SuspendLayout();
 			this.SuspendLayout();
@@ -111,19 +111,19 @@ namespace Syntec.Windows
 			this.ViewStructure_ToolStripButton.ToolTipText = "View Structure";
 			this.ViewStructure_ToolStripButton.Click += new System.EventHandler( this.ViewStructure_ToolStripButton_Click );
 			// 
-			// WorkspaceTreeView
+			// Workspace_TreeView
 			// 
-			this.WorkspaceTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.WorkspaceTreeView.ImageIndex = 1;
-			this.WorkspaceTreeView.ImageList = this.FileType_ImageList;
-			this.WorkspaceTreeView.Location = new System.Drawing.Point( 0, 25 );
-			this.WorkspaceTreeView.Name = "WorkspaceTreeView";
-			this.WorkspaceTreeView.SelectedImageIndex = 1;
-			this.WorkspaceTreeView.Size = new System.Drawing.Size( 248, 301 );
-			this.WorkspaceTreeView.TabIndex = 1;
-			this.WorkspaceTreeView.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler( this.WorkspaceTreeView_NodeMouseDoubleClick );
-			this.WorkspaceTreeView.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler( this.WorkspaceTreeView_BeforeExpand );
-			this.WorkspaceTreeView.BeforeCollapse += new System.Windows.Forms.TreeViewCancelEventHandler( this.WorkspaceTreeView_BeforeCollapse );
+			this.Workspace_TreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.Workspace_TreeView.ImageIndex = 1;
+			this.Workspace_TreeView.ImageList = this.FileType_ImageList;
+			this.Workspace_TreeView.Location = new System.Drawing.Point( 0, 25 );
+			this.Workspace_TreeView.Name = "Workspace_TreeView";
+			this.Workspace_TreeView.SelectedImageIndex = 1;
+			this.Workspace_TreeView.Size = new System.Drawing.Size( 248, 301 );
+			this.Workspace_TreeView.TabIndex = 1;
+			this.Workspace_TreeView.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler( this.WorkspaceTreeView_NodeMouseDoubleClick );
+			this.Workspace_TreeView.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler( this.WorkspaceTreeView_BeforeExpand );
+			this.Workspace_TreeView.BeforeCollapse += new System.Windows.Forms.TreeViewCancelEventHandler( this.WorkspaceTreeView_BeforeCollapse );
 			// 
 			// FileType_ImageList
 			// 
@@ -141,7 +141,7 @@ namespace Syntec.Windows
 			this.AutoScaleDimensions = new System.Drawing.SizeF( 6F, 13F );
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size( 248, 326 );
-			this.Controls.Add( this.WorkspaceTreeView );
+			this.Controls.Add( this.Workspace_TreeView );
 			this.Controls.Add( this.Workspace_ToolStrip );
 			this.Font = new System.Drawing.Font( "Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ( (byte)( 136 ) ) );
 			this.Name = "WorkspaceExplorerForm";
@@ -161,7 +161,7 @@ namespace Syntec.Windows
 		private System.Windows.Forms.ToolStripButton ViewCode_ToolStripButton;
 		private System.Windows.Forms.ToolStripButton ViewDesigner_ToolStripButton;
 		private System.Windows.Forms.ToolStripButton ViewStructure_ToolStripButton;
-		private System.Windows.Forms.TreeView WorkspaceTreeView;
+		private System.Windows.Forms.TreeView Workspace_TreeView;
 		private System.Windows.Forms.ToolStripSeparator Workspace_Separator_1;
 		private System.Windows.Forms.ToolStripButton Refresh_ToolStripButton;
 		private System.Windows.Forms.ToolStripButton ShowAll_ToolStripButton;

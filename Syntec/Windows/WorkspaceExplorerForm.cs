@@ -31,7 +31,7 @@ namespace Syntec.Windows
 		public void RefreshTree()
 		{
 			// Wipe tree
-			WorkspaceTreeView.Nodes.Clear();
+			Workspace_TreeView.Nodes.Clear();
 
 			ParseDirectoryToTree();
 		}
@@ -84,7 +84,7 @@ namespace Syntec.Windows
 			root.ImageIndex = 5;
 			root.SelectedImageIndex = root.ImageIndex;
 
-			WorkspaceTreeView.Nodes.Add( root );
+			Workspace_TreeView.Nodes.Add( root );
 			AddTopDirectories( root, basePath );
 		}
 
@@ -227,7 +227,7 @@ namespace Syntec.Windows
 		private void ViewDesigner_ToolStripButton_Click( object sender, EventArgs e )
 		{
 			// Get selected path
-			string path = WorkspaceTreeView.SelectedNode.Tag as string;
+			string path = Workspace_TreeView.SelectedNode.Tag as string;
 			OpenDesigner( path );
 		}
 
