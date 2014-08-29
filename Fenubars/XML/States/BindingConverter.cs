@@ -19,7 +19,11 @@ namespace Fenubars.XML
 	public static class ColorConverter
 	{
 		public static void StringToColor(object sender, ConvertEventArgs cevent) {
-			string[] RGB = ((string)cevent.Value).Split( ',' );
+			string[] RGB = ( (string)cevent.Value ).Split( ',' );
+			if( RGB.Length != 3 ) {
+				cevent.Value = Color.FromArgb( 0, 0, 0 );
+				return;
+			}
 			cevent.Value = Color.FromArgb( int.Parse( RGB[ 0 ] ),
 											int.Parse( RGB[ 1 ] ),
 											int.Parse( RGB[ 2 ] ) );

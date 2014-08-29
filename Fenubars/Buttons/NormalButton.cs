@@ -6,7 +6,8 @@ namespace Fenubars.Buttons
 {
 	public partial class NormalButton : Button
 	{
-		public NormalButton(int Index) {
+		public NormalButton( int Index )
+		{
 			InitializeComponent();
 
 			// Non-variable visual setup
@@ -15,7 +16,8 @@ namespace Fenubars.Buttons
 		}
 
 		private Binding bind;
-		public void SetState(FenuButtonState State) {
+		public void SetState( FenuButtonState State )
+		{
 			// Wipe bindings
 			this.DataBindings.Clear();
 			this.ResetText();
@@ -40,11 +42,17 @@ namespace Fenubars.Buttons
 			bind.Parse += new ConvertEventHandler( Fenubars.XML.ColorConverter.ColorToString );
 			this.DataBindings.Add( bind );
 
+			bind = new Binding( "ForeColor", State, "ForeColor" );
+			bind.Format += new ConvertEventHandler( Fenubars.XML.ColorConverter.StringToColor );
+			bind.Parse += new ConvertEventHandler( Fenubars.XML.ColorConverter.ColorToString );
+			this.DataBindings.Add( bind );
+
 			// Post-filled
 			State.Name = State.Name ?? "F" + State.Position.ToString();
 		}
 
-		public void PaintComponent(System.Windows.Forms.Control.ControlCollection Canvas) {
+		public void PaintComponent( System.Windows.Forms.Control.ControlCollection Canvas )
+		{
 			Canvas.Add( this );
 		}
 	}
