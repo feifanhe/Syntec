@@ -2,6 +2,8 @@ using System;
 using System.Windows.Forms;
 
 using WeifenLuo.WinFormsUI.Docking;
+using JWC;
+using Microsoft.Win32;
 
 using Syntec.Module;
 
@@ -15,12 +17,23 @@ namespace Syntec.Windows
 		internal static WorkspaceExplorerForm WorkspaceExplorer = new WorkspaceExplorerForm( null );
 		internal static PropertiesWindowForm PropertiesWindow = new PropertiesWindowForm();
 
+		private const string REGISTRY_KEY = "SOFTWARE\\SYNTEC\\Syntec";
+		private MruStripMenu RecentWorkspacesMenu;
+		private MruStripMenu RecentFilesMenu;
+
 		public MainForm()
 		{
 			InitializeComponent();
 
 			PropertiesWindow.Show( Main_DockPanel, DockState.DockRight );
 			WorkspaceExplorer.Show( PropertiesWindow.Pane, DockAlignment.Top, 0.6 );
+
+			RecentWorkspacesMenu = new MruStripMenu(File_Recent_Workspaces_ToolStripMenuItem, new MruStripMenu.ClickedHandler(RecentWorkspaces_OnClick), REGISTRY_KEY + "\\RecentWorkspaces", true);
+			RecentWorkspacesMenu.LoadFromRegistry();
+
+
+			RecentFilesMenu = new MruStripMenu( File_Recent_Files_ToolStripMenuItem, new MruStripMenu.ClickedHandler( RecentFiles_OnClick ), REGISTRY_KEY + "\\RecentFiles", true );
+			RecentFilesMenu.LoadFromRegistry();
 
 			//df = new DocumentsForm();
 			//df.Show( Main_DockPanel, DockState.Document );
@@ -33,6 +46,12 @@ namespace Syntec.Windows
 		{
 			// Initiate module manager
 			ModuleManager.Refresh();
+		}
+
+		private void MainForm_FormClosing( object sender, FormClosingEventArgs e )
+		{
+			RecentWorkspacesMenu.SaveToRegistry();
+			RecentFilesMenu.SaveToRegistry();
 		}
 
 		#endregion
@@ -87,6 +106,7 @@ namespace Syntec.Windows
 				if( dialog.ShowDialog() != DialogResult.OK )
 					return;
 
+				RecentWorkspacesMenu.AddFile( dialog.SelectedPath );
 				WorkspaceExplorer.RefreshTree( dialog.SelectedPath );
 			}
 			else {
@@ -99,6 +119,7 @@ namespace Syntec.Windows
 				if( dialog.ShowDialog() != DialogResult.OK )
 					return;
 
+				RecentFilesMenu.AddFiles( dialog.FileNames );
 				// PASS TO PROXY
 			}
 		}
@@ -119,5 +140,22 @@ namespace Syntec.Windows
 		}
 
 		#endregion
+
+		#region Recent Workspaces/Files
+
+		private void RecentWorkspaces_OnClick( int index, string filename )
+		{
+			WorkspaceExplorer.RefreshTree( filename );
+		}
+
+		private void RecentFiles_OnClick( int index, string filename )
+		{
+			// TODO: Open File
+		}
+
+		#endregion
+
+		
+
 	}
 }

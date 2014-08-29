@@ -80,6 +80,9 @@ namespace Syntec.Windows
 			this.Standard_ToolStrip = new System.Windows.Forms.ToolStrip();
 			this.Main_ToolStripPanel = new System.Windows.Forms.ToolStripPanel();
 			this.Main_DockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
+			this.File_Recent_Workspaces_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.File_Recent_Files_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.File_ToolStripSeparator_5 = new System.Windows.Forms.ToolStripSeparator();
 			this.Main_MenuStrip.SuspendLayout();
 			this.Main_ToolStripPanel.SuspendLayout();
 			this.SuspendLayout();
@@ -111,9 +114,12 @@ namespace Syntec.Windows
             this.File_SaveAs_ToolStripMenuItem,
             this.File_SaveAll_ToolStripMenuItem,
             this.File_ToolStripSeparator_4,
+            this.File_Recent_Workspaces_ToolStripMenuItem,
+            this.File_Recent_Files_ToolStripMenuItem,
+            this.File_ToolStripSeparator_5,
             this.File_Exit_ToolStripMenuItem} );
 			this.File_ToolStripMenuItem.Name = "File_ToolStripMenuItem";
-			this.File_ToolStripMenuItem.Size = new System.Drawing.Size( 37, 20 );
+			this.File_ToolStripMenuItem.Size = new System.Drawing.Size( 39, 20 );
 			this.File_ToolStripMenuItem.Text = "File";
 			// 
 			// File_New_ToolStripMenuItem
@@ -122,20 +128,20 @@ namespace Syntec.Windows
             this.New_Workspace_ToolStripMenuItem,
             this.New_File_ToolStripMenuItem} );
 			this.File_New_ToolStripMenuItem.Name = "File_New_ToolStripMenuItem";
-			this.File_New_ToolStripMenuItem.Size = new System.Drawing.Size( 164, 22 );
+			this.File_New_ToolStripMenuItem.Size = new System.Drawing.Size( 186, 22 );
 			this.File_New_ToolStripMenuItem.Text = "New";
 			// 
 			// New_Workspace_ToolStripMenuItem
 			// 
 			this.New_Workspace_ToolStripMenuItem.Name = "New_Workspace_ToolStripMenuItem";
-			this.New_Workspace_ToolStripMenuItem.Size = new System.Drawing.Size( 132, 22 );
+			this.New_Workspace_ToolStripMenuItem.Size = new System.Drawing.Size( 139, 22 );
 			this.New_Workspace_ToolStripMenuItem.Text = "Workspace";
 			// 
 			// New_File_ToolStripMenuItem
 			// 
 			this.New_File_ToolStripMenuItem.Image = ( (System.Drawing.Image)( resources.GetObject( "New_File_ToolStripMenuItem.Image" ) ) );
 			this.New_File_ToolStripMenuItem.Name = "New_File_ToolStripMenuItem";
-			this.New_File_ToolStripMenuItem.Size = new System.Drawing.Size( 132, 22 );
+			this.New_File_ToolStripMenuItem.Size = new System.Drawing.Size( 139, 22 );
 			this.New_File_ToolStripMenuItem.Text = "File";
 			// 
 			// File_Open_ToolStripMenuItem
@@ -144,14 +150,14 @@ namespace Syntec.Windows
             this.Open_Workspace_ToolStripMenuItem,
             this.Open_File_ToolStripMenuItem} );
 			this.File_Open_ToolStripMenuItem.Name = "File_Open_ToolStripMenuItem";
-			this.File_Open_ToolStripMenuItem.Size = new System.Drawing.Size( 164, 22 );
+			this.File_Open_ToolStripMenuItem.Size = new System.Drawing.Size( 186, 22 );
 			this.File_Open_ToolStripMenuItem.Text = "Open";
 			// 
 			// Open_Workspace_ToolStripMenuItem
 			// 
 			this.Open_Workspace_ToolStripMenuItem.Image = ( (System.Drawing.Image)( resources.GetObject( "Open_Workspace_ToolStripMenuItem.Image" ) ) );
 			this.Open_Workspace_ToolStripMenuItem.Name = "Open_Workspace_ToolStripMenuItem";
-			this.Open_Workspace_ToolStripMenuItem.Size = new System.Drawing.Size( 132, 22 );
+			this.Open_Workspace_ToolStripMenuItem.Size = new System.Drawing.Size( 152, 22 );
 			this.Open_Workspace_ToolStripMenuItem.Text = "Workspace";
 			this.Open_Workspace_ToolStripMenuItem.Click += new System.EventHandler( this.Open_Workspace_ToolStripMenuItem_Click );
 			// 
@@ -159,74 +165,74 @@ namespace Syntec.Windows
 			// 
 			this.Open_File_ToolStripMenuItem.Image = ( (System.Drawing.Image)( resources.GetObject( "Open_File_ToolStripMenuItem.Image" ) ) );
 			this.Open_File_ToolStripMenuItem.Name = "Open_File_ToolStripMenuItem";
-			this.Open_File_ToolStripMenuItem.Size = new System.Drawing.Size( 132, 22 );
+			this.Open_File_ToolStripMenuItem.Size = new System.Drawing.Size( 152, 22 );
 			this.Open_File_ToolStripMenuItem.Text = "File";
 			this.Open_File_ToolStripMenuItem.Click += new System.EventHandler( this.Open_File_ToolStripMenuItem_Click );
 			// 
 			// File_ToolStripSeparator_1
 			// 
 			this.File_ToolStripSeparator_1.Name = "File_ToolStripSeparator_1";
-			this.File_ToolStripSeparator_1.Size = new System.Drawing.Size( 161, 6 );
+			this.File_ToolStripSeparator_1.Size = new System.Drawing.Size( 183, 6 );
 			// 
 			// File_Add_ToolStripMenuItem
 			// 
 			this.File_Add_ToolStripMenuItem.Enabled = false;
 			this.File_Add_ToolStripMenuItem.Name = "File_Add_ToolStripMenuItem";
-			this.File_Add_ToolStripMenuItem.Size = new System.Drawing.Size( 164, 22 );
+			this.File_Add_ToolStripMenuItem.Size = new System.Drawing.Size( 186, 22 );
 			this.File_Add_ToolStripMenuItem.Text = "Add";
 			// 
 			// File_ToolStripSeparator_2
 			// 
 			this.File_ToolStripSeparator_2.Name = "File_ToolStripSeparator_2";
-			this.File_ToolStripSeparator_2.Size = new System.Drawing.Size( 161, 6 );
+			this.File_ToolStripSeparator_2.Size = new System.Drawing.Size( 183, 6 );
 			// 
 			// File_Close_ToolStripMenuItem
 			// 
 			this.File_Close_ToolStripMenuItem.Name = "File_Close_ToolStripMenuItem";
-			this.File_Close_ToolStripMenuItem.Size = new System.Drawing.Size( 164, 22 );
+			this.File_Close_ToolStripMenuItem.Size = new System.Drawing.Size( 186, 22 );
 			this.File_Close_ToolStripMenuItem.Text = "Close";
 			this.File_Close_ToolStripMenuItem.Click += new System.EventHandler( this.File_Close_ToolStripMenuItem_Click );
 			// 
 			// File_CloseWorkspace_ToolStripMenuItem
 			// 
 			this.File_CloseWorkspace_ToolStripMenuItem.Name = "File_CloseWorkspace_ToolStripMenuItem";
-			this.File_CloseWorkspace_ToolStripMenuItem.Size = new System.Drawing.Size( 164, 22 );
+			this.File_CloseWorkspace_ToolStripMenuItem.Size = new System.Drawing.Size( 186, 22 );
 			this.File_CloseWorkspace_ToolStripMenuItem.Text = "Close Workspace";
 			// 
 			// File_ToolStripSeparator_3
 			// 
 			this.File_ToolStripSeparator_3.Name = "File_ToolStripSeparator_3";
-			this.File_ToolStripSeparator_3.Size = new System.Drawing.Size( 161, 6 );
+			this.File_ToolStripSeparator_3.Size = new System.Drawing.Size( 183, 6 );
 			// 
 			// File_Save_ToolStripMenuItem
 			// 
 			this.File_Save_ToolStripMenuItem.Image = ( (System.Drawing.Image)( resources.GetObject( "File_Save_ToolStripMenuItem.Image" ) ) );
 			this.File_Save_ToolStripMenuItem.Name = "File_Save_ToolStripMenuItem";
-			this.File_Save_ToolStripMenuItem.Size = new System.Drawing.Size( 164, 22 );
+			this.File_Save_ToolStripMenuItem.Size = new System.Drawing.Size( 186, 22 );
 			this.File_Save_ToolStripMenuItem.Text = "Save";
 			// 
 			// File_SaveAs_ToolStripMenuItem
 			// 
 			this.File_SaveAs_ToolStripMenuItem.Name = "File_SaveAs_ToolStripMenuItem";
-			this.File_SaveAs_ToolStripMenuItem.Size = new System.Drawing.Size( 164, 22 );
+			this.File_SaveAs_ToolStripMenuItem.Size = new System.Drawing.Size( 186, 22 );
 			this.File_SaveAs_ToolStripMenuItem.Text = "Save As";
 			// 
 			// File_SaveAll_ToolStripMenuItem
 			// 
 			this.File_SaveAll_ToolStripMenuItem.Image = ( (System.Drawing.Image)( resources.GetObject( "File_SaveAll_ToolStripMenuItem.Image" ) ) );
 			this.File_SaveAll_ToolStripMenuItem.Name = "File_SaveAll_ToolStripMenuItem";
-			this.File_SaveAll_ToolStripMenuItem.Size = new System.Drawing.Size( 164, 22 );
+			this.File_SaveAll_ToolStripMenuItem.Size = new System.Drawing.Size( 186, 22 );
 			this.File_SaveAll_ToolStripMenuItem.Text = "Save All";
 			// 
 			// File_ToolStripSeparator_4
 			// 
 			this.File_ToolStripSeparator_4.Name = "File_ToolStripSeparator_4";
-			this.File_ToolStripSeparator_4.Size = new System.Drawing.Size( 161, 6 );
+			this.File_ToolStripSeparator_4.Size = new System.Drawing.Size( 183, 6 );
 			// 
 			// File_Exit_ToolStripMenuItem
 			// 
 			this.File_Exit_ToolStripMenuItem.Name = "File_Exit_ToolStripMenuItem";
-			this.File_Exit_ToolStripMenuItem.Size = new System.Drawing.Size( 164, 22 );
+			this.File_Exit_ToolStripMenuItem.Size = new System.Drawing.Size( 186, 22 );
 			this.File_Exit_ToolStripMenuItem.Text = "Exit";
 			// 
 			// View_ToolStripMenuItem
@@ -242,74 +248,74 @@ namespace Syntec.Windows
             this.View_ToolStripSeparator_2,
             this.View_Toolbars_ToolStripMenuItem} );
 			this.View_ToolStripMenuItem.Name = "View_ToolStripMenuItem";
-			this.View_ToolStripMenuItem.Size = new System.Drawing.Size( 44, 20 );
+			this.View_ToolStripMenuItem.Size = new System.Drawing.Size( 47, 20 );
 			this.View_ToolStripMenuItem.Text = "View";
 			// 
 			// View_Code_ToolStripMenuItem
 			// 
 			this.View_Code_ToolStripMenuItem.Image = ( (System.Drawing.Image)( resources.GetObject( "View_Code_ToolStripMenuItem.Image" ) ) );
 			this.View_Code_ToolStripMenuItem.Name = "View_Code_ToolStripMenuItem";
-			this.View_Code_ToolStripMenuItem.Size = new System.Drawing.Size( 177, 22 );
+			this.View_Code_ToolStripMenuItem.Size = new System.Drawing.Size( 189, 22 );
 			this.View_Code_ToolStripMenuItem.Text = "Code";
 			// 
 			// View_Designer_ToolStripMenuItem
 			// 
 			this.View_Designer_ToolStripMenuItem.Image = ( (System.Drawing.Image)( resources.GetObject( "View_Designer_ToolStripMenuItem.Image" ) ) );
 			this.View_Designer_ToolStripMenuItem.Name = "View_Designer_ToolStripMenuItem";
-			this.View_Designer_ToolStripMenuItem.Size = new System.Drawing.Size( 177, 22 );
+			this.View_Designer_ToolStripMenuItem.Size = new System.Drawing.Size( 189, 22 );
 			this.View_Designer_ToolStripMenuItem.Text = "Designer";
 			// 
 			// View_Structure_ToolStripMenuItem
 			// 
 			this.View_Structure_ToolStripMenuItem.Image = ( (System.Drawing.Image)( resources.GetObject( "View_Structure_ToolStripMenuItem.Image" ) ) );
 			this.View_Structure_ToolStripMenuItem.Name = "View_Structure_ToolStripMenuItem";
-			this.View_Structure_ToolStripMenuItem.Size = new System.Drawing.Size( 177, 22 );
+			this.View_Structure_ToolStripMenuItem.Size = new System.Drawing.Size( 189, 22 );
 			this.View_Structure_ToolStripMenuItem.Text = "Structure";
 			// 
 			// View_ToolStripSeparator_1
 			// 
 			this.View_ToolStripSeparator_1.Name = "View_ToolStripSeparator_1";
-			this.View_ToolStripSeparator_1.Size = new System.Drawing.Size( 174, 6 );
+			this.View_ToolStripSeparator_1.Size = new System.Drawing.Size( 186, 6 );
 			// 
 			// View_WorkspaceExplorer_ToolStripMenuItem
 			// 
 			this.View_WorkspaceExplorer_ToolStripMenuItem.Image = ( (System.Drawing.Image)( resources.GetObject( "View_WorkspaceExplorer_ToolStripMenuItem.Image" ) ) );
 			this.View_WorkspaceExplorer_ToolStripMenuItem.Name = "View_WorkspaceExplorer_ToolStripMenuItem";
-			this.View_WorkspaceExplorer_ToolStripMenuItem.Size = new System.Drawing.Size( 177, 22 );
+			this.View_WorkspaceExplorer_ToolStripMenuItem.Size = new System.Drawing.Size( 189, 22 );
 			this.View_WorkspaceExplorer_ToolStripMenuItem.Text = "Workspace Explorer";
 			// 
 			// View_PropertiesWindow_ToolStripMenuItem
 			// 
 			this.View_PropertiesWindow_ToolStripMenuItem.Image = ( (System.Drawing.Image)( resources.GetObject( "View_PropertiesWindow_ToolStripMenuItem.Image" ) ) );
 			this.View_PropertiesWindow_ToolStripMenuItem.Name = "View_PropertiesWindow_ToolStripMenuItem";
-			this.View_PropertiesWindow_ToolStripMenuItem.Size = new System.Drawing.Size( 177, 22 );
+			this.View_PropertiesWindow_ToolStripMenuItem.Size = new System.Drawing.Size( 189, 22 );
 			this.View_PropertiesWindow_ToolStripMenuItem.Text = "Properties Window";
 			// 
 			// View_ObjectBrowser_ToolStripMenuItem
 			// 
 			this.View_ObjectBrowser_ToolStripMenuItem.Image = ( (System.Drawing.Image)( resources.GetObject( "View_ObjectBrowser_ToolStripMenuItem.Image" ) ) );
 			this.View_ObjectBrowser_ToolStripMenuItem.Name = "View_ObjectBrowser_ToolStripMenuItem";
-			this.View_ObjectBrowser_ToolStripMenuItem.Size = new System.Drawing.Size( 177, 22 );
+			this.View_ObjectBrowser_ToolStripMenuItem.Size = new System.Drawing.Size( 189, 22 );
 			this.View_ObjectBrowser_ToolStripMenuItem.Text = "Object Browser";
 			// 
 			// View_ToolStripSeparator_2
 			// 
 			this.View_ToolStripSeparator_2.Name = "View_ToolStripSeparator_2";
-			this.View_ToolStripSeparator_2.Size = new System.Drawing.Size( 174, 6 );
+			this.View_ToolStripSeparator_2.Size = new System.Drawing.Size( 186, 6 );
 			// 
 			// View_Toolbars_ToolStripMenuItem
 			// 
 			this.View_Toolbars_ToolStripMenuItem.DropDownItems.AddRange( new System.Windows.Forms.ToolStripItem[] {
             this.Toolbars_Standard_ToolStripMenuItem} );
 			this.View_Toolbars_ToolStripMenuItem.Name = "View_Toolbars_ToolStripMenuItem";
-			this.View_Toolbars_ToolStripMenuItem.Size = new System.Drawing.Size( 177, 22 );
+			this.View_Toolbars_ToolStripMenuItem.Size = new System.Drawing.Size( 189, 22 );
 			this.View_Toolbars_ToolStripMenuItem.Text = "Toolbars";
 			// 
 			// Toolbars_Standard_ToolStripMenuItem
 			// 
 			this.Toolbars_Standard_ToolStripMenuItem.CheckOnClick = true;
 			this.Toolbars_Standard_ToolStripMenuItem.Name = "Toolbars_Standard_ToolStripMenuItem";
-			this.Toolbars_Standard_ToolStripMenuItem.Size = new System.Drawing.Size( 121, 22 );
+			this.Toolbars_Standard_ToolStripMenuItem.Size = new System.Drawing.Size( 128, 22 );
 			this.Toolbars_Standard_ToolStripMenuItem.Text = "Standard";
 			// 
 			// Tools_ToolStripMenu
@@ -317,26 +323,26 @@ namespace Syntec.Windows
 			this.Tools_ToolStripMenu.DropDownItems.AddRange( new System.Windows.Forms.ToolStripItem[] {
             this.Tools_ModuleManager_ToolStripMenuItem} );
 			this.Tools_ToolStripMenu.Name = "Tools_ToolStripMenu";
-			this.Tools_ToolStripMenu.Size = new System.Drawing.Size( 48, 20 );
+			this.Tools_ToolStripMenu.Size = new System.Drawing.Size( 51, 20 );
 			this.Tools_ToolStripMenu.Text = "Tools";
 			// 
 			// Tools_ModuleManager_ToolStripMenuItem
 			// 
 			this.Tools_ModuleManager_ToolStripMenuItem.Name = "Tools_ModuleManager_ToolStripMenuItem";
-			this.Tools_ModuleManager_ToolStripMenuItem.Size = new System.Drawing.Size( 165, 22 );
+			this.Tools_ModuleManager_ToolStripMenuItem.Size = new System.Drawing.Size( 176, 22 );
 			this.Tools_ModuleManager_ToolStripMenuItem.Text = "Module Manager";
 			this.Tools_ModuleManager_ToolStripMenuItem.Click += new System.EventHandler( this.Tools_ModuleManager_ToolStripMenuItem_Click );
 			// 
 			// Test_Button
 			// 
 			this.Test_Button.Name = "Test_Button";
-			this.Test_Button.Size = new System.Drawing.Size( 41, 20 );
+			this.Test_Button.Size = new System.Drawing.Size( 43, 20 );
 			this.Test_Button.Text = "Test";
 			this.Test_Button.Click += new System.EventHandler( this.Test_Button_Click );
 			// 
 			// Main_StatusStrip
 			// 
-			this.Main_StatusStrip.Location = new System.Drawing.Point( 0, 507 );
+			this.Main_StatusStrip.Location = new System.Drawing.Point( 0, 466 );
 			this.Main_StatusStrip.Name = "Main_StatusStrip";
 			this.Main_StatusStrip.Size = new System.Drawing.Size( 1009, 22 );
 			this.Main_StatusStrip.TabIndex = 2;
@@ -367,7 +373,7 @@ namespace Syntec.Windows
 			this.Main_DockPanel.DockBackColor = System.Drawing.SystemColors.ControlDark;
 			this.Main_DockPanel.Location = new System.Drawing.Point( 0, 49 );
 			this.Main_DockPanel.Name = "Main_DockPanel";
-			this.Main_DockPanel.Size = new System.Drawing.Size( 1009, 458 );
+			this.Main_DockPanel.Size = new System.Drawing.Size( 1009, 417 );
 			dockPanelGradient4.EndColor = System.Drawing.SystemColors.ControlLight;
 			dockPanelGradient4.StartColor = System.Drawing.SystemColors.ControlLight;
 			autoHideStripSkin2.DockStripGradient = dockPanelGradient4;
@@ -416,12 +422,29 @@ namespace Syntec.Windows
 			this.Main_DockPanel.Skin = dockPanelSkin2;
 			this.Main_DockPanel.TabIndex = 5;
 			// 
+			// File_Recent_Workspaces_ToolStripMenuItem
+			// 
+			this.File_Recent_Workspaces_ToolStripMenuItem.Name = "File_Recent_Workspaces_ToolStripMenuItem";
+			this.File_Recent_Workspaces_ToolStripMenuItem.Size = new System.Drawing.Size( 186, 22 );
+			this.File_Recent_Workspaces_ToolStripMenuItem.Text = "Recent Workspaces";
+			// 
+			// File_Recent_Files_ToolStripMenuItem
+			// 
+			this.File_Recent_Files_ToolStripMenuItem.Name = "File_Recent_Files_ToolStripMenuItem";
+			this.File_Recent_Files_ToolStripMenuItem.Size = new System.Drawing.Size( 186, 22 );
+			this.File_Recent_Files_ToolStripMenuItem.Text = "Recent Files";
+			// 
+			// File_ToolStripSeparator_5
+			// 
+			this.File_ToolStripSeparator_5.Name = "File_ToolStripSeparator_5";
+			this.File_ToolStripSeparator_5.Size = new System.Drawing.Size( 183, 6 );
+			// 
 			// MainForm
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF( 6F, 13F );
+			this.AutoScaleDimensions = new System.Drawing.SizeF( 6F, 12F );
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlDark;
-			this.ClientSize = new System.Drawing.Size( 1009, 529 );
+			this.ClientSize = new System.Drawing.Size( 1009, 488 );
 			this.Controls.Add( this.Main_DockPanel );
 			this.Controls.Add( this.Main_ToolStripPanel );
 			this.Controls.Add( this.Main_StatusStrip );
@@ -432,6 +455,7 @@ namespace Syntec.Windows
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Syntec";
 			this.Load += new System.EventHandler( this.MainForm_Load );
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler( this.MainForm_FormClosing );
 			this.Main_MenuStrip.ResumeLayout( false );
 			this.Main_MenuStrip.PerformLayout();
 			this.Main_ToolStripPanel.ResumeLayout( false );
@@ -480,6 +504,9 @@ namespace Syntec.Windows
 		private System.Windows.Forms.ToolStripMenuItem View_PropertiesWindow_ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem View_ObjectBrowser_ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator View_ToolStripSeparator_2;
+		private System.Windows.Forms.ToolStripMenuItem File_Recent_Workspaces_ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem File_Recent_Files_ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripSeparator File_ToolStripSeparator_5;
 	}
 }
 
