@@ -13,6 +13,9 @@ namespace Syntec.Windows
 {
 	public partial class ModuleManagerForm : Form
 	{
+		// Indicate whether the check state has varied
+		private bool checkboxModified;
+		
 		public ModuleManagerForm( ) {
 			InitializeComponent();
 		}
@@ -21,6 +24,8 @@ namespace Syntec.Windows
 
 		private void PluginManagerForm_Load(object sender, EventArgs e) {
 			RefreshPluginList();
+
+			checkboxModified = false;
 		}
 
 		#endregion
@@ -39,8 +44,8 @@ namespace Syntec.Windows
 			foreach( Syntec.Module.Module module in ModuleManager.AvailableModules )
 			{
 				LVI = new ListViewItem( module.Name);
-				LVI.SubItems.Add( "?");
-				LVI.SubItems.Add( module.Assembly.Location );
+				LVI.SubItems.Add( module.Version);
+				LVI.SubItems.Add( module.Description );
 
 				LVI.Checked = module.Enabled;
 
@@ -61,11 +66,29 @@ namespace Syntec.Windows
 		}
 
 		private void OKButton_Click(object sender, EventArgs e) {
+			if( checkboxModified )
+			{
+				MessageBox.Show( "Any changed won't be applied until restart!",
+									"Save Change",
+									MessageBoxButtons.OK,
+									MessageBoxIcon.Exclamation );
+				// SAVE
 
+			}
+
+			this.Close();
 		}
 
 		private void CancelButton_Click(object sender, EventArgs e) {
 			this.Close();
+		}
+
+		#endregion
+
+		#region List view events
+
+		private void PluginList_ItemChecked(object sender, ItemCheckedEventArgs e) {
+			checkboxModified = true;
 		}
 
 		#endregion

@@ -29,6 +29,7 @@ namespace Syntec.Windows
 		#region Form related
 
 		private void MainForm_Load(object sender, EventArgs e) {
+			// Initiate module manager
 			ModuleManager.Refresh();
 		}
 

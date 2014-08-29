@@ -6,10 +6,10 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle( "Fenubars" )]
-[assembly: AssemblyDescription( "" )]
+[assembly: AssemblyDescription( "Use this plugin to support fenubar edit function." )]
 [assembly: AssemblyConfiguration( "" )]
-[assembly: AssemblyCompany( "" )]
-[assembly: AssemblyProduct( "Fenubars" )]
+[assembly: AssemblyCompany( "SYNTEC" )]
+[assembly: AssemblyProduct( "" )]
 [assembly: AssemblyCopyright( "Copyright ©  2014" )]
 [assembly: AssemblyTrademark( "" )]
 [assembly: AssemblyCulture( "" )]

@@ -53,6 +53,7 @@ namespace Syntec.Windows
 			this.PluginList.TabIndex = 0;
 			this.PluginList.UseCompatibleStateImageBehavior = false;
 			this.PluginList.View = System.Windows.Forms.View.Details;
+			this.PluginList.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler( this.PluginList_ItemChecked );
 			// 
 			// NameHeader
 			// 
@@ -107,6 +108,7 @@ namespace Syntec.Windows
 			this.Refresh_Button.TabIndex = 7;
 			this.Refresh_Button.Text = "Refresh";
 			this.Refresh_Button.UseVisualStyleBackColor = true;
+			this.Refresh_Button.Visible = false;
 			this.Refresh_Button.Click += new System.EventHandler( this.RefreshButton_Click );
 			// 
 			// ModuleManagerForm

@@ -34,10 +34,7 @@ namespace Syntec.Module
 
 				//Preliminary check, must be .dll
 				if( file.Extension.ToUpper() == ".DLL" )
-				{
-					//Add the module
 					AddModule( fileName );
-				}
 			}
 		}
 
@@ -60,7 +57,7 @@ namespace Syntec.Module
 
 						newModule.Assembly = assembly;
 						newModule.EntryType = moduleType.ToString();
-						
+
 						// Since assembly was assigned, name can be read now
 						bool parsedState;
 						if( Boolean.TryParse( configs.GetValue( "LoadOnStart", newModule.Name ), out parsedState ) )
@@ -134,23 +131,33 @@ namespace Syntec.Module
 
 	public class Module
 	{
-		private Assembly _Assembly;
-		public Assembly Assembly {
-			get {
-				return _Assembly;
-			}
-			set {
-				_Assembly = value;
-			}
-		}
+
+
+		#region Module info
 
 		public string Name {
 			get {
 				// Get the namespace only
-				Console.WriteLine( Assembly.GetName() );
 				return _Assembly.FullName.Split( ',' )[ 0 ];
 			}
 		}
+
+		public string Description {
+			get {
+				object descriptionObject = _Assembly.GetCustomAttributes( typeof( AssemblyDescriptionAttribute ), false )[ 0 ];
+				return ( descriptionObject as AssemblyDescriptionAttribute ).Description;
+			}
+		}
+
+		public string Version {
+			get {
+				return Assembly.GetEntryAssembly().GetName().Version.ToString();
+			}
+		}
+
+		#endregion
+
+		#region Module state
 
 		private bool _Enabled = false;
 		public bool Enabled {
@@ -159,6 +166,20 @@ namespace Syntec.Module
 			}
 			set {
 				_Enabled = value;
+			}
+		}
+
+		#endregion
+
+		#region Instance info
+
+		private Assembly _Assembly;
+		public Assembly Assembly {
+			get {
+				return _Assembly;
+			}
+			set {
+				_Assembly = value;
 			}
 		}
 
@@ -172,5 +193,7 @@ namespace Syntec.Module
 				_EntryType = value;
 			}
 		}
+
+		#endregion
 	}
 }

@@ -33,26 +33,6 @@ namespace Fenubars
 
 		private string XMLPath = string.Empty;
 
-		//// Parent container
-		//private System.Windows.Forms.Control.ControlCollection _Canvas;
-		//public System.Windows.Forms.Control.ControlCollection Canvas {
-		//    get {
-		//        return _Canvas;
-		//    }
-		//    set {
-		//        _Canvas = value;
-		//    }
-		//}
-		//private FilteredPropertyGrid _PropertyViewer;
-		//public FilteredPropertyGrid PropertyViewer {
-		//    get {
-		//        return _PropertyViewer;
-		//    }
-		//    set {
-		//        _PropertyViewer = value;
-		//    }
-		//}
-
 		#region Acquire focus object by event
 
 		private void FocusedObjectAvailable(object sender,
@@ -62,20 +42,16 @@ namespace Fenubars
 				//PropertyViewer.HiddenAttributes = null;
 				//PropertyViewer.BrowsableProperties = null;
 				_Host.SetPropertyGrid( null, null );
-				
-				//PropertyViewer.SelectedObject = CurrentFenuState;
+
 				_Host.ShowProperties( CurrentFenuState );
 			}
 			else
 			{
 				if( e.Type == typeof( EscapeButton ) )
-					//PropertyViewer.SelectedObject = e.Escape;
 					_Host.ShowProperties( e.Escape );
 				else if( e.Type == typeof( NormalButton ) )
-					//PropertyViewer.SelectedObject = e.Normal;
 					_Host.ShowProperties( e.Normal );
 				else if( e.Type == typeof( NextButton ) )
-					//PropertyViewer.SelectedObject = e.Next;
 					_Host.ShowProperties( e.Next );
 
 				//PropertyViewer.HiddenAttributes = new AttributeCollection( new Attribute[] { new CategoryAttribute( "Fenu Button" ) } );
@@ -83,7 +59,6 @@ namespace Fenubars
 				_Host.SetPropertyGrid( new AttributeCollection( new Attribute[] { new CategoryAttribute( "Fenu Button" ) } ),
 										SelectedProperties( e.Type ) );
 			}
-			//PropertyViewer.Refresh();
 		}
 
 		private string[] SelectedProperties(Type DesiredType) {
