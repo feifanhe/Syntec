@@ -13,6 +13,7 @@ namespace Fenubars.Display
 
 		// Local container for overall fenu states
 		private List<FenuState> fenusContainer;
+		private List<string> awaitingFenus = new List<string>();
 
 		public ObjectTree( List<FenuState> fenusContainer )
 		{
@@ -43,6 +44,7 @@ namespace Fenubars.Display
 														{
 															return testFenu.Name == "main";
 														} );
+			root.Name = root.Text;
 
 			this.Nodes.Add( root );
 			AddTopFenus( root, root.Tag as FenuState );
@@ -59,10 +61,14 @@ namespace Fenubars.Display
 				List<FenuState> subFenus = GetLinkedFenus( parentFenu );
 
 				foreach( FenuState subFenu in subFenus ) {
+					// Check if this fenu is linked previously
+					if( IsLinked( subFenu ) )
+						continue;
+
 					TreeNode child = new TreeNode( subFenu.Name );
 					// Save fenu info into tag
 					child.Tag = subFenu;
-					child.Text = subFenu.Name;
+					child.Name = child.Text;
 
 					// Add dummy node when sub-fenu exists, in order to show the expand sign
 					if( HasLinkedFenus( subFenu ) ) {
@@ -86,6 +92,9 @@ namespace Fenubars.Display
 		{
 			List<FenuState> acquiredFenus = new List<FenuState>();
 
+			// Escape buttons
+			acquiredFenus.AddRange( ParseFenuFromButton( parentFenu.EscapeButton ) );
+
 			// Normal buttons
 			foreach( FenuButtonState FBS in parentFenu.NormalButtonList )
 				acquiredFenus.AddRange( ParseFenuFromButton( FBS ) );
@@ -103,25 +112,13 @@ namespace Fenubars.Display
 			// Read from <link>
 			string linkToTest = button.Link;
 			if( linkToTest != null ) {
-				FenuState foundedFenu = fenusContainer.Find( delegate( FenuState testFenu )
-														{
-															return testFenu.Name == linkToTest;
-														} );
-				if( foundedFenu != null )
-					acquiredFenus.Add( foundedFenu );
+				AddFenuByName( ref acquiredFenus, linkToTest );
 			}
 
 			// Read from <action>
 			linkToTest = button.Actions.Action;
-			if( linkToTest != null && linkToTest.IndexOf( CUSTOM_FENU_HEADER ) == 0 ) {
-				linkToTest = linkToTest.Substring( CUSTOM_FENU_HEADER.Length );
-				FenuState foundedFenu = fenusContainer.Find( delegate( FenuState testFenu )
-														{
-															return testFenu.Name == linkToTest;
-														} );
-				if( foundedFenu != null )
-					acquiredFenus.Add( foundedFenu );
-			}
+			if( linkToTest != null && linkToTest.IndexOf( CUSTOM_FENU_HEADER ) == 0 )
+				AddFenuByName( ref acquiredFenus, linkToTest.Substring( CUSTOM_FENU_HEADER.Length ) );
 
 
 			// Read from <actions>
@@ -129,18 +126,21 @@ namespace Fenubars.Display
 				if( action == null )
 					continue;
 				linkToTest = action;
-				if( linkToTest != null && linkToTest.IndexOf( CUSTOM_FENU_HEADER ) == 0 ) {
-					linkToTest = linkToTest.Substring( CUSTOM_FENU_HEADER.Length );
-					FenuState foundedFenu = fenusContainer.Find( delegate( FenuState testFenu )
-															{
-																return testFenu.Name == linkToTest;
-															} );
-					if( foundedFenu != null )
-						acquiredFenus.Add( foundedFenu );
-				}
+				if( linkToTest != null && linkToTest.IndexOf( CUSTOM_FENU_HEADER ) == 0 )
+					AddFenuByName( ref acquiredFenus, linkToTest.Substring( CUSTOM_FENU_HEADER.Length ) );
 			}
 
 			return acquiredFenus.ToArray();
+		}
+
+		private void AddFenuByName( ref List<FenuState> fenuList, string name )
+		{
+			FenuState foundedFenu = fenusContainer.Find( delegate( FenuState selectedFenu )
+															{
+																return selectedFenu.Name == name;
+															} );
+			if( foundedFenu != null )
+				fenuList.Add( foundedFenu );
 		}
 
 		private bool HasLinkedFenus( FenuState fenu )
@@ -148,22 +148,17 @@ namespace Fenubars.Display
 			return GetLinkedFenus( fenu ).Count > 0;
 		}
 
-		#region Tree view events
+		private bool IsLinked( FenuState fenu )
+		{
+			return this.Nodes.Find( fenu.Name, true ).Length > 0;
+		}
 
-		private bool cancelExpandCollapse = false;
+		#region Tree view events
 
 		private void ObjectTree_BeforeExpand( object sender, TreeViewCancelEventArgs e )
 		{
 			if( e.Node.Tag != null )
 				AddTopFenus( e.Node, e.Node.Tag as FenuState );
-		}
-
-		private void ObjectTree_BeforeCollapse( object sender, TreeViewCancelEventArgs e )
-		{
-			if( cancelExpandCollapse ) {
-				e.Cancel = true;
-				cancelExpandCollapse = false;
-			}
 		}
 
 		private void ObjectTree_NodeMouseDoubleClick( object sender, TreeNodeMouseClickEventArgs e )

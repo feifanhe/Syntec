@@ -71,7 +71,7 @@ namespace Syntec.Windows
 
 		public void PopulateObjects( Control treeView )
 		{
-			MainForm.ObjectBrowser.SetTreeView( treeView );
+			MainForm.ObjectBrowser.SetContents( treeView );
 		}
 
 		#endregion

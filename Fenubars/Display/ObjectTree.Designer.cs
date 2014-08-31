@@ -36,7 +36,6 @@ namespace Fenubars.Display
 			this.Size = new System.Drawing.Size( 150, 150 );
 			this.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler( this.ObjectTree_NodeMouseDoubleClick );
 			this.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler( this.ObjectTree_BeforeExpand );
-			this.BeforeCollapse += new System.Windows.Forms.TreeViewCancelEventHandler( this.ObjectTree_BeforeCollapse );
 			this.ResumeLayout( false );
 
 		}

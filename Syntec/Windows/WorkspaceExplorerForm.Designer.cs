@@ -32,10 +32,6 @@ namespace Syntec.Windows
 			this.Workspace_ToolStrip = new System.Windows.Forms.ToolStrip();
 			this.ShowAll_ToolStripButton = new System.Windows.Forms.ToolStripButton();
 			this.Refresh_ToolStripButton = new System.Windows.Forms.ToolStripButton();
-			this.Workspace_Separator_1 = new System.Windows.Forms.ToolStripSeparator();
-			this.ViewCode_ToolStripButton = new System.Windows.Forms.ToolStripButton();
-			this.ViewDesigner_ToolStripButton = new System.Windows.Forms.ToolStripButton();
-			this.ViewStructure_ToolStripButton = new System.Windows.Forms.ToolStripButton();
 			this.Workspace_TreeView = new System.Windows.Forms.TreeView();
 			this.FileType_ImageList = new System.Windows.Forms.ImageList( this.components );
 			this.Workspace_ToolStrip.SuspendLayout();
@@ -46,11 +42,7 @@ namespace Syntec.Windows
 			this.Workspace_ToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
 			this.Workspace_ToolStrip.Items.AddRange( new System.Windows.Forms.ToolStripItem[] {
             this.ShowAll_ToolStripButton,
-            this.Refresh_ToolStripButton,
-            this.Workspace_Separator_1,
-            this.ViewCode_ToolStripButton,
-            this.ViewDesigner_ToolStripButton,
-            this.ViewStructure_ToolStripButton} );
+            this.Refresh_ToolStripButton} );
 			this.Workspace_ToolStrip.Location = new System.Drawing.Point( 0, 0 );
 			this.Workspace_ToolStrip.Name = "Workspace_ToolStrip";
 			this.Workspace_ToolStrip.Size = new System.Drawing.Size( 248, 25 );
@@ -75,41 +67,6 @@ namespace Syntec.Windows
 			this.Refresh_ToolStripButton.Size = new System.Drawing.Size( 23, 22 );
 			this.Refresh_ToolStripButton.ToolTipText = "Refresh";
 			this.Refresh_ToolStripButton.Click += new System.EventHandler( this.Refresh_ToolStripButton_Click );
-			// 
-			// Workspace_Separator_1
-			// 
-			this.Workspace_Separator_1.Name = "Workspace_Separator_1";
-			this.Workspace_Separator_1.Size = new System.Drawing.Size( 6, 25 );
-			// 
-			// ViewCode_ToolStripButton
-			// 
-			this.ViewCode_ToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.ViewCode_ToolStripButton.Image = ( (System.Drawing.Image)( resources.GetObject( "ViewCode_ToolStripButton.Image" ) ) );
-			this.ViewCode_ToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.ViewCode_ToolStripButton.Name = "ViewCode_ToolStripButton";
-			this.ViewCode_ToolStripButton.Size = new System.Drawing.Size( 23, 22 );
-			this.ViewCode_ToolStripButton.ToolTipText = "View Code";
-			this.ViewCode_ToolStripButton.Click += new System.EventHandler( this.ViewCode_ToolStripButton_Click );
-			// 
-			// ViewDesigner_ToolStripButton
-			// 
-			this.ViewDesigner_ToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.ViewDesigner_ToolStripButton.Image = ( (System.Drawing.Image)( resources.GetObject( "ViewDesigner_ToolStripButton.Image" ) ) );
-			this.ViewDesigner_ToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.ViewDesigner_ToolStripButton.Name = "ViewDesigner_ToolStripButton";
-			this.ViewDesigner_ToolStripButton.Size = new System.Drawing.Size( 23, 22 );
-			this.ViewDesigner_ToolStripButton.ToolTipText = "View Designer";
-			this.ViewDesigner_ToolStripButton.Click += new System.EventHandler( this.ViewDesigner_ToolStripButton_Click );
-			// 
-			// ViewStructure_ToolStripButton
-			// 
-			this.ViewStructure_ToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.ViewStructure_ToolStripButton.Image = ( (System.Drawing.Image)( resources.GetObject( "ViewStructure_ToolStripButton.Image" ) ) );
-			this.ViewStructure_ToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-			this.ViewStructure_ToolStripButton.Name = "ViewStructure_ToolStripButton";
-			this.ViewStructure_ToolStripButton.Size = new System.Drawing.Size( 23, 22 );
-			this.ViewStructure_ToolStripButton.ToolTipText = "View Structure";
-			this.ViewStructure_ToolStripButton.Click += new System.EventHandler( this.ViewStructure_ToolStripButton_Click );
 			// 
 			// Workspace_TreeView
 			// 
@@ -158,11 +115,7 @@ namespace Syntec.Windows
 		#endregion
 
 		private System.Windows.Forms.ToolStrip Workspace_ToolStrip;
-		private System.Windows.Forms.ToolStripButton ViewCode_ToolStripButton;
-		private System.Windows.Forms.ToolStripButton ViewDesigner_ToolStripButton;
-		private System.Windows.Forms.ToolStripButton ViewStructure_ToolStripButton;
 		private System.Windows.Forms.TreeView Workspace_TreeView;
-		private System.Windows.Forms.ToolStripSeparator Workspace_Separator_1;
 		private System.Windows.Forms.ToolStripButton Refresh_ToolStripButton;
 		private System.Windows.Forms.ToolStripButton ShowAll_ToolStripButton;
 		private System.Windows.Forms.ImageList FileType_ImageList;
