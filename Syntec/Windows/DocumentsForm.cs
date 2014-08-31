@@ -36,6 +36,8 @@ namespace Syntec.Windows
 				// Set target host
 				instance.Host = this;
 
+				instance.Open();
+
 				//// Execute
 				//instance.Open( "main" );
 				//instance.Open( "About" );
@@ -65,6 +67,11 @@ namespace Syntec.Windows
 		{
 			MainForm.PropertiesWindow.SetHiddenAttributes( hidden );
 			MainForm.PropertiesWindow.SetBrowsableProperties( browsable );
+		}
+
+		public void PopulateObjects( Control treeView )
+		{
+			MainForm.ObjectBrowser.SetTreeView( treeView );
 		}
 
 		#endregion

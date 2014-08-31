@@ -33,6 +33,7 @@ namespace Fenubars
 				CurrentFenuState.IncludedFenus = value;
 			}
 		}
+		private ObjectTree CompiledTree;
 
 		private string XMLPath = string.Empty;
 
@@ -179,10 +180,12 @@ namespace Fenubars
 			using( StreamReader Reader = new StreamReader( XMLPath ) ) {
 				CurrentFenuState = (XMLGlobalState)Serializer.Deserialize( Reader );
 			}
+		}
 
-			ObjectTree OT = new ObjectTree( CurrentFenuState.IncludedFenus );
-			OT.Dock = System.Windows.Forms.DockStyle.Fill;
-			_Host.DrawOnCanvas( OT );
+		public void Open()
+		{
+			CompiledTree = new ObjectTree( CurrentFenuState.IncludedFenus );
+			_Host.PopulateObjects( CompiledTree );
 		}
 
 		public void Open( string FenuName )
