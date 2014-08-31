@@ -33,7 +33,7 @@ namespace Fenubars
 				CurrentFenuState.IncludedFenus = value;
 			}
 		}
-		private ObjectTree CompiledTree;
+		private ObjectTree_Deprecate CompiledTree;
 
 		private string XMLPath = string.Empty;
 
@@ -184,7 +184,7 @@ namespace Fenubars
 
 		public void Open()
 		{
-			CompiledTree = new ObjectTree( CurrentFenuState.IncludedFenus );
+			CompiledTree = new ObjectTree_Deprecate( CurrentFenuState.IncludedFenus );
 			_Host.PopulateObjects( CompiledTree );
 		}
 

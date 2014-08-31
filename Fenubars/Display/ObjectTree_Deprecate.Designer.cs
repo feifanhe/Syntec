@@ -1,6 +1,6 @@
 namespace Fenubars.Display
 {
-	partial class ObjectTree
+	partial class ObjectTree_Deprecate
 	{
 		/// <summary> 
 		/// Required designer variable.

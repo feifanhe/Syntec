@@ -59,11 +59,12 @@
     <Compile Include="Display\Fenu.Designer.cs">
       <DependentUpon>Fenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Display\ObjectTree.cs">
+    <Compile Include="Display\ObjectTree.cs" />
+    <Compile Include="Display\ObjectTree_Deprecate.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Display\ObjectTree.Designer.cs">
-      <DependentUpon>ObjectTree.cs</DependentUpon>
+    <Compile Include="Display\ObjectTree_Deprecate.Designer.cs">
+      <DependentUpon>ObjectTree_Deprecate.cs</DependentUpon>
     </Compile>
     <Compile Include="Editor\ClipBoardManager.cs" />
     <Compile Include="Events\NotifyProperyChangedBase.cs" />
@@ -87,9 +88,9 @@
       <SubType>Designer</SubType>
       <DependentUpon>Fenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Display\ObjectTree.resx">
+    <EmbeddedResource Include="Display\ObjectTree_Deprecate.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>ObjectTree.cs</DependentUpon>
+      <DependentUpon>ObjectTree_Deprecate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <SubType>Designer</SubType>
