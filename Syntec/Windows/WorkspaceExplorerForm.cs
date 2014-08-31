@@ -88,35 +88,6 @@ namespace Syntec.Windows
 			AddTopDirectories( root, basePath );
 		}
 
-		#region Tree view events
-
-		// Parsing the directory before expand
-		private void WorkspaceTreeView_BeforeExpand( object sender, TreeViewCancelEventArgs e )
-		{
-			if( e.Node.Tag != null )
-				AddTopDirectories( e.Node, (string)e.Node.Tag );
-
-			// Change expanded icon
-			if( e.Node.ImageIndex == 1 )
-				e.Node.ImageIndex = 3;
-			e.Node.SelectedImageIndex = e.Node.ImageIndex;
-		}
-
-		private void WorkspaceTreeView_BeforeCollapse( object sender, TreeViewCancelEventArgs e )
-		{
-			// Switch back icon to folder
-			if( e.Node.ImageIndex == 3 )
-				e.Node.ImageIndex = 1;
-			e.Node.SelectedImageIndex = e.Node.ImageIndex;
-		}
-
-		private void WorkspaceTreeView_NodeMouseDoubleClick( object sender, TreeNodeMouseClickEventArgs e )
-		{
-			OpenDesigner( e.Node.Tag as string );
-		}
-
-		#endregion
-
 		private void AddTopDirectories( TreeNode node, string path )
 		{
 			node.TreeView.BeginUpdate(); // for best performance
@@ -202,6 +173,35 @@ namespace Syntec.Windows
 				node.Tag = null;
 			}
 		}
+
+		#region Tree view events
+
+		// Parsing the directory before expand
+		private void WorkspaceTreeView_BeforeExpand( object sender, TreeViewCancelEventArgs e )
+		{
+			if( e.Node.Tag != null )
+				AddTopDirectories( e.Node, (string)e.Node.Tag );
+
+			// Change expanded icon
+			if( e.Node.ImageIndex == 1 )
+				e.Node.ImageIndex = 3;
+			e.Node.SelectedImageIndex = e.Node.ImageIndex;
+		}
+
+		private void WorkspaceTreeView_BeforeCollapse( object sender, TreeViewCancelEventArgs e )
+		{
+			// Switch back icon to folder
+			if( e.Node.ImageIndex == 3 )
+				e.Node.ImageIndex = 1;
+			e.Node.SelectedImageIndex = e.Node.ImageIndex;
+		}
+
+		private void WorkspaceTreeView_NodeMouseDoubleClick( object sender, TreeNodeMouseClickEventArgs e )
+		{
+			OpenDesigner( e.Node.Tag as string );
+		}
+
+		#endregion
 
 		#region Tool strip events
 

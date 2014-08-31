@@ -59,6 +59,12 @@
     <Compile Include="Display\Fenu.Designer.cs">
       <DependentUpon>Fenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Display\ObjectTree.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Display\ObjectTree.Designer.cs">
+      <DependentUpon>ObjectTree.cs</DependentUpon>
+    </Compile>
     <Compile Include="Editor\ClipBoardManager.cs" />
     <Compile Include="Events\NotifyProperyChangedBase.cs" />
     <Compile Include="Handler.cs" />
@@ -81,14 +87,15 @@
       <SubType>Designer</SubType>
       <DependentUpon>Fenu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Display\ObjectTree.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ObjectTree.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Resources\Icons\Close_Fenu.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PluginInterface\ModuleInterface.csproj">

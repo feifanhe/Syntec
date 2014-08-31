@@ -14,6 +14,7 @@ namespace Syntec.Windows
 		// General windows
 		internal static WorkspaceExplorerForm WorkspaceExplorer = new WorkspaceExplorerForm( null );
 		internal static PropertiesWindowForm PropertiesWindow = new PropertiesWindowForm();
+		internal static ObjectBrowserForm ObjectBrowser = new ObjectBrowserForm();
 
 		public MainForm()
 		{
@@ -21,6 +22,8 @@ namespace Syntec.Windows
 
 			PropertiesWindow.Show( Main_DockPanel, DockState.DockRight );
 			WorkspaceExplorer.Show( PropertiesWindow.Pane, DockAlignment.Top, 0.6 );
+			ObjectBrowser.Show( Main_DockPanel, DockState.DockLeft );
+
 
 			//df = new DocumentsForm();
 			//df.Show( Main_DockPanel, DockState.Document );
@@ -68,11 +71,11 @@ namespace Syntec.Windows
 
 		#endregion
 
-		#region Executions
+		#region Methods
 
 		private void OpenDialog( string title, bool dirMode )
 		{
-			OpenDialog( title, dirMode, null );
+			OpenDialog( title, dirMode, "All Files|*.*" );
 		}
 
 		private void OpenDialog( string title, bool dirMode, string filter )
@@ -98,6 +101,8 @@ namespace Syntec.Windows
 
 				if( dialog.ShowDialog() != DialogResult.OK )
 					return;
+
+				// CHECK IF FILE IS UNDER RES -> OPEN PROJECT, DOCUMENTS : DOCUMENTS 
 
 				// PASS TO PROXY
 			}
