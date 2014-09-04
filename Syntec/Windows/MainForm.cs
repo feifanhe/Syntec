@@ -114,11 +114,13 @@ namespace Syntec.Windows
 
 		private void Test_Button_Click( object sender, EventArgs e )
 		{
-			df2 = new DocumentsForm( @"C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\bin\Debug\CncFenu.xml" );
+			string path = @"C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\bin\Debug\CncFenu.xml";
+			df2 = new DocumentsForm(  path);
 			if( df2.IsDisposed )
 				return;
 			df2.Show( Main_DockPanel, DockState.Document );
-			df2.TabText = "test2";
+			df2.TabText = System.IO.Path.GetFileNameWithoutExtension( path );
+			df2.Name = df2.TabText;
 
 			//Application.Restart();
 		}

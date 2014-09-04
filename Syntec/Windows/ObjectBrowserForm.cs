@@ -29,9 +29,28 @@ namespace Syntec.Windows
 				// Add the assigned tree view
 				// Remove tool strip first to maintain visibility of tree view
 				treeView.Dock = DockStyle.Fill;
+				(treeView as TreeView).NodeMouseDoubleClick += new TreeNodeMouseClickEventHandler(NodeMouseDoubleClick);
 				this.Controls.Remove(ObjectBrowser_ToolStrip);
 				this.Controls.Add( treeView );
 				this.Controls.Add( ObjectBrowser_ToolStrip );
+			}
+		}
+
+		private void NodeMouseDoubleClick( object sender, TreeNodeMouseClickEventArgs e )
+		{
+			string treeViewName = string.Empty;
+			foreach( Control item in this.Controls ) {
+				if( item is TreeView )
+					treeViewName = item.Name;
+			}
+
+			foreach( Form form in Application.OpenForms ) {
+				if( form is DocumentsForm ) {
+					if( ( form as DocumentsForm ).TabText == treeViewName ) {
+						( form as DocumentsForm ).Open( e.Node.Name );
+						break;
+					}
+				}
 			}
 		}
 	}

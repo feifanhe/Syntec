@@ -191,10 +191,10 @@ namespace Fenubars.Display
 			lastMouseDownTime = DateTime.Now;
 		}
 
-		protected override void OnNodeMouseDoubleClick( TreeNodeMouseClickEventArgs e )
-		{
-			MessageBox.Show( "DOUBLE CLICKED: " + e.Node.Name );
-		}
+		//protected override void OnNodeMouseDoubleClick( TreeNodeMouseClickEventArgs e )
+		//{
+		//    MessageBox.Show( "DOUBLE CLICKED: " + e.Node.Name );
+		//}
 
 		#endregion
 	}

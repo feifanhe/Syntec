@@ -48,6 +48,11 @@ namespace Syntec.Windows
 			}
 		}
 
+		public void Open( string name )
+		{
+			instance.Open( name );
+		}
+
 		#region IModuleHost Members
 
 		public void DrawOnCanvas( Control control )
