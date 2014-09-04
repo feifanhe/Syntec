@@ -88,35 +88,6 @@ namespace Syntec.Windows
 			AddTopDirectories( root, basePath );
 		}
 
-		#region Tree view events
-
-		// Parsing the directory before expand
-		private void WorkspaceTreeView_BeforeExpand( object sender, TreeViewCancelEventArgs e )
-		{
-			if( e.Node.Tag != null )
-				AddTopDirectories( e.Node, (string)e.Node.Tag );
-
-			// Change expanded icon
-			if( e.Node.ImageIndex == 1 )
-				e.Node.ImageIndex = 3;
-			e.Node.SelectedImageIndex = e.Node.ImageIndex;
-		}
-
-		private void WorkspaceTreeView_BeforeCollapse( object sender, TreeViewCancelEventArgs e )
-		{
-			// Switch back icon to folder
-			if( e.Node.ImageIndex == 3 )
-				e.Node.ImageIndex = 1;
-			e.Node.SelectedImageIndex = e.Node.ImageIndex;
-		}
-
-		private void WorkspaceTreeView_NodeMouseDoubleClick( object sender, TreeNodeMouseClickEventArgs e )
-		{
-			OpenDesigner( e.Node.Tag as string );
-		}
-
-		#endregion
-
 		private void AddTopDirectories( TreeNode node, string path )
 		{
 			node.TreeView.BeginUpdate(); // for best performance
@@ -203,6 +174,35 @@ namespace Syntec.Windows
 			}
 		}
 
+		#region Tree view events
+
+		// Parsing the directory before expand
+		private void WorkspaceTreeView_BeforeExpand( object sender, TreeViewCancelEventArgs e )
+		{
+			if( e.Node.Tag != null )
+				AddTopDirectories( e.Node, (string)e.Node.Tag );
+
+			// Change expanded icon
+			if( e.Node.ImageIndex == 1 )
+				e.Node.ImageIndex = 3;
+			e.Node.SelectedImageIndex = e.Node.ImageIndex;
+		}
+
+		private void WorkspaceTreeView_BeforeCollapse( object sender, TreeViewCancelEventArgs e )
+		{
+			// Switch back icon to folder
+			if( e.Node.ImageIndex == 3 )
+				e.Node.ImageIndex = 1;
+			e.Node.SelectedImageIndex = e.Node.ImageIndex;
+		}
+
+		private void WorkspaceTreeView_NodeMouseDoubleClick( object sender, TreeNodeMouseClickEventArgs e )
+		{
+			// OBJECT BROWSER
+		}
+
+		#endregion
+
 		#region Tool strip events
 
 		private void ShowAll_ToolStripButton_Click( object sender, EventArgs e )
@@ -217,33 +217,6 @@ namespace Syntec.Windows
 		private void Refresh_ToolStripButton_Click( object sender, EventArgs e )
 		{
 			RefreshTree();
-		}
-
-		private void ViewCode_ToolStripButton_Click( object sender, EventArgs e )
-		{
-
-		}
-
-		private void ViewDesigner_ToolStripButton_Click( object sender, EventArgs e )
-		{
-			// Get selected path
-			string path = Workspace_TreeView.SelectedNode.Tag as string;
-			OpenDesigner( path );
-		}
-
-		private void ViewStructure_ToolStripButton_Click( object sender, EventArgs e )
-		{
-
-		}
-
-		#endregion
-
-		// All the operations ends up here, modify these methods when something changed else where
-		#region Executions
-
-		private void OpenDesigner( string path )
-		{
-			// PASS INFO TO PROXY
 		}
 
 		#endregion

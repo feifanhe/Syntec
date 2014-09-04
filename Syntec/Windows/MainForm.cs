@@ -11,11 +11,12 @@ namespace Syntec.Windows
 {
 	public partial class MainForm : Form
 	{
-		DocumentsForm df, df2;
+		DocumentsForm df;
 
 		// General windows
 		internal static WorkspaceExplorerForm WorkspaceExplorer = new WorkspaceExplorerForm( null );
 		internal static PropertiesWindowForm PropertiesWindow = new PropertiesWindowForm();
+		internal static ObjectBrowserForm ObjectBrowser = new ObjectBrowserForm();
 
 		private const string REGISTRY_KEY = "SOFTWARE\\SYNTEC\\Syntec";
 		private MruStripMenu RecentWorkspacesMenu;
@@ -27,6 +28,8 @@ namespace Syntec.Windows
 
 			PropertiesWindow.Show( Main_DockPanel, DockState.DockRight );
 			WorkspaceExplorer.Show( PropertiesWindow.Pane, DockAlignment.Top, 0.6 );
+			ObjectBrowser.Show( Main_DockPanel, DockState.DockLeft );
+
 
 			RecentWorkspacesMenu = new MruStripMenu(File_Recent_Workspaces_ToolStripMenuItem, new MruStripMenu.ClickedHandler(RecentWorkspaces_OnClick), "Syntec.ini", "RecentWorkspaces", 4);
 			RecentWorkspacesMenu.LoadFromINIFile();
@@ -87,11 +90,11 @@ namespace Syntec.Windows
 
 		#endregion
 
-		#region Executions
+		#region Methods
 
 		private void OpenDialog( string title, bool dirMode )
 		{
-			OpenDialog( title, dirMode, null );
+			OpenDialog( title, dirMode, "All Files|*.*" );
 		}
 
 		private void OpenDialog( string title, bool dirMode, string filter )
@@ -120,6 +123,7 @@ namespace Syntec.Windows
 					return;
 
 				RecentFilesMenu.AddFiles( dialog.FileNames );
+				// CHECK IF FILE IS UNDER RES -> OPEN PROJECT, DOCUMENTS : DOCUMENTS 
 				// PASS TO PROXY
 			}
 		}
@@ -130,11 +134,12 @@ namespace Syntec.Windows
 
 		private void Test_Button_Click( object sender, EventArgs e )
 		{
-			df2 = new DocumentsForm( @"C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\bin\Debug\CncFenu.xml" );
-			if( df2.IsDisposed )
+			string path = @"C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\bin\Debug\CncFenu.xml";
+			df = new DocumentsForm(  path);
+			if( df.IsDisposed )
 				return;
-			df2.Show( Main_DockPanel, DockState.Document );
-			df2.TabText = "test2";
+			df.Show( Main_DockPanel, DockState.Document );
+			df.TabText = System.IO.Path.GetFileNameWithoutExtension( path );
 
 			//Application.Restart();
 		}

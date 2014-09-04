@@ -23,24 +23,28 @@ namespace Syntec.Windows
 			this.SuspendLayout();
 
 			if( ( instance = ModuleManager.FindProcessor( XMLPath ) ) == null ) {
-				this.Dispose(); // Destroy this form if nothing applicable
-				MessageBox.Show( "UNABLE TO LOAD" );
+				// Destroy this form if nothing applicable
+				this.Dispose();
+				MessageBox.Show( "No adequate module to load this XML file.",
+									"Unable to load",
+									MessageBoxButtons.OK,
+									MessageBoxIcon.Exclamation );
 			}
 			else {
-				//// Already activated (when testing)
+				//// Called when testing whether this module can process the XML or not
 				//instance.Initialize( XMLPath );
 
 				// Set target host
 				instance.Host = this;
-
-				// Execute
-				instance.Open( "main" );
-				instance.Open( "About" );
-
-				//this.Controls.Add( instance.Open( "main" ) as Control );
+				instance.Open();
 
 				this.ResumeLayout();
 			}
+		}
+
+		public void Open( string name )
+		{
+			instance.Open( name );
 		}
 
 		#region IModuleHost Members
@@ -49,7 +53,7 @@ namespace Syntec.Windows
 		{
 			this.Controls.Add( control );
 
-			// Maintain last in append instead of insert
+			// Maintain last-in append instead of insert
 			control.BringToFront();
 		}
 
@@ -62,6 +66,11 @@ namespace Syntec.Windows
 		{
 			MainForm.PropertiesWindow.SetHiddenAttributes( hidden );
 			MainForm.PropertiesWindow.SetBrowsableProperties( browsable );
+		}
+
+		public void PopulateObjects( Control treeView )
+		{
+			MainForm.ObjectBrowser.SetContents( treeView );
 		}
 
 		#endregion

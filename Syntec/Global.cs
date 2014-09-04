@@ -6,14 +6,5 @@ namespace Syntec
 		public Global()
 		{
 		}
-
-		//#region Module Manager
-
-		//// Module services 
-		//public static Syntec.Module.PluginServices Plugins = new Syntec.Module.PluginServices();
-
-		//public static readonly string ModuleFolderPath = @"\Plugins";
-
-		//#endregion
 	}
 }
