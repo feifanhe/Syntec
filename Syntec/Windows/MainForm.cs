@@ -2,6 +2,8 @@ using System;
 using System.Windows.Forms;
 
 using WeifenLuo.WinFormsUI.Docking;
+using Syntec;
+using Microsoft.Win32;
 
 using Syntec.Module;
 
@@ -16,6 +18,10 @@ namespace Syntec.Windows
 		internal static PropertiesWindowForm PropertiesWindow = new PropertiesWindowForm();
 		internal static ObjectBrowserForm ObjectBrowser = new ObjectBrowserForm();
 
+		private const string REGISTRY_KEY = "SOFTWARE\\SYNTEC\\Syntec";
+		private MruStripMenu RecentWorkspacesMenu;
+		private MruStripMenu RecentFilesMenu;
+
 		public MainForm()
 		{
 			InitializeComponent();
@@ -24,6 +30,13 @@ namespace Syntec.Windows
 			WorkspaceExplorer.Show( PropertiesWindow.Pane, DockAlignment.Top, 0.6 );
 			ObjectBrowser.Show( Main_DockPanel, DockState.DockLeft );
 
+
+			RecentWorkspacesMenu = new MruStripMenu(File_Recent_Workspaces_ToolStripMenuItem, new MruStripMenu.ClickedHandler(RecentWorkspaces_OnClick), "Syntec.ini", "RecentWorkspaces", 4);
+			RecentWorkspacesMenu.LoadFromINIFile();
+
+
+			RecentFilesMenu = new MruStripMenu( File_Recent_Files_ToolStripMenuItem, new MruStripMenu.ClickedHandler( RecentFiles_OnClick ), "Syntec.ini", "RecentFiles", 4 );
+			RecentFilesMenu.LoadFromINIFile();
 
 			//df = new DocumentsForm();
 			//df.Show( Main_DockPanel, DockState.Document );
@@ -36,6 +49,12 @@ namespace Syntec.Windows
 		{
 			// Initiate module manager
 			ModuleManager.Refresh();
+		}
+
+		private void MainForm_FormClosing( object sender, FormClosingEventArgs e )
+		{
+			RecentWorkspacesMenu.SaveToINIFile();
+			RecentFilesMenu.SaveToINIFile();
 		}
 
 		#endregion
@@ -90,6 +109,7 @@ namespace Syntec.Windows
 				if( dialog.ShowDialog() != DialogResult.OK )
 					return;
 
+				RecentWorkspacesMenu.AddFile( dialog.SelectedPath );
 				WorkspaceExplorer.RefreshTree( dialog.SelectedPath );
 			}
 			else {
@@ -102,8 +122,8 @@ namespace Syntec.Windows
 				if( dialog.ShowDialog() != DialogResult.OK )
 					return;
 
+				RecentFilesMenu.AddFiles( dialog.FileNames );
 				// CHECK IF FILE IS UNDER RES -> OPEN PROJECT, DOCUMENTS : DOCUMENTS 
-
 				// PASS TO PROXY
 			}
 		}
@@ -125,5 +145,22 @@ namespace Syntec.Windows
 		}
 
 		#endregion
+
+		#region Recent Workspaces/Files
+
+		private void RecentWorkspaces_OnClick( int index, string filename )
+		{
+			WorkspaceExplorer.RefreshTree( filename );
+		}
+
+		private void RecentFiles_OnClick( int index, string filename )
+		{
+			// TODO: Open File
+		}
+
+		#endregion
+
+		
+
 	}
 }
