@@ -34,7 +34,7 @@ namespace Syntec.Windows
 			this.ViewCode_ToolStripButton = new System.Windows.Forms.ToolStripButton();
 			this.ViewDesigner_ToolStripButton = new System.Windows.Forms.ToolStripButton();
 			this.ViewStructure_ToolStripButton = new System.Windows.Forms.ToolStripButton();
-			this.Object_TreeView = new System.Windows.Forms.TreeView();
+			this.treeView1 = new System.Windows.Forms.TreeView();
 			this.ObjectBrowser_ToolStrip.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -96,20 +96,20 @@ namespace Syntec.Windows
 			this.ViewStructure_ToolStripButton.Text = "toolStripButton1";
 			this.ViewStructure_ToolStripButton.ToolTipText = "View Structure";
 			// 
-			// Object_TreeView
+			// treeView1
 			// 
-			this.Object_TreeView.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.Object_TreeView.Location = new System.Drawing.Point( 0, 25 );
-			this.Object_TreeView.Name = "Object_TreeView";
-			this.Object_TreeView.Size = new System.Drawing.Size( 248, 301 );
-			this.Object_TreeView.TabIndex = 1;
+			this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.treeView1.Location = new System.Drawing.Point( 0, 25 );
+			this.treeView1.Name = "treeView1";
+			this.treeView1.Size = new System.Drawing.Size( 248, 301 );
+			this.treeView1.TabIndex = 1;
 			// 
 			// ObjectBrowserForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF( 6F, 13F );
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size( 248, 326 );
-			this.Controls.Add( this.Object_TreeView );
+			this.Controls.Add( this.treeView1 );
 			this.Controls.Add( this.ObjectBrowser_ToolStrip );
 			this.Font = new System.Drawing.Font( "Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ( (byte)( 136 ) ) );
 			this.Name = "ObjectBrowserForm";
@@ -131,7 +131,7 @@ namespace Syntec.Windows
 		private System.Windows.Forms.ToolStripButton ViewCode_ToolStripButton;
 		private System.Windows.Forms.ToolStripButton ViewDesigner_ToolStripButton;
 		private System.Windows.Forms.ToolStripButton ViewStructure_ToolStripButton;
-		private System.Windows.Forms.TreeView Object_TreeView;
+		private System.Windows.Forms.TreeView treeView1;
 
 	}
 }

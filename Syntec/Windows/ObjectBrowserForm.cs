@@ -20,10 +20,18 @@ namespace Syntec.Windows
 		public void SetContents( Control treeView )
 		{
 			if( treeView is TreeView ) {
-				this.Controls.Clear();
+				// Remove the tree view
+				foreach( Control item in this.Controls ) {
+					if( item is TreeView )
+						this.Controls.Remove( item );
+				}
 
-				this.Controls.Add( treeView );
+				// Add the assigned tree view
+				// Remove tool strip first to maintain visibility of tree view
 				treeView.Dock = DockStyle.Fill;
+				this.Controls.Remove(ObjectBrowser_ToolStrip);
+				this.Controls.Add( treeView );
+				this.Controls.Add( ObjectBrowser_ToolStrip );
 			}
 		}
 	}

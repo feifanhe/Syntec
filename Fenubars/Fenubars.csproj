@@ -59,7 +59,9 @@
     <Compile Include="Display\Fenu.Designer.cs">
       <DependentUpon>Fenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Display\ObjectTree.cs" />
+    <Compile Include="Display\ObjectTree.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Display\ObjectTree_Deprecate.cs">
       <SubType>Component</SubType>
     </Compile>
