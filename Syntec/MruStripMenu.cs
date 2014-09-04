@@ -7,7 +7,7 @@ using System.Windows.Forms;
 using System.Threading;
 using Microsoft.Win32;
 
-namespace JWC
+namespace Syntec
 {
 	/// <summary>
 	/// Represents a most recently used (MRU) menu.
@@ -20,13 +20,14 @@ namespace JWC
 	/// The displayed numbers, however, will start with one.</para></remarks>
 	public class MruStripMenu
 	{
-		private   ClickedHandler    clickedHandler;
+		private ClickedHandler clickedHandler;
 		protected ToolStripMenuItem recentFileMenuItem;
-		protected string			registryKeyName;
-		protected int				numEntries = 0;
-		protected int				maxEntries = 4;
-		protected int				maxShortenPathLength = 96;
-		protected Mutex				mruStripMutex;
+		protected string iniFileName;
+		protected string iniSection;
+		protected int numEntries = 0;
+		protected int maxEntries = 4;
+		protected int maxShortenPathLength = 96;
+		protected Mutex mruStripMutex;
 
 		#region MruMenuItem
 
@@ -53,7 +54,7 @@ namespace JWC
 			/// <param labelName="entryname">The string that will be displayed in the menu.</param>
 			/// <param labelName="eventHandler">The <see cref="EventHandler">EventHandler</see> that 
 			/// handles the <see cref="MenuItem.Click">Click</see> event for this menu item.</param>
-			public MruMenuItem(string filename, string entryname, EventHandler eventHandler)
+			public MruMenuItem( string filename, string entryname, EventHandler eventHandler )
 			{
 				Tag = filename;
 				Text = entryname;
@@ -68,7 +69,7 @@ namespace JWC
 			{
 				get
 				{
-					return (string) Tag;
+					return (string)Tag;
 				}
 				set
 				{
@@ -80,15 +81,7 @@ namespace JWC
 
 		#region Construction
 
-		protected MruStripMenu()	{}
-
-		/// <summary>
-		/// Initializes a new instance of the MruMenu class.
-		/// </summary>
-		/// <param labelName="recentFileMenuItem">The temporary menu item which will be replaced with the MRU list.</param>
-		/// <param labelName="clickedHandler">The delegate to handle the item selection (click) event.</param>
-		public MruStripMenu(ToolStripMenuItem recentFileMenuItem, ClickedHandler clickedHandler)
-			: this(recentFileMenuItem, clickedHandler, null, false, 4)
+		protected MruStripMenu()
 		{
 		}
 
@@ -97,78 +90,31 @@ namespace JWC
 		/// </summary>
 		/// <param labelName="recentFileMenuItem">The temporary menu item which will be replaced with the MRU list.</param>
 		/// <param labelName="clickedHandler">The delegate to handle the item selection (click) event.</param>
-		/// <param labelName="maxEntries"></param>
-		public MruStripMenu(ToolStripMenuItem recentFileMenuItem, ClickedHandler clickedHandler, int maxEntries)
-			: this(recentFileMenuItem, clickedHandler, null, false, maxEntries)
-		{
-			
-		}
-
-		/// <summary>
-		/// Initializes a new instance of the MruMenu class.
-		/// </summary>
-		/// <param labelName="recentFileMenuItem">The temporary menu item which will be replaced with the MRU list.</param>
-		/// <param labelName="clickedHandler">The delegate to handle the item selection (click) event.</param>
-		/// <param labelName="registryKeyName"></param>
-		public MruStripMenu(ToolStripMenuItem recentFileMenuItem, ClickedHandler clickedHandler, string registryKeyName)
-			: this(recentFileMenuItem, clickedHandler, registryKeyName, true, 4)
-		{
-		}
-
-		/// <summary>
-		/// Initializes a new instance of the MruMenu class.
-		/// </summary>
-		/// <param labelName="recentFileMenuItem">The temporary menu item which will be replaced with the MRU list.</param>
-		/// <param labelName="clickedHandler">The delegate to handle the item selection (click) event.</param>
-		/// <param labelName="registryKeyName">The name or path of the registry key to use to store the MRU list and settings.</param>
+		/// <param labelName="iniFileName">The name or path of the ini file to use to store the MRU list and settings.</param>
+		/// <param labelName="iniSection">The section of the ini file to use to store the MRU list item.</param>
 		/// <param labelName="maxEntries">The maximum number of items on the MRU list.</param>
-		public MruStripMenu(ToolStripMenuItem recentFileMenuItem, ClickedHandler clickedHandler, string registryKeyName, int maxEntries)
-			: this(recentFileMenuItem, clickedHandler, registryKeyName, true, maxEntries)
+		public MruStripMenu( ToolStripMenuItem recentFileMenuItem, ClickedHandler clickedHandler,
+			string iniFileName, string iniSection, int maxEntries )
 		{
+			Init( recentFileMenuItem, clickedHandler, iniFileName, iniSection, maxEntries );
 		}
 
-		/// <summary>
-		/// Initializes a new instance of the MruMenu class.
-		/// </summary>
-		/// <param labelName="recentFileMenuItem">The temporary menu item which will be replaced with the MRU list.</param>
-		/// <param labelName="clickedHandler">The delegate to handle the item selection (click) event.</param>
-		/// <param labelName="registryKeyName">The name or path of the registry key to use to store the MRU list and settings.</param>
-		/// <param labelName="loadFromRegistry">Loads the MRU settings from the registry immediately.</param>
-		public MruStripMenu(ToolStripMenuItem recentFileMenuItem, ClickedHandler clickedHandler, string registryKeyName, bool loadFromRegistry)
-			: this(recentFileMenuItem, clickedHandler, registryKeyName, loadFromRegistry, 4)
-  		{
-		}
-
-		/// <summary>
-		/// Initializes a new instance of the MruMenu class.
-		/// </summary>
-		/// <param labelName="recentFileMenuItem">The temporary menu item which will be replaced with the MRU list.</param>
-		/// <param labelName="clickedHandler">The delegate to handle the item selection (click) event.</param>
-		/// <param labelName="registryKeyName">The name or path of the registry key to use to store the MRU list and settings.</param>
-		/// <param labelName="loadFromRegistry">Loads the MRU settings from the registry immediately.</param>
-		/// <param labelName="maxEntries">The maximum number of items on the MRU list.</param>
-		public MruStripMenu(ToolStripMenuItem recentFileMenuItem, ClickedHandler clickedHandler, string registryKeyName, bool loadFromRegistry, int maxEntries)
+		protected void Init( ToolStripMenuItem recentFileMenuItem, ClickedHandler clickedHandler,
+			string iniFileName, string iniSection, int maxEntries )
 		{
-			Init(recentFileMenuItem, clickedHandler, registryKeyName, loadFromRegistry, maxEntries);
-		}
-
-		protected void Init(ToolStripMenuItem recentFileMenuItem, ClickedHandler clickedHandler, string registryKeyName, bool loadFromRegistry, int maxEntries)
-		{
-			if (recentFileMenuItem == null)
-				throw new ArgumentNullException("recentFileMenuItem");
+			if( recentFileMenuItem == null )
+				throw new ArgumentNullException( "recentFileMenuItem" );
 
 			this.recentFileMenuItem = recentFileMenuItem;
 			this.recentFileMenuItem.Checked = false;
 			this.recentFileMenuItem.Enabled = false;
-
-			MaxEntries = maxEntries;
 			this.clickedHandler = clickedHandler;
 
-			if (registryKeyName != null)
-			{
-				RegistryKeyName = registryKeyName;
-				if (loadFromRegistry)
-					LoadFromRegistry();
+			MaxEntries = maxEntries;
+
+			if( iniFileName != null ) {
+				INIFileName = iniFileName;
+				INISection = iniSection;
 			}
 		}
 
@@ -176,12 +122,12 @@ namespace JWC
 
 		#region Event Handling
 
-		public delegate void ClickedHandler(int number, string filename);
+		public delegate void ClickedHandler( int number, string filename );
 
-		protected void OnClick(object sender, System.EventArgs e)
+		protected void OnClick( object sender, System.EventArgs e )
 		{
-			MruMenuItem menuItem = (MruMenuItem) sender;
-			clickedHandler(MenuItems.IndexOf(menuItem) - StartIndex, menuItem.Filename);
+			MruMenuItem menuItem = (MruMenuItem)sender;
+			clickedHandler( MenuItems.IndexOf( menuItem ) - StartIndex, menuItem.Filename );
 		}
 
 
@@ -215,32 +161,29 @@ namespace JWC
 
 		public int NumEntries
 		{
-			get 
+			get
 			{
-				return numEntries; 
+				return numEntries;
 			}
 		}
 
 		public int MaxEntries
 		{
-			get 
+			get
 			{
-				return maxEntries; 
+				return maxEntries;
 			}
-			set 
+			set
 			{
-				if (value > 16)
-				{
+				if( value > 16 ) {
 					maxEntries = 16;
 				}
-				else
-				{
+				else {
 					maxEntries = value < 4 ? 4 : value;
 
 					int index = StartIndex + maxEntries;
-					while (numEntries > maxEntries)
-					{
-						MenuItems.RemoveAt(index);
+					while( numEntries > maxEntries ) {
+						MenuItems.RemoveAt( index );
 						numEntries--;
 					}
 				}
@@ -282,46 +225,43 @@ namespace JWC
 			//recentFileMenuItem.MenuItems.RemoveAt(0);
 		}
 
-		protected virtual void SetFirstFile(MruMenuItem menuItem)
+		protected virtual void SetFirstFile( MruMenuItem menuItem )
 		{
 		}
 
-		public void SetFirstFile(int number)
+		public void SetFirstFile( int number )
 		{
-			if (number > 0 && numEntries > 1 && number < numEntries)
-			{
-				MruMenuItem menuItem = (MruMenuItem)MenuItems[StartIndex + number];
+			if( number > 0 && numEntries > 1 && number < numEntries ) {
+				MruMenuItem menuItem = (MruMenuItem)MenuItems[ StartIndex + number ];
 
-				MenuItems.RemoveAt(StartIndex + number);
-				MenuItems.Insert(StartIndex, menuItem);
+				MenuItems.RemoveAt( StartIndex + number );
+				MenuItems.Insert( StartIndex, menuItem );
 
-				SetFirstFile(menuItem);
-				FixupPrefixes(0);
+				SetFirstFile( menuItem );
+				FixupPrefixes( 0 );
 			}
 		}
 
-		public static string FixupEntryname(int number, string entryname)
+		public static string FixupEntryname( int number, string entryname )
 		{
-			if (number < 9)
-				return "&" + (number + 1) + "  " + entryname;
-			else if (number == 9)
+			if( number < 9 )
+				return "&" + ( number + 1 ) + "  " + entryname;
+			else if( number == 9 )
 				return "1&0" + "  " + entryname;
 			else
-				return (number + 1) + "  " + entryname;
+				return ( number + 1 ) + "  " + entryname;
 		}
 
-		protected void FixupPrefixes(int startNumber)
+		protected void FixupPrefixes( int startNumber )
 		{
-			if (startNumber < 0)
+			if( startNumber < 0 )
 				startNumber = 0;
 
-			if (startNumber < maxEntries)
-			{
-				for (int i = StartIndex + startNumber; i < EndIndex; i++, startNumber++)
-				{
-					int offset = MenuItems[i].Text.Substring(0, 3) == "1&0" ? 5 : 4;
-					MenuItems[i].Text = FixupEntryname(startNumber, MenuItems[i].Text.Substring(offset));
-//					MenuItems[i].Text = FixupEntryname(startNumber, MenuItems[i].Text.Substring(startNumber == 10 ? 5 : 4));
+			if( startNumber < maxEntries ) {
+				for( int i = StartIndex + startNumber; i < EndIndex; i++, startNumber++ ) {
+					int offset = MenuItems[ i ].Text.Substring( 0, 3 ) == "1&0" ? 5 : 4;
+					MenuItems[ i ].Text = FixupEntryname( startNumber, MenuItems[ i ].Text.Substring( offset ) );
+					//					MenuItems[i].Text = FixupEntryname(startNumber, MenuItems[i].Text.Substring(startNumber == 10 ? 5 : 4));
 				}
 			}
 		}
@@ -341,103 +281,92 @@ namespace JWC
 		/// (Use Path.GetFullPath() to obtain this.)</para>
 		/// </remarks>
 		/// <returns></returns>
-		static public string ShortenPathname(string pathname, int maxLength)
+		static public string ShortenPathname( string pathname, int maxLength )
 		{
-			if (pathname.Length <= maxLength)
+			if( pathname.Length <= maxLength )
 				return pathname;
 
-			string root = Path.GetPathRoot(pathname);
-			if (root.Length > 3)
+			string root = Path.GetPathRoot( pathname );
+			if( root.Length > 3 )
 				root += Path.DirectorySeparatorChar;
 
-			string[] elements = pathname.Substring(root.Length).Split(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+			string[] elements = pathname.Substring( root.Length ).Split( Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar );
 
-			int filenameIndex = elements.GetLength(0) - 1;
+			int filenameIndex = elements.GetLength( 0 ) - 1;
 
-			if (elements.GetLength(0) == 1) // pathname is just a root and filename
+			if( elements.GetLength( 0 ) == 1 ) // pathname is just a root and filename
 			{
-				if (elements[0].Length > 5) // long enough to shorten
+				if( elements[ 0 ].Length > 5 ) // long enough to shorten
 				{
 					// if path is a UNC path, root may be rather long
-					if (root.Length + 6 >= maxLength)
-					{
-						return root + elements[0].Substring(0, 3) + "...";
+					if( root.Length + 6 >= maxLength ) {
+						return root + elements[ 0 ].Substring( 0, 3 ) + "...";
 					}
-					else
-					{
-						return pathname.Substring(0, maxLength - 3) + "...";
+					else {
+						return pathname.Substring( 0, maxLength - 3 ) + "...";
 					}
 				}
 			}
-			else if ((root.Length + 4 + elements[filenameIndex].Length) > maxLength) // pathname is just a root and filename
+			else if( ( root.Length + 4 + elements[ filenameIndex ].Length ) > maxLength ) // pathname is just a root and filename
 			{
 				root += "...\\";
 
-				int len = elements[filenameIndex].Length;
-				if (len < 6)
-					return root + elements[filenameIndex];
+				int len = elements[ filenameIndex ].Length;
+				if( len < 6 )
+					return root + elements[ filenameIndex ];
 
-				if ((root.Length + 6) >= maxLength)
-				{
+				if( ( root.Length + 6 ) >= maxLength ) {
 					len = 3;
 				}
-				else
-				{
+				else {
 					len = maxLength - root.Length - 3;
 				}
-				return root + elements[filenameIndex].Substring(0, len) + "...";
+				return root + elements[ filenameIndex ].Substring( 0, len ) + "...";
 			}
-			else if (elements.GetLength(0) == 2)
-			{
-				return root + "...\\" + elements[1];
+			else if( elements.GetLength( 0 ) == 2 ) {
+				return root + "...\\" + elements[ 1 ];
 			}
-			else
-			{
+			else {
 				int len = 0;
 				int begin = 0;
 
-				for (int i = 0; i < filenameIndex; i++)
-				{
-					if (elements[i].Length > len)
-					{
+				for( int i = 0; i < filenameIndex; i++ ) {
+					if( elements[ i ].Length > len ) {
 						begin = i;
-						len = elements[i].Length;
+						len = elements[ i ].Length;
 					}
 				}
 
 				int totalLength = pathname.Length - len + 3;
 				int end = begin + 1;
 
-				while (totalLength > maxLength)
-				{
-					if (begin > 0)
-						totalLength -= elements[--begin].Length - 1;
+				while( totalLength > maxLength ) {
+					if( begin > 0 )
+						totalLength -= elements[ --begin ].Length - 1;
 
-					if (totalLength <= maxLength)
+					if( totalLength <= maxLength )
 						break;
 
-					if (end < filenameIndex)
-						totalLength -= elements[++end].Length - 1;
+					if( end < filenameIndex )
+						totalLength -= elements[ ++end ].Length - 1;
 
-					if (begin == 0 && end == filenameIndex)
+					if( begin == 0 && end == filenameIndex )
 						break;
 				}
 
 				// assemble final string
 
-				for (int i = 0; i < begin; i++)
-				{
-					root += elements[i] + '\\';
+				for( int i = 0; i < begin; i++ ) {
+					root += elements[ i ] + '\\';
 				}
 
 				root += "...\\";
 
-				for (int i = end; i < filenameIndex; i++)
-				{
-					root += elements[i] + '\\';
+				for( int i = end; i < filenameIndex; i++ ) {
+					root += elements[ i ] + '\\';
 				}
 
-				return root + elements[filenameIndex];
+				return root + elements[ filenameIndex ];
 			}
 			return pathname;
 		}
@@ -451,21 +380,18 @@ namespace JWC
 		/// </summary>
 		/// <param name="filename">The filename to search for.</param>
 		/// <returns>The entry number of the matching filename or -1 if not found.</returns>
-		public int FindFilenameNumber(string filename)
+		public int FindFilenameNumber( string filename )
 		{
-			if (filename == null)
-				throw new ArgumentNullException("filename");
+			if( filename == null )
+				throw new ArgumentNullException( "filename" );
 
-			if (filename.Length == 0)
-				throw new ArgumentException("filename");
+			if( filename.Length == 0 )
+				throw new ArgumentException( "filename" );
 
-			if (numEntries > 0)
-			{
+			if( numEntries > 0 ) {
 				int number = 0;
-				for (int i = StartIndex; i < EndIndex; i++, number++)
-				{
-					if (string.Compare(((MruMenuItem)MenuItems[i]).Filename, filename, true) == 0)
-					{
+				for( int i = StartIndex; i < EndIndex; i++, number++ ) {
+					if( string.Compare( ( (MruMenuItem)MenuItems[ i ] ).Filename, filename, true ) == 0 ) {
 						return number;
 					}
 				}
@@ -478,9 +404,9 @@ namespace JWC
 		/// </summary>
 		/// <param name="filename">The filename to search for.</param>
 		/// <returns>The menu index of the matching filename or -1 if not found.</returns>
-		public int FindFilenameMenuIndex(string filename)
+		public int FindFilenameMenuIndex( string filename )
 		{
-			int number = FindFilenameNumber(filename);
+			int number = FindFilenameNumber( filename );
 			return number < 0 ? -1 : StartIndex + number;
 		}
 
@@ -490,30 +416,29 @@ namespace JWC
 		/// <param name="number">The MRU item number.</param>
 		/// <exception cref="ArgumentOutOfRangeException"></exception>
 		/// <returns>The menu index of the passed MRU number.</returns>
-		public int GetMenuIndex(int number)
+		public int GetMenuIndex( int number )
 		{
-			if (number < 0 || number >= numEntries)
-				throw new ArgumentOutOfRangeException("number");
+			if( number < 0 || number >= numEntries )
+				throw new ArgumentOutOfRangeException( "number" );
 
 			return StartIndex + number;
 		}
 
-		public string GetFileAt(int number)
+		public string GetFileAt( int number )
 		{
-			if (number < 0 || number >= numEntries)
-				throw new ArgumentOutOfRangeException("number");
+			if( number < 0 || number >= numEntries )
+				throw new ArgumentOutOfRangeException( "number" );
 
-			return ((MruMenuItem)MenuItems[StartIndex + number]).Filename;
+			return ( (MruMenuItem)MenuItems[ StartIndex + number ] ).Filename;
 		}
 
 		public string[] GetFiles()
 		{
-			string[] filenames = new string[numEntries];
+			string[] filenames = new string[ numEntries ];
 
 			int index = StartIndex;
-			for (int i = 0; i < filenames.GetLength(0); i++, index++)
-			{
-				filenames[i] = ((MruMenuItem)MenuItems[index]).Filename;
+			for( int i = 0; i < filenames.GetLength( 0 ); i++, index++ ) {
+				filenames[ i ] = ( (MruMenuItem)MenuItems[ index ] ).Filename;
 			}
 
 			return filenames;
@@ -522,12 +447,11 @@ namespace JWC
 		// This is used for testing
 		public string[] GetFilesFullEntrystring()
 		{
-			string[] filenames = new string[numEntries];
+			string[] filenames = new string[ numEntries ];
 
 			int index = StartIndex;
-			for (int i = 0; i < filenames.GetLength(0); i++, index++)
-			{
-				filenames[i] = MenuItems[index].Text;
+			for( int i = 0; i < filenames.GetLength( 0 ); i++, index++ ) {
+				filenames[ i ] = MenuItems[ index ].Text;
 			}
 
 			return filenames;
@@ -536,74 +460,66 @@ namespace JWC
 
 		#region Add Methods
 
-		public void SetFiles(string[] filenames)
+		public void SetFiles( string[] filenames )
 		{
 			RemoveAll();
-			for (int i = filenames.GetLength(0) - 1; i >= 0; i--)
-			{
-				AddFile(filenames[i]);
+			for( int i = filenames.GetLength( 0 ) - 1; i >= 0; i-- ) {
+				AddFile( filenames[ i ] );
 			}
 		}
 
-		public void AddFiles(string[] filenames)
+		public void AddFiles( string[] filenames )
 		{
-			for (int i = filenames.GetLength(0) - 1; i >= 0; i--)
-			{
-				AddFile(filenames[i]);
+			for( int i = filenames.GetLength( 0 ) - 1; i >= 0; i-- ) {
+				AddFile( filenames[ i ] );
 			}
 		}
 
-		public void AddFile(string filename)
+		public void AddFile( string filename )
 		{
-			string pathname = Path.GetFullPath(filename);
-			AddFile(pathname, ShortenPathname(pathname, MaxShortenPathLength));
+			string pathname = Path.GetFullPath( filename );
+			AddFile( pathname, ShortenPathname( pathname, MaxShortenPathLength ) );
 		}
 
-		public void AddFile(string filename, string entryname)
+		public void AddFile( string filename, string entryname )
 		{
-			if (filename == null)
-				throw new ArgumentNullException("filename");
+			if( filename == null )
+				throw new ArgumentNullException( "filename" );
 
-			if (filename.Length == 0)
-				throw new ArgumentException("filename");
+			if( filename.Length == 0 )
+				throw new ArgumentException( "filename" );
 
-			if (numEntries > 0)
-			{
-				int index = FindFilenameMenuIndex(filename);
-				if (index >= 0)
-				{
-					SetFirstFile(index - StartIndex);
+			if( numEntries > 0 ) {
+				int index = FindFilenameMenuIndex( filename );
+				if( index >= 0 ) {
+					SetFirstFile( index - StartIndex );
 					return;
 				}
 			}
 
-			if (numEntries < maxEntries)
-			{
-				MruMenuItem menuItem = new MruMenuItem(filename, FixupEntryname(0, entryname), new System.EventHandler(OnClick));
-				MenuItems.Insert(StartIndex, menuItem);
-				SetFirstFile(menuItem);
+			if( numEntries < maxEntries ) {
+				MruMenuItem menuItem = new MruMenuItem( filename, FixupEntryname( 0, entryname ), new System.EventHandler( OnClick ) );
+				MenuItems.Insert( StartIndex, menuItem );
+				SetFirstFile( menuItem );
 
-				if (numEntries++ == 0)
-				{
+				if( numEntries++ == 0 ) {
 					Enable();
 				}
-				else
-				{
-					FixupPrefixes(1);
+				else {
+					FixupPrefixes( 1 );
 				}
 			}
-			else if (numEntries > 1)
-			{
-				MruMenuItem menuItem = (MruMenuItem) MenuItems[StartIndex + numEntries - 1];
-				MenuItems.RemoveAt(StartIndex + numEntries - 1);
+			else if( numEntries > 1 ) {
+				MruMenuItem menuItem = (MruMenuItem)MenuItems[ StartIndex + numEntries - 1 ];
+				MenuItems.RemoveAt( StartIndex + numEntries - 1 );
 
-				menuItem.Text = FixupEntryname(0, entryname);
+				menuItem.Text = FixupEntryname( 0, entryname );
 				menuItem.Filename = filename;
 
-				MenuItems.Insert(StartIndex, menuItem);
+				MenuItems.Insert( StartIndex, menuItem );
 
-				SetFirstFile(menuItem);
-				FixupPrefixes(1);
+				SetFirstFile( menuItem );
+				FixupPrefixes( 1 );
 			}
 		}
 
@@ -611,46 +527,39 @@ namespace JWC
 
 		#region Remove Methods
 
-		public void RemoveFile(int number)
+		public void RemoveFile( int number )
 		{
-			if (number >= 0 && number < numEntries)
-			{
-				if (--numEntries == 0)
-				{
+			if( number >= 0 && number < numEntries ) {
+				if( --numEntries == 0 ) {
 					Disable();
 				}
-				else
-				{
+				else {
 					int startIndex = StartIndex;
-					if (number == 0)
-					{
-						SetFirstFile((MruMenuItem)MenuItems[startIndex + 1]);
+					if( number == 0 ) {
+						SetFirstFile( (MruMenuItem)MenuItems[ startIndex + 1 ] );
 					}
 
-					MenuItems.RemoveAt(startIndex + number);
+					MenuItems.RemoveAt( startIndex + number );
 
-					if (number < numEntries)
-					{
-						FixupPrefixes(number);
+					if( number < numEntries ) {
+						FixupPrefixes( number );
 					}
 				}
 			}
 		}
 
-		public void RemoveFile(string filename)
+		public void RemoveFile( string filename )
 		{
-			if (numEntries > 0)
-			{
-				RemoveFile(FindFilenameNumber(filename));
+			if( numEntries > 0 ) {
+				RemoveFile( FindFilenameNumber( filename ) );
 			}
 		}
 
 		public virtual void RemoveAll()
 		{
-			if (numEntries > 0)
-			{
+			if( numEntries > 0 ) {
 				// remove all items in the sub menu
-				MenuItems.Clear(); 
+				MenuItems.Clear();
 				Disable();
 				numEntries = 0;
 			}
@@ -660,128 +569,109 @@ namespace JWC
 
 		#region Rename Methods
 
-		public void RenameFile(string oldFilename, string newFilename)
+		public void RenameFile( string oldFilename, string newFilename )
 		{
-			string newPathname = Path.GetFullPath(newFilename);
+			string newPathname = Path.GetFullPath( newFilename );
 
-			RenameFile(Path.GetFullPath(oldFilename), newPathname, ShortenPathname(newPathname, MaxShortenPathLength));
+			RenameFile( Path.GetFullPath( oldFilename ), newPathname, ShortenPathname( newPathname, MaxShortenPathLength ) );
 		}
 
-		public void RenameFile(string oldFilename, string newFilename, string newEntryname)
+		public void RenameFile( string oldFilename, string newFilename, string newEntryname )
 		{
-			if (newFilename == null)
-				throw new ArgumentNullException("newFilename");
+			if( newFilename == null )
+				throw new ArgumentNullException( "newFilename" );
 
-			if (newFilename.Length == 0)
-				throw new ArgumentException("newFilename");
+			if( newFilename.Length == 0 )
+				throw new ArgumentException( "newFilename" );
 
-			if (numEntries > 0)
-			{
-				int index = FindFilenameMenuIndex(oldFilename);
-				if (index >= 0)
-				{
-					MruMenuItem menuItem = (MruMenuItem)MenuItems[index];
-					menuItem.Text = FixupEntryname(0, newEntryname);
+			if( numEntries > 0 ) {
+				int index = FindFilenameMenuIndex( oldFilename );
+				if( index >= 0 ) {
+					MruMenuItem menuItem = (MruMenuItem)MenuItems[ index ];
+					menuItem.Text = FixupEntryname( 0, newEntryname );
 					menuItem.Filename = newFilename;
 					return;
 				}
 			}
 
-			AddFile(newFilename, newEntryname);
+			AddFile( newFilename, newEntryname );
 		}
 
 		#endregion
 
-		#region Registry Methods
+		#region INI Methods
 
-		public string RegistryKeyName
+		public string INIFileName
 		{
 			get
 			{
-				return registryKeyName;
+				return iniFileName;
 			}
 			set
 			{
-				if (mruStripMutex != null)
+				if( mruStripMutex != null )
 					mruStripMutex.Close();
 
-				registryKeyName = value.Trim();
-				if (registryKeyName.Length == 0)
-				{
-					registryKeyName = null;
+				iniFileName = value.Trim();
+				if( iniFileName.Length == 0 ) {
+					iniFileName = null;
 					mruStripMutex = null;
 				}
-				else
-				{
-					string mutexName = registryKeyName.Replace('\\', '_').Replace('/', '_') + "Mutex";
-					mruStripMutex = new Mutex(false, mutexName);
+				else {
+					string mutexName = iniFileName.Replace( '\\', '_' ).Replace( '/', '_' ) + "Mutex";
+					mruStripMutex = new Mutex( false, mutexName );
 				}
 			}
 		}
 
-		public void LoadFromRegistry(string keyName)
+		public string INISection
 		{
-			RegistryKeyName = keyName;
-			LoadFromRegistry();
+			get
+			{
+				return iniSection;
+			}
+			set
+			{
+				iniSection = value;
+			}
 		}
 
-		public void LoadFromRegistry()
+		public void LoadFromINIFile()
 		{
-			if (registryKeyName != null)
-			{
+			if( iniFileName != null ) {
 				mruStripMutex.WaitOne();
-
 				RemoveAll();
-
-				RegistryKey regKey = Registry.CurrentUser.OpenSubKey(registryKeyName);
-				if (regKey != null)
-				{
-					maxEntries = (int)regKey.GetValue("max", maxEntries);
-
-					for (int number = maxEntries; number > 0; number--)
-					{
-						string filename = (string)regKey.GetValue("File" + number.ToString());
-						if (filename != null)
-							AddFile(filename);
-					}
-
-					regKey.Close();
+				IniEditor iniFile = new IniEditor( iniFileName );
+				MaxEntries = int.Parse( iniFile.Read( iniSection, "max" ) );
+				for( int number = maxEntries; number > 0; number-- ) {
+					string filename = iniFile.Read( iniSection, "Entry" + number.ToString() );
+					if( filename != string.Empty )
+						AddFile( filename );
 				}
+
 				mruStripMutex.ReleaseMutex();
 			}
 		}
 
-		public void SaveToRegistry(string keyName)
+		public void SaveToINIFile()
 		{
-			RegistryKeyName = keyName;
-			SaveToRegistry();
-		}
-
-		public void SaveToRegistry()
-		{
-			if (registryKeyName != null)
-			{
+			if( iniFileName != null ) {
 				mruStripMutex.WaitOne();
 
-				RegistryKey regKey = Registry.CurrentUser.CreateSubKey(registryKeyName);
-				if (regKey != null)
-				{
-					regKey.SetValue("max", maxEntries);
+				IniEditor iniFile = new IniEditor( iniFileName );
 
-					int number = 1;
-					int i = StartIndex;
-					for (; i < EndIndex; i++, number++)
-					{
-						regKey.SetValue("File" + number.ToString(), ((MruMenuItem)MenuItems[i]).Filename);
-					}
+				iniFile.Write( iniSection, "max", maxEntries.ToString() );
 
-					for (; number <= 16; number++)
-					{
-						regKey.DeleteValue("File" + number.ToString(), false);
-					}
-
-					regKey.Close();
+				int number = 1;
+				int i = StartIndex;
+				for( ; i < EndIndex; i++, number++ ) {
+					iniFile.Write( iniSection, "Entry" + number.ToString(), ( (MruMenuItem)MenuItems[ i ] ).Filename );
 				}
+
+				for( ; number <= 16; number++ ) {
+					iniFile.Delete( iniSection, "Entry" + number.ToString() );
+				}
+
 				mruStripMutex.ReleaseMutex();
 			}
 		}
@@ -803,39 +693,12 @@ namespace JWC
 
 		#region Construction
 
-		//private MruStripMenuInline(
-
-		public MruStripMenuInline(ToolStripMenuItem owningMenu, ToolStripMenuItem recentFileMenuItem, ClickedHandler clickedHandler)
-			: this(owningMenu, recentFileMenuItem, clickedHandler, null, false, 4)
-		{
-		}
-
-		public MruStripMenuInline(ToolStripMenuItem owningMenu, ToolStripMenuItem recentFileMenuItem, ClickedHandler clickedHandler, int maxEntries)
-			: this(owningMenu, recentFileMenuItem, clickedHandler, null, false, maxEntries)
-		{
-		}
-
-		public MruStripMenuInline(ToolStripMenuItem owningMenu, ToolStripMenuItem recentFileMenuItem, ClickedHandler clickedHandler, string registryKeyName)
-			: this(owningMenu, recentFileMenuItem, clickedHandler, registryKeyName, true, 4)
-		{
-		}
-
-		public MruStripMenuInline(ToolStripMenuItem owningMenu, ToolStripMenuItem recentFileMenuItem, ClickedHandler clickedHandler, string registryKeyName, int maxEntries)
-			: this(owningMenu, recentFileMenuItem, clickedHandler, registryKeyName, true, maxEntries)
-		{
-		}
-
-		public MruStripMenuInline(ToolStripMenuItem owningMenu, ToolStripMenuItem recentFileMenuItem, ClickedHandler clickedHandler, string registryKeyName, bool loadFromRegistry)
-			: this(owningMenu, recentFileMenuItem, clickedHandler, registryKeyName, loadFromRegistry, 4)
-		{
-		}
-
-		public MruStripMenuInline(ToolStripMenuItem owningMenu, ToolStripMenuItem recentFileMenuItem, ClickedHandler clickedHandler, string registryKeyName, bool loadFromRegistry, int maxEntries)
+		public MruStripMenuInline( ToolStripMenuItem owningMenu, ToolStripMenuItem recentFileMenuItem, ClickedHandler clickedHandler, string iniFileName, string iniSection, int maxEntries )
 		{
 			maxShortenPathLength = 48;
 			this.owningMenu = owningMenu;
 			this.firstMenuItem = recentFileMenuItem;
-			Init(recentFileMenuItem, clickedHandler, registryKeyName, loadFromRegistry, maxEntries);
+			Init( recentFileMenuItem, clickedHandler, iniFileName, iniSection, maxEntries );
 		}
 
 		#endregion
@@ -854,7 +717,7 @@ namespace JWC
 		{
 			get
 			{
-				return MenuItems.IndexOf(firstMenuItem);
+				return MenuItems.IndexOf( firstMenuItem );
 			}
 		}
 
@@ -880,30 +743,28 @@ namespace JWC
 
 		protected override void Enable()
 		{
-			MenuItems.Remove(recentFileMenuItem);
+			MenuItems.Remove( recentFileMenuItem );
 		}
 
-		protected override void SetFirstFile(MruMenuItem menuItem)
+		protected override void SetFirstFile( MruMenuItem menuItem )
 		{
 			firstMenuItem = menuItem;
 		}
 
 		protected override void Disable()
 		{
-			int index = MenuItems.IndexOf(firstMenuItem);
-			MenuItems.RemoveAt(index);
-			MenuItems.Insert(index, recentFileMenuItem);
+			int index = MenuItems.IndexOf( firstMenuItem );
+			MenuItems.RemoveAt( index );
+			MenuItems.Insert( index, recentFileMenuItem );
 			firstMenuItem = recentFileMenuItem;
 		}
 
 		public override void RemoveAll()
 		{
 			// inline menu must remove items from the containing menu
-			if (numEntries > 0)
-			{
-				for (int index = EndIndex - 1; index > StartIndex; index--)
-				{
-					MenuItems.RemoveAt(index);
+			if( numEntries > 0 ) {
+				for( int index = EndIndex - 1; index > StartIndex; index-- ) {
+					MenuItems.RemoveAt( index );
 				}
 				Disable();
 				numEntries = 0;

@@ -2,7 +2,7 @@ using System;
 using System.Windows.Forms;
 
 using WeifenLuo.WinFormsUI.Docking;
-using JWC;
+using Syntec;
 using Microsoft.Win32;
 
 using Syntec.Module;
@@ -28,12 +28,12 @@ namespace Syntec.Windows
 			PropertiesWindow.Show( Main_DockPanel, DockState.DockRight );
 			WorkspaceExplorer.Show( PropertiesWindow.Pane, DockAlignment.Top, 0.6 );
 
-			RecentWorkspacesMenu = new MruStripMenu(File_Recent_Workspaces_ToolStripMenuItem, new MruStripMenu.ClickedHandler(RecentWorkspaces_OnClick), REGISTRY_KEY + "\\RecentWorkspaces", true);
-			RecentWorkspacesMenu.LoadFromRegistry();
+			RecentWorkspacesMenu = new MruStripMenu(File_Recent_Workspaces_ToolStripMenuItem, new MruStripMenu.ClickedHandler(RecentWorkspaces_OnClick), "Syntec.ini", "RecentWorkspaces", 4);
+			RecentWorkspacesMenu.LoadFromINIFile();
 
 
-			RecentFilesMenu = new MruStripMenu( File_Recent_Files_ToolStripMenuItem, new MruStripMenu.ClickedHandler( RecentFiles_OnClick ), REGISTRY_KEY + "\\RecentFiles", true );
-			RecentFilesMenu.LoadFromRegistry();
+			RecentFilesMenu = new MruStripMenu( File_Recent_Files_ToolStripMenuItem, new MruStripMenu.ClickedHandler( RecentFiles_OnClick ), "Syntec.ini", "RecentFiles", 4 );
+			RecentFilesMenu.LoadFromINIFile();
 
 			//df = new DocumentsForm();
 			//df.Show( Main_DockPanel, DockState.Document );
@@ -50,8 +50,8 @@ namespace Syntec.Windows
 
 		private void MainForm_FormClosing( object sender, FormClosingEventArgs e )
 		{
-			RecentWorkspacesMenu.SaveToRegistry();
-			RecentFilesMenu.SaveToRegistry();
+			RecentWorkspacesMenu.SaveToINIFile();
+			RecentFilesMenu.SaveToINIFile();
 		}
 
 		#endregion

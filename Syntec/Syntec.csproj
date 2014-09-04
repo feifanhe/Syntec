@@ -50,6 +50,7 @@
     <Compile Include="Module\ModuleManager.cs" />
     <Compile Include="MruStripMenu.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="IniEditor.cs" />
     <Compile Include="Windows\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
