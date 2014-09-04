@@ -645,7 +645,7 @@ namespace Syntec
 				string maxEntries = iniConfig.GetValue( iniSection, "max" );
 				if( maxEntries != null ) {
 					MaxEntries = int.Parse( maxEntries );
-					for( int number = maxEntries; number > 0; number-- ) {
+					for( int number = MaxEntries; number > 0; number-- ) {
 						string filename = iniConfig.GetValue( iniSection, "Entry" + number.ToString() );
 						if( filename != null )
 							AddFile( filename );
