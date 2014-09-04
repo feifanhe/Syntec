@@ -154,14 +154,15 @@ namespace Syntec.Windows
 			// 
 			this.New_Workspace_ToolStripMenuItem.Image = ( (System.Drawing.Image)( resources.GetObject( "New_Workspace_ToolStripMenuItem.Image" ) ) );
 			this.New_Workspace_ToolStripMenuItem.Name = "New_Workspace_ToolStripMenuItem";
-			this.New_Workspace_ToolStripMenuItem.Size = new System.Drawing.Size( 139, 22 );
+			this.New_Workspace_ToolStripMenuItem.Size = new System.Drawing.Size( 152, 22 );
 			this.New_Workspace_ToolStripMenuItem.Text = "Workspace";
+			this.New_Workspace_ToolStripMenuItem.Click += new System.EventHandler( this.New_Workspace_ToolStripMenuItem_Click );
 			// 
 			// New_File_ToolStripMenuItem
 			// 
 			this.New_File_ToolStripMenuItem.Image = ( (System.Drawing.Image)( resources.GetObject( "New_File_ToolStripMenuItem.Image" ) ) );
 			this.New_File_ToolStripMenuItem.Name = "New_File_ToolStripMenuItem";
-			this.New_File_ToolStripMenuItem.Size = new System.Drawing.Size( 139, 22 );
+			this.New_File_ToolStripMenuItem.Size = new System.Drawing.Size( 152, 22 );
 			this.New_File_ToolStripMenuItem.Text = "File";
 			// 
 			// File_Open_ToolStripMenuItem
@@ -177,7 +178,7 @@ namespace Syntec.Windows
 			// 
 			this.Open_Workspace_ToolStripMenuItem.Image = ( (System.Drawing.Image)( resources.GetObject( "Open_Workspace_ToolStripMenuItem.Image" ) ) );
 			this.Open_Workspace_ToolStripMenuItem.Name = "Open_Workspace_ToolStripMenuItem";
-			this.Open_Workspace_ToolStripMenuItem.Size = new System.Drawing.Size( 139, 22 );
+			this.Open_Workspace_ToolStripMenuItem.Size = new System.Drawing.Size( 152, 22 );
 			this.Open_Workspace_ToolStripMenuItem.Text = "Workspace";
 			this.Open_Workspace_ToolStripMenuItem.Click += new System.EventHandler( this.Open_Workspace_ToolStripMenuItem_Click );
 			// 
@@ -185,7 +186,7 @@ namespace Syntec.Windows
 			// 
 			this.Open_File_ToolStripMenuItem.Image = ( (System.Drawing.Image)( resources.GetObject( "Open_File_ToolStripMenuItem.Image" ) ) );
 			this.Open_File_ToolStripMenuItem.Name = "Open_File_ToolStripMenuItem";
-			this.Open_File_ToolStripMenuItem.Size = new System.Drawing.Size( 139, 22 );
+			this.Open_File_ToolStripMenuItem.Size = new System.Drawing.Size( 152, 22 );
 			this.Open_File_ToolStripMenuItem.Text = "File";
 			this.Open_File_ToolStripMenuItem.Click += new System.EventHandler( this.Open_File_ToolStripMenuItem_Click );
 			// 

@@ -10,6 +10,13 @@ namespace Syntec.Windows
 {
 	public partial class NewItemSelectionPanel : UserControl
 	{
+		public TreeView Category
+		{
+			get
+			{
+				return this.Category_TreeView;
+			}
+		}
 
 		public NewItemSelectionPanel()
 		{

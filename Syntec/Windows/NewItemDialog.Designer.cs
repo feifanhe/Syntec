@@ -1,6 +1,6 @@
 namespace Syntec.Windows
 {
-	partial class NewItemWindow
+	partial class NewItemDialog
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -27,24 +27,24 @@ namespace Syntec.Windows
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.newItemSelectionPanel1 = new Syntec.Windows.NewItemSelectionPanel();
+			this.MainPanel = new Syntec.Windows.NewItemSelectionPanel();
 			this.SuspendLayout();
 			// 
-			// newItemSelectionPanel1
+			// MainPanel
 			// 
-			this.newItemSelectionPanel1.Location = new System.Drawing.Point( 12, 12 );
-			this.newItemSelectionPanel1.Name = "newItemSelectionPanel1";
-			this.newItemSelectionPanel1.Size = new System.Drawing.Size( 640, 320 );
-			this.newItemSelectionPanel1.TabIndex = 0;
+			this.MainPanel.Location = new System.Drawing.Point( 12, 12 );
+			this.MainPanel.Name = "MainPanel";
+			this.MainPanel.Size = new System.Drawing.Size( 640, 320 );
+			this.MainPanel.TabIndex = 0;
 			// 
-			// NewItemWindow
+			// NewItemDialog
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF( 6F, 12F );
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size( 664, 424 );
-			this.Controls.Add( this.newItemSelectionPanel1 );
+			this.Controls.Add( this.MainPanel );
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-			this.Name = "NewItemWindow";
+			this.Name = "NewItemDialog";
 			this.Text = "NewItemWindow";
 			this.ResumeLayout( false );
 
@@ -52,7 +52,7 @@ namespace Syntec.Windows
 
 		#endregion
 
-		private NewItemSelectionPanel newItemSelectionPanel1;
+		private NewItemSelectionPanel MainPanel;
 
 	}
 }
