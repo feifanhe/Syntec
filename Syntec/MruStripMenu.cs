@@ -6,6 +6,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Threading;
 using Microsoft.Win32;
+using Syntec.Configurator;
 
 namespace Syntec
 {
@@ -261,7 +262,6 @@ namespace Syntec
 				for( int i = StartIndex + startNumber; i < EndIndex; i++, startNumber++ ) {
 					int offset = MenuItems[ i ].Text.Substring( 0, 3 ) == "1&0" ? 5 : 4;
 					MenuItems[ i ].Text = FixupEntryname( startNumber, MenuItems[ i ].Text.Substring( offset ) );
-					//					MenuItems[i].Text = FixupEntryname(startNumber, MenuItems[i].Text.Substring(startNumber == 10 ? 5 : 4));
 				}
 			}
 		}
@@ -599,7 +599,7 @@ namespace Syntec
 
 		#endregion
 
-		#region INI Methods
+		#region INI File Methods
 
 		public string INIFileName
 		{
@@ -641,14 +641,16 @@ namespace Syntec
 			if( iniFileName != null ) {
 				mruStripMutex.WaitOne();
 				RemoveAll();
-				IniEditor iniFile = new IniEditor( iniFileName );
-				MaxEntries = int.Parse( iniFile.Read( iniSection, "max" ) );
-				for( int number = maxEntries; number > 0; number-- ) {
-					string filename = iniFile.Read( iniSection, "Entry" + number.ToString() );
-					if( filename != string.Empty )
-						AddFile( filename );
+				IniConfigurator iniConfig = new IniConfigurator( iniFileName );
+				string maxEntries = iniConfig.GetValue( iniSection, "max" );
+				if( maxEntries != null ) {
+					MaxEntries = int.Parse( maxEntries );
+					for( int number = maxEntries; number > 0; number-- ) {
+						string filename = iniConfig.GetValue( iniSection, "Entry" + number.ToString() );
+						if( filename != null )
+							AddFile( filename );
+					}
 				}
-
 				mruStripMutex.ReleaseMutex();
 			}
 		}
@@ -658,116 +660,18 @@ namespace Syntec
 			if( iniFileName != null ) {
 				mruStripMutex.WaitOne();
 
-				IniEditor iniFile = new IniEditor( iniFileName );
-
-				iniFile.Write( iniSection, "max", maxEntries.ToString() );
+				IniConfigurator iniConfig = new IniConfigurator( iniFileName );
+				iniConfig.AddValue( iniSection, "max", maxEntries.ToString() );
 
 				int number = 1;
 				int i = StartIndex;
 				for( ; i < EndIndex; i++, number++ ) {
-					iniFile.Write( iniSection, "Entry" + number.ToString(), ( (MruMenuItem)MenuItems[ i ] ).Filename );
+					iniConfig.AddValue( iniSection, "Entry" + number.ToString(), ( (MruMenuItem)MenuItems[ i ] ).Filename );
 				}
 
-				for( ; number <= 16; number++ ) {
-					iniFile.Delete( iniSection, "Entry" + number.ToString() );
-				}
+				iniConfig.Save();
 
 				mruStripMutex.ReleaseMutex();
-			}
-		}
-
-		#endregion
-	}
-
-	/// <summary>
-	/// Represents an inline most recently used (mru) menu.
-	/// </summary>
-	/// <remarks>
-	/// This class shows the MRU list "inline". To display
-	/// the MRU list as a popup menu use <see labelName="MruMenu">MruMenu</see>.
-	/// </remarks>
-	public class MruStripMenuInline : MruStripMenu
-	{
-		protected ToolStripMenuItem owningMenu;
-		protected ToolStripMenuItem firstMenuItem;
-
-		#region Construction
-
-		public MruStripMenuInline( ToolStripMenuItem owningMenu, ToolStripMenuItem recentFileMenuItem, ClickedHandler clickedHandler, string iniFileName, string iniSection, int maxEntries )
-		{
-			maxShortenPathLength = 48;
-			this.owningMenu = owningMenu;
-			this.firstMenuItem = recentFileMenuItem;
-			Init( recentFileMenuItem, clickedHandler, iniFileName, iniSection, maxEntries );
-		}
-
-		#endregion
-
-		#region Overridden Properties
-
-		public override ToolStripItemCollection MenuItems
-		{
-			get
-			{
-				return owningMenu.DropDownItems;
-			}
-		}
-
-		public override int StartIndex
-		{
-			get
-			{
-				return MenuItems.IndexOf( firstMenuItem );
-			}
-		}
-
-		public override int EndIndex
-		{
-			get
-			{
-				return StartIndex + numEntries;
-			}
-		}
-
-		public override bool IsInline
-		{
-			get
-			{
-				return true;
-			}
-		}
-
-		#endregion
-
-		#region Overridden Methods
-
-		protected override void Enable()
-		{
-			MenuItems.Remove( recentFileMenuItem );
-		}
-
-		protected override void SetFirstFile( MruMenuItem menuItem )
-		{
-			firstMenuItem = menuItem;
-		}
-
-		protected override void Disable()
-		{
-			int index = MenuItems.IndexOf( firstMenuItem );
-			MenuItems.RemoveAt( index );
-			MenuItems.Insert( index, recentFileMenuItem );
-			firstMenuItem = recentFileMenuItem;
-		}
-
-		public override void RemoveAll()
-		{
-			// inline menu must remove items from the containing menu
-			if( numEntries > 0 ) {
-				for( int index = EndIndex - 1; index > StartIndex; index-- ) {
-					MenuItems.RemoveAt( index );
-				}
-				Disable();
-				numEntries = 0;
 			}
 		}
 
