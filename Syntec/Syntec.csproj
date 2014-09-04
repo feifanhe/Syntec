@@ -48,6 +48,7 @@
     <Compile Include="Configurator\IniConfigurator.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="Module\ModuleManager.cs" />
+    <Compile Include="MruStripMenu.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Windows\MainForm.cs">
       <SubType>Form</SubType>
