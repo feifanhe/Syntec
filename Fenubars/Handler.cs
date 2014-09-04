@@ -1,15 +1,15 @@
-using System.Xml;
-using System.IO;
-using System.Windows.Forms;
-using System.Xml.Serialization;
-using Fenubars.XML;
-using System.Collections.Generic;
-using Fenubars.Display;
 using System;
-using Fenubars.Buttons;
-//using Azuria.Common.Controls;
-using System.Reflection;
+using System.IO;
 using System.ComponentModel;
+using System.Reflection;
+using System.Xml;
+using System.Xml.Serialization;
+using System.Collections.Generic;
+
+using Fenubars.Display;
+using Fenubars.Buttons;
+using Fenubars.XML;
+
 using ModuleInterface;
 
 namespace Fenubars
@@ -33,6 +33,8 @@ namespace Fenubars
 				CurrentFenuState.IncludedFenus = value;
 			}
 		}
+
+		private ObjectTree CompiledTree;
 
 		private string XMLPath = string.Empty;
 
@@ -179,6 +181,13 @@ namespace Fenubars
 			using( StreamReader Reader = new StreamReader( XMLPath ) ) {
 				CurrentFenuState = (XMLGlobalState)Serializer.Deserialize( Reader );
 			}
+		}
+
+		public void Open()
+		{
+			//CompiledTree = new ObjectTree_Deprecate( CurrentFenuState.IncludedFenus );
+			CompiledTree = new ObjectTree( Path.GetFileNameWithoutExtension( XMLPath ), CurrentFenuState.IncludedFenus );
+			_Host.PopulateObjects( CompiledTree );
 		}
 
 		public void Open( string FenuName )

@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace ModuleInterface
 {
@@ -6,13 +7,16 @@ namespace ModuleInterface
 	{
 		#region Module info
 
-		string Name {
+		string Name
+		{
 			get;
 		}
-		string Description {
+		string Description
+		{
 			get;
 		}
-		string Version {
+		string Version
+		{
 			get;
 		}
 
@@ -20,7 +24,8 @@ namespace ModuleInterface
 
 		#region Host adapter
 
-		IModuleHost Host {
+		IModuleHost Host
+		{
 			get;
 			set;
 		}
@@ -30,25 +35,26 @@ namespace ModuleInterface
 		#region Basic operations
 
 		// Return false if the plugin can't initialize from designated XMLPath
-		bool Initialize(string XMLPath);
-		void Open(string Name);
-		void Close( );
+		bool Initialize( string XMLPath );
+		void Open();
+		void Open( string Name );
+		void Close();
 
 		#endregion
 
 		#region File processing
 
-		void Save( );
-		void SaveAs(string XMLPath);
+		void Save();
+		void SaveAs( string XMLPath );
 
 		#endregion
 
 		#region Edit operations
 
-		void Cut( );
-		void Copy( );
-		void Paste( );
-		void Delete( );
+		void Cut();
+		void Copy();
+		void Paste();
+		void Delete();
 
 		#endregion
 	}
@@ -58,5 +64,6 @@ namespace ModuleInterface
 		void DrawOnCanvas(System.Windows.Forms.Control control);
 		void ShowProperties(object control);
 		void SetPropertyGrid(AttributeCollection hidden, string[] browsable);
+		void PopulateObjects( Control treeView );
 	}
 }
