@@ -85,9 +85,9 @@
       <SubType>Designer</SubType>
       <DependentUpon>NewItemSelectionPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Windows\NewItemWindow.resx">
+    <EmbeddedResource Include="Windows\NewItemDialog.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>NewItemWindow.cs</DependentUpon>
+      <DependentUpon>NewItemDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\ObjectBrowserForm.resx">
       <SubType>Designer</SubType>
@@ -118,11 +118,11 @@
     <Compile Include="Windows\NewItemSelectionPanel.Designer.cs">
       <DependentUpon>NewItemSelectionPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Windows\NewItemWindow.cs">
+    <Compile Include="Windows\NewItemDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Windows\NewItemWindow.Designer.cs">
-      <DependentUpon>NewItemWindow.cs</DependentUpon>
+    <Compile Include="Windows\NewItemDialog.Designer.cs">
+      <DependentUpon>NewItemDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Windows\ObjectBrowserForm.cs">
       <SubType>Form</SubType>
