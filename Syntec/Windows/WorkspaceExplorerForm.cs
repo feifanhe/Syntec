@@ -198,7 +198,7 @@ namespace Syntec.Windows
 
 		private void WorkspaceTreeView_NodeMouseDoubleClick( object sender, TreeNodeMouseClickEventArgs e )
 		{
-			OpenDesigner( e.Node.Tag as string );
+			// OBJECT BROWSER
 		}
 
 		#endregion
@@ -217,33 +217,6 @@ namespace Syntec.Windows
 		private void Refresh_ToolStripButton_Click( object sender, EventArgs e )
 		{
 			RefreshTree();
-		}
-
-		private void ViewCode_ToolStripButton_Click( object sender, EventArgs e )
-		{
-
-		}
-
-		private void ViewDesigner_ToolStripButton_Click( object sender, EventArgs e )
-		{
-			// Get selected path
-			string path = Workspace_TreeView.SelectedNode.Tag as string;
-			OpenDesigner( path );
-		}
-
-		private void ViewStructure_ToolStripButton_Click( object sender, EventArgs e )
-		{
-
-		}
-
-		#endregion
-
-		// All the operations ends up here, modify these methods when something changed else where
-		#region Executions
-
-		private void OpenDesigner( string path )
-		{
-			// PASS INFO TO PROXY
 		}
 
 		#endregion

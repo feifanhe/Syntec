@@ -9,7 +9,7 @@ namespace Syntec.Windows
 {
 	public partial class MainForm : Form
 	{
-		DocumentsForm df, df2;
+		DocumentsForm df;
 
 		// General windows
 		internal static WorkspaceExplorerForm WorkspaceExplorer = new WorkspaceExplorerForm( null );
@@ -115,12 +115,11 @@ namespace Syntec.Windows
 		private void Test_Button_Click( object sender, EventArgs e )
 		{
 			string path = @"C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\bin\Debug\CncFenu.xml";
-			df2 = new DocumentsForm(  path);
-			if( df2.IsDisposed )
+			df = new DocumentsForm(  path);
+			if( df.IsDisposed )
 				return;
-			df2.Show( Main_DockPanel, DockState.Document );
-			df2.TabText = System.IO.Path.GetFileNameWithoutExtension( path );
-			df2.Name = df2.TabText;
+			df.Show( Main_DockPanel, DockState.Document );
+			df.TabText = System.IO.Path.GetFileNameWithoutExtension( path );
 
 			//Application.Restart();
 		}

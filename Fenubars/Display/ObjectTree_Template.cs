@@ -5,21 +5,18 @@ using System.Windows.Forms;
 
 namespace Fenubars.Display
 {
-	public partial class ObjectTree : TreeView
+	public class ObjectTree_Template : TreeView
 	{
 		private readonly string CUSTOM_FENU_HEADER = "CUSTOMFENU_";
 
 		private List<FenuLink> links = new List<FenuLink>();
 
-		public ObjectTree( string fileName, List<FenuState> fenus )
+		public ObjectTree_Template( string fileName, List<FenuState> fenus )
 		{
-			InitializeComponent();
-
-			CompileLinksInfo( fenus );
+			CompileLinksInfo(fenus);
 
 			// Save file name
 			this.Name = fileName;
-			this.ImageList = this.ObjectType_ImageList;
 
 			// First time execution, fully reconstruct the tree
 			FullyReconstructTree();
@@ -30,7 +27,7 @@ namespace Fenubars.Display
 		private void CompileLinksInfo( List<FenuState> fenus )
 		{
 			foreach( FenuState fenu in fenus ) {
-				FenuLink newLink = new FenuLink( fenu.Name );
+				FenuLink newLink = new FenuLink(fenu.Name);
 				CompileChildLinks( newLink, fenu );
 
 				links.Add( newLink );
@@ -59,7 +56,7 @@ namespace Fenubars.Display
 			// Add root nodes first
 			foreach( FenuLink link in links ) {
 				if( link.IsRoot )
-					this.Nodes.Add( link.Name, link.Name, 0, 0 );
+					this.Nodes.Add( link.Name, link.Name );
 			}
 
 			// Add childs for the root nodes
@@ -124,8 +121,8 @@ namespace Fenubars.Display
 			List<string> linkInfo = foundedLink.Links;
 			foreach( string link in linkInfo ) {
 				if( !IsLoopFormed( parent.Name, link ) ) {
-					if( !parent.Nodes.ContainsKey( link ) )
-						parent.Nodes.Add( link, link, 1, 1 );
+					if(!parent.Nodes.ContainsKey(link))
+						parent.Nodes.Add( link, link );
 					foreach( TreeNode childNode in parent.Nodes )
 						ParseLinksToChild( childNode );
 				}
@@ -194,12 +191,17 @@ namespace Fenubars.Display
 			lastMouseDownTime = DateTime.Now;
 		}
 
+		//protected override void OnNodeMouseDoubleClick( TreeNodeMouseClickEventArgs e )
+		//{
+		//    MessageBox.Show( "DOUBLE CLICKED: " + e.Node.Name );
+		//}
+
 		#endregion
 	}
 
-	internal class FenuLink
+	internal class FenuLink_Template
 	{
-		public FenuLink( string name )
+		public FenuLink_Template( string name )
 		{
 			this._Name = name;
 		}
