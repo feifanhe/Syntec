@@ -63,7 +63,15 @@ namespace Syntec.Windows
 
 		private void New_Workspace_ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
-			new NewItemDialog().ShowDialog( this );
+			NewWorkspaceDialog dialog = new NewWorkspaceDialog();
+			if( dialog.ShowDialog( this ) == DialogResult.OK ) {
+				// TODO: Open Workspace
+			}
+		}
+
+		private void New_File_ToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+
 		}
 
 		private void Open_Workspace_ToolStripMenuItem_Click( object sender, EventArgs e )
@@ -164,6 +172,5 @@ namespace Syntec.Windows
 		}
 
 		#endregion
-
 	}
 }

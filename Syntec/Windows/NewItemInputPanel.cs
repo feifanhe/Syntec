@@ -10,6 +10,22 @@ namespace Syntec.Windows
 {
 	public partial class NewItemInputPanel : UserControl
 	{
+		public string SelectedPath
+		{
+			get
+			{
+				return this.Location_Text.Text;
+			}
+		}
+
+		public int SelectedSolutionIndex
+		{
+			get
+			{
+				return this.Solution_ComboBox.SelectedIndex;
+			}
+		}
+
 		public NewItemInputPanel()
 		{
 			InitializeComponent();

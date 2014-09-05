@@ -164,6 +164,7 @@ namespace Syntec.Windows
 			this.New_File_ToolStripMenuItem.Name = "New_File_ToolStripMenuItem";
 			this.New_File_ToolStripMenuItem.Size = new System.Drawing.Size( 152, 22 );
 			this.New_File_ToolStripMenuItem.Text = "File";
+			this.New_File_ToolStripMenuItem.Click += new System.EventHandler( this.New_File_ToolStripMenuItem_Click );
 			// 
 			// File_Open_ToolStripMenuItem
 			// 

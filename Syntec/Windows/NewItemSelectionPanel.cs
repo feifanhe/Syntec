@@ -11,43 +11,24 @@ namespace Syntec.Windows
 {
 	public partial class NewItemSelectionPanel : UserControl
 	{
-		public TreeView Category
+		#region Properties
+
+		public string SelectedTreeNode
 		{
 			get
 			{
-				return this.Category_TreeView;
+				return Category_TreeView.SelectedNode.FullPath;
 			}
 		}
+
+		#endregion
 
 		public NewItemSelectionPanel()
 		{
 			InitializeComponent();
 		}
 
-		private void Category_TreeView_NodeMouseClick( object sender, TreeNodeMouseClickEventArgs e )
-		{
-			if( e.Node.Tag == null )
-				return;
-			if( e.Node.Tag.GetType() != typeof( XmlElement ) )
-				return;
-
-			XmlElement Tag = e.Node.Tag as XmlElement;
-
-			// TODO: Show Desc of Node
-			this.Description_TextBox.Text = Tag.Attributes[ "desc" ].Value;
-
-			// TODO: Populate Template List
-		}
-
-		private void Template_ListView_ItemChecked( object sender, ItemCheckedEventArgs e )
-		{
-			if( e.Item.Tag == null )
-				return;
-			if( e.Item.Tag.GetType() != typeof( string ) )
-				return;
-
-			Description_TextBox.Text = e.Item.Tag as string;
-		}
+		#region Category
 
 		public void PopulateCategory(string ConfigFile)
 		{
@@ -90,5 +71,38 @@ namespace Syntec.Windows
 				}
 			}
 		}
+
+		#endregion
+
+		#region Event
+
+		private void Category_TreeView_NodeMouseClick( object sender, TreeNodeMouseClickEventArgs e )
+		{
+			if( e.Node.Tag == null )
+				return;
+			if( e.Node.Tag.GetType() != typeof( XmlElement ) )
+				return;
+
+			XmlElement Tag = e.Node.Tag as XmlElement;
+
+			// TODO: Show Desc of Node
+			if( Tag.Attributes[ "desc" ] != null ) {
+				this.Description_TextBox.Text = Tag.Attributes[ "desc" ].Value;
+			}
+
+			// TODO: Populate Template List
+		}
+
+		private void Template_ListView_ItemChecked( object sender, ItemCheckedEventArgs e )
+		{
+			if( e.Item.Tag == null )
+				return;
+			if( e.Item.Tag.GetType() != typeof( XmlElement ) )
+				return;
+
+			// TODO: Show Desc & Select Template
+		}
+
+		#endregion
 	}
 }

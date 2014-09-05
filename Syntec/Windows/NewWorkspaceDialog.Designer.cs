@@ -1,6 +1,6 @@
 namespace Syntec.Windows
 {
-	partial class NewItemDialog
+	partial class NewWorkspaceDialog
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -28,8 +28,8 @@ namespace Syntec.Windows
 		private void InitializeComponent()
 		{
 			this.ButtonPanel = new System.Windows.Forms.Panel();
-			this.Cancel_Button = new System.Windows.Forms.Button();
 			this.OK_Button = new System.Windows.Forms.Button();
+			this.Cancel_Button = new System.Windows.Forms.Button();
 			this.InputPanel = new Syntec.Windows.NewItemInputPanel();
 			this.SelectionPanel = new Syntec.Windows.NewItemSelectionPanel();
 			this.ButtonPanel.SuspendLayout();
@@ -44,15 +44,6 @@ namespace Syntec.Windows
 			this.ButtonPanel.Size = new System.Drawing.Size( 640, 29 );
 			this.ButtonPanel.TabIndex = 2;
 			// 
-			// Cancel_Button
-			// 
-			this.Cancel_Button.Location = new System.Drawing.Point( 565, 3 );
-			this.Cancel_Button.Name = "Cancel_Button";
-			this.Cancel_Button.Size = new System.Drawing.Size( 75, 23 );
-			this.Cancel_Button.TabIndex = 0;
-			this.Cancel_Button.Text = "Cancel";
-			this.Cancel_Button.UseVisualStyleBackColor = true;
-			// 
 			// OK_Button
 			// 
 			this.OK_Button.Location = new System.Drawing.Point( 484, 3 );
@@ -61,6 +52,17 @@ namespace Syntec.Windows
 			this.OK_Button.TabIndex = 1;
 			this.OK_Button.Text = "OK";
 			this.OK_Button.UseVisualStyleBackColor = true;
+			this.OK_Button.Click += new System.EventHandler( this.OK_Button_Click );
+			// 
+			// Cancel_Button
+			// 
+			this.Cancel_Button.Location = new System.Drawing.Point( 565, 3 );
+			this.Cancel_Button.Name = "Cancel_Button";
+			this.Cancel_Button.Size = new System.Drawing.Size( 75, 23 );
+			this.Cancel_Button.TabIndex = 0;
+			this.Cancel_Button.Text = "Cancel";
+			this.Cancel_Button.UseVisualStyleBackColor = true;
+			this.Cancel_Button.Click += new System.EventHandler( this.Cancel_Button_Click );
 			// 
 			// InputPanel
 			// 
@@ -76,7 +78,7 @@ namespace Syntec.Windows
 			this.SelectionPanel.Size = new System.Drawing.Size( 640, 360 );
 			this.SelectionPanel.TabIndex = 0;
 			// 
-			// NewItemDialog
+			// NewWorkspaceDialog
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF( 6F, 12F );
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -85,7 +87,7 @@ namespace Syntec.Windows
 			this.Controls.Add( this.InputPanel );
 			this.Controls.Add( this.SelectionPanel );
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-			this.Name = "NewItemDialog";
+			this.Name = "NewWorkspaceDialog";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "NewItemWindow";
 			this.ButtonPanel.ResumeLayout( false );
