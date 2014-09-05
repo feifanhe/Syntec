@@ -63,7 +63,7 @@ namespace Syntec.Windows
 
 		private void New_Workspace_ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
-			new NewItemDialog().ShowDialog();
+			new NewItemDialog().ShowDialog( this );
 		}
 
 		private void Open_Workspace_ToolStripMenuItem_Click( object sender, EventArgs e )
