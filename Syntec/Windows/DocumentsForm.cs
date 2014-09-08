@@ -42,10 +42,34 @@ namespace Syntec.Windows
 			}
 		}
 
+		#region Methods for IDE to call
+
 		public void Open( string name )
 		{
 			instance.Open( name );
 		}
+
+		public void Cut()
+		{
+			instance.Cut();
+		}
+
+		public void Copy()
+		{
+			instance.Copy();
+		}
+
+		public void Paste()
+		{
+			instance.Paste();
+		}
+
+		public void Delete()
+		{
+			instance.Delete();
+		}
+
+		#endregion
 
 		#region IModuleHost Members
 

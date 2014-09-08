@@ -18,7 +18,7 @@ namespace Syntec.Windows
 		internal static PropertiesWindowForm PropertiesWindow = new PropertiesWindowForm();
 		internal static ObjectBrowserForm ObjectBrowser = new ObjectBrowserForm();
 
-		private const string REGISTRY_KEY = "SOFTWARE\\SYNTEC\\Syntec";
+		// Most recently used items variables
 		private MruStripMenu RecentWorkspacesMenu;
 		private MruStripMenu RecentFilesMenu;
 
@@ -110,6 +110,7 @@ namespace Syntec.Windows
 					return;
 
 				RecentWorkspacesMenu.AddFile( dialog.SelectedPath );
+
 				WorkspaceExplorer.RefreshTree( dialog.SelectedPath );
 			}
 			else {
@@ -123,9 +124,15 @@ namespace Syntec.Windows
 					return;
 
 				RecentFilesMenu.AddFiles( dialog.FileNames );
-				// CHECK IF FILE IS UNDER RES -> OPEN PROJECT, DOCUMENTS : DOCUMENTS 
-				// PASS TO PROXY
+
+				// Open all the selected files
+				foreach( string fileName in dialog.FileNames )
+					OpenFile( fileName );
 			}
+		}
+
+		private void OpenFile( string filePath )
+		{
 		}
 
 		#endregion
