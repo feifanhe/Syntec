@@ -115,7 +115,7 @@ namespace Syntec.Windows
             this.Test_Button} );
 			this.Main_MenuStrip.Location = new System.Drawing.Point( 0, 0 );
 			this.Main_MenuStrip.Name = "Main_MenuStrip";
-			this.Main_MenuStrip.Size = new System.Drawing.Size( 1072, 24 );
+			this.Main_MenuStrip.Size = new System.Drawing.Size( 1220, 24 );
 			this.Main_MenuStrip.TabIndex = 1;
 			// 
 			// File_ToolStripMenuItem
@@ -461,7 +461,7 @@ namespace Syntec.Windows
 			// 
 			this.Main_StatusStrip.Location = new System.Drawing.Point( 0, 564 );
 			this.Main_StatusStrip.Name = "Main_StatusStrip";
-			this.Main_StatusStrip.Size = new System.Drawing.Size( 1072, 22 );
+			this.Main_StatusStrip.Size = new System.Drawing.Size( 1220, 22 );
 			this.Main_StatusStrip.TabIndex = 2;
 			this.Main_StatusStrip.Text = "statusStrip1";
 			// 
@@ -533,7 +533,7 @@ namespace Syntec.Windows
 			this.Main_ToolStripPanel.Name = "Main_ToolStripPanel";
 			this.Main_ToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
 			this.Main_ToolStripPanel.RowMargin = new System.Windows.Forms.Padding( 3, 0, 0, 0 );
-			this.Main_ToolStripPanel.Size = new System.Drawing.Size( 1072, 25 );
+			this.Main_ToolStripPanel.Size = new System.Drawing.Size( 1220, 25 );
 			// 
 			// Main_DockPanel
 			// 
@@ -542,7 +542,7 @@ namespace Syntec.Windows
 			Main_DockPanel.DockBackColor = System.Drawing.SystemColors.ControlDark;
 			Main_DockPanel.Location = new System.Drawing.Point( 0, 49 );
 			Main_DockPanel.Name = "Main_DockPanel";
-			Main_DockPanel.Size = new System.Drawing.Size( 1072, 515 );
+			Main_DockPanel.Size = new System.Drawing.Size( 1220, 515 );
 			dockPanelGradient1.EndColor = System.Drawing.SystemColors.ControlLight;
 			dockPanelGradient1.StartColor = System.Drawing.SystemColors.ControlLight;
 			autoHideStripSkin1.DockStripGradient = dockPanelGradient1;
@@ -596,7 +596,7 @@ namespace Syntec.Windows
 			this.AutoScaleDimensions = new System.Drawing.SizeF( 6F, 13F );
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlDark;
-			this.ClientSize = new System.Drawing.Size( 1072, 586 );
+			this.ClientSize = new System.Drawing.Size( 1220, 586 );
 			this.Controls.Add( Main_DockPanel );
 			this.Controls.Add( this.Main_ToolStripPanel );
 			this.Controls.Add( this.Main_StatusStrip );
