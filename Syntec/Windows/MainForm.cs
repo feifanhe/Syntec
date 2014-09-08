@@ -28,8 +28,7 @@ namespace Syntec.Windows
 
 			PropertiesWindow.Show( Main_DockPanel, DockState.DockRight );
 			WorkspaceExplorer.Show( PropertiesWindow.Pane, DockAlignment.Top, 0.6 );
-			ObjectBrowser.Show( Main_DockPanel, DockState.DockLeft );
-
+			ObjectBrowser.Show( WorkspaceExplorer.Pane, WorkspaceExplorer );
 
 			RecentWorkspacesMenu = new MruStripMenu(File_Recent_Workspaces_ToolStripMenuItem, new MruStripMenu.ClickedHandler(RecentWorkspaces_OnClick), "Syntec.ini", "RecentWorkspaces", 4);
 			RecentWorkspacesMenu.LoadFromINIFile();
@@ -37,10 +36,6 @@ namespace Syntec.Windows
 
 			RecentFilesMenu = new MruStripMenu( File_Recent_Files_ToolStripMenuItem, new MruStripMenu.ClickedHandler( RecentFiles_OnClick ), "Syntec.ini", "RecentFiles", 4 );
 			RecentFilesMenu.LoadFromINIFile();
-
-			//df = new DocumentsForm();
-			//df.Show( Main_DockPanel, DockState.Document );
-			//df.TabText = "test1";
 		}
 
 		#region Form related
