@@ -101,6 +101,31 @@ namespace Syntec.Windows
 
 		#endregion
 
+		#region View
+
+		private void View_WorkspaceExplorer_ToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			if( WorkspaceExplorer.IsHidden ) {
+				WorkspaceExplorer.Show();
+			}
+		}
+
+		private void View_PropertiesWindow_ToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			if( PropertiesWindow.IsHidden ) {
+				PropertiesWindow.Show();
+			}
+		}
+
+		private void View_ObjectBrowser_ToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			if( ObjectBrowser.IsHidden ) {
+				ObjectBrowser.Show();
+			}
+		}
+
+		#endregion
+
 		#region Tools
 
 		private void Tools_ModuleManager_ToolStripMenuItem_Click( object sender, EventArgs e )

@@ -406,6 +406,7 @@ namespace Syntec.Windows
 			this.View_WorkspaceExplorer_ToolStripMenuItem.Name = "View_WorkspaceExplorer_ToolStripMenuItem";
 			this.View_WorkspaceExplorer_ToolStripMenuItem.Size = new System.Drawing.Size( 177, 22 );
 			this.View_WorkspaceExplorer_ToolStripMenuItem.Text = "Workspace Explorer";
+			this.View_WorkspaceExplorer_ToolStripMenuItem.Click += new System.EventHandler( this.View_WorkspaceExplorer_ToolStripMenuItem_Click );
 			// 
 			// View_PropertiesWindow_ToolStripMenuItem
 			// 
@@ -413,6 +414,7 @@ namespace Syntec.Windows
 			this.View_PropertiesWindow_ToolStripMenuItem.Name = "View_PropertiesWindow_ToolStripMenuItem";
 			this.View_PropertiesWindow_ToolStripMenuItem.Size = new System.Drawing.Size( 177, 22 );
 			this.View_PropertiesWindow_ToolStripMenuItem.Text = "Properties Window";
+			this.View_PropertiesWindow_ToolStripMenuItem.Click += new System.EventHandler( this.View_PropertiesWindow_ToolStripMenuItem_Click );
 			// 
 			// View_ObjectBrowser_ToolStripMenuItem
 			// 
@@ -420,6 +422,7 @@ namespace Syntec.Windows
 			this.View_ObjectBrowser_ToolStripMenuItem.Name = "View_ObjectBrowser_ToolStripMenuItem";
 			this.View_ObjectBrowser_ToolStripMenuItem.Size = new System.Drawing.Size( 177, 22 );
 			this.View_ObjectBrowser_ToolStripMenuItem.Text = "Object Browser";
+			this.View_ObjectBrowser_ToolStripMenuItem.Click += new System.EventHandler( this.View_ObjectBrowser_ToolStripMenuItem_Click );
 			// 
 			// View_ToolStripSeparator_2
 			// 
