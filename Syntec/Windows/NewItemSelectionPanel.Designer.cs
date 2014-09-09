@@ -28,12 +28,12 @@ namespace Syntec.Windows
 		private void InitializeComponent()
 		{
 			this.Main_SplitContainer = new System.Windows.Forms.SplitContainer();
-			this.Description_TextBox = new System.Windows.Forms.TextBox();
 			this.Category_SplitContainer = new System.Windows.Forms.SplitContainer();
-			this.Category_Label = new System.Windows.Forms.Label();
-			this.Template_Label = new System.Windows.Forms.Label();
 			this.Category_TreeView = new System.Windows.Forms.TreeView();
+			this.Category_Label = new System.Windows.Forms.Label();
 			this.Template_ListView = new System.Windows.Forms.ListView();
+			this.Template_Label = new System.Windows.Forms.Label();
+			this.Description_TextBox = new System.Windows.Forms.TextBox();
 			this.Main_SplitContainer.Panel1.SuspendLayout();
 			this.Main_SplitContainer.Panel2.SuspendLayout();
 			this.Main_SplitContainer.SuspendLayout();
@@ -58,19 +58,9 @@ namespace Syntec.Windows
 			// 
 			this.Main_SplitContainer.Panel2.Controls.Add( this.Description_TextBox );
 			this.Main_SplitContainer.Panel2MinSize = 22;
-			this.Main_SplitContainer.Size = new System.Drawing.Size( 640, 320 );
-			this.Main_SplitContainer.SplitterDistance = 294;
+			this.Main_SplitContainer.Size = new System.Drawing.Size( 640, 360 );
+			this.Main_SplitContainer.SplitterDistance = 330;
 			this.Main_SplitContainer.TabIndex = 0;
-			// 
-			// Description_TextBox
-			// 
-			this.Description_TextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.Description_TextBox.Location = new System.Drawing.Point( 0, 0 );
-			this.Description_TextBox.Name = "Description_TextBox";
-			this.Description_TextBox.ReadOnly = true;
-			this.Description_TextBox.Size = new System.Drawing.Size( 640, 22 );
-			this.Description_TextBox.TabIndex = 0;
-			this.Description_TextBox.Text = "Description";
 			// 
 			// Category_SplitContainer
 			// 
@@ -88,9 +78,18 @@ namespace Syntec.Windows
 			// 
 			this.Category_SplitContainer.Panel2.Controls.Add( this.Template_ListView );
 			this.Category_SplitContainer.Panel2.Controls.Add( this.Template_Label );
-			this.Category_SplitContainer.Size = new System.Drawing.Size( 640, 294 );
+			this.Category_SplitContainer.Size = new System.Drawing.Size( 640, 330 );
 			this.Category_SplitContainer.SplitterDistance = 240;
 			this.Category_SplitContainer.TabIndex = 0;
+			// 
+			// Category_TreeView
+			// 
+			this.Category_TreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.Category_TreeView.Location = new System.Drawing.Point( 0, 23 );
+			this.Category_TreeView.Name = "Category_TreeView";
+			this.Category_TreeView.Size = new System.Drawing.Size( 240, 307 );
+			this.Category_TreeView.TabIndex = 1;
+			this.Category_TreeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler( this.Category_TreeView_NodeMouseClick );
 			// 
 			// Category_Label
 			// 
@@ -101,6 +100,17 @@ namespace Syntec.Windows
 			this.Category_Label.TabIndex = 0;
 			this.Category_Label.Text = "Categories:";
 			// 
+			// Template_ListView
+			// 
+			this.Template_ListView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.Template_ListView.Location = new System.Drawing.Point( 0, 23 );
+			this.Template_ListView.MultiSelect = false;
+			this.Template_ListView.Name = "Template_ListView";
+			this.Template_ListView.Size = new System.Drawing.Size( 396, 307 );
+			this.Template_ListView.TabIndex = 1;
+			this.Template_ListView.UseCompatibleStateImageBehavior = false;
+			this.Template_ListView.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler( this.Template_ListView_ItemChecked );
+			// 
 			// Template_Label
 			// 
 			this.Template_Label.Dock = System.Windows.Forms.DockStyle.Top;
@@ -110,25 +120,15 @@ namespace Syntec.Windows
 			this.Template_Label.TabIndex = 0;
 			this.Template_Label.Text = "Templates:";
 			// 
-			// Category_TreeView
+			// Description_TextBox
 			// 
-			this.Category_TreeView.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.Category_TreeView.Location = new System.Drawing.Point( 0, 23 );
-			this.Category_TreeView.Name = "Category_TreeView";
-			this.Category_TreeView.Size = new System.Drawing.Size( 240, 271 );
-			this.Category_TreeView.TabIndex = 1;
-			this.Category_TreeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler( this.Category_TreeView_NodeMouseClick );
-			// 
-			// Template_ListView
-			// 
-			this.Template_ListView.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.Template_ListView.Location = new System.Drawing.Point( 0, 23 );
-			this.Template_ListView.MultiSelect = false;
-			this.Template_ListView.Name = "Template_ListView";
-			this.Template_ListView.Size = new System.Drawing.Size( 396, 271 );
-			this.Template_ListView.TabIndex = 1;
-			this.Template_ListView.UseCompatibleStateImageBehavior = false;
-			this.Template_ListView.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler( this.Template_ListView_ItemChecked );
+			this.Description_TextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.Description_TextBox.Location = new System.Drawing.Point( 0, 0 );
+			this.Description_TextBox.Name = "Description_TextBox";
+			this.Description_TextBox.ReadOnly = true;
+			this.Description_TextBox.Size = new System.Drawing.Size( 640, 22 );
+			this.Description_TextBox.TabIndex = 0;
+			this.Description_TextBox.Text = "Description";
 			// 
 			// NewItemSelectionPanel
 			// 
@@ -136,7 +136,7 @@ namespace Syntec.Windows
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add( this.Main_SplitContainer );
 			this.Name = "NewItemSelectionPanel";
-			this.Size = new System.Drawing.Size( 640, 320 );
+			this.Size = new System.Drawing.Size( 640, 360 );
 			this.Main_SplitContainer.Panel1.ResumeLayout( false );
 			this.Main_SplitContainer.Panel2.ResumeLayout( false );
 			this.Main_SplitContainer.Panel2.PerformLayout();

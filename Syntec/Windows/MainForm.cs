@@ -71,7 +71,10 @@ namespace Syntec.Windows
 
 		private void New_File_ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
-
+			NewFileDialog dialog = new NewFileDialog();
+			if( dialog.ShowDialog( this ) == DialogResult.OK ) {
+				// TODO: Open Workspace
+			}
 		}
 
 		private void Open_Workspace_ToolStripMenuItem_Click( object sender, EventArgs e )

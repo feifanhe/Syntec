@@ -81,6 +81,10 @@
       <SubType>Designer</SubType>
       <DependentUpon>DocumentsForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Windows\NewFileDialog.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>NewFileDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Windows\NewItemInputPanel.resx">
       <DependentUpon>NewItemInputPanel.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -115,6 +119,12 @@
     </Compile>
     <Compile Include="Windows\DocumentsForm.Designer.cs">
       <DependentUpon>DocumentsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\NewFileDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\NewFileDialog.Designer.cs">
+      <DependentUpon>NewFileDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Windows\NewItemInputPanel.cs">
       <SubType>UserControl</SubType>

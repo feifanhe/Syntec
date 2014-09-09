@@ -30,7 +30,7 @@ namespace Syntec.Windows
 
 		#region Category
 
-		public void PopulateCategory(string ConfigFile)
+		public void PopulateCategory( string ConfigFile )
 		{
 			XmlDocument xDoc = new XmlDocument();
 			try {
@@ -46,7 +46,14 @@ namespace Syntec.Windows
 			}
 
 			this.Category_TreeView.Nodes.Clear();
-			TreeNode Root = new TreeNode( xDoc.DocumentElement.Name );
+
+			if( xDoc.DocumentElement == null ||
+				string.Compare( xDoc.DocumentElement.Name, "Category" ) != 0 ||
+				xDoc.DocumentElement.Attributes[ "name" ] == null ) {
+				return;
+			}
+
+			TreeNode Root = new TreeNode( xDoc.DocumentElement.Attributes[ "name" ].Value );
 			Root.Tag = xDoc.DocumentElement;
 			AddNode( Root, xDoc.DocumentElement );
 			this.Category_TreeView.Nodes.Add( Root );
@@ -57,16 +64,13 @@ namespace Syntec.Windows
 		{
 			if( ParentXmlNode.HasChildNodes ) {
 				foreach( XmlElement Element in ParentXmlNode.ChildNodes ) {
-					if( Element.Name == "Model" ) {
-						TreeNode Model = new TreeNode( Element.Attributes[ "name" ].Value );
-						Model.Tag = Element;
-						ParentTreeNode.Nodes.Add( Model );
-					}
-					else {
-						TreeNode Child = new TreeNode( Element.Name );
-						Child.Tag = Element;
-						AddNode( Child, Element );
-						ParentTreeNode.Nodes.Add( Child );
+					if( Element.Name == "Category" ) {
+						{
+							TreeNode Child = new TreeNode( Element.Attributes[ "name" ].Value );
+							Child.Tag = Element;
+							AddNode( Child, Element );
+							ParentTreeNode.Nodes.Add( Child );
+						}
 					}
 				}
 			}
