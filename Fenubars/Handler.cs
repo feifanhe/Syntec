@@ -169,6 +169,7 @@ namespace Fenubars
 				if( ParsedFenu.Name == FenuName ) {
 					Fenu newFenuPanel = new Fenu( ParsedFenu );
 					newFenuPanel.DataAvailable += new EventHandler<Fenubars.Display.ObjectDetailEventArgs>( FocusedObjectAvailable );
+					newFenuPanel.Link += new Fenu.LinkageEventHandler(Open);
 					newFenuPanel.PopulateButtons();
 
 					_Host.DrawOnCanvas( newFenuPanel );

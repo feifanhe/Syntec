@@ -190,6 +190,28 @@ namespace Fenubars.Display
 
 		private void FenuButton_MouseDown( object sender, MouseEventArgs e )
 		{
+			if( Control.ModifierKeys == Keys.Control ) {
+				if( e.Button == MouseButtons.Left ) {
+					// find fenu button state
+					FenuButtonState FBS;
+					if( sender.GetType() == typeof( EscapeButton ) )
+						FBS = _FenuContent.EscapeButton;
+					else if( sender.GetType() == typeof( NextButton ) )
+						FBS = _FenuContent.NextButton;
+					else if( sender.GetType() == typeof( NormalButton ) )
+						FBS = _FenuContent.NormalButtonList.Find(
+							delegate( FenuButtonState DummyState )
+							{
+								return ( sender as NormalButton ).Name == DummyState.Name;
+							} );
+					else {
+						return;
+					}
+					if( Link != null ) {
+						Link.Invoke( FBS.Link );
+					}
+				}
+			}
 
 			switch( e.Button ) {
 				case MouseButtons.Left:
@@ -201,6 +223,9 @@ namespace Fenubars.Display
 					break;
 			}
 		}
+
+		public event LinkageEventHandler Link;
+		public delegate void LinkageEventHandler( string FenuName );
 
 		#endregion
 
@@ -421,5 +446,19 @@ namespace Fenubars.Display
 			}
 		}
 
+	}
+	
+	public class FenuLinkageEventArgs : EventArgs{
+		private string _LinkFenuName;
+		public string LinkFenuName{
+			get
+			{
+				return _LinkFenuName;
+			}
+			set
+			{
+				_LinkFenuName = value;
+			}
+		}
 	}
 }
