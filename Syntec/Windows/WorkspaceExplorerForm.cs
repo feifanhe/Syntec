@@ -18,6 +18,13 @@ namespace Syntec.Windows
 		// Indicate to show every files or targeted only
 		private bool showAllFiles = false;
 
+		#region Events
+
+		public delegate void ShowObjectsEventHandler( Control treeView );
+		public event ShowObjectsEventHandler ShowOnObjectsBrowser;
+
+		#endregion
+
 		public WorkspaceExplorerForm()
 		{
 			InitializeComponent();
@@ -203,12 +210,15 @@ namespace Syntec.Windows
 			string path = e.Node.Tag as string;
 			DocumentsForm openFromWorkspace = new DocumentsForm( path );
 			if( openFromWorkspace.IsDisposed )
-				return;
+				return;			
+
+			openFromWorkspace.ShowOnObjectsBrowser += new DocumentsForm.ShowObjectsEventHandler( this.ShowOnObjectsBrowser );
+			
 			openFromWorkspace.Show( MainForm.Main_DockPanel, DockState.Document );
 			openFromWorkspace.TabText = Path.GetFileNameWithoutExtension( path );
 
 			// Switch to Object Browser tab
-			MainForm.ObjectBrowser.Show();
+			//MainForm.ObjectBrowser.Show();
 		}
 
 		#endregion
@@ -230,5 +240,7 @@ namespace Syntec.Windows
 		}
 
 		#endregion
+
+		
 	}
 }

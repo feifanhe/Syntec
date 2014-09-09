@@ -5,7 +5,7 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using System.Threading;
-using Microsoft.Win32;
+
 using Syntec.Configurator;
 
 namespace Syntec
