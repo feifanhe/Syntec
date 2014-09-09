@@ -132,7 +132,7 @@ namespace Fenubars.Display
 
 		private void FenuButton_MouseDown( object sender, MouseEventArgs e )
 		{
-			if( Control.ModifierKeys == Keys.Control ) {
+			if( Control.ModifierKeys == Keys.Shift ) {
 				if( e.Button == MouseButtons.Left ) {
 					// find fenu button state
 					FenuButtonState FBS;
@@ -153,6 +153,7 @@ namespace Fenubars.Display
 						Link.Invoke( FBS.Link );
 					}
 				}
+				return;
 			}
 
 			switch( e.Button ) {
