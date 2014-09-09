@@ -1,12 +1,12 @@
 using System;
 using System.Windows.Forms;
+using System.ComponentModel;
+using System.IO;
 
 using WeifenLuo.WinFormsUI.Docking;
-using Syntec;
-using Microsoft.Win32;
 
+using Syntec;
 using Syntec.Module;
-using System.ComponentModel;
 
 namespace Syntec.Windows
 {
@@ -150,6 +150,12 @@ namespace Syntec.Windows
 				// Open all the selected files
 				foreach( string fileName in dialog.FileNames )
 					OpenFile( fileName );
+
+				DialogResult result = MessageBox.Show( "Would you like to open the corresponding workspace?",
+															"Open workspace",
+															MessageBoxButtons.YesNo,
+															MessageBoxIcon.Question );
+
 			}
 
 			WorkspaceExplorer.Show();
@@ -157,7 +163,14 @@ namespace Syntec.Windows
 
 		private void OpenFile( string filePath )
 		{
+			DocumentsForm openFromFile = new DocumentsForm( filePath, new DocumentsForm.ShowPropertiesEventHandler( ShowProperties ),
+																			new DocumentsForm.SetPropertyGridEventHandler( SetPropertyGrid ),
+																			new DocumentsForm.ShowObjectsEventHandler( ShowObjects ) );
+			if( openFromFile.IsDisposed )
+				return;
 
+			openFromFile.Show( Main_DockPanel, DockState.Document );
+			openFromFile.TabText = Path.GetFileNameWithoutExtension( filePath );
 		}
 
 		private void ShowProperties( object control )
