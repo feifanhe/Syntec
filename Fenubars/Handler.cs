@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Xml;
 using System.Xml.Serialization;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 using Fenubars.Display;
 using Fenubars.Buttons;
@@ -191,24 +192,50 @@ namespace Fenubars
 
 		#region Edit operations
 
+		private Fenu FindWhichFenu( out Control focused )
+		{
+			focused = _Host.FindFocusedControl();
+
+			Control ctrlParent = focused;
+			while( ( ctrlParent = ctrlParent.Parent ) != null ) {
+				if( ctrlParent.GetType() == typeof(Fenu) ) {
+					return ctrlParent as Fenu;
+				}
+			}
+
+			return null;
+		}
+
 		public void Cut()
 		{
-			throw new Exception( "The method or operation is not implemented." );
+			Control focused = null;
+			Fenu fenu = FindWhichFenu( out focused );
+			if( fenu != null )
+				fenu.Cut( focused );
 		}
 
 		public void Copy()
 		{
-			throw new Exception( "The method or operation is not implemented." );
+			Control focused = null;
+			Fenu fenu = FindWhichFenu( out focused );
+			if( fenu != null )
+				fenu.Copy( focused );
 		}
 
 		public void Paste()
 		{
-			throw new Exception( "The method or operation is not implemented." );
+			Control focused = null;
+			Fenu fenu = FindWhichFenu( out focused );
+			if( fenu != null )
+				fenu.Paste( focused );
 		}
 
 		public void Delete()
 		{
-			throw new Exception( "The method or operation is not implemented." );
+			Control focused = null;
+			Fenu fenu = FindWhichFenu( out focused );
+			if( fenu != null )
+				fenu.Delete( focused );
 		}
 
 		#endregion

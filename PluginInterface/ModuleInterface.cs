@@ -44,9 +44,10 @@ namespace ModuleInterface
 
 	public interface IModuleHost
 	{
-		void DrawOnCanvas(System.Windows.Forms.Control control);
-		void ShowProperties(object control);
-		void SetPropertyGrid(AttributeCollection hidden, string[] browsable);
+		void DrawOnCanvas( System.Windows.Forms.Control control );
+		Control FindFocusedControl();
+		void ShowProperties( object control );
+		void SetPropertyGrid( AttributeCollection hidden, string[] browsable );
 		void ShowObjects( Control treeView );
 	}
 }

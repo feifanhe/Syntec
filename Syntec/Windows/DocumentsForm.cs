@@ -88,6 +88,19 @@ namespace Syntec.Windows
 			control.BringToFront();
 		}
 
+		public Control FindFocusedControl()
+		{
+			return FindFocusedControl( this );
+		}
+
+		private Control FindFocusedControl( Control control )
+		{
+			ContainerControl container = control as ContainerControl;
+			return ( null != container
+				? FindFocusedControl( container.ActiveControl )
+				: control );
+		}
+
 		public void ShowProperties( object control )
 		{
 			this.OnShowProperties( control );

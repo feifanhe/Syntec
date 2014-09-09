@@ -77,6 +77,30 @@ namespace Syntec.Windows
 
 		#endregion
 
+		#region Edit
+
+		private void Edit_Cut_ToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			( Main_DockPanel.ActiveDocument as DocumentsForm ).Cut();
+		}
+
+		private void Edit_Copy_ToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			( Main_DockPanel.ActiveDocument as DocumentsForm ).Copy();
+		}
+
+		private void Edit_Paste_ToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			( Main_DockPanel.ActiveDocument as DocumentsForm ).Paste();
+		}
+
+		private void Edit_Delete_ToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			( Main_DockPanel.ActiveDocument as DocumentsForm ).Delete();
+		}
+
+		#endregion
+
 		#region Tools
 
 		private void Tools_ModuleManager_ToolStripMenuItem_Click( object sender, EventArgs e )
@@ -189,6 +213,5 @@ namespace Syntec.Windows
 		}
 
 		#endregion
-
 	}
 }
