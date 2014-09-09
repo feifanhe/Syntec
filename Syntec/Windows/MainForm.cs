@@ -25,7 +25,7 @@ namespace Syntec.Windows
 			InitializeComponent();
 
 			// Bind events
-			WorkspaceExplorer.ShowOnObjectsBrowser += new WorkspaceExplorerForm.ShowObjectsEventHandler( ShowObjects );
+			WorkspaceExplorer.OnShowObjects += new WorkspaceExplorerForm.ShowObjectsEventHandler( this.ShowObjects );
 
 			// Load all the windows and set them to default locations
 			PropertiesWindow.Show( Main_DockPanel, DockState.DockRight );
@@ -181,7 +181,7 @@ namespace Syntec.Windows
 			DocumentsForm df;
 
 			string path = @"C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\bin\Debug\CncFenu.xml";
-			df = new DocumentsForm(  path);
+			df = new DocumentsForm(  path, new DocumentsForm.ShowObjectsEventHandler(ShowObjects));
 			if( df.IsDisposed )
 				return;
 			df.Show( Main_DockPanel, DockState.Document );

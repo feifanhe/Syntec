@@ -16,21 +16,14 @@ namespace Syntec.Windows
 	{
 		private IModule instance;
 
-		#region Events
-
-		public delegate void ShowObjectsEventHandler( Control treeView );
-		public event ShowObjectsEventHandler ShowOnObjectsBrowser;
-
-		public delegate void ShowPropertiesEventHandler( object control );
-		public event ShowPropertiesEventHandler ShowOnPropertiesWindow;
-
-		#endregion
-
-		public DocumentsForm( string XMLPath )
+		public DocumentsForm( string XMLPath, ShowObjectsEventHandler OnShowObjects)
 		{
 			InitializeComponent();
 
 			this.SuspendLayout();
+
+			// Bind events for later test
+			this.OnShowObjects += OnShowObjects;
 
 			if( ( instance = ModuleManager.FindProcessor( XMLPath ) ) == null ) {
 				// Destroy this form if nothing applicable
@@ -105,11 +98,17 @@ namespace Syntec.Windows
 		public void ShowObjects( Control treeView )
 		{
 			//MainForm.ObjectBrowser.SetContents( treeView );
-			this.ShowOnObjectsBrowser( treeView );
+
+			this.OnShowObjects( treeView );
 		}
 
 		#endregion
 
-		
+		#region Events
+
+		public delegate void ShowObjectsEventHandler( Control treeView );
+		public event ShowObjectsEventHandler OnShowObjects;
+
+		#endregion
 	}
 }
