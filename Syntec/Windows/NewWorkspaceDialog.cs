@@ -12,15 +12,17 @@ namespace Syntec.Windows
 {
 	public partial class NewWorkspaceDialog : Form
 	{
-		public string SeletedProduct
+		#region Properties
+
+		public string SelectedProduct
 		{
 			get
 			{
-				return this.SelectionPanel.SelectedTreeNode;
+				return this.SelectionPanel.SelectedCategory;
 			}
 		}
 
-		public string SeletedPath
+		public string SelectedPath
 		{
 			get
 			{
@@ -35,6 +37,9 @@ namespace Syntec.Windows
 				return this.InputPanel.SelectedSolutionIndex;
 			}
 		}
+		#endregion
+
+		#region Constructor
 
 		public NewWorkspaceDialog()
 		{
@@ -42,13 +47,17 @@ namespace Syntec.Windows
 			this.SelectionPanel.PopulateCategory( "Workspace.xml" );
 		}
 
+		#endregion
+
+		#region Button Click
+
 		private void OK_Button_Click( object sender, EventArgs e )
 		{
-			if( SeletedProduct == null ) {
+			if( this.SelectedProduct == null ) {
 				MessageBox.Show( "Please select a product" );
 				return;
 			}
-			if( !Directory.Exists( SeletedPath ) ) {
+			if( !Directory.Exists( this.SelectedPath ) ) {
 				return;
 			}
 
@@ -59,6 +68,7 @@ namespace Syntec.Windows
 		{
 			this.DialogResult = DialogResult.Cancel;
 		}
-		
+
+		#endregion
 	}
 }

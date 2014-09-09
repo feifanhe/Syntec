@@ -10,6 +10,8 @@ namespace Syntec.Windows
 {
 	public partial class NewItemInputPanel : UserControl
 	{
+		#region Properties
+
 		public string SelectedPath
 		{
 			get
@@ -26,6 +28,10 @@ namespace Syntec.Windows
 			}
 		}
 
+		#endregion
+
+		#region Constructor
+
 		public NewItemInputPanel()
 		{
 			InitializeComponent();
@@ -37,6 +43,10 @@ namespace Syntec.Windows
 			this.Solution_ComboBox.SelectedIndex = 0;
 		}
 
+		#endregion
+
+		#region Button Click
+
 		private void Browser_Button_Click( object sender, EventArgs e )
 		{
 			FolderBrowserDialog dialog = new FolderBrowserDialog();
@@ -44,5 +54,7 @@ namespace Syntec.Windows
 				this.Location_Text.Text = dialog.SelectedPath;
 			}
 		}
+
+		#endregion
 	}
 }

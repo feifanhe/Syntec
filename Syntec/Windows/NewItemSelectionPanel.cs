@@ -13,7 +13,7 @@ namespace Syntec.Windows
 	{
 		#region Properties
 
-		public string SelectedTreeNode
+		public string SelectedCategory
 		{
 			get
 			{
@@ -23,10 +23,14 @@ namespace Syntec.Windows
 
 		#endregion
 
+		#region Constructor
+
 		public NewItemSelectionPanel()
 		{
 			InitializeComponent();
 		}
+
+		#endregion
 
 		#region Category
 
@@ -89,7 +93,6 @@ namespace Syntec.Windows
 
 			XmlElement Tag = e.Node.Tag as XmlElement;
 
-			// TODO: Show Desc of Node
 			if( Tag.Attributes[ "desc" ] != null ) {
 				this.Description_TextBox.Text = Tag.Attributes[ "desc" ].Value;
 			}
@@ -104,7 +107,11 @@ namespace Syntec.Windows
 			if( e.Item.Tag.GetType() != typeof( XmlElement ) )
 				return;
 
-			// TODO: Show Desc & Select Template
+			XmlElement Tag = e.Item.Tag as XmlElement;
+
+			if( Tag.Attributes[ "desc" ] != null ) {
+				this.Description_TextBox.Text = Tag.Attributes[ "desc" ].Value;
+			}
 		}
 
 		#endregion
