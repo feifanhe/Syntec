@@ -105,23 +105,22 @@ namespace Fenubars.Display
 
 		private void Cut_ButtonContextMenuItem_Click( object sender, EventArgs e )
 		{
-			Copy();
-			Delete();
+			Cut(FindChildOnScreen( CursorPosition ));
 		}
 
 		private void Copy_ButtonContextMenuItem_Click( object sender, EventArgs e )
 		{
-			Copy();
+			Copy(FindChildOnScreen( CursorPosition ));
 		}
 
 		private void Paste_ButtonContextMenuItem_Click( object sender, EventArgs e )
 		{
-			Paste();
+			Paste(FindChildOnScreen( CursorPosition ));
 		}
 
 		private void Delete_ButtonContextMenuItem_Click( object sender, EventArgs e )
 		{
-			Delete();
+			Delete(FindChildOnScreen( CursorPosition ));
 		}
 
 		#endregion
@@ -304,20 +303,21 @@ namespace Fenubars.Display
 			return true;
 		}
 
-		public void Cut()
+		internal void Cut(Control target)
 		{
+			Copy( target );
+			Delete( target );
 		}
 
-		public void Copy()
+		internal void Copy(Control target)
 		{
-			Control Child = FindChildOnScreen( CursorPosition );
-			if( Child == null )
+			if( target == null )
 				return;
 
 			// Find the properties container of the target
 			FenuButtonState FBS = _FenuContent.NormalButtonList.Find( delegate( FenuButtonState DummyState )
 																		{
-																			return ( Child as NormalButton ).Name == DummyState.Name;
+																			return ( target as NormalButton ).Name == DummyState.Name;
 																		} );
 			// Copy the object to clipboard
 			ClipBoardManager<FenuButtonState>.CopyToClipboard( FBS );
@@ -325,19 +325,17 @@ namespace Fenubars.Display
 			//ClipBoardManager<FenuButtonState>.IsSerializable( FBS );
 		}
 
-		public void Paste()
+		internal void Paste(Control target)
 		{
-			// Acquire the control
-			Control Child = FindChildOnScreen( CursorPosition );
 			// Check if the targeted control is applicable for clipboard data
-			if( Child == null )
+			if( target == null )
 				return;
 
 			// Acquire deserialized data from clip board manager
 			FenuButtonState FBS = ClipBoardManager<FenuButtonState>.GetFromClipboard();
 
 			// Config the position
-			int Xpos = ( Child as Button ).Location.X;
+			int Xpos = ( target as Button ).Location.X;
 			int Index = ( Xpos - 3 ) / 83;
 			FBS.Position = Index;
 			FBS.Name = "F" + Index.ToString();
@@ -354,16 +352,15 @@ namespace Fenubars.Display
 				_FenuContent.NormalButtonList[ ListIndex ] = FBS;
 
 			// Assign the binding
-			( Child as NormalButton ).SetState( FBS );
+			( target as NormalButton ).SetState( FBS );
 		}
 
-		public void Delete()
+		internal void Delete(Control target)
 		{
-			Control Child = FindChildOnScreen( CursorPosition );
-			if( Child == null )
+			if( target == null )
 				return;
 
-			ObliterateState( Child );
+			ObliterateState( target );
 		}
 
 		#endregion
