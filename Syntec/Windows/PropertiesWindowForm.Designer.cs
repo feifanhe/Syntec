@@ -48,6 +48,7 @@ namespace Syntec.Windows
 			this.ClientSize = new System.Drawing.Size( 284, 262 );
 			this.Controls.Add( this.PropertiesViewer );
 			this.Font = new System.Drawing.Font( "Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ( (byte)( 136 ) ) );
+			this.HideOnClose = true;
 			this.Name = "PropertiesWindowForm";
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
