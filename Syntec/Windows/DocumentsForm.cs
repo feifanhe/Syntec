@@ -16,21 +16,18 @@ namespace Syntec.Windows
 	{
 		private IModule instance;
 
-		#region Events
-
-		public delegate void ShowObjectsEventHandler( Control treeView );
-		public event ShowObjectsEventHandler ShowOnObjectsBrowser;
-
-		public delegate void ShowPropertiesEventHandler( object control );
-		public event ShowPropertiesEventHandler ShowOnPropertiesWindow;
-
-		#endregion
-
-		public DocumentsForm( string XMLPath )
+		public DocumentsForm( string XMLPath, ShowPropertiesEventHandler OnShowProperties,
+												SetPropertyGridEventHandler OnSetPropertyGrid,
+												ShowObjectsEventHandler OnShowObjects)
 		{
 			InitializeComponent();
 
 			this.SuspendLayout();
+
+			// Bind events for instance
+			this.OnShowProperties += OnShowProperties;
+			this.OnSetPropertyGrid += OnSetPropertyGrid;
+			this.OnShowObjects += OnShowObjects;
 
 			if( ( instance = ModuleManager.FindProcessor( XMLPath ) ) == null ) {
 				// Destroy this form if nothing applicable
@@ -93,23 +90,32 @@ namespace Syntec.Windows
 
 		public void ShowProperties( object control )
 		{
-			MainForm.PropertiesWindow.SetSelectedObject( control );
+			this.OnShowProperties( control );
 		}
 
 		public void SetPropertyGrid( AttributeCollection hidden, string[] browsable )
 		{
-			MainForm.PropertiesWindow.SetHiddenAttributes( hidden );
-			MainForm.PropertiesWindow.SetBrowsableProperties( browsable );
+			this.OnSetPropertyGrid( hidden, browsable );
 		}
 
 		public void ShowObjects( Control treeView )
 		{
-			//MainForm.ObjectBrowser.SetContents( treeView );
-			this.ShowOnObjectsBrowser( treeView );
+			this.OnShowObjects( treeView );
 		}
 
 		#endregion
 
-		
+		#region Events
+
+		public delegate void ShowPropertiesEventHandler( object control );
+		public event ShowPropertiesEventHandler OnShowProperties;
+
+		public delegate void SetPropertyGridEventHandler( AttributeCollection hidden, string[] browsable );
+		public event SetPropertyGridEventHandler OnSetPropertyGrid;
+
+		public delegate void ShowObjectsEventHandler( Control treeView );
+		public event ShowObjectsEventHandler OnShowObjects;
+
+		#endregion
 	}
 }

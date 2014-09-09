@@ -18,13 +18,6 @@ namespace Syntec.Windows
 		// Indicate to show every files or targeted only
 		private bool showAllFiles = false;
 
-		#region Events
-
-		public delegate void ShowObjectsEventHandler( Control treeView );
-		public event ShowObjectsEventHandler ShowOnObjectsBrowser;
-
-		#endregion
-
 		public WorkspaceExplorerForm()
 		{
 			InitializeComponent();
@@ -208,17 +201,14 @@ namespace Syntec.Windows
 		private void WorkspaceTreeView_NodeMouseDoubleClick( object sender, TreeNodeMouseClickEventArgs e )
 		{
 			string path = e.Node.Tag as string;
-			DocumentsForm openFromWorkspace = new DocumentsForm( path );
+			DocumentsForm openFromWorkspace = new DocumentsForm( path, new DocumentsForm.ShowPropertiesEventHandler( OnShowProperties ),
+																		new DocumentsForm.SetPropertyGridEventHandler( OnSetPropertyGrid ),
+																		new DocumentsForm.ShowObjectsEventHandler( OnShowObjects ) );
 			if( openFromWorkspace.IsDisposed )
-				return;			
+				return;
 
-			openFromWorkspace.ShowOnObjectsBrowser += new DocumentsForm.ShowObjectsEventHandler( this.ShowOnObjectsBrowser );
-			
-			openFromWorkspace.Show( MainForm.Main_DockPanel, DockState.Document );
+			openFromWorkspace.Show( this.DockPanel, DockState.Document );
 			openFromWorkspace.TabText = Path.GetFileNameWithoutExtension( path );
-
-			// Switch to Object Browser tab
-			//MainForm.ObjectBrowser.Show();
 		}
 
 		#endregion
@@ -241,6 +231,17 @@ namespace Syntec.Windows
 
 		#endregion
 
-		
+		#region Events
+
+		public delegate void ShowPropertiesEventHandler( object control );
+		public event ShowPropertiesEventHandler OnShowProperties;
+
+		public delegate void SetPropertyGridEventHandler( AttributeCollection hidden, string[] browsable );
+		public event SetPropertyGridEventHandler OnSetPropertyGrid;
+
+		public delegate void ShowObjectsEventHandler( Control treeView );
+		public event ShowObjectsEventHandler OnShowObjects;
+
+		#endregion
 	}
 }

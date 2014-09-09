@@ -6,6 +6,7 @@ using Syntec;
 using Microsoft.Win32;
 
 using Syntec.Module;
+using System.ComponentModel;
 
 namespace Syntec.Windows
 {
@@ -13,7 +14,7 @@ namespace Syntec.Windows
 	{
 		// General windows
 		private WorkspaceExplorerForm WorkspaceExplorer = new WorkspaceExplorerForm();
-		internal static PropertiesWindowForm PropertiesWindow = new PropertiesWindowForm();
+		private PropertiesWindowForm PropertiesWindow = new PropertiesWindowForm();
 		private ObjectBrowserForm ObjectBrowser = new ObjectBrowserForm();
 
 		// Most recently used items variables
@@ -25,14 +26,16 @@ namespace Syntec.Windows
 			InitializeComponent();
 
 			// Bind events
-			WorkspaceExplorer.ShowOnObjectsBrowser += new WorkspaceExplorerForm.ShowObjectsEventHandler( ShowObjects );
+			WorkspaceExplorer.OnShowProperties += new WorkspaceExplorerForm.ShowPropertiesEventHandler( ShowProperties );
+			WorkspaceExplorer.OnSetPropertyGrid += new WorkspaceExplorerForm.SetPropertyGridEventHandler( SetPropertyGrid );
+			WorkspaceExplorer.OnShowObjects += new WorkspaceExplorerForm.ShowObjectsEventHandler( ShowObjects );
 
 			// Load all the windows and set them to default locations
 			PropertiesWindow.Show( Main_DockPanel, DockState.DockRight );
 			ObjectBrowser.Show( PropertiesWindow.Pane, DockAlignment.Top, 0.6 );
 			WorkspaceExplorer.Show( ObjectBrowser.Pane, ObjectBrowser );
 
-			RecentWorkspacesMenu = new MruStripMenu(File_Recent_Workspaces_ToolStripMenuItem, new MruStripMenu.ClickedHandler(RecentWorkspaces_OnClick), "Syntec.ini", "RecentWorkspaces", 4);
+			RecentWorkspacesMenu = new MruStripMenu( File_Recent_Workspaces_ToolStripMenuItem, new MruStripMenu.ClickedHandler( RecentWorkspaces_OnClick ), "Syntec.ini", "RecentWorkspaces", 4 );
 			RecentWorkspacesMenu.LoadFromINIFile();
 			RecentFilesMenu = new MruStripMenu( File_Recent_Files_ToolStripMenuItem, new MruStripMenu.ClickedHandler( RecentFiles_OnClick ), "Syntec.ini", "RecentFiles", 4 );
 			RecentFilesMenu.LoadFromINIFile();
@@ -55,8 +58,6 @@ namespace Syntec.Windows
 		#endregion
 
 		#region File
-
-		
 
 		private void Open_Workspace_ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
@@ -135,9 +136,23 @@ namespace Syntec.Windows
 
 		}
 
-		public void ShowObjects( Control treeView )
+		private void ShowProperties( object control )
+		{
+			PropertiesWindow.SetSelectedObject( control );
+		}
+
+		private void SetPropertyGrid( AttributeCollection hidden, string[] browsable )
+		{
+			PropertiesWindow.SetHiddenAttributes( hidden );
+			PropertiesWindow.SetBrowsableProperties( browsable );
+		}
+
+		private void ShowObjects( Control treeView )
 		{
 			ObjectBrowser.SetContents( treeView );
+
+			// Switch tab
+			ObjectBrowser.Show();
 		}
 
 		#endregion
@@ -160,10 +175,11 @@ namespace Syntec.Windows
 
 		private void Test_Button_Click( object sender, EventArgs e )
 		{
-			DocumentsForm df;
-
 			string path = @"C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\bin\Debug\CncFenu.xml";
-			df = new DocumentsForm(  path);
+			DocumentsForm df = new DocumentsForm( path, new DocumentsForm.ShowPropertiesEventHandler( ShowProperties ),
+															new DocumentsForm.SetPropertyGridEventHandler( SetPropertyGrid ),
+															new DocumentsForm.ShowObjectsEventHandler( ShowObjects ) );
+
 			if( df.IsDisposed )
 				return;
 			df.Show( Main_DockPanel, DockState.Document );

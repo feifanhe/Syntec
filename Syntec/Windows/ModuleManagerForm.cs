@@ -61,7 +61,7 @@ namespace Syntec.Windows
 
 		private void BrowseButton_Click( object sender, EventArgs e )
 		{
-			Process.Start( Application.StartupPath + ModuleManager.ModuleFolderPath );
+			Process.Start( Application.StartupPath + Global.ModuleFolderPath );
 		}
 
 		private void RefreshButton_Click( object sender, EventArgs e )
