@@ -11,10 +11,8 @@ namespace Syntec.Windows
 {
 	public partial class MainForm : Form
 	{
-		DocumentsForm df;
-
 		// General windows
-		internal static WorkspaceExplorerForm WorkspaceExplorer = new WorkspaceExplorerForm( null );
+		private WorkspaceExplorerForm WorkspaceExplorer = new WorkspaceExplorerForm();
 		internal static PropertiesWindowForm PropertiesWindow = new PropertiesWindowForm();
 		internal static ObjectBrowserForm ObjectBrowser = new ObjectBrowserForm();
 
@@ -28,8 +26,8 @@ namespace Syntec.Windows
 
 			// Load all the windows and set them to default locations
 			PropertiesWindow.Show( Main_DockPanel, DockState.DockRight );
-			WorkspaceExplorer.Show( PropertiesWindow.Pane, DockAlignment.Top, 0.6 );
-			ObjectBrowser.Show( WorkspaceExplorer.Pane, WorkspaceExplorer );
+			ObjectBrowser.Show( PropertiesWindow.Pane, DockAlignment.Top, 0.6 );
+			WorkspaceExplorer.Show( ObjectBrowser.Pane, ObjectBrowser );
 
 			RecentWorkspacesMenu = new MruStripMenu(File_Recent_Workspaces_ToolStripMenuItem, new MruStripMenu.ClickedHandler(RecentWorkspaces_OnClick), "Syntec.ini", "RecentWorkspaces", 4);
 			RecentWorkspacesMenu.LoadFromINIFile();
@@ -105,7 +103,7 @@ namespace Syntec.Windows
 
 				RecentWorkspacesMenu.AddFile( dialog.SelectedPath );
 
-				WorkspaceExplorer.RefreshTree( dialog.SelectedPath );
+				WorkspaceExplorer.ShowWorkspace( dialog.SelectedPath );
 			}
 			else {
 				OpenFileDialog dialog = new OpenFileDialog();
@@ -129,6 +127,7 @@ namespace Syntec.Windows
 
 		private void OpenFile( string filePath )
 		{
+
 		}
 
 		#endregion
@@ -137,6 +136,8 @@ namespace Syntec.Windows
 
 		private void Test_Button_Click( object sender, EventArgs e )
 		{
+			DocumentsForm df;
+
 			string path = @"C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\bin\Debug\CncFenu.xml";
 			df = new DocumentsForm(  path);
 			if( df.IsDisposed )
@@ -153,17 +154,14 @@ namespace Syntec.Windows
 
 		private void RecentWorkspaces_OnClick( int index, string filename )
 		{
-			WorkspaceExplorer.RefreshTree( filename );
+			WorkspaceExplorer.ShowWorkspace( filename );
 		}
 
 		private void RecentFiles_OnClick( int index, string filename )
 		{
-			// TODO: Open File
+			OpenFile( filename );
 		}
 
 		#endregion
-
-		
-
 	}
 }

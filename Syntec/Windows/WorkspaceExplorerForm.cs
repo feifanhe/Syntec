@@ -18,14 +18,14 @@ namespace Syntec.Windows
 		// Indicate to show every files or targeted only
 		private bool showAllFiles = false;
 
-		public WorkspaceExplorerForm( string path )
+		public WorkspaceExplorerForm()
 		{
 			InitializeComponent();
 
 			// Set checked state for ShowAllFile_ToolStripMenuItem
 			ShowAll_ToolStripButton.Checked = showAllFiles;
 
-			RefreshTree( path );
+			Reset();
 		}
 
 		public void RefreshTree()
@@ -36,11 +36,11 @@ namespace Syntec.Windows
 			ParseDirectoryToTree();
 		}
 
-		public void RefreshTree( string path )
+		public void ShowWorkspace( string path )
 		{
 			// Set explorer to default view
 			if( path == null ) {
-				Default();
+				Reset();
 				return;
 			}
 
@@ -52,7 +52,7 @@ namespace Syntec.Windows
 				RefreshTree();
 		}
 
-		private void Default()
+		private void Reset()
 		{
 			basePath = string.Empty;
 
@@ -170,6 +170,7 @@ namespace Syntec.Windows
 			finally {
 				// Restore paint state
 				node.TreeView.EndUpdate();
+
 				// Clear dummy tag
 				node.Tag = null;
 			}
