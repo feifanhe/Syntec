@@ -105,85 +105,28 @@ namespace Fenubars.Display
 
 		private void Cut_ButtonContextMenuItem_Click( object sender, EventArgs e )
 		{
-			Copy_ButtonContextMenuItem_Click( sender, e );
-
-			// Remove cutted button
-			Control Child = FindChildOnScreen( CursorPosition );
-			ObliterateState( Child );
+			Copy();
+			Delete();
 		}
 
 		private void Copy_ButtonContextMenuItem_Click( object sender, EventArgs e )
 		{
-			Control Child = FindChildOnScreen( CursorPosition );
-			if( Child == null )
-				return;
-
-			// Find the properties container of the target
-			FenuButtonState FBS = _FenuContent.NormalButtonList.Find( delegate( FenuButtonState DummyState )
-																		{
-																			return ( Child as NormalButton ).Name == DummyState.Name;
-																		} );
-			// Copy the object to clipboard
-			ClipBoardManager<FenuButtonState>.CopyToClipboard( FBS );
-
-			sender = Child;
-
-			//ClipBoardManager<FenuButtonState>.IsSerializable( FBS );
+			Copy();
 		}
 
 		private void Paste_ButtonContextMenuItem_Click( object sender, EventArgs e )
 		{
-			// Acquire the control
-			Control Child = FindChildOnScreen( CursorPosition );
-			// Check if the targeted control is applicable for clipboard data
-			if( Child == null )
-				return;
-
-			// Acquire deserialized data from clip board manager
-			FenuButtonState FBS = ClipBoardManager<FenuButtonState>.GetFromClipboard();
-
-			// Config the position
-			int Xpos = ( Child as Button ).Location.X;
-			int Index = ( Xpos - 3 ) / 83;
-			FBS.Position = Index;
-			FBS.Name = "F" + Index.ToString();
-
-			// Add the FenuButtonState to properties container, search before append
-			int ListIndex = _FenuContent.NormalButtonList.FindIndex( delegate( FenuButtonState DummyState )
-																	{
-																		return DummyState.Position == FBS.Position;
-																	} );
-
-			if( ListIndex == -1 )
-				_FenuContent.NormalButtonList.Add( FBS );
-			else
-				_FenuContent.NormalButtonList[ ListIndex ] = FBS;
-
-			// Assign the binding
-			( Child as NormalButton ).SetState( FBS );
+			Paste();
 		}
 
 		private void Delete_ButtonContextMenuItem_Click( object sender, EventArgs e )
 		{
-			Control Child = FindChildOnScreen( CursorPosition );
-			if( Child == null )
-				return;
-
-			ObliterateState( Child );
+			Delete();
 		}
 
 		#endregion
 
 		#region Event that will pass to parent
-
-		//public event EventHandler<ObjectDetailEventArgs> DataAvailable;
-		//protected virtual void OnDataAvailable( ObjectDetailEventArgs e )
-		//{
-		//    EventHandler<ObjectDetailEventArgs> eh = DataAvailable;
-		//    if( eh != null ) {
-		//        eh( this, e );
-		//    }
-		//}
 
 		public delegate void DataAvailableEventHandler( Type type, FenuButtonState data );
 		public event DataAvailableEventHandler OnDataAvailable;
@@ -359,6 +302,68 @@ namespace Fenubars.Display
 			}
 
 			return true;
+		}
+
+		public void Cut()
+		{
+		}
+
+		public void Copy()
+		{
+			Control Child = FindChildOnScreen( CursorPosition );
+			if( Child == null )
+				return;
+
+			// Find the properties container of the target
+			FenuButtonState FBS = _FenuContent.NormalButtonList.Find( delegate( FenuButtonState DummyState )
+																		{
+																			return ( Child as NormalButton ).Name == DummyState.Name;
+																		} );
+			// Copy the object to clipboard
+			ClipBoardManager<FenuButtonState>.CopyToClipboard( FBS );
+
+			//ClipBoardManager<FenuButtonState>.IsSerializable( FBS );
+		}
+
+		public void Paste()
+		{
+			// Acquire the control
+			Control Child = FindChildOnScreen( CursorPosition );
+			// Check if the targeted control is applicable for clipboard data
+			if( Child == null )
+				return;
+
+			// Acquire deserialized data from clip board manager
+			FenuButtonState FBS = ClipBoardManager<FenuButtonState>.GetFromClipboard();
+
+			// Config the position
+			int Xpos = ( Child as Button ).Location.X;
+			int Index = ( Xpos - 3 ) / 83;
+			FBS.Position = Index;
+			FBS.Name = "F" + Index.ToString();
+
+			// Add the FenuButtonState to properties container, search before append
+			int ListIndex = _FenuContent.NormalButtonList.FindIndex( delegate( FenuButtonState DummyState )
+																	{
+																		return DummyState.Position == FBS.Position;
+																	} );
+
+			if( ListIndex == -1 )
+				_FenuContent.NormalButtonList.Add( FBS );
+			else
+				_FenuContent.NormalButtonList[ ListIndex ] = FBS;
+
+			// Assign the binding
+			( Child as NormalButton ).SetState( FBS );
+		}
+
+		public void Delete()
+		{
+			Control Child = FindChildOnScreen( CursorPosition );
+			if( Child == null )
+				return;
+
+			ObliterateState( Child );
 		}
 
 		#endregion
