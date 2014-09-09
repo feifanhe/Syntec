@@ -59,6 +59,8 @@ namespace Syntec.Windows
 		private void New_Workspace_ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
 			NewWorkspaceDialog dialog = new NewWorkspaceDialog();
+			dialog.ShowDialog();
+
 			if( dialog.DialogResult == DialogResult.OK ) {
 				// TODO: new workspace
 			}
@@ -67,6 +69,8 @@ namespace Syntec.Windows
 		private void New_File_ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
 			NewFileDialog dialog = new NewFileDialog();
+			dialog.ShowDialog();
+
 			if( dialog.DialogResult == DialogResult.OK ) {
 				// TODO: new file
 			}

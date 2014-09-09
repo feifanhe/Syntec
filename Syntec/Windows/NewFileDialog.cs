@@ -27,7 +27,7 @@ namespace Syntec.Windows
 		public NewFileDialog()
 		{
 			InitializeComponent();
-			this.SelectionPanel.PopulateCategory( "File.xml" );
+			this.SelectionPanel.PopulateCategory( Application.StartupPath + Global.DefinitonFolderPath + "File.xml" );
 		}
 
 		#endregion

@@ -44,7 +44,7 @@ namespace Syntec.Windows
 		public NewWorkspaceDialog()
 		{
 			InitializeComponent();
-			this.SelectionPanel.PopulateCategory( "Workspace.xml" );
+			this.SelectionPanel.PopulateCategory( Application.StartupPath + Global.DefinitonFolderPath + "Workspace.xml" );
 		}
 
 		#endregion

@@ -12,14 +12,13 @@ namespace Syntec.Module
 {
 	public static class ModuleManager
 	{
-		public static readonly string ModuleFolderPath = @"\Modules";
 		private static readonly string CategoryString = "LoadOnStart";
 
 		// Available module states
 		private static Modules moduleList = new Modules();
 
 		// Start up configurator
-		private static IniConfigurator configs = new IniConfigurator( Application.StartupPath + ModuleFolderPath + @"\Modules.ini" );
+		private static IniConfigurator configs = new IniConfigurator( Application.StartupPath + Global.ModuleFolderPath + @"\Modules.ini" );
 
 		public static void Refresh()
 		{
@@ -33,7 +32,7 @@ namespace Syntec.Module
 		private static void SearchFolder()
 		{
 			//Go through all the files in the module directory
-			foreach( string fileName in Directory.GetFiles( Application.StartupPath + ModuleFolderPath ) ) {
+			foreach( string fileName in Directory.GetFiles( Application.StartupPath + Global.ModuleFolderPath ) ) {
 				FileInfo file = new FileInfo( fileName );
 
 				//Preliminary check, must be .dll
@@ -113,10 +112,10 @@ namespace Syntec.Module
 
 		public static void RewriteConfigs( Dictionary<string, bool> stateList )
 		{
-			File.Delete( Application.StartupPath + ModuleFolderPath + @"\Modules.ini" );
+			File.Delete( Application.StartupPath + Global.ModuleFolderPath + @"\Modules.ini" );
 
 			// Dump all loaded modules' settings into .tmp file
-			IniConfigurator tempIni = new IniConfigurator( Application.StartupPath + ModuleFolderPath + @"\Modules.ini" );
+			IniConfigurator tempIni = new IniConfigurator( Application.StartupPath + Global.ModuleFolderPath + @"\Modules.ini" );
 			foreach( KeyValuePair<string, bool> pair in stateList )
 				tempIni.AddValue( CategoryString, pair.Key, pair.Value.ToString() );
 

@@ -6,5 +6,8 @@ namespace Syntec
 		public Global()
 		{
 		}
+
+		public static readonly string ModuleFolderPath = @"\Modules\";
+		public static readonly string DefinitonFolderPath = @"\Definitions\";
 	}
 }
