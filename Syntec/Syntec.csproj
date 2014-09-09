@@ -48,6 +48,9 @@
     <Compile Include="Configurator\IniConfigurator.cs" />
     <Compile Include="Definitions\EnumDefinitions.cs" />
     <Compile Include="Methods\Global.cs" />
+    <Compile Include="Methods\MainForm_File_New.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Module\ModuleManager.cs" />
     <Compile Include="Methods\MruStripMenu.cs" />
     <Compile Include="Windows\MainForm.cs">

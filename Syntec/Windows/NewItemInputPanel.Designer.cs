@@ -76,6 +76,7 @@ namespace Syntec.Windows
 			// 
 			this.Solution_ComboBox.Anchor = ( (System.Windows.Forms.AnchorStyles)( ( ( System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left )
 						| System.Windows.Forms.AnchorStyles.Right ) ) );
+			this.Solution_ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.Solution_ComboBox.FormattingEnabled = true;
 			this.Solution_ComboBox.Location = new System.Drawing.Point( 59, 31 );
 			this.Solution_ComboBox.Name = "Solution_ComboBox";
