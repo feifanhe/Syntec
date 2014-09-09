@@ -99,7 +99,7 @@ namespace Syntec.Windows
 			this.Standard_SaveAll_ToolStripButton = new System.Windows.Forms.ToolStripButton();
 			this.Standard_Separator_1 = new System.Windows.Forms.ToolStripSeparator();
 			this.Main_ToolStripPanel = new System.Windows.Forms.ToolStripPanel();
-			this.Main_DockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
+			Main_DockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
 			this.Main_MenuStrip.SuspendLayout();
 			this.Standard_ToolStrip.SuspendLayout();
 			this.Main_ToolStripPanel.SuspendLayout();
@@ -539,12 +539,12 @@ namespace Syntec.Windows
 			// 
 			// Main_DockPanel
 			// 
-			this.Main_DockPanel.BackColor = System.Drawing.SystemColors.Control;
-			this.Main_DockPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.Main_DockPanel.DockBackColor = System.Drawing.SystemColors.ControlDark;
-			this.Main_DockPanel.Location = new System.Drawing.Point( 0, 49 );
-			this.Main_DockPanel.Name = "Main_DockPanel";
-			this.Main_DockPanel.Size = new System.Drawing.Size( 1220, 470 );
+			Main_DockPanel.BackColor = System.Drawing.SystemColors.Control;
+			Main_DockPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+			Main_DockPanel.DockBackColor = System.Drawing.SystemColors.ControlDark;
+			Main_DockPanel.Location = new System.Drawing.Point( 0, 49 );
+			Main_DockPanel.Name = "Main_DockPanel";
+			Main_DockPanel.Size = new System.Drawing.Size( 1220, 470 );
 			dockPanelGradient4.EndColor = System.Drawing.SystemColors.ControlLight;
 			dockPanelGradient4.StartColor = System.Drawing.SystemColors.ControlLight;
 			autoHideStripSkin2.DockStripGradient = dockPanelGradient4;
@@ -590,8 +590,8 @@ namespace Syntec.Windows
 			dockPaneStripToolWindowGradient2.InactiveTabGradient = tabGradient14;
 			dockPaneStripSkin2.ToolWindowGradient = dockPaneStripToolWindowGradient2;
 			dockPanelSkin2.DockPaneStripSkin = dockPaneStripSkin2;
-			this.Main_DockPanel.Skin = dockPanelSkin2;
-			this.Main_DockPanel.TabIndex = 5;
+			Main_DockPanel.Skin = dockPanelSkin2;
+			Main_DockPanel.TabIndex = 5;
 			// 
 			// MainForm
 			// 
@@ -599,7 +599,7 @@ namespace Syntec.Windows
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlDark;
 			this.ClientSize = new System.Drawing.Size( 1220, 541 );
-			this.Controls.Add( this.Main_DockPanel );
+			this.Controls.Add( Main_DockPanel );
 			this.Controls.Add( this.Main_ToolStripPanel );
 			this.Controls.Add( this.Main_StatusStrip );
 			this.Controls.Add( this.Main_MenuStrip );
@@ -679,7 +679,7 @@ namespace Syntec.Windows
 		private System.Windows.Forms.ToolStripMenuItem Edit_SelectAll_ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator Edit_ToolStripSeparator_3;
 		private System.Windows.Forms.ToolStripMenuItem Dummy2;
-		internal WeifenLuo.WinFormsUI.Docking.DockPanel Main_DockPanel;
+		internal static WeifenLuo.WinFormsUI.Docking.DockPanel Main_DockPanel;
 	}
 }
 
