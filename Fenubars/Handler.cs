@@ -39,28 +39,18 @@ namespace Fenubars
 
 		#region Acquire focus object by event
 
-		private void FocusedObjectAvailable( object sender,
-											Fenubars.Display.ObjectDetailEventArgs e )
+		private void FocusedObjectAvailable( Type type, FenuButtonState data )
 		{
-			if( e.Type == typeof( Fenu ) ) {
-				//PropertyViewer.HiddenAttributes = null;
-				//PropertyViewer.BrowsableProperties = null;
+			if( type == typeof( Fenu ) ) {
+				// Set to null first, since fenu state don't have some attributes
 				_Host.SetPropertyGrid( null, null );
-
 				_Host.ShowProperties( CurrentFenuState );
 			}
 			else {
-				if( e.Type == typeof( EscapeButton ) )
-					_Host.ShowProperties( e.Escape );
-				else if( e.Type == typeof( NormalButton ) )
-					_Host.ShowProperties( e.Normal );
-				else if( e.Type == typeof( NextButton ) )
-					_Host.ShowProperties( e.Next );
-
-				//PropertyViewer.HiddenAttributes = new AttributeCollection( new Attribute[] { new CategoryAttribute( "Fenu Button" ) } );
-				//PropertyViewer.BrowsableProperties = SelectedProperties( e.Type );
+				// Set object first, and then filter the attributes
+				_Host.ShowProperties( data );
 				_Host.SetPropertyGrid( new AttributeCollection( new Attribute[] { new CategoryAttribute( "Fenu Button" ) } ),
-										SelectedProperties( e.Type ) );
+										SelectedProperties( type ) );
 			}
 		}
 
@@ -116,7 +106,6 @@ namespace Fenubars
 
 		public bool Initialize( string XMLPath )
 		{
-
 			this.XMLPath = XMLPath;
 
 			// Using XmlReader to probe for root node
@@ -163,12 +152,12 @@ namespace Fenubars
 			_Host.ShowObjects( CompiledTree );
 		}
 
-		public void Open( string FenuName )
+		public void Open( string fenuName )
 		{
-			foreach( FenuState ParsedFenu in CurrentFenuState.IncludedFenus ) {
-				if( ParsedFenu.Name == FenuName ) {
-					Fenu newFenuPanel = new Fenu( ParsedFenu );
-					newFenuPanel.DataAvailable += new EventHandler<Fenubars.Display.ObjectDetailEventArgs>( FocusedObjectAvailable );
+			foreach( FenuState parsedFenu in CurrentFenuState.IncludedFenus ) {
+				if( parsedFenu.Name == fenuName ) {
+					Fenu newFenuPanel = new Fenu( parsedFenu );
+					newFenuPanel.OnDataAvailable += new Fenu.DataAvailableEventHandler(FocusedObjectAvailable);
 					newFenuPanel.PopulateButtons();
 
 					_Host.DrawOnCanvas( newFenuPanel );
