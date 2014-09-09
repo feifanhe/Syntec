@@ -187,7 +187,7 @@ namespace Fenubars
 		{
 			CompiledTree = new ObjectTree( Path.GetFileNameWithoutExtension( XMLPath ), 
 											CurrentFenuState.IncludedFenus );
-			_Host.PopulateObjects( CompiledTree );
+			_Host.ShowObjects( CompiledTree );
 		}
 
 		public void Open( string FenuName )

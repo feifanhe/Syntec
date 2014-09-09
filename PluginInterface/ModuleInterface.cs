@@ -64,6 +64,6 @@ namespace ModuleInterface
 		void DrawOnCanvas(System.Windows.Forms.Control control);
 		void ShowProperties(object control);
 		void SetPropertyGrid(AttributeCollection hidden, string[] browsable);
-		void PopulateObjects( Control treeView );
+		void ShowObjects( Control treeView );
 	}
 }

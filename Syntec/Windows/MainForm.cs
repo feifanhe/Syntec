@@ -14,7 +14,7 @@ namespace Syntec.Windows
 		// General windows
 		private WorkspaceExplorerForm WorkspaceExplorer = new WorkspaceExplorerForm();
 		internal static PropertiesWindowForm PropertiesWindow = new PropertiesWindowForm();
-		internal static ObjectBrowserForm ObjectBrowser = new ObjectBrowserForm();
+		private ObjectBrowserForm ObjectBrowser = new ObjectBrowserForm();
 
 		// Most recently used items variables
 		private MruStripMenu RecentWorkspacesMenu;
@@ -23,6 +23,9 @@ namespace Syntec.Windows
 		public MainForm()
 		{
 			InitializeComponent();
+
+			// Bind events
+			WorkspaceExplorer.ShowOnObjectsBrowser += new WorkspaceExplorerForm.ShowObjectsEventHandler( ShowObjects );
 
 			// Load all the windows and set them to default locations
 			PropertiesWindow.Show( Main_DockPanel, DockState.DockRight );
@@ -53,22 +56,6 @@ namespace Syntec.Windows
 
 		#region File
 
-		private void New_Workspace_ToolStripMenuItem_Click( object sender, EventArgs e )
-		{
-			NewWorkspaceDialog dialog = new NewWorkspaceDialog();
-			if( dialog.DialogResult == DialogResult.OK ) {
-				// TODO: New Workspace
-			}
-		}
-
-		private void New_File_ToolStripMenuItem_Click( object sender, EventArgs e )
-		{
-			NewFileDialog dialog = new NewFileDialog();
-			if( dialog.DialogResult == DialogResult.OK ) {
-				// TODO: New File
-			}
-		}
-
 		private void Open_Workspace_ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
 			OpenDialog( "Open Workspace", true );
@@ -98,7 +85,7 @@ namespace Syntec.Windows
 
 		#endregion
 
-		#region Methods
+		#region Helper methods
 
 		private void OpenDialog( string title, bool dirMode )
 		{
@@ -146,6 +133,25 @@ namespace Syntec.Windows
 
 		}
 
+		public void ShowObjects( Control treeView )
+		{
+			ObjectBrowser.SetContents( treeView );
+		}
+
+		#endregion
+
+		#region Recent Workspaces/Files
+
+		private void RecentWorkspaces_OnClick( int index, string filename )
+		{
+			WorkspaceExplorer.ShowWorkspace( filename );
+		}
+
+		private void RecentFiles_OnClick( int index, string filename )
+		{
+			OpenFile( filename );
+		}
+
 		#endregion
 
 		#region Test codes
@@ -165,20 +171,5 @@ namespace Syntec.Windows
 		}
 
 		#endregion
-
-		#region Recent Workspaces/Files
-
-		private void RecentWorkspaces_OnClick( int index, string filename )
-		{
-			WorkspaceExplorer.ShowWorkspace( filename );
-		}
-
-		private void RecentFiles_OnClick( int index, string filename )
-		{
-			OpenFile( filename );
-		}
-
-		#endregion
-
 	}
 }

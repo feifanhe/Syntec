@@ -16,6 +16,16 @@ namespace Syntec.Windows
 	{
 		private IModule instance;
 
+		#region Events
+
+		public delegate void ShowObjectsEventHandler( Control treeView );
+		public event ShowObjectsEventHandler ShowOnObjectsBrowser;
+
+		public delegate void ShowPropertiesEventHandler( object control );
+		public event ShowPropertiesEventHandler ShowOnPropertiesWindow;
+
+		#endregion
+
 		public DocumentsForm( string XMLPath )
 		{
 			InitializeComponent();
@@ -92,11 +102,14 @@ namespace Syntec.Windows
 			MainForm.PropertiesWindow.SetBrowsableProperties( browsable );
 		}
 
-		public void PopulateObjects( Control treeView )
+		public void ShowObjects( Control treeView )
 		{
-			MainForm.ObjectBrowser.SetContents( treeView );
+			//MainForm.ObjectBrowser.SetContents( treeView );
+			this.ShowOnObjectsBrowser( treeView );
 		}
 
 		#endregion
+
+		
 	}
 }
