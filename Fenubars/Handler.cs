@@ -70,11 +70,13 @@ namespace Fenubars
 
 			// Load the button type of selected button
 			ButtonTypes Template = (ButtonTypes)Enum.Parse( typeof( ButtonTypes ), DesiredType.Name );
+
 			// Parse all the properties in the target object
 			foreach( PropertyInfo PI in typeof( FenuButtonState ).GetProperties() ) {
 				// Identified if the cycled property has defined ButtonTypeAttribute
 				if( PI.IsDefined( typeof( ButtonTypeAttribute ), false ) ) {
 					ButtonTypes Value = ( PI.GetCustomAttributes( typeof( ButtonTypeAttribute ), false )[ 0 ] as ButtonTypeAttribute ).Type;
+					
 					// Using bitwise operation to varify whether the selected property is the wanted one or not
 					if( ( Value & Template ) == Template )
 						Properties.Add( PI.Name );
@@ -223,16 +225,4 @@ namespace Fenubars
 
 		#endregion
 	}
-
-	#region Object type for property grid
-
-	public enum ObjectType
-	{
-		FENU,
-		ESCAPE,
-		NORMAL,
-		NEXT
-	};
-
-	#endregion
 }

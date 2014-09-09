@@ -185,6 +185,9 @@ namespace Fenubars.Display
 			}
 		}
 
+		//public delegate void DataAvailableEventHandler( Type type, FenuButtonState data );
+		//public event DataAvailableEventHandler OnDataAvailable;
+
 		private void FenuButton_MouseDown( object sender, MouseEventArgs e )
 		{
 
