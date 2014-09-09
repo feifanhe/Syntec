@@ -11,14 +11,12 @@ namespace Syntec.Windows
 {
 	public partial class MainForm : Form
 	{
-		DocumentsForm df;
-
 		// General windows
-		internal static WorkspaceExplorerForm WorkspaceExplorer = new WorkspaceExplorerForm( null );
+		private WorkspaceExplorerForm WorkspaceExplorer = new WorkspaceExplorerForm();
 		internal static PropertiesWindowForm PropertiesWindow = new PropertiesWindowForm();
 		internal static ObjectBrowserForm ObjectBrowser = new ObjectBrowserForm();
 
-		private const string REGISTRY_KEY = "SOFTWARE\\SYNTEC\\Syntec";
+		// Most recently used items variables
 		private MruStripMenu RecentWorkspacesMenu;
 		private MruStripMenu RecentFilesMenu;
 
@@ -26,21 +24,15 @@ namespace Syntec.Windows
 		{
 			InitializeComponent();
 
+			// Load all the windows and set them to default locations
 			PropertiesWindow.Show( Main_DockPanel, DockState.DockRight );
-			WorkspaceExplorer.Show( PropertiesWindow.Pane, DockAlignment.Top, 0.6 );
-			ObjectBrowser.Show( Main_DockPanel, DockState.DockLeft );
-
+			ObjectBrowser.Show( PropertiesWindow.Pane, DockAlignment.Top, 0.6 );
+			WorkspaceExplorer.Show( ObjectBrowser.Pane, ObjectBrowser );
 
 			RecentWorkspacesMenu = new MruStripMenu(File_Recent_Workspaces_ToolStripMenuItem, new MruStripMenu.ClickedHandler(RecentWorkspaces_OnClick), "Syntec.ini", "RecentWorkspaces", 4);
 			RecentWorkspacesMenu.LoadFromINIFile();
-
-
 			RecentFilesMenu = new MruStripMenu( File_Recent_Files_ToolStripMenuItem, new MruStripMenu.ClickedHandler( RecentFiles_OnClick ), "Syntec.ini", "RecentFiles", 4 );
 			RecentFilesMenu.LoadFromINIFile();
-
-			//df = new DocumentsForm();
-			//df.Show( Main_DockPanel, DockState.Document );
-			//df.TabText = "test1";
 		}
 
 		#region Form related
@@ -60,22 +52,6 @@ namespace Syntec.Windows
 		#endregion
 
 		#region File
-
-		private void New_Workspace_ToolStripMenuItem_Click( object sender, EventArgs e )
-		{
-			NewWorkspaceDialog dialog = new NewWorkspaceDialog();
-			if( dialog.ShowDialog( this ) == DialogResult.OK ) {
-				// TODO: Open Workspace
-			}
-		}
-
-		private void New_File_ToolStripMenuItem_Click( object sender, EventArgs e )
-		{
-			NewFileDialog dialog = new NewFileDialog();
-			if( dialog.ShowDialog( this ) == DialogResult.OK ) {
-				// TODO: Open Workspace
-			}
-		}
 
 		private void Open_Workspace_ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
@@ -126,7 +102,8 @@ namespace Syntec.Windows
 					return;
 
 				RecentWorkspacesMenu.AddFile( dialog.SelectedPath );
-				WorkspaceExplorer.RefreshTree( dialog.SelectedPath );
+
+				WorkspaceExplorer.ShowWorkspace( dialog.SelectedPath );
 			}
 			else {
 				OpenFileDialog dialog = new OpenFileDialog();
@@ -139,9 +116,18 @@ namespace Syntec.Windows
 					return;
 
 				RecentFilesMenu.AddFiles( dialog.FileNames );
-				// CHECK IF FILE IS UNDER RES -> OPEN PROJECT, DOCUMENTS : DOCUMENTS 
-				// PASS TO PROXY
+
+				// Open all the selected files
+				foreach( string fileName in dialog.FileNames )
+					OpenFile( fileName );
 			}
+
+			WorkspaceExplorer.Show();
+		}
+
+		private void OpenFile( string filePath )
+		{
+
 		}
 
 		#endregion
@@ -150,6 +136,8 @@ namespace Syntec.Windows
 
 		private void Test_Button_Click( object sender, EventArgs e )
 		{
+			DocumentsForm df;
+
 			string path = @"C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\bin\Debug\CncFenu.xml";
 			df = new DocumentsForm(  path);
 			if( df.IsDisposed )
@@ -166,12 +154,12 @@ namespace Syntec.Windows
 
 		private void RecentWorkspaces_OnClick( int index, string filename )
 		{
-			WorkspaceExplorer.RefreshTree( filename );
+			WorkspaceExplorer.ShowWorkspace( filename );
 		}
 
 		private void RecentFiles_OnClick( int index, string filename )
 		{
-			// TODO: Open File
+			OpenFile( filename );
 		}
 
 		#endregion

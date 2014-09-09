@@ -642,10 +642,10 @@ namespace Syntec
 				mruStripMutex.WaitOne();
 				RemoveAll();
 				IniConfigurator iniConfig = new IniConfigurator( iniFileName );
-				string max = iniConfig.GetValue( iniSection, "max" );
-				if( max != null ) {
-					MaxEntries = int.Parse( max );
-					for( int number = maxEntries; number > 0; number-- ) {
+				string maxEntries = iniConfig.GetValue( iniSection, "max" );
+				if( maxEntries != null ) {
+					MaxEntries = int.Parse( maxEntries );
+					for( int number = MaxEntries; number > 0; number-- ) {
 						string filename = iniConfig.GetValue( iniSection, "Entry" + number.ToString() );
 						if( filename != null )
 							AddFile( filename );

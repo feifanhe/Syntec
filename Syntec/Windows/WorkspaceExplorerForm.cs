@@ -18,14 +18,14 @@ namespace Syntec.Windows
 		// Indicate to show every files or targeted only
 		private bool showAllFiles = false;
 
-		public WorkspaceExplorerForm( string path )
+		public WorkspaceExplorerForm()
 		{
 			InitializeComponent();
 
 			// Set checked state for ShowAllFile_ToolStripMenuItem
 			ShowAll_ToolStripButton.Checked = showAllFiles;
 
-			RefreshTree( path );
+			Reset();
 		}
 
 		public void RefreshTree()
@@ -36,23 +36,23 @@ namespace Syntec.Windows
 			ParseDirectoryToTree();
 		}
 
-		public void RefreshTree( string path )
+		public void ShowWorkspace( string path )
 		{
 			// Set explorer to default view
 			if( path == null ) {
-				Default();
+				Reset();
 				return;
 			}
 
 			foreach( ToolStripItem TSMI in Workspace_ToolStrip.Items )
 				TSMI.Enabled = true;
 
-			DissectBasePath( path );
-
-			RefreshTree();
+			// Dissect and analyze whether it's a legal workspace or not
+			if( DissectBasePath( path ) )
+				RefreshTree();
 		}
 
-		private void Default()
+		private void Reset()
 		{
 			basePath = string.Empty;
 
@@ -60,7 +60,7 @@ namespace Syntec.Windows
 				TSMI.Enabled = false;
 		}
 
-		private void DissectBasePath( string path )
+		private bool DissectBasePath( string path )
 		{
 			// Reset base path
 			basePath = string.Empty;
@@ -72,10 +72,11 @@ namespace Syntec.Windows
 									"Wrong File Path",
 									MessageBoxButtons.OK,
 									MessageBoxIcon.Error );
-				return;
+				return false;
 			}
 
 			basePath = path.Substring( 0, index ) + @"Res\";
+			return true;
 		}
 
 		private void ParseDirectoryToTree()
@@ -169,6 +170,7 @@ namespace Syntec.Windows
 			finally {
 				// Restore paint state
 				node.TreeView.EndUpdate();
+
 				// Clear dummy tag
 				node.Tag = null;
 			}
@@ -198,7 +200,15 @@ namespace Syntec.Windows
 
 		private void WorkspaceTreeView_NodeMouseDoubleClick( object sender, TreeNodeMouseClickEventArgs e )
 		{
-			// OBJECT BROWSER
+			string path = e.Node.Tag as string;
+			DocumentsForm openFromWorkspace = new DocumentsForm( path );
+			if( openFromWorkspace.IsDisposed )
+				return;
+			openFromWorkspace.Show( MainForm.Main_DockPanel, DockState.Document );
+			openFromWorkspace.TabText = Path.GetFileNameWithoutExtension( path );
+
+			// Switch to Object Browser tab
+			MainForm.ObjectBrowser.Show();
 		}
 
 		#endregion
