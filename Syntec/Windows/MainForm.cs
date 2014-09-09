@@ -6,6 +6,7 @@ using Syntec;
 using Microsoft.Win32;
 
 using Syntec.Module;
+using System.ComponentModel;
 
 namespace Syntec.Windows
 {
@@ -13,7 +14,7 @@ namespace Syntec.Windows
 	{
 		// General windows
 		private WorkspaceExplorerForm WorkspaceExplorer = new WorkspaceExplorerForm();
-		internal static PropertiesWindowForm PropertiesWindow = new PropertiesWindowForm();
+		private PropertiesWindowForm PropertiesWindow = new PropertiesWindowForm();
 		private ObjectBrowserForm ObjectBrowser = new ObjectBrowserForm();
 
 		// Most recently used items variables
@@ -153,9 +154,23 @@ namespace Syntec.Windows
 
 		}
 
-		public void ShowObjects( Control treeView )
+		private void ShowProperties( object control )
+		{
+			PropertiesWindow.SetSelectedObject( control );
+		}
+
+		private void SetPropertyGrid( AttributeCollection hidden, string[] browsable )
+		{
+			PropertiesWindow.SetHiddenAttributes( hidden );
+			PropertiesWindow.SetBrowsableProperties( browsable );
+		}
+
+		private void ShowObjects( Control treeView )
 		{
 			ObjectBrowser.SetContents( treeView );
+
+			// Switch tab
+			ObjectBrowser.Show();
 		}
 
 		#endregion
@@ -178,10 +193,11 @@ namespace Syntec.Windows
 
 		private void Test_Button_Click( object sender, EventArgs e )
 		{
-			DocumentsForm df;
-
 			string path = @"C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\bin\Debug\CncFenu.xml";
-			df = new DocumentsForm(  path, new DocumentsForm.ShowObjectsEventHandler(ShowObjects));
+			DocumentsForm df = new DocumentsForm( path, new DocumentsForm.ShowPropertiesEventHandler( this.ShowProperties ),
+															new DocumentsForm.SetPropertyGridEventHandler( this.SetPropertyGrid ),
+															new DocumentsForm.ShowObjectsEventHandler( this.ShowObjects ) );
+
 			if( df.IsDisposed )
 				return;
 			df.Show( Main_DockPanel, DockState.Document );
