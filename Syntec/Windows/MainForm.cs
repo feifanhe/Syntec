@@ -69,6 +69,32 @@ namespace Syntec.Windows
 			OpenDialog( "Open File", false, "XML Files (*.xml)|*.xml" );
 		}
 
+		#region Recent Workspaces/Files
+
+		private void RecentWorkspaces_OnClick( int index, string filename )
+		{
+			WorkspaceExplorer.ShowWorkspace( filename );
+
+			// Switch workspace explorer tab
+			WorkspaceExplorer.Show();
+		}
+
+		private void RecentFiles_OnClick( int index, string filename )
+		{
+			OpenFile( filename );
+
+			// Notify no workspace shown
+			MessageBox.Show( "Open a file independently won't open the corresponding workspace.",
+								"Notice",
+								MessageBoxButtons.OK,
+								MessageBoxIcon.Exclamation );
+
+			// Switch to object browser tab
+			ObjectBrowser.Show();
+		}
+
+		#endregion
+
 		private void File_Close_ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
 			//Form df = this.ActiveMdiChild;
@@ -159,6 +185,9 @@ namespace Syntec.Windows
 				RecentWorkspacesMenu.AddFile( dialog.SelectedPath );
 
 				WorkspaceExplorer.ShowWorkspace( dialog.SelectedPath );
+
+				// Switch to workspace explorer tab
+				WorkspaceExplorer.Show();
 			}
 			else {
 				OpenFileDialog dialog = new OpenFileDialog();
@@ -176,14 +205,17 @@ namespace Syntec.Windows
 				foreach( string fileName in dialog.FileNames )
 					OpenFile( fileName );
 
-				DialogResult result = MessageBox.Show( "Would you like to open the corresponding workspace?",
-															"Open workspace",
-															MessageBoxButtons.YesNo,
-															MessageBoxIcon.Question );
+				// Notify no workspace shown
+				MessageBox.Show( "Open a file independently won't open the corresponding workspace.",
+									"Notice",
+									MessageBoxButtons.OK,
+									MessageBoxIcon.Exclamation );
 
+				// Switch to object browser tab
+				ObjectBrowser.Show();
 			}
 
-			WorkspaceExplorer.Show();
+			
 		}
 
 		private void OpenFile( string filePath )
@@ -215,20 +247,6 @@ namespace Syntec.Windows
 
 			// Switch tab
 			ObjectBrowser.Show();
-		}
-
-		#endregion
-
-		#region Recent Workspaces/Files
-
-		private void RecentWorkspaces_OnClick( int index, string filename )
-		{
-			WorkspaceExplorer.ShowWorkspace( filename );
-		}
-
-		private void RecentFiles_OnClick( int index, string filename )
-		{
-			OpenFile( filename );
 		}
 
 		#endregion
