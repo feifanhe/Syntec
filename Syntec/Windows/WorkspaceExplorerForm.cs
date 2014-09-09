@@ -201,13 +201,13 @@ namespace Syntec.Windows
 		private void WorkspaceTreeView_NodeMouseDoubleClick( object sender, TreeNodeMouseClickEventArgs e )
 		{
 			string path = e.Node.Tag as string;
-			DocumentsForm openFromWorkspace = new DocumentsForm( path, new DocumentsForm.ShowPropertiesEventHandler( this.OnShowProperties ),
-																		new DocumentsForm.SetPropertyGridEventHandler( this.OnSetPropertyGrid ),
-																		new DocumentsForm.ShowObjectsEventHandler( this.OnShowObjects ) );
+			DocumentsForm openFromWorkspace = new DocumentsForm( path, new DocumentsForm.ShowPropertiesEventHandler( OnShowProperties ),
+																		new DocumentsForm.SetPropertyGridEventHandler( OnSetPropertyGrid ),
+																		new DocumentsForm.ShowObjectsEventHandler( OnShowObjects ) );
 			if( openFromWorkspace.IsDisposed )
 				return;
 
-			openFromWorkspace.Show( MainForm.Main_DockPanel, DockState.Document );
+			openFromWorkspace.Show( this.DockPanel, DockState.Document );
 			openFromWorkspace.TabText = Path.GetFileNameWithoutExtension( path );
 		}
 

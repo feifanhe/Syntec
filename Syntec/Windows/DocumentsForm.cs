@@ -95,15 +95,11 @@ namespace Syntec.Windows
 
 		public void SetPropertyGrid( AttributeCollection hidden, string[] browsable )
 		{
-			//MainForm.PropertiesWindow.SetHiddenAttributes( hidden );
-			//MainForm.PropertiesWindow.SetBrowsableProperties( browsable );
 			this.OnSetPropertyGrid( hidden, browsable );
 		}
 
 		public void ShowObjects( Control treeView )
 		{
-			//MainForm.ObjectBrowser.SetContents( treeView );
-
 			this.OnShowObjects( treeView );
 		}
 

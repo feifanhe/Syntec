@@ -26,14 +26,16 @@ namespace Syntec.Windows
 			InitializeComponent();
 
 			// Bind events
-			WorkspaceExplorer.OnShowObjects += new WorkspaceExplorerForm.ShowObjectsEventHandler( this.ShowObjects );
+			WorkspaceExplorer.OnShowProperties += new WorkspaceExplorerForm.ShowPropertiesEventHandler( ShowProperties );
+			WorkspaceExplorer.OnSetPropertyGrid += new WorkspaceExplorerForm.SetPropertyGridEventHandler( SetPropertyGrid );
+			WorkspaceExplorer.OnShowObjects += new WorkspaceExplorerForm.ShowObjectsEventHandler( ShowObjects );
 
 			// Load all the windows and set them to default locations
 			PropertiesWindow.Show( Main_DockPanel, DockState.DockRight );
 			ObjectBrowser.Show( PropertiesWindow.Pane, DockAlignment.Top, 0.6 );
 			WorkspaceExplorer.Show( ObjectBrowser.Pane, ObjectBrowser );
 
-			RecentWorkspacesMenu = new MruStripMenu(File_Recent_Workspaces_ToolStripMenuItem, new MruStripMenu.ClickedHandler(RecentWorkspaces_OnClick), "Syntec.ini", "RecentWorkspaces", 4);
+			RecentWorkspacesMenu = new MruStripMenu( File_Recent_Workspaces_ToolStripMenuItem, new MruStripMenu.ClickedHandler( RecentWorkspaces_OnClick ), "Syntec.ini", "RecentWorkspaces", 4 );
 			RecentWorkspacesMenu.LoadFromINIFile();
 			RecentFilesMenu = new MruStripMenu( File_Recent_Files_ToolStripMenuItem, new MruStripMenu.ClickedHandler( RecentFiles_OnClick ), "Syntec.ini", "RecentFiles", 4 );
 			RecentFilesMenu.LoadFromINIFile();
@@ -194,9 +196,9 @@ namespace Syntec.Windows
 		private void Test_Button_Click( object sender, EventArgs e )
 		{
 			string path = @"C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\bin\Debug\CncFenu.xml";
-			DocumentsForm df = new DocumentsForm( path, new DocumentsForm.ShowPropertiesEventHandler( this.ShowProperties ),
-															new DocumentsForm.SetPropertyGridEventHandler( this.SetPropertyGrid ),
-															new DocumentsForm.ShowObjectsEventHandler( this.ShowObjects ) );
+			DocumentsForm df = new DocumentsForm( path, new DocumentsForm.ShowPropertiesEventHandler( ShowProperties ),
+															new DocumentsForm.SetPropertyGridEventHandler( SetPropertyGrid ),
+															new DocumentsForm.ShowObjectsEventHandler( ShowObjects ) );
 
 			if( df.IsDisposed )
 				return;
