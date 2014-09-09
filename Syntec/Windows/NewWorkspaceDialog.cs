@@ -14,29 +14,15 @@ namespace Syntec.Windows
 	{
 		#region Properties
 
-		public string SelectedProduct
+		private string _SelectedBaseRes = string.Empty;
+		public string SelectedBaseRes
 		{
 			get
 			{
-				return this.SelectionPanel.SelectedCategory;
+				return this._SelectedBaseRes;
 			}
 		}
 
-		public string SelectedPath
-		{
-			get
-			{
-				return this.InputPanel.SelectedPath;
-			}
-		}
-
-		public int SelectedSolutionIndex
-		{
-			get
-			{
-				return this.InputPanel.SelectedSolutionIndex;
-			}
-		}
 		#endregion
 
 		#region Constructor
@@ -53,14 +39,40 @@ namespace Syntec.Windows
 
 		private void OK_Button_Click( object sender, EventArgs e )
 		{
-			if( this.SelectedProduct == null ) {
+			if( this.SelectionPanel.SelectedCategory == null ) {
 				MessageBox.Show( "Please select a product" );
 				return;
 			}
-			if( !Directory.Exists( this.SelectedPath ) ) {
+			if( !Directory.Exists( this.InputPanel.SelectedPath ) ) {
+				MessageBox.Show( "Please select a path" );
 				return;
 			}
 
+			string ProductPath =
+					this.SelectionPanel.SelectedCategory.Replace( "\\", "\\_" ).Substring(
+					this.SelectionPanel.SelectedCategory.IndexOf( "\\" ) );
+
+			if( this.InputPanel.SelectedSolutionIndex == 0 ) {
+				// Add to existing Res folder
+
+				int index = this.InputPanel.SelectedPath.ToUpper().LastIndexOf( "RES" );
+				if( index < 0 ) {
+					// This section should never occur
+					MessageBox.Show( "Designated path isn't located in Res.",
+										"Wrong File Path",
+										MessageBoxButtons.OK,
+										MessageBoxIcon.Error );
+					return;
+				}
+				this._SelectedBaseRes = this.InputPanel.SelectedPath.Substring( 0, index ) + @"Res\";
+				Directory.CreateDirectory( this._SelectedBaseRes + ProductPath );
+			}
+			else {
+				// Create new Res folder
+				this._SelectedBaseRes = this.InputPanel.SelectedPath + @"\Res";
+				Directory.CreateDirectory( this._SelectedBaseRes + ProductPath );
+			
+			}
 			this.DialogResult = DialogResult.OK;
 		}
 
