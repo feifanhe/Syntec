@@ -35,7 +35,6 @@ namespace Fenubars
 		}
 
 		private ObjectTree CompiledTree;
-
 		private string XMLPath = string.Empty;
 
 		#region Acquire focus object by event
@@ -93,34 +92,6 @@ namespace Fenubars
 		#endregion
 
 		#region IModule Members
-
-		#region Module info
-
-		public string Name
-		{
-			get
-			{
-				return "Fenubar";
-			}
-		}
-
-		public string Description
-		{
-			get
-			{
-				return "Use this plugin to support fenubar edit function.";
-			}
-		}
-
-		public string Version
-		{
-			get
-			{
-				return Assembly.GetEntryAssembly().GetName().Version.ToString();
-			}
-		}
-
-		#endregion
 
 		#region Host adapter
 

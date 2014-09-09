@@ -5,23 +5,6 @@ namespace ModuleInterface
 {
 	public interface IModule
 	{
-		#region Module info
-
-		string Name
-		{
-			get;
-		}
-		string Description
-		{
-			get;
-		}
-		string Version
-		{
-			get;
-		}
-
-		#endregion
-
 		#region Host adapter
 
 		IModuleHost Host
