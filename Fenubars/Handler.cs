@@ -123,11 +123,43 @@ namespace Fenubars
 			}
 
 			InitiateSerializer();
+
+			RELOAD_XML:
+
 			try {
 				LoadXML( XMLPath );
 			}
 			catch( InvalidOperationException ) {
-				MessageBox.Show( "XML IS FUCKED UP" );
+				List<string> output = new List<string>();
+				using( StreamReader file = new StreamReader( XMLPath ) ) {
+					while( !file.EndOfStream ) {
+						string line = file.ReadLine();
+
+						if( line.Contains( "<state><" ) )
+							continue;
+
+						if( line.Contains( "<state>false" ) )
+							line = line.Replace( "false", "disable" );
+
+						if( line.Contains( "<state>true" ) )
+							line = line.Replace( "true", "enable" );
+
+						if( line.Contains( "False" ) )
+							line = line.Replace( "False", "false" );
+
+						if( line.Contains( "True" ) )
+							line = line.Replace( "True", "true" );
+
+						output.Add( line );
+					}
+				}
+
+				using( StreamWriter file = new StreamWriter( XMLPath ) ) {
+					foreach( string line in output )
+						file.WriteLine( line );
+				}
+
+				goto RELOAD_XML;
 			}
 
 			return true;
@@ -158,12 +190,14 @@ namespace Fenubars
 			_Host.ShowObjects( CompiledTree );
 		}
 
-		private IEnumerable<string> GetProductHierarchy( string filePath )
+		private List<string> GetProductHierarchy( string filePath )
 		{
 			bool inWorkspace = false;
 			string combinedPath = string.Empty;
-		
+			List<string> result = new List<string>();
+
 			string[] dissectedXmlPath = XMLPath.Split( '\\' );
+
 			foreach( string segments in dissectedXmlPath ) {
 				// Merge segments
 				combinedPath += segments + "\\";
@@ -171,21 +205,25 @@ namespace Fenubars
 				// Check if it's the beginning of workspace zone
 				if( segments == "Res" ) {
 					inWorkspace = true;
-					yield return combinedPath;
+					result.Add( combinedPath );
 				}
 
 				if( inWorkspace && segments.Contains( "_" ) )
-					yield return combinedPath;
+					result.Add( combinedPath );
 			}
+
+			return result;
 		}
 
 		public void Open( string fenuName )
 		{
-			_Host.ShowStatusInfo( "Scanning product hierarchy...", 0, true );
-			foreach( string print in GetProductHierarchy( XMLPath ) )
-				Console.WriteLine( print );
-
 			_Host.ShowStatusInfo( "Searching for fenu in file...", 0, true );
+
+			List<string> dirToSearch = GetProductHierarchy( XMLPath );
+			for( int i = 0; i < dirToSearch.Count - 1; i++ ) {
+				Console.WriteLine( dirToSearch[ i ] );
+			}
+
 
 			foreach( FenuState parsedFenu in CurrentFenuState.IncludedFenus ) {
 				if( parsedFenu.Name == fenuName ) {
