@@ -53,7 +53,6 @@ namespace Fenubars.Display
 			// Add normal buttons
 			// TODO: Button amounts should varies
 			for( int i = 1; i <= buttons; i++ ) {
-				// TODO: Add double click
 				NormalButton NRB = new NormalButton( i );
 				NRB.MouseDown += new MouseEventHandler( FenuButton_MouseDown );
 				NRB.ContextMenuStrip = ButtonContextMenu;
@@ -130,6 +129,9 @@ namespace Fenubars.Display
 		public delegate void DataAvailableEventHandler( Type type, FenuButtonState data );
 		public event DataAvailableEventHandler OnDataAvailable;
 
+		public delegate void LinkageEventHandler( string FenuName );
+		public event LinkageEventHandler Link;
+		
 		private void FenuButton_MouseDown( object sender, MouseEventArgs e )
 		{
 			if( Control.ModifierKeys == Keys.Shift ) {
@@ -149,6 +151,8 @@ namespace Fenubars.Display
 					else {
 						return;
 					}
+
+					// Open the link associated with this fenu
 					if( Link != null ) {
 						Link.Invoke( FBS.Link );
 					}
@@ -166,9 +170,6 @@ namespace Fenubars.Display
 					break;
 			}
 		}
-
-		public event LinkageEventHandler Link;
-		public delegate void LinkageEventHandler( string FenuName );
 
 		#endregion
 

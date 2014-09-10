@@ -19,9 +19,18 @@ namespace Syntec.Windows
 
 		public void SetContents( Control treeView )
 		{
-			if( treeView is TreeView ) {
-				this.SuspendLayout();
+			this.SuspendLayout();
 
+			if( treeView == null ) {
+				// Wipe the existing tree view only
+				foreach( Control item in this.Controls) {
+					TreeView treeViewItem = item as TreeView;
+					if( treeViewItem != null )
+						treeViewItem.Nodes.Clear();
+				}
+
+			}
+			else if( treeView is TreeView ) {
 				// Remove the tree view
 				foreach( Control item in this.Controls ) {
 					if( item is TreeView )
@@ -33,15 +42,15 @@ namespace Syntec.Windows
 				treeView.Dock = DockStyle.Fill;
 				( treeView as TreeView ).NodeMouseDoubleClick += new TreeNodeMouseClickEventHandler( treeView_NodeMouseDoubleClick );
 				( treeView as TreeView ).NodeMouseClick += new TreeNodeMouseClickEventHandler( treeView_NodeMouseClick );
-				
+
 				this.Controls.Remove( ObjectBrowser_ToolStrip );
 				this.Controls.Add( treeView );
 				this.Controls.Add( ObjectBrowser_ToolStrip );
 
 				this.Refresh_ToolStripButton.Enabled = true;
-
-				this.ResumeLayout();
 			}
+
+			this.ResumeLayout();
 		}
 
 		#region Tree view event

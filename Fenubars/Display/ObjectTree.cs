@@ -72,8 +72,9 @@ namespace Fenubars.Display
 		{
 			List<string> links = new List<string>();
 
-			// Add links from Escape Button
+			//// Add links from Escape Button
 			//links.AddRange( ParseLinksFromButton( fenu.EscapeButton ) );
+			// ^ Causing stack overflow
 
 			// Add links from Normal Buttons
 			foreach( FenuButtonState parsedNormalButton in fenu.NormalButtonList )

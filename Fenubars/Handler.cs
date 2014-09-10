@@ -170,6 +170,7 @@ namespace Fenubars
 
 		public void Close()
 		{
+			// Default close operation
 		}
 
 		#endregion

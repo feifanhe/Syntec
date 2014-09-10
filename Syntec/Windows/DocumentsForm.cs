@@ -16,6 +16,19 @@ namespace Syntec.Windows
 	{
 		private IModule instance;
 
+		#region Event handlers
+
+		public delegate void ShowPropertiesEventHandler( object control );
+		public event ShowPropertiesEventHandler OnShowProperties;
+
+		public delegate void SetPropertyGridEventHandler( AttributeCollection hidden, string[] browsable );
+		public event SetPropertyGridEventHandler OnSetPropertyGrid;
+
+		public delegate void ShowObjectsEventHandler( Control treeView );
+		public event ShowObjectsEventHandler OnShowObjects;
+
+		#endregion
+
 		public DocumentsForm( string XMLPath, ShowPropertiesEventHandler OnShowProperties,
 												SetPropertyGridEventHandler OnSetPropertyGrid,
 												ShowObjectsEventHandler OnShowObjects)
@@ -118,16 +131,27 @@ namespace Syntec.Windows
 
 		#endregion
 
-		#region Events
+		#region Form events
 
-		public delegate void ShowPropertiesEventHandler( object control );
-		public event ShowPropertiesEventHandler OnShowProperties;
+		private void DocumentsForm_FormClosing( object sender, FormClosingEventArgs e )
+		{
+			// TODO: Check if modification was made by tab
+			if( this.TabText.Contains( "*" ) | true ) {
+				DialogResult result = MessageBox.Show( "Would you like to save the modifications?",
+														"Save before close",
+														MessageBoxButtons.YesNo,
+														MessageBoxIcon.Question );
+				if( result == DialogResult.Yes )
+					instance.Save();
 
-		public delegate void SetPropertyGridEventHandler( AttributeCollection hidden, string[] browsable );
-		public event SetPropertyGridEventHandler OnSetPropertyGrid;
 
-		public delegate void ShowObjectsEventHandler( Control treeView );
-		public event ShowObjectsEventHandler OnShowObjects;
+			}
+
+			instance.Close();
+
+			// Disacard object browser
+			this.ShowObjects( null );
+		}
 
 		#endregion
 	}
