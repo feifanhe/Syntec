@@ -27,7 +27,7 @@ namespace Syntec.Windows
 		public delegate void ShowObjectsEventHandler( Control treeView );
 		public event ShowObjectsEventHandler OnShowObjects;
 
-		public delegate void ShowStatusInfoEventHandler( string text, int progress );
+		public delegate void ShowStatusInfoEventHandler( string text, int progress, bool marquee );
 		public event ShowStatusInfoEventHandler OnShowStatusInfo;
 
 		#endregion
@@ -67,10 +67,21 @@ namespace Syntec.Windows
 
 		#region Methods for IDE to call
 
+		#region File
+
 		public void Open( string name )
 		{
 			instance.Open( name );
 		}
+
+		public void Save()
+		{
+			instance.Save();
+		}
+
+		#endregion
+
+		#region Edit
 
 		public void Cut()
 		{
@@ -91,6 +102,8 @@ namespace Syntec.Windows
 		{
 			instance.Delete();
 		}
+
+		#endregion
 
 		#endregion
 
@@ -132,9 +145,9 @@ namespace Syntec.Windows
 			this.OnShowObjects( treeView );
 		}
 
-		public void ShowStatusInfo( string text, int progress )
+		public void ShowStatusInfo( string text, int progress, bool marquee )
 		{
-			this.OnShowStatusInfo( text, progress );
+			this.OnShowStatusInfo( text, progress, marquee );
 		}
 
 		#endregion

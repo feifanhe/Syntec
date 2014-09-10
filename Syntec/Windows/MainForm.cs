@@ -26,11 +26,7 @@ namespace Syntec.Windows
 			InitializeComponent();
 
 			// Bind events
-			//WorkspaceExplorer.OnShowProperties += new WorkspaceExplorerForm.ShowPropertiesEventHandler( ShowProperties );
-			//WorkspaceExplorer.OnSetPropertyGrid += new WorkspaceExplorerForm.SetPropertyGridEventHandler( SetPropertyGrid );
-			//WorkspaceExplorer.OnShowObjects += new WorkspaceExplorerForm.ShowObjectsEventHandler( ShowObjects );
-
-			WorkspaceExplorer.OnOpenFile += new WorkspaceExplorerForm.OpenFileEventHanler(OpenFile);
+			WorkspaceExplorer.OnOpenFile += new WorkspaceExplorerForm.OpenFileEventHanler( OpenFile );
 
 			// Load all the windows and set them to default locations
 			PropertiesWindow.Show( Main_DockPanel, DockState.DockRight );
@@ -215,9 +211,7 @@ namespace Syntec.Windows
 
 				// Switch to object browser tab
 				ObjectBrowser.Show();
-			}
-
-			
+			}	
 		}
 
 		private void OpenFile( string filePath )
@@ -257,20 +251,30 @@ namespace Syntec.Windows
 				ObjectBrowser.Show();
 		}
 
-		private void ShowStatusInfo( string text, int progress )
+		private void ShowStatusInfo( string text, int progress, bool marquee )
 		{
 			if( progress > 100 )
 				throw new ArgumentOutOfRangeException( "Progress bar value shouldn't exceed 100." );
 
-			this.StatusText.Text = text;
+			// Using null to maintain view, string.Empty to clear the text
+			if( text != null )
+				this.StatusText.Text = text;
 
+			// Using -1 to hide the progress bar
 			if( progress < 0 )
 				this.ProgressBar.Visible = false;
-			else {
+			else
 				this.ProgressBar.Visible = true;
+
+			// Marquee mode or not
+			if( marquee )
+				this.ProgressBar.Style = ProgressBarStyle.Marquee;
+			else {
+				this.ProgressBar.Style = ProgressBarStyle.Blocks;
 				this.ProgressBar.Value = progress;
 			}
 		}
+			
 
 		#endregion
 
@@ -279,14 +283,7 @@ namespace Syntec.Windows
 		private void Test_Button_Click( object sender, EventArgs e )
 		{
 			string path = @"C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\bin\Debug\CncFenu.xml";
-			DocumentsForm df = new DocumentsForm( path, new DocumentsForm.ShowPropertiesEventHandler( ShowProperties ),
-															new DocumentsForm.SetPropertyGridEventHandler( SetPropertyGrid ),
-															new DocumentsForm.ShowObjectsEventHandler( ShowObjects ) );
-
-			if( df.IsDisposed )
-				return;
-			df.Show( Main_DockPanel, DockState.Document );
-			df.TabText = System.IO.Path.GetFileNameWithoutExtension( path );
+			OpenFile( path );
 
 			//Application.Restart();
 		}
