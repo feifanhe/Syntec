@@ -4,6 +4,7 @@ using Fenubars.Display;
 using System;
 using System.IO;
 using System.Xml;
+using System.Xml.Serialization;
 
 namespace Fenubars
 {
@@ -79,7 +80,8 @@ namespace Fenubars
 
 				// Normal buttons
 				foreach( XmlNode normalButtonNode in selectedFenuNode.SelectNodes( "/button" ) ) {
-
+					FenuButtonState partialDeserialized = DeserializeNode<FenuButtonState>(normalButtonNode);
+					
 				}
 
 			}
@@ -93,9 +95,20 @@ namespace Fenubars
 			return mirroredFenu;
 		}
 
-		private Fenu ReflectOnFenu( Fenu objectFenu, Fenu imageFenu, string path )
+		private T DeserializeNode<T>( XmlNode node ) where T : class
 		{
+			MemoryStream stm = new MemoryStream();
 
+			StreamWriter stw = new StreamWriter( stm );
+			stw.Write( node.OuterXml );
+			stw.Flush();
+
+			stm.Position = 0;
+
+			XmlSerializer ser = new XmlSerializer( typeof( T ) );
+			T result = ( ser.Deserialize( stm ) as T );
+
+			return result;
 		}
 	}
 }
