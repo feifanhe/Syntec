@@ -123,7 +123,12 @@ namespace Fenubars
 			}
 
 			InitiateSerializer();
-			LoadXML( XMLPath );
+			try {
+				LoadXML( XMLPath );
+			}
+			catch( InvalidOperationException ) {
+				MessageBox.Show( "XML IS FUCKED UP" );
+			}
 
 			return true;
 		}
@@ -153,16 +158,44 @@ namespace Fenubars
 			_Host.ShowObjects( CompiledTree );
 		}
 
+		private IEnumerable<string> GetProductHierarchy( string filePath )
+		{
+			bool inWorkspace = false;
+			string combinedPath = string.Empty;
+		
+			string[] dissectedXmlPath = XMLPath.Split( '\\' );
+			foreach( string segments in dissectedXmlPath ) {
+				// Merge segments
+				combinedPath += segments + "\\";
+
+				// Check if it's the beginning of workspace zone
+				if( segments == "Res" ) {
+					inWorkspace = true;
+					yield return combinedPath;
+				}
+
+				if( inWorkspace && segments.Contains( "_" ) )
+					yield return combinedPath;
+			}
+		}
+
 		public void Open( string fenuName )
 		{
+			_Host.ShowStatusInfo( "Scanning product hierarchy...", 0, true );
+			foreach( string print in GetProductHierarchy( XMLPath ) )
+				Console.WriteLine( print );
+
+			_Host.ShowStatusInfo( "Searching for fenu in file...", 0, true );
+
 			foreach( FenuState parsedFenu in CurrentFenuState.IncludedFenus ) {
 				if( parsedFenu.Name == fenuName ) {
 					Fenu newFenuPanel = new Fenu( parsedFenu );
-					newFenuPanel.OnDataAvailable += new Fenu.DataAvailableEventHandler(FocusedObjectAvailable);
-					newFenuPanel.Link += new Fenu.LinkageEventHandler(Open);
-					newFenuPanel.PopulateButtons();
+					newFenuPanel.OnDataAvailable += new Fenu.DataAvailableEventHandler( FocusedObjectAvailable );
+					newFenuPanel.Link += new Fenu.LinkageEventHandler( Open );
 
+					newFenuPanel.PopulateButtons();
 					_Host.DrawOnCanvas( newFenuPanel );
+
 					return;
 				}
 			}

@@ -47,6 +47,8 @@
   <ItemGroup>
     <Compile Include="Configurator\IniConfigurator.cs" />
     <Compile Include="Definitions\EnumDefinitions.cs" />
+    <Compile Include="Methods\Replace.cs" />
+    <Compile Include="Methods\Find.cs" />
     <Compile Include="Methods\Global.cs" />
     <Compile Include="Methods\MainForm_File_New.cs">
       <SubType>Form</SubType>
