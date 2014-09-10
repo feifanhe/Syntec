@@ -243,7 +243,7 @@ namespace Syntec.Windows
 
 				// Switch to object browser tab
 				ObjectBrowser.Show();
-			}	
+			}
 		}
 
 		private void OpenFile( string filePath )
@@ -310,7 +310,7 @@ namespace Syntec.Windows
 				}
 			}
 		}
-			
+
 
 		#endregion
 
