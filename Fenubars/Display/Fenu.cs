@@ -17,11 +17,14 @@ namespace Fenubars.Display
 		private FenuState _FenuContent;
 		private Point CursorPosition;
 
-		public Fenu( FenuState AssignedFenuContent )
+		private int buttonCount = -1;
+
+		public Fenu( FenuState AssignedFenuContent , int buttonCount )
 		{
 			InitializeComponent();
 
 			this._FenuContent = AssignedFenuContent;
+			this.buttonCount = buttonCount;
 
 			// Overwrite title bar splitter distance
 			TitleBarSplitterContainer.SplitterDistance = TitleBarSplitterContainer.Width - 25;
@@ -38,21 +41,19 @@ namespace Fenubars.Display
 			// TODO: Modify the title to call-pathway
 			FenuTitle.Text = _FenuContent.Name;
 
-			int buttons = 8;
-
 			// Add EscapeButton and NextButton button
 			EscapeButton EB = new EscapeButton( _FenuContent.EscapeButton );
 			EB.PaintComponent( FormSplitContainer.Panel2.Controls, new Point( 3, 3 ) );
 			EB.MouseDown += new MouseEventHandler( FenuButton_MouseDown );
 
 			NextButton NB = new NextButton( _FenuContent.NextButton );
-			NB.PaintComponent( FormSplitContainer.Panel2.Controls, new Point( 3 + 83 * ( buttons + 1 ), 3 ) );
+			NB.PaintComponent( FormSplitContainer.Panel2.Controls, new Point( 3 + 83 * ( buttonCount + 1 ), 3 ) );
 			NB.MouseDown += new MouseEventHandler( FenuButton_MouseDown );
 
 
 			// Add normal buttons
 			// TODO: Button amounts should varies
-			for( int i = 1; i <= buttons; i++ ) {
+			for( int i = 1; i <= buttonCount; i++ ) {
 				NormalButton NRB = new NormalButton( i );
 				NRB.MouseDown += new MouseEventHandler( FenuButton_MouseDown );
 				NRB.ContextMenuStrip = ButtonContextMenu;

@@ -298,15 +298,16 @@ namespace Syntec.Windows
 			// Using -1 to hide the progress bar
 			if( progress < 0 )
 				this.ProgressBar.Visible = false;
-			else
+			else {
 				this.ProgressBar.Visible = true;
 
-			// Marquee mode or not
-			if( marquee )
-				this.ProgressBar.Style = ProgressBarStyle.Marquee;
-			else {
-				this.ProgressBar.Style = ProgressBarStyle.Blocks;
-				this.ProgressBar.Value = progress;
+				// Marquee mode or not
+				if( marquee )
+					this.ProgressBar.Style = ProgressBarStyle.Marquee;
+				else {
+					this.ProgressBar.Style = ProgressBarStyle.Blocks;
+					this.ProgressBar.Value = progress;
+				}
 			}
 		}
 			

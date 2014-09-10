@@ -113,10 +113,14 @@ namespace Syntec.Windows
 
 		public void DrawOnCanvas( Control control )
 		{
+			this.SuspendLayout();
+
 			this.Controls.Add( control );
 
 			// Maintain last-in append instead of insert
 			control.BringToFront();
+
+			this.ResumeLayout();
 		}
 
 		public Control FindFocusedControl()
