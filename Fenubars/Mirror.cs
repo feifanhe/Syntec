@@ -3,6 +3,7 @@ using Fenubars.XML;
 using Fenubars.Display;
 using System;
 using System.IO;
+using System.Xml;
 
 namespace Fenubars
 {
@@ -33,10 +34,10 @@ namespace Fenubars
 			return result;
 		}
 
-		private Dictionary<string, FenuState> FindFenuImages( string fenuName )
+		private Fenu ReflectOnFenu( Fenu fenu )
 		{
 			string originalPathBackup = XMLPath;
-			Dictionary<string, FenuState> images = new Dictionary<string, FenuState>();
+			Fenu mirroredFenu = fenu;
 
 			// Scan in hierarchy folders
 			List<string> dirToSearch = GetProductHierarchy( XMLPath );
@@ -55,59 +56,46 @@ namespace Fenubars
 #else
 				XMLPath = targetDir + Path.GetFileName( originalPathBackup );
 #endif
-				XMLGlobalState temporaryFenuStates = null;
-				if( ContainRootNode() ) {
-				RE_PARSE:
+				XmlDocument document = new XmlDocument();
+				document.LoadXml( XMLPath );
+				// Skip this document if it doesn't contain <root> tag
+				if( document.SelectSingleNode( "/root" ) == null )
+					continue;
 
-					try {
-						// Parse this XML
-						using( StreamReader Reader = new StreamReader( XMLPath ) ) {
-							Console.WriteLine( "SCANNING: " + XMLPath );
+				XmlNode selectedFenuNode = document.SelectSingleNode( "/fenu[@name='" + fenu.Name + "']" );
 
-							temporaryFenuStates = Serializer.Deserialize( Reader ) as XMLGlobalState;
+				XmlNode selectedButtonNode;
 
-							// Find targeted fenu (if exist)
-							foreach( FenuState parsedFenu in temporaryFenuStates.IncludedFenus ) {
-								Console.Write( " +- " + parsedFenu.Name );
+				// Escape button
+				selectedButtonNode = selectedFenuNode.SelectSingleNode( "/escape" );
+				if( selectedFenuNode != null ) {
 
-								if( parsedFenu.Name == fenuName ) {
-									images.Add( XMLPath, parsedFenu );
-									Console.WriteLine( "... ADD" );
-								}
-								else
-									Console.WriteLine();
-							}
-						}
-					}
-					catch( InvalidOperationException e ) {
-						Console.WriteLine( " = ERR: " + e.Message );
-						RectifyXmlFormat();
-						goto RE_PARSE;
-					}
 				}
+
+				// Next button
+				selectedButtonNode = selectedFenuNode.SelectSingleNode( "/next" );
+				if( selectedFenuNode != null ) {
+				}
+
+				// Normal buttons
+				foreach( XmlNode normalButtonNode in selectedFenuNode.SelectNodes( "/button" ) ) {
+
+				}
+
+			}
 #if GENERIC_SEARCH
 				}
 #endif
-			}
 
 			// Restore original path
 			XMLPath = originalPathBackup;
 
-			// Lower priority image, closer to the head
-			//images.Reverse();
-
-			return images;
+			return mirroredFenu;
 		}
 
-		private Fenu ReflectOnFenu( Fenu vanilla, Dictionary<string, FenuState> images )
+		private Fenu ReflectOnFenu( Fenu objectFenu, Fenu imageFenu, string path )
 		{
-			//vanilla
-			Console.WriteLine( "==IMAGE FENUS==" );
-			foreach( KeyValuePair<string, FenuState> image in images )
-				Console.WriteLine( image.Key + " @ " + image.Value.Name );
-			Console.WriteLine( "===============" );
 
-			return null;
 		}
 	}
 }

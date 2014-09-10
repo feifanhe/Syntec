@@ -237,7 +237,7 @@ namespace Fenubars
 
 					_Host.ShowStatusInfo( "Loading " + fenuName + "...", 100, true );
 					// TODO: Move to background worker
-					ReflectOnFenu( newFenuPanel, FindFenuImages( fenuName ) );
+					newFenuPanel = ReflectOnFenu( newFenuPanel );
 
 					_Host.DrawOnCanvas( newFenuPanel );
 					_Host.ShowStatusInfo( "Ready", -1, false );

@@ -32,6 +32,9 @@ namespace Fenubars.Display
 			// Set default docking position
 			this.Dock = DockStyle.Top;
 
+			// Write system name
+			this.Name = AssignedFenuContent.Name;
+
 			// Register context menu, for disabled buttons
 			this.FormSplitContainer.Panel2.ContextMenuStrip = ButtonContextMenu;
 		}
