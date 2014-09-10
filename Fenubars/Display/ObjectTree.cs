@@ -22,49 +22,18 @@ namespace Fenubars.Display
 			this.ImageList = this.ObjectType_ImageList;
 
 			// First time execution, fully reconstruct the tree
-			FullyReconstructTree();
+			//FullyReconstructTree();
+			ConstructForest();
 		}
 
-		#region Build tree
+		#region Build Links
 
 		private void CompileLinksInfo( List<FenuState> fenus )
 		{
 			foreach( FenuState fenu in fenus ) {
 				FenuLink newLink = new FenuLink( fenu.Name );
 				CompileChildLinks( newLink, fenu );
-
 				links.Add( newLink );
-			}
-
-			// Wipe out non-root nodes
-			for( int i = 0; i < links.Count; i++ ) {
-				foreach( FenuLink readLink in links ) {
-					if( readLink.Name == links[ i ].Name )
-						continue;
-
-					foreach( string link in readLink.Links ) {
-						if( link == links[ i ].Name ) {
-							links[ i ].IsRoot = false;
-							break;
-						}
-					}
-				}
-			}
-		}
-
-		private void FullyReconstructTree()
-		{
-			this.Nodes.Clear();
-
-			// Add root nodes first
-			foreach( FenuLink link in links ) {
-				if( link.IsRoot )
-					this.Nodes.Add( link.Name, link.Name, 0, 0 );
-			}
-
-			// Add childs for the root nodes
-			foreach( TreeNode parent in this.Nodes ) {
-				ParseLinksToChild( parent );
 			}
 		}
 
@@ -84,7 +53,7 @@ namespace Fenubars.Display
 			links.AddRange( ParseLinksFromButton( fenu.NextButton ) );
 
 			// Add to fenu link object
-			parent.Links.AddRange( links.ToArray() );
+			parent.Links = links;
 		}
 
 		private string[] ParseLinksFromButton( FenuButtonState button )
@@ -113,59 +82,74 @@ namespace Fenubars.Display
 			return acquiredLinks.ToArray();
 		}
 
-		private void ParseLinksToChild( TreeNode parent )
+		#endregion
+
+		#region Build Forest
+
+		private void ConstructForest()
 		{
-			FenuLink foundedLink = FindFenuLinkByName( parent.Name );
-
-			// Skip this cycle if no link exist
-			if( foundedLink == null )
-				return;
-
-			// Start the iteration
-			List<string> linkInfo = foundedLink.Links;
-			foreach( string link in linkInfo ) {
-				if( !IsLoopFormed( parent.Name, link ) ) {
-					if( !parent.Nodes.ContainsKey( link ) )
-						parent.Nodes.Add( link, link, 1, 1 );
-					foreach( TreeNode childNode in parent.Nodes )
-						ParseLinksToChild( childNode );
+			foreach( FenuLink Leaf in links ) {
+				if( !IsInForest( Leaf.Name ) ) {
+					this.Nodes.Add( Leaf.Name, Leaf.Name, 0, 0 );
+					TreeNode Tree = this.Nodes[ Leaf.Name ];
+					ConstructTree( Tree, Leaf );
 				}
 			}
 		}
 
-		private bool IsLoopFormed( string current, string childToCreate )
+		private void ConstructTree( TreeNode Tree, FenuLink Parent )
 		{
-			FenuLink foundedLink = FindFenuLinkParent( current );
-
-			if( foundedLink == null )
-				return false;
-
-			if( foundedLink.Name == childToCreate )
-				return true;
-
-			// Stop at root layer
-			if( foundedLink.IsRoot )
-				return false;
-			else
-				return IsLoopFormed( foundedLink.Name, childToCreate );
+			if( Parent == null ) {
+				return;
+			}
+			foreach( string ChildName in Parent.Links ) {
+				if( !IsInForest( ChildName ) && !IsInTree( Tree, ChildName ) ) {
+					Tree.Nodes.Add( ChildName, ChildName, 0, 0 );
+					TreeNode Subtree = Tree.Nodes[ ChildName ];
+					FenuLink Child = FindFenuLinkByName( ChildName );
+					ConstructTree( Subtree, Child );
+				}
+			}
 		}
+
+		private bool IsInForest( string LeafName )
+		{
+			if( this.Nodes.ContainsKey( LeafName ) ) {
+				return true;
+			}
+
+			foreach( TreeNode Tree in this.Nodes ) {
+				if( IsInTree( Tree, LeafName ) ) {
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		private bool IsInTree( TreeNode Tree, string LeafName )
+		{
+			if( Tree.Nodes.ContainsKey( LeafName ) ) {
+				return true;
+			}
+			else {
+				foreach( TreeNode Subtree in Tree.Nodes ) {
+					if( IsInTree( Subtree, LeafName ) ) {
+						return true;
+					}
+				}
+				return false;
+			}
+		}
+
+
+
 
 		private FenuLink FindFenuLinkByName( string name )
 		{
 			return links.Find( delegate( FenuLink selectedFenuLink )
 											{
 												return selectedFenuLink.Name == name;
-											} );
-		}
-
-		private FenuLink FindFenuLinkParent( string childName )
-		{
-			return links.Find( delegate( FenuLink selectedFenuLink )
-											{
-												foreach( string linkName in selectedFenuLink.Links )
-													if( linkName == childName )
-														return true;
-												return false;
 											} );
 		}
 

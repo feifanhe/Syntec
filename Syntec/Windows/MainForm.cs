@@ -243,15 +243,16 @@ namespace Syntec.Windows
 
 				// Switch to object browser tab
 				ObjectBrowser.Show();
-			}	
+			}
 		}
 
 		private void OpenFile( string filePath )
 		{
-			DocumentsForm openFromFile = new DocumentsForm( filePath, 
+			DocumentsForm openFromFile = new DocumentsForm( filePath,
 				new DocumentsForm.ShowPropertiesEventHandler( ShowProperties ),
 				new DocumentsForm.SetPropertyGridEventHandler( SetPropertyGrid ),
-				new DocumentsForm.ShowObjectsEventHandler( ShowObjects ) );
+				new DocumentsForm.ShowObjectsEventHandler( ShowObjects ),
+				new DocumentsForm.ShowStatusInfoEventHandler( ShowStatusInfo ) );
 
 			if( openFromFile.IsDisposed )
 				return;
@@ -308,7 +309,7 @@ namespace Syntec.Windows
 				this.ProgressBar.Value = progress;
 			}
 		}
-			
+
 
 		#endregion
 
