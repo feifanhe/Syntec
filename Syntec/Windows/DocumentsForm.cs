@@ -34,7 +34,8 @@ namespace Syntec.Windows
 
 		public DocumentsForm( string XMLPath, ShowPropertiesEventHandler OnShowProperties,
 												SetPropertyGridEventHandler OnSetPropertyGrid,
-												ShowObjectsEventHandler OnShowObjects)
+												ShowObjectsEventHandler OnShowObjects,
+												ShowStatusInfoEventHandler OnShowStatusInfo)
 		{
 			InitializeComponent();
 
@@ -44,6 +45,7 @@ namespace Syntec.Windows
 			this.OnShowProperties += OnShowProperties;
 			this.OnSetPropertyGrid += OnSetPropertyGrid;
 			this.OnShowObjects += OnShowObjects;
+			this.OnShowStatusInfo += OnShowStatusInfo;
 
 			if( ( instance = ModuleManager.FindProcessor( XMLPath ) ) == null ) {
 				// Destroy this form if nothing applicable

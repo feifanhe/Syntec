@@ -252,6 +252,7 @@ namespace Syntec.Windows
 				new DocumentsForm.ShowPropertiesEventHandler( ShowProperties ),
 				new DocumentsForm.SetPropertyGridEventHandler( SetPropertyGrid ),
 				new DocumentsForm.ShowObjectsEventHandler( ShowObjects ) );
+
 			if( openFromFile.IsDisposed )
 				return;
 
@@ -315,7 +316,7 @@ namespace Syntec.Windows
 
 		private void Test_Button_Click( object sender, EventArgs e )
 		{
-			string path = @"C:\Users\Andy\Documents\Visual Studio 2005\Projects\Syntec\Syntec\bin\Debug\CncFenu.xml";
+			string path = @"C:\Res\_Arm\_Mill\_21A\Common\CncFenu.xml";
 			OpenFile( path );
 
 			//Application.Restart();
