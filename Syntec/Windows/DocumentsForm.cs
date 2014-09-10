@@ -27,6 +27,9 @@ namespace Syntec.Windows
 		public delegate void ShowObjectsEventHandler( Control treeView );
 		public event ShowObjectsEventHandler OnShowObjects;
 
+		public delegate void ShowStatusInfoEventHandler( string text, int progress );
+		public event ShowStatusInfoEventHandler OnShowStatusInfo;
+
 		#endregion
 
 		public DocumentsForm( string XMLPath, ShowPropertiesEventHandler OnShowProperties,
@@ -127,6 +130,11 @@ namespace Syntec.Windows
 		public void ShowObjects( Control treeView )
 		{
 			this.OnShowObjects( treeView );
+		}
+
+		public void ShowStatusInfo( string text, int progress )
+		{
+			this.OnShowStatusInfo( text, progress );
 		}
 
 		#endregion

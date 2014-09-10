@@ -18,6 +18,13 @@ namespace Syntec.Windows
 		// Indicate to show every files or targeted only
 		private bool showAllFiles = false;
 
+		#region Event handlers
+
+		public delegate void OpenFileEventHanler( string filePath );
+		public event OpenFileEventHanler OnOpenFile;
+
+		#endregion
+
 		public WorkspaceExplorerForm()
 		{
 			InitializeComponent();
@@ -200,15 +207,7 @@ namespace Syntec.Windows
 
 		private void WorkspaceTreeView_NodeMouseDoubleClick( object sender, TreeNodeMouseClickEventArgs e )
 		{
-			string path = e.Node.Tag as string;
-			DocumentsForm openFromWorkspace = new DocumentsForm( path, new DocumentsForm.ShowPropertiesEventHandler( OnShowProperties ),
-																		new DocumentsForm.SetPropertyGridEventHandler( OnSetPropertyGrid ),
-																		new DocumentsForm.ShowObjectsEventHandler( OnShowObjects ) );
-			if( openFromWorkspace.IsDisposed )
-				return;
-
-			openFromWorkspace.Show( this.DockPanel, DockState.Document );
-			openFromWorkspace.TabText = Path.GetFileNameWithoutExtension( path );
+			OnOpenFile( e.Node.Tag as string );
 		}
 
 		#endregion
@@ -229,19 +228,6 @@ namespace Syntec.Windows
 			RefreshTree();
 		}
 
-		#endregion
-
-		#region Events
-
-		public delegate void ShowPropertiesEventHandler( object control );
-		public event ShowPropertiesEventHandler OnShowProperties;
-
-		public delegate void SetPropertyGridEventHandler( AttributeCollection hidden, string[] browsable );
-		public event SetPropertyGridEventHandler OnSetPropertyGrid;
-
-		public delegate void ShowObjectsEventHandler( Control treeView );
-		public event ShowObjectsEventHandler OnShowObjects;
-
-		#endregion
+		#endregion	
 	}
 }

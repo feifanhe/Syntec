@@ -26,9 +26,11 @@ namespace Syntec.Windows
 			InitializeComponent();
 
 			// Bind events
-			WorkspaceExplorer.OnShowProperties += new WorkspaceExplorerForm.ShowPropertiesEventHandler( ShowProperties );
-			WorkspaceExplorer.OnSetPropertyGrid += new WorkspaceExplorerForm.SetPropertyGridEventHandler( SetPropertyGrid );
-			WorkspaceExplorer.OnShowObjects += new WorkspaceExplorerForm.ShowObjectsEventHandler( ShowObjects );
+			//WorkspaceExplorer.OnShowProperties += new WorkspaceExplorerForm.ShowPropertiesEventHandler( ShowProperties );
+			//WorkspaceExplorer.OnSetPropertyGrid += new WorkspaceExplorerForm.SetPropertyGridEventHandler( SetPropertyGrid );
+			//WorkspaceExplorer.OnShowObjects += new WorkspaceExplorerForm.ShowObjectsEventHandler( ShowObjects );
+
+			WorkspaceExplorer.OnOpenFile += new WorkspaceExplorerForm.OpenFileEventHanler(OpenFile);
 
 			// Load all the windows and set them to default locations
 			PropertiesWindow.Show( Main_DockPanel, DockState.DockRight );
@@ -226,6 +228,8 @@ namespace Syntec.Windows
 			if( openFromFile.IsDisposed )
 				return;
 
+			openFromFile.OnShowStatusInfo += new DocumentsForm.ShowStatusInfoEventHandler( ShowStatusInfo );
+
 			openFromFile.Show( Main_DockPanel, DockState.Document );
 			openFromFile.TabText = Path.GetFileNameWithoutExtension( filePath );
 		}
@@ -251,6 +255,21 @@ namespace Syntec.Windows
 				WorkspaceExplorer.Show();
 			else
 				ObjectBrowser.Show();
+		}
+
+		private void ShowStatusInfo( string text, int progress )
+		{
+			if( progress > 100 )
+				throw new ArgumentOutOfRangeException( "Progress bar value shouldn't exceed 100." );
+
+			this.StatusText.Text = text;
+
+			if( progress < 0 )
+				this.ProgressBar.Visible = false;
+			else {
+				this.ProgressBar.Visible = true;
+				this.ProgressBar.Value = progress;
+			}
 		}
 
 		#endregion

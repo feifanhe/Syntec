@@ -49,5 +49,6 @@ namespace ModuleInterface
 		void ShowProperties( object control );
 		void SetPropertyGrid( AttributeCollection hidden, string[] browsable );
 		void ShowObjects( Control treeView );
+		void ShowStatusInfo( string text, int progress );
 	}
 }
