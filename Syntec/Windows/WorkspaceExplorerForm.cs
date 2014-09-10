@@ -46,7 +46,7 @@ namespace Syntec.Windows
 		public void ShowWorkspace( string path )
 		{
 			// Set explorer to default view
-			if( path == null ) {
+			if( path == null || !Directory.Exists( path ) ) {
 				Reset();
 				return;
 			}
@@ -228,6 +228,6 @@ namespace Syntec.Windows
 			RefreshTree();
 		}
 
-		#endregion	
+		#endregion
 	}
 }

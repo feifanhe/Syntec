@@ -3,17 +3,37 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 using System;
 using System.Xml.Serialization;
+using System.Xml;
 
 namespace Fenubars.Editor
 {
 	public class ClipBoardManager<T> where T : class
 	{
+		public static bool Available()
+		{
+			using( StringReader reader = new StringReader( Clipboard.GetText( System.Windows.Forms.TextDataFormat.Text ) ) ) {
+				try {
+					XmlSerializer serializer = new XmlSerializer( typeof( T ) );
+					XmlTextReader xreader = new XmlTextReader( reader );
+					return serializer.CanDeserialize( xreader );
+				}
+				catch( Exception ) {
+				    return false;
+				}
+			}
+		}
+
 		public static T GetFromClipboard()
 		{
 			using( StringReader reader = new StringReader( Clipboard.GetText( System.Windows.Forms.TextDataFormat.Text ) ) ) {
-				XmlSerializer serializer = new XmlSerializer( typeof( T ) );
-				object result = serializer.Deserialize( reader );
-				return ( result as T );
+				try {
+					XmlSerializer serializer = new XmlSerializer( typeof( T ) );
+					object result = serializer.Deserialize( reader );
+					return ( result as T );
+				}
+				catch( Exception ) {
+					return null;
+				}
 			}
 		}
 

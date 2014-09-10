@@ -18,6 +18,10 @@ namespace Syntec.Windows
 		private ObjectBrowserForm ObjectBrowser = new ObjectBrowserForm();
 
 		// Most recently used items variables
+		private const string INI_FILE_NAME = "Syntec.ini";
+		private const string INI_RECENT_WORKSPACES_SECTION = "RecentWorkspaces";
+		private const string INI_RECENT_FILES_SECTION = "RecentFiles";
+		private const int DEFAULT_MAX_ENTRIES = 4;
 		private MruStripMenu RecentWorkspacesMenu;
 		private MruStripMenu RecentFilesMenu;
 
@@ -33,13 +37,25 @@ namespace Syntec.Windows
 			ObjectBrowser.Show( PropertiesWindow.Pane, DockAlignment.Top, 0.6 );
 			WorkspaceExplorer.Show( ObjectBrowser.Pane, ObjectBrowser );
 
-			RecentWorkspacesMenu = new MruStripMenu( File_Recent_Workspaces_ToolStripMenuItem, new MruStripMenu.ClickedHandler( RecentWorkspaces_OnClick ), "Syntec.ini", "RecentWorkspaces", 4 );
-			RecentWorkspacesMenu.LoadFromINIFile();
-			RecentFilesMenu = new MruStripMenu( File_Recent_Files_ToolStripMenuItem, new MruStripMenu.ClickedHandler( RecentFiles_OnClick ), "Syntec.ini", "RecentFiles", 4 );
-			RecentFilesMenu.LoadFromINIFile();
+			PopulateRecentlyUsedMenu();
 		}
 
 		#region Form related
+
+		private void PopulateRecentlyUsedMenu()
+		{
+			RecentWorkspacesMenu = new MruStripMenu(
+				File_Recent_Workspaces_ToolStripMenuItem,
+				new MruStripMenu.ClickedHandler( RecentWorkspaces_OnClick ),
+				INI_FILE_NAME, INI_RECENT_WORKSPACES_SECTION, DEFAULT_MAX_ENTRIES );
+			RecentWorkspacesMenu.LoadFromINIFile();
+
+			RecentFilesMenu = new MruStripMenu(
+				File_Recent_Files_ToolStripMenuItem,
+				new MruStripMenu.ClickedHandler( RecentFiles_OnClick ),
+				INI_FILE_NAME, INI_RECENT_FILES_SECTION, DEFAULT_MAX_ENTRIES );
+			RecentFilesMenu.LoadFromINIFile();
+		}
 
 		private void MainForm_Load( object sender, EventArgs e )
 		{
@@ -71,6 +87,14 @@ namespace Syntec.Windows
 
 		private void RecentWorkspaces_OnClick( int index, string filename )
 		{
+			if( !Directory.Exists( filename ) ) {
+				MessageBox.Show( "The directory is no longer existent.",
+									"Directory not found",
+									MessageBoxButtons.OK,
+									MessageBoxIcon.Exclamation );
+				return;
+			}
+
 			WorkspaceExplorer.ShowWorkspace( filename );
 
 			// Switch workspace explorer tab
@@ -79,13 +103,21 @@ namespace Syntec.Windows
 
 		private void RecentFiles_OnClick( int index, string filename )
 		{
+			if( !File.Exists( filename ) ) {
+				MessageBox.Show( "The file is no longer existent.",
+									"File not found",
+									MessageBoxButtons.OK,
+									MessageBoxIcon.Exclamation );
+				return;
+			}
+
 			OpenFile( filename );
 
 			// Notify no workspace shown
 			MessageBox.Show( "Open a file independently won't open the corresponding workspace.",
 								"Notice",
 								MessageBoxButtons.OK,
-								MessageBoxIcon.Exclamation );
+								MessageBoxIcon.Information );
 
 			// Switch to object browser tab
 			ObjectBrowser.Show();
@@ -207,7 +239,7 @@ namespace Syntec.Windows
 				MessageBox.Show( "Open a file independently won't open the corresponding workspace.",
 									"Notice",
 									MessageBoxButtons.OK,
-									MessageBoxIcon.Exclamation );
+									MessageBoxIcon.Information );
 
 				// Switch to object browser tab
 				ObjectBrowser.Show();
@@ -216,10 +248,11 @@ namespace Syntec.Windows
 
 		private void OpenFile( string filePath )
 		{
-			DocumentsForm openFromFile = new DocumentsForm( filePath, new DocumentsForm.ShowPropertiesEventHandler( ShowProperties ),
-																			new DocumentsForm.SetPropertyGridEventHandler( SetPropertyGrid ),
-																			new DocumentsForm.ShowObjectsEventHandler( ShowObjects ),
-																			new DocumentsForm.ShowStatusInfoEventHandler( ShowStatusInfo ) );
+			DocumentsForm openFromFile = new DocumentsForm( filePath, 
+				new DocumentsForm.ShowPropertiesEventHandler( ShowProperties ),
+				new DocumentsForm.SetPropertyGridEventHandler( SetPropertyGrid ),
+				new DocumentsForm.ShowObjectsEventHandler( ShowObjects ) );
+
 			if( openFromFile.IsDisposed )
 				return;
 
