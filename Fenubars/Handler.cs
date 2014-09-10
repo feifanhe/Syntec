@@ -162,15 +162,17 @@ namespace Fenubars
 		{
 			bool inWorkspace = false;
 			string combinedPath = string.Empty;
-
+		
 			string[] dissectedXmlPath = XMLPath.Split( '\\' );
 			foreach( string segments in dissectedXmlPath ) {
 				// Merge segments
 				combinedPath += segments + "\\";
 
 				// Check if it's the beginning of workspace zone
-				if( segments == "Res" )
+				if( segments == "Res" ) {
 					inWorkspace = true;
+					yield return combinedPath;
+				}
 
 				if( inWorkspace && segments.Contains( "_" ) )
 					yield return combinedPath;
