@@ -391,18 +391,5 @@ namespace Fenubars.Display
 
 		#endregion
 	}
-	
-	public class FenuLinkageEventArgs : EventArgs{
-		private string _LinkFenuName;
-		public string LinkFenuName{
-			get
-			{
-				return _LinkFenuName;
-			}
-			set
-			{
-				_LinkFenuName = value;
-			}
-		}
-	}
+
 }
