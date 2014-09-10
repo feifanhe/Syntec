@@ -245,8 +245,12 @@ namespace Syntec.Windows
 		{
 			ObjectBrowser.SetContents( treeView );
 
-			// Switch tab
-			ObjectBrowser.Show();
+			// When tree view is null, it means the file will be closed
+			// Discard the object browser and switch to workspace explorer tabb
+			if( treeView == null )
+				WorkspaceExplorer.Show();
+			else
+				ObjectBrowser.Show();
 		}
 
 		#endregion
