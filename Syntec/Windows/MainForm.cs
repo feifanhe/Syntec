@@ -248,10 +248,11 @@ namespace Syntec.Windows
 
 		private void OpenFile( string filePath )
 		{
-			DocumentsForm openFromFile = new DocumentsForm( filePath, 
+			DocumentsForm openFromFile = new DocumentsForm( filePath,
 				new DocumentsForm.ShowPropertiesEventHandler( ShowProperties ),
 				new DocumentsForm.SetPropertyGridEventHandler( SetPropertyGrid ),
-				new DocumentsForm.ShowObjectsEventHandler( ShowObjects ) );
+				new DocumentsForm.ShowObjectsEventHandler( ShowObjects ),
+				new DocumentsForm.ShowStatusInfoEventHandler( ShowStatusInfo ) );
 
 			if( openFromFile.IsDisposed )
 				return;

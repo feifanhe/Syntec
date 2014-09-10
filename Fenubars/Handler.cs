@@ -130,6 +130,7 @@ namespace Fenubars
 				LoadXML( XMLPath );
 			}
 			catch( InvalidOperationException ) {
+				// Temporary solution for patch
 				List<string> output = new List<string>();
 				using( StreamReader file = new StreamReader( XMLPath ) ) {
 					while( !file.EndOfStream ) {
