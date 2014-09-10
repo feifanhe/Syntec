@@ -15,7 +15,7 @@ using ModuleInterface;
 
 namespace Fenubars
 {
-	public class Handler : IModule
+	public partial class Handler : IModule
 	{
 		// XML serializer fields
 		private XmlSerializerNamespaces Namespace;
@@ -109,18 +109,8 @@ namespace Fenubars
 		{
 			this.XMLPath = XMLPath;
 
-			// Using XmlReader to probe for root node
-			using( XmlReader reader = XmlReader.Create( XMLPath ) ) {
-				while( reader.Read() ) {
-					if( reader.NodeType == XmlNodeType.Element ) {
-						// Check if first element is named "root"
-						if( reader.Name != "root" )
-							return false;
-						else
-							break;
-					}
-				}
-			}
+			if( !ContainRootNode() )
+				return false;
 
 			InitiateSerializer();
 
@@ -130,39 +120,32 @@ namespace Fenubars
 				LoadXML( XMLPath );
 			}
 			catch( InvalidOperationException ) {
-				List<string> output = new List<string>();
-				using( StreamReader file = new StreamReader( XMLPath ) ) {
-					while( !file.EndOfStream ) {
-						string line = file.ReadLine();
-
-						if( line.Contains( "<state><" ) )
-							continue;
-
-						if( line.Contains( "<state>false" ) )
-							line = line.Replace( "false", "disable" );
-
-						if( line.Contains( "<state>true" ) )
-							line = line.Replace( "true", "enable" );
-
-						if( line.Contains( "False" ) )
-							line = line.Replace( "False", "false" );
-
-						if( line.Contains( "True" ) )
-							line = line.Replace( "True", "true" );
-
-						output.Add( line );
-					}
-				}
-
-				using( StreamWriter file = new StreamWriter( XMLPath ) ) {
-					foreach( string line in output )
-						file.WriteLine( line );
-				}
-
+				RectifyXmlFormat();
 				goto RELOAD_XML;
 			}
 
 			return true;
+		}
+
+		private bool ContainRootNode()
+		{
+			try {
+				// Using XmlReader to probe for root node
+				using( XmlReader reader = XmlReader.Create( XMLPath ) ) {
+					while( reader.Read() ) {
+						if( reader.NodeType == XmlNodeType.Element ) {
+							// Check if first element is named "root"
+							return ( reader.Name == "root" );
+						}
+					}
+				}
+			}
+			catch( XmlException ) {
+			}
+			catch( FileNotFoundException ) {
+			}
+
+			return false;
 		}
 
 		private void InitiateSerializer()
@@ -173,6 +156,39 @@ namespace Fenubars
 
 			// Initiate serializer
 			Serializer = new XmlSerializer( typeof( XMLGlobalState ), "" );
+		}
+
+		private void RectifyXmlFormat()
+		{
+			// Temporary solution for patch
+			List<string> output = new List<string>();
+			using( StreamReader file = new StreamReader( XMLPath ) ) {
+				while( !file.EndOfStream ) {
+					string line = file.ReadLine();
+
+					if( line.Contains( "<state><" ) )
+						continue;
+
+					if( line.Contains( "<state>false" ) )
+						line = line.Replace( "false", "disable" );
+
+					if( line.Contains( "<state>true" ) )
+						line = line.Replace( "true", "enable" );
+
+					if( line.Contains( "False" ) )
+						line = line.Replace( "False", "false" );
+
+					if( line.Contains( "True" ) )
+						line = line.Replace( "True", "true" );
+
+					output.Add( line );
+				}
+			}
+
+			using( StreamWriter file = new StreamWriter( XMLPath ) ) {
+				foreach( string line in output )
+					file.WriteLine( line );
+			}
 		}
 
 		private void LoadXML( string XMLPath )
@@ -190,49 +206,41 @@ namespace Fenubars
 			_Host.ShowObjects( CompiledTree );
 		}
 
-		private List<string> GetProductHierarchy( string filePath )
+		// Figure out 5 or 8 key by filename
+		private int ButtonCount()
 		{
-			bool inWorkspace = false;
-			string combinedPath = string.Empty;
-			List<string> result = new List<string>();
+			const int defaultButtonCount = 8;
 
-			string[] dissectedXmlPath = XMLPath.Split( '\\' );
+#if CONSTANT_KEY_COUNT
+			return defaultButtonCount;
+#else
+			string fileName = Path.GetFileNameWithoutExtension( XMLPath );
+			string digit = fileName.Substring(fileName.Length-1);
 
-			foreach( string segments in dissectedXmlPath ) {
-				// Merge segments
-				combinedPath += segments + "\\";
-
-				// Check if it's the beginning of workspace zone
-				if( segments == "Res" ) {
-					inWorkspace = true;
-					result.Add( combinedPath );
-				}
-
-				if( inWorkspace && segments.Contains( "_" ) )
-					result.Add( combinedPath );
-			}
-
-			return result;
+			int result = -1;
+			if( int.TryParse( digit, out result ) )
+				return result;
+			else
+				return defaultButtonCount;
+#endif
 		}
 
 		public void Open( string fenuName )
 		{
-			_Host.ShowStatusInfo( "Searching for fenu in file...", 0, true );
-
-			List<string> dirToSearch = GetProductHierarchy( XMLPath );
-			for( int i = 0; i < dirToSearch.Count - 1; i++ ) {
-				Console.WriteLine( dirToSearch[ i ] );
-			}
-
-
 			foreach( FenuState parsedFenu in CurrentFenuState.IncludedFenus ) {
 				if( parsedFenu.Name == fenuName ) {
-					Fenu newFenuPanel = new Fenu( parsedFenu );
+					Fenu newFenuPanel = new Fenu( parsedFenu, ButtonCount() );
 					newFenuPanel.OnDataAvailable += new Fenu.DataAvailableEventHandler( FocusedObjectAvailable );
 					newFenuPanel.Linkage += new Fenu.LinkageEventHandler( Open );
 
 					newFenuPanel.PopulateButtons();
+
+					_Host.ShowStatusInfo( "Loading " + fenuName + "...", 100, true );
+					// TODO: Move to background worker
+					newFenuPanel = ReflectOnFenu( newFenuPanel );
+
 					_Host.DrawOnCanvas( newFenuPanel );
+					_Host.ShowStatusInfo( "Ready", -1, false );
 
 					return;
 				}
