@@ -143,8 +143,6 @@ namespace Syntec.Windows
 														MessageBoxIcon.Question );
 				if( result == DialogResult.Yes )
 					instance.Save();
-
-
 			}
 
 			instance.Close();

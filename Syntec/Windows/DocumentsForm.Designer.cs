@@ -40,7 +40,6 @@ namespace Syntec.Windows
 			this.Text = "Title";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler( this.DocumentsForm_FormClosing );
 			this.ResumeLayout( false );
-
 		}
 
 		#endregion
