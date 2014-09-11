@@ -246,8 +246,24 @@ namespace Syntec.Windows
 			}
 		}
 
+		private IDockContent FindDocument( string text )
+		{
+			foreach( IDockContent content in Main_DockPanel.Contents ) {
+				if( content.DockHandler.ToolTipText == text )
+					return content;
+			}
+			return null;
+		} 
+
 		private void OpenFile( string filePath )
 		{
+			// Document opened, switch tab
+			IDockContent content = FindDocument( filePath );
+			if( content != null ) {
+				content.DockHandler.Show();
+				return;
+			}
+
 			DocumentsForm openFromFile = new DocumentsForm( filePath,
 				new DocumentsForm.ShowPropertiesEventHandler( ShowProperties ),
 				new DocumentsForm.SetPropertyGridEventHandler( SetPropertyGrid ),
@@ -261,6 +277,7 @@ namespace Syntec.Windows
 
 			openFromFile.Show( Main_DockPanel, DockState.Document );
 			openFromFile.TabText = Path.GetFileNameWithoutExtension( filePath );
+			openFromFile.ToolTipText = filePath;
 		}
 
 		private void ShowProperties( object control )
@@ -279,8 +296,8 @@ namespace Syntec.Windows
 			ObjectBrowser.SetContents( treeView );
 
 			// When tree view is null, it means the file will be closed
-			// Discard the object browser and switch to workspace explorer tabb
-			if( treeView == null )
+			// Discard the object browser and properties window and switch to workspace explorer tabb
+			if( treeView == null ) 
 				WorkspaceExplorer.Show();
 			else
 				ObjectBrowser.Show();

@@ -19,6 +19,16 @@ namespace Fenubars.Display
 
 		private int normalButtonCount = -1;
 
+		#region Event handlers
+
+		public delegate void DataAvailableEventHandler( Type type, FenuButtonState data );
+		public event DataAvailableEventHandler OnDataAvailable;
+
+		public delegate void LinkageEventHandler( string FenuName );
+		public event LinkageEventHandler Linkage;
+
+		#endregion
+
 		public Fenu( FenuState AssignedFenuContent , int normalButtonCount )
 		{
 			InitializeComponent();
@@ -56,24 +66,19 @@ namespace Fenubars.Display
 			NB.MouseDown += new MouseEventHandler( FenuButton_MouseDown );
 
 			// Add normal buttons
-			// TODO: Button amounts should varies
 			for( int i = 1; i <= normalButtonCount; i++ ) {
 				NormalButton NRB = new NormalButton( i );
 				NRB.MouseDown += new MouseEventHandler( FenuButton_MouseDown );
 				NRB.ContextMenuStrip = ButtonContextMenu;
-				try {
-					FenuButtonState FBS = _FenuContent.NormalButtonList.Find(
-						delegate( FenuButtonState DummyState )
-						{
-							return DummyState.Position == i;
-						} );
-					NRB.SetState( FBS );
-				}
-				catch( ArgumentNullException ) {
-				}
-				finally {
-					NRB.PaintComponent( FormSplitContainer.Panel2.Controls );
-				}
+
+				FenuButtonState FBS = _FenuContent.NormalButtonList.Find(
+					delegate( FenuButtonState DummyState )
+					{
+						return DummyState.Position == i;
+					} );
+				NRB.SetState( FBS );
+
+				NRB.PaintComponent( FormSplitContainer.Panel2.Controls );
 			}
 		}
 
@@ -131,12 +136,6 @@ namespace Fenubars.Display
 		#endregion
 
 		#region Event that will pass to parent
-
-		public delegate void DataAvailableEventHandler( Type type, FenuButtonState data );
-		public event DataAvailableEventHandler OnDataAvailable;
-
-		public delegate void LinkageEventHandler( string FenuName );
-		public event LinkageEventHandler Linkage;
 
 		private void FenuButton_MouseDown( object sender, MouseEventArgs e )
 		{

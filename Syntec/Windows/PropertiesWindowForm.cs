@@ -1,5 +1,7 @@
-using WeifenLuo.WinFormsUI.Docking;
+using System;
 using System.ComponentModel;
+
+using WeifenLuo.WinFormsUI.Docking;
 
 namespace Syntec.Windows
 {
