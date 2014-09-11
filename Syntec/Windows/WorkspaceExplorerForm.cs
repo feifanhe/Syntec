@@ -207,7 +207,9 @@ namespace Syntec.Windows
 
 		private void WorkspaceTreeView_NodeMouseDoubleClick( object sender, TreeNodeMouseClickEventArgs e )
 		{
-			OnOpenFile( e.Node.Tag as string );
+			string path = e.Node.Tag as string;
+			if( File.Exists( path ) )
+				OnOpenFile( path );
 		}
 
 		#endregion

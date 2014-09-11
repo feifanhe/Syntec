@@ -155,31 +155,7 @@ namespace Fenubars.Display
 
 		#endregion
 
-		#region Events
-
-		private bool preventExpandCollapse = false;
-		private DateTime lastMouseDownTime = DateTime.Now;
-
-		protected override void OnBeforeExpand( TreeViewCancelEventArgs e )
-		{
-			e.Cancel = preventExpandCollapse;
-			preventExpandCollapse = false;
-		}
-
-		protected override void OnBeforeCollapse( TreeViewCancelEventArgs e )
-		{
-			e.Cancel = preventExpandCollapse;
-			preventExpandCollapse = false;
-		}
-
-		protected override void OnMouseDown( MouseEventArgs e )
-		{
-			int delta = (int)DateTime.Now.Subtract( lastMouseDownTime ).TotalMilliseconds;
-			preventExpandCollapse = ( delta < SystemInformation.DoubleClickTime );
-			lastMouseDownTime = DateTime.Now;
-		}
-
-		#endregion
+		
 	}
 
 	internal class FenuLink
@@ -212,19 +188,6 @@ namespace Fenubars.Display
 			set
 			{
 				_Links = value;
-			}
-		}
-
-		private bool _IsRoot = true;
-		public bool IsRoot
-		{
-			get
-			{
-				return _IsRoot;
-			}
-			set
-			{
-				_IsRoot = value;
 			}
 		}
 	}

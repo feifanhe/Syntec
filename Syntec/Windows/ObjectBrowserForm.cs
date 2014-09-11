@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 
 using WeifenLuo.WinFormsUI.Docking;
+using System.Reflection;
 
 namespace Syntec.Windows
 {
@@ -22,30 +23,20 @@ namespace Syntec.Windows
 			this.SuspendLayout();
 
 			if( treeView == null ) {
-				// Wipe the existing tree view only
-				foreach( Control item in this.Controls) {
-					TreeView treeViewItem = item as TreeView;
-					if( treeViewItem != null )
-						treeViewItem.Nodes.Clear();
-				}
-
+				Object_TreeView.Nodes.Clear();
 			}
-			else if( treeView is TreeView ) {
+			else {
 				// Remove the tree view
-				foreach( Control item in this.Controls ) {
-					if( item is TreeView )
-						this.Controls.Remove( item );
-				}
+				this.Object_TreeView.Nodes.Clear();
 
-				// Add the assigned tree view
-				// Remove tool strip first to maintain visibility of tree view
-				treeView.Dock = DockStyle.Fill;
-				( treeView as TreeView ).NodeMouseDoubleClick += new TreeNodeMouseClickEventHandler( treeView_NodeMouseDoubleClick );
-				( treeView as TreeView ).NodeMouseClick += new TreeNodeMouseClickEventHandler( treeView_NodeMouseClick );
+				// Copy tree nodes
+				TreeView templateTreeView = treeView as TreeView;
+				TreeNode[] treeNodes = new TreeNode[ templateTreeView.Nodes.Count ];
+				templateTreeView.Nodes.CopyTo( treeNodes, 0 );
+				Object_TreeView.Nodes.AddRange( treeNodes );
 
-				this.Controls.Remove( ObjectBrowser_ToolStrip );
-				this.Controls.Add( treeView );
-				this.Controls.Add( ObjectBrowser_ToolStrip );
+				// Copy image list
+				Object_TreeView.ImageList = templateTreeView.ImageList;
 
 				this.Refresh_ToolStripButton.Enabled = true;
 			}
@@ -55,16 +46,41 @@ namespace Syntec.Windows
 
 		#region Tree view event
 
-		private void treeView_NodeMouseDoubleClick( object sender, TreeNodeMouseClickEventArgs e )
+		private void TreeView_NodeMouseDoubleClick( object sender, TreeNodeMouseClickEventArgs e )
 		{
-			OpenDesigner(e.Node.Name);
+			OpenDesigner( e.Node.Name );
 		}
 
-		private void treeView_NodeMouseClick( object sender, TreeNodeMouseClickEventArgs e )
+		private void TreeView_NodeMouseClick( object sender, TreeNodeMouseClickEventArgs e )
 		{
-			foreach( ToolStripItem TSMI in ObjectBrowser_ToolStrip.Items )
-				TSMI.Enabled = true;
+			this.ViewDesigner_ToolStripButton.Enabled = true;
 		}
+
+		#region Disable double click expand/collapse
+
+		private bool preventExpandCollapse = false;
+		private DateTime lastMouseDownTime = DateTime.Now;
+
+		private void TreeView_BeforeExpand( object sender, TreeViewCancelEventArgs e )
+		{
+			e.Cancel = preventExpandCollapse;
+			preventExpandCollapse = false;
+		}
+
+		private void TreeView_BeforeCollapse( object sender, TreeViewCancelEventArgs e )
+		{
+			e.Cancel = preventExpandCollapse;
+			preventExpandCollapse = false;
+		}
+
+		private void TreeView_MouseDown( object sender, MouseEventArgs e )
+		{
+			int delta = (int)DateTime.Now.Subtract( lastMouseDownTime ).TotalMilliseconds;
+			preventExpandCollapse = ( delta < SystemInformation.DoubleClickTime );
+			lastMouseDownTime = DateTime.Now;
+		}
+
+		#endregion
 
 		#endregion
 
@@ -82,12 +98,7 @@ namespace Syntec.Windows
 
 		private void ViewDesigner_ToolStripButton_Click( object sender, EventArgs e )
 		{
-			string name = string.Empty;
-			foreach( Control item in this.Controls ) {
-				if( item is TreeView )
-					name = ( item as TreeView ).SelectedNode.Name;
-				OpenDesigner( name );
-			}
+			OpenDesigner( Object_TreeView.SelectedNode.Name );
 		}
 
 		private void ViewStructure_ToolStripButton_Click( object sender, EventArgs e )
@@ -106,18 +117,13 @@ namespace Syntec.Windows
 
 		private void OpenDesigner(string name)
 		{
-			string treeViewName = string.Empty;
-			foreach( Control item in this.Controls ) {
-				if( item is TreeView )
-					treeViewName = item.Name;
-			}
-
 			foreach( Form form in Application.OpenForms ) {
-				if( form is DocumentsForm ) {
-					if( ( form as DocumentsForm ).TabText == treeViewName ) {
-						( form as DocumentsForm ).Open( name );
-						break;
-					}
+				DocumentsForm holder = form as DocumentsForm;
+
+				// TODO: SET NAME
+				if( ( holder != null ) && ( holder.TabText == "CncFenu" ) ) {
+					holder.Open( name );
+					break;
 				}
 			}
 		}

@@ -122,10 +122,10 @@ namespace Fenubars
 				}
 #endif
 
-			string state = string.Empty;
-			foreach( byte status in coveringStatus )
-				state += status.ToString() + ", ";
-			MessageBox.Show( state, XMLPath );
+			//string state = string.Empty;
+			//foreach( byte status in coveringStatus )
+			//    state += status.ToString() + ", ";
+			//MessageBox.Show( state, XMLPath );
 
 			// Cycle through all the buttons in original fenu
 			foreach( Control control in GetAllControls( fenu.Controls ) ) {

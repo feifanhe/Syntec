@@ -195,7 +195,7 @@ namespace Fenubars
 		{
 			//Deserialize to object
 			using( StreamReader Reader = new StreamReader( XMLPath ) ) {
-				CurrentFenuState = (XMLGlobalState)Serializer.Deserialize( Reader );
+				CurrentFenuState = Serializer.Deserialize( Reader ) as XMLGlobalState;
 			}
 		}
 
@@ -227,6 +227,8 @@ namespace Fenubars
 
 		public void Open( string fenuName )
 		{
+			_Host.ShowStatusInfo( "Loading " + fenuName + "...", 100, true );
+
 			foreach( FenuState parsedFenu in CurrentFenuState.IncludedFenus ) {
 				if( parsedFenu.Name == fenuName ) {
 					Fenu newFenuPanel = new Fenu( parsedFenu, NormalButtonCount() );
@@ -235,7 +237,7 @@ namespace Fenubars
 
 					newFenuPanel.PopulateButtons();
 
-					_Host.ShowStatusInfo( "Loading " + fenuName + "...", 100, true );
+					
 					// TODO: Move to background worker
 					newFenuPanel = ReflectOnFenu( newFenuPanel );
 

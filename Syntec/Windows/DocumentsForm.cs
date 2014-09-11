@@ -16,6 +16,9 @@ namespace Syntec.Windows
 	{
 		private IModule instance;
 
+		// Temporary store the tree view, for document switching
+		private TreeView currentTreeView = null;
+
 		#region Event handlers
 
 		public delegate void ShowPropertiesEventHandler( object control );
@@ -146,9 +149,11 @@ namespace Syntec.Windows
 			this.OnSetPropertyGrid( hidden, browsable );
 		}
 
-		public void ShowObjects( Control treeView )
+		//public void ShowObjects( Control treeView )
+		public void ShowObjects(Control treeView)
 		{
-			this.OnShowObjects( treeView );
+			currentTreeView = treeView as TreeView;
+			this.OnShowObjects( currentTreeView );
 		}
 
 		public void ShowStatusInfo( string text, int progress, bool marquee )
@@ -179,5 +184,10 @@ namespace Syntec.Windows
 		}
 
 		#endregion
+
+		private void DocumentsForm_Activated( object sender, EventArgs e )
+		{
+			this.ShowObjects( currentTreeView );
+		}
 	}
 }

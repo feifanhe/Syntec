@@ -33,7 +33,7 @@ namespace Syntec
 		#region MruMenuItem
 
 		/// <summary>
-		/// The menu item which will contain the MRU entry.
+		/// The menu control which will contain the MRU entry.
 		/// </summary>
 		/// <remarks>The menu may display a shortened or otherwise invalid pathname.
 		/// This class stores the actual filename, preferably as a fully
@@ -54,7 +54,7 @@ namespace Syntec
 			/// <param labelName="filename">The string to actually return in the <paramref labelName="eventHandler">eventHandler</paramref>.</param>
 			/// <param labelName="entryname">The string that will be displayed in the menu.</param>
 			/// <param labelName="eventHandler">The <see cref="EventHandler">EventHandler</see> that 
-			/// handles the <see cref="MenuItem.Click">Click</see> event for this menu item.</param>
+			/// handles the <see cref="MenuItem.Click">Click</see> event for this menu control.</param>
 			public MruMenuItem( string filename, string entryname, EventHandler eventHandler )
 			{
 				Tag = filename;
@@ -89,10 +89,10 @@ namespace Syntec
 		/// <summary>
 		/// Initializes a new instance of the MruMenu class.
 		/// </summary>
-		/// <param labelName="recentFileMenuItem">The temporary menu item which will be replaced with the MRU list.</param>
-		/// <param labelName="clickedHandler">The delegate to handle the item selection (click) event.</param>
+		/// <param labelName="recentFileMenuItem">The temporary menu control which will be replaced with the MRU list.</param>
+		/// <param labelName="clickedHandler">The delegate to handle the control selection (click) event.</param>
 		/// <param labelName="iniFileName">The name or path of the ini file to use to store the MRU list and settings.</param>
-		/// <param labelName="iniSection">The section of the ini file to use to store the MRU list item.</param>
+		/// <param labelName="iniSection">The section of the ini file to use to store the MRU list control.</param>
 		/// <param labelName="maxEntries">The maximum number of items on the MRU list.</param>
 		public MruStripMenu( ToolStripMenuItem recentFileMenuItem, ClickedHandler clickedHandler,
 			string iniFileName, string iniSection, int maxEntries )
@@ -411,9 +411,9 @@ namespace Syntec
 		}
 
 		/// <summary>
-		/// Returns the menu index for a specified MRU item number.
+		/// Returns the menu index for a specified MRU control number.
 		/// </summary>
-		/// <param name="number">The MRU item number.</param>
+		/// <param name="number">The MRU control number.</param>
 		/// <exception cref="ArgumentOutOfRangeException"></exception>
 		/// <returns>The menu index of the passed MRU number.</returns>
 		public int GetMenuIndex( int number )

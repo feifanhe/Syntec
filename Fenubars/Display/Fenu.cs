@@ -366,7 +366,7 @@ namespace Fenubars.Display
 		private void GotoLink( object Button )
 		{
 			Type ButtonType = Button.GetType();
-			
+
 			FenuButtonState FBS;
 
 			if( ButtonType == typeof( EscapeButton ) )
@@ -384,7 +384,7 @@ namespace Fenubars.Display
 			}
 
 			// Open the link associated with this fenu
-			if( Linkage != null ) {
+			if( Linkage != null && FBS.Link.Length > 0 ) {
 				Linkage.Invoke( FBS.Link );
 			}
 		}
