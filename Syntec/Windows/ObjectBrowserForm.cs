@@ -13,6 +13,9 @@ namespace Syntec.Windows
 {
 	public partial class ObjectBrowserForm : DockContent
 	{
+		// Corresponding document tab name
+		private string documentName = string.Empty;
+
 		public ObjectBrowserForm()
 		{
 			InitializeComponent();
@@ -37,6 +40,9 @@ namespace Syntec.Windows
 
 				// Copy image list
 				Object_TreeView.ImageList = templateTreeView.ImageList;
+
+				// Acquire target tab name
+				documentName = templateTreeView.Name;
 
 				this.Refresh_ToolStripButton.Enabled = true;
 			}
@@ -115,13 +121,13 @@ namespace Syntec.Windows
 		{
 		}
 
-		private void OpenDesigner(string name)
+		private void OpenDesigner( string name )
 		{
 			foreach( Form form in Application.OpenForms ) {
 				DocumentsForm holder = form as DocumentsForm;
 
 				// TODO: SET NAME
-				if( ( holder != null ) && ( holder.TabText == "CncFenu" ) ) {
+				if( ( holder != null ) && ( holder.TabText == documentName ) ) {
 					holder.Open( name );
 					break;
 				}
