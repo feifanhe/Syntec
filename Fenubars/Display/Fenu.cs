@@ -17,14 +17,14 @@ namespace Fenubars.Display
 		private FenuState _FenuContent;
 		private Point CursorPosition;
 
-		private int buttonCount = -1;
+		private int normalButtonCount = -1;
 
-		public Fenu( FenuState AssignedFenuContent , int buttonCount )
+		public Fenu( FenuState AssignedFenuContent , int normalButtonCount )
 		{
 			InitializeComponent();
 
 			this._FenuContent = AssignedFenuContent;
-			this.buttonCount = buttonCount;
+			this.normalButtonCount = normalButtonCount;
 
 			// Overwrite title bar splitter distance
 			TitleBarSplitterContainer.SplitterDistance = TitleBarSplitterContainer.Width - 25;
@@ -50,13 +50,13 @@ namespace Fenubars.Display
 			EB.MouseDown += new MouseEventHandler( FenuButton_MouseDown );
 
 			NextButton NB = new NextButton( _FenuContent.NextButton );
-			NB.PaintComponent( FormSplitContainer.Panel2.Controls, new Point( 3 + 83 * ( buttonCount + 1 ), 3 ) );
+			NB.PaintComponent( FormSplitContainer.Panel2.Controls, new Point( 3 + 83 * ( normalButtonCount + 1 ), 3 ) );
 			NB.MouseDown += new MouseEventHandler( FenuButton_MouseDown );
 
 
 			// Add normal buttons
 			// TODO: Button amounts should varies
-			for( int i = 1; i <= buttonCount; i++ ) {
+			for( int i = 1; i <= normalButtonCount; i++ ) {
 				NormalButton NRB = new NormalButton( i );
 				NRB.MouseDown += new MouseEventHandler( FenuButton_MouseDown );
 				NRB.ContextMenuStrip = ButtonContextMenu;
@@ -386,6 +386,14 @@ namespace Fenubars.Display
 			// Open the link associated with this fenu
 			if( Linkage != null ) {
 				Linkage.Invoke( FBS.Link );
+			}
+		}
+
+		public int NormalButtonCount
+		{
+			get
+			{
+				return normalButtonCount;
 			}
 		}
 

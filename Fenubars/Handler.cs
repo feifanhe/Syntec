@@ -207,7 +207,7 @@ namespace Fenubars
 		}
 
 		// Figure out 5 or 8 key by filename
-		private int ButtonCount()
+		private int NormalButtonCount()
 		{
 			const int defaultButtonCount = 8;
 
@@ -229,7 +229,7 @@ namespace Fenubars
 		{
 			foreach( FenuState parsedFenu in CurrentFenuState.IncludedFenus ) {
 				if( parsedFenu.Name == fenuName ) {
-					Fenu newFenuPanel = new Fenu( parsedFenu, ButtonCount() );
+					Fenu newFenuPanel = new Fenu( parsedFenu, NormalButtonCount() );
 					newFenuPanel.OnDataAvailable += new Fenu.DataAvailableEventHandler( FocusedObjectAvailable );
 					newFenuPanel.Linkage += new Fenu.LinkageEventHandler( Open );
 
