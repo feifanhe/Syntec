@@ -221,6 +221,7 @@ namespace Syntec.Windows
 			// 
 			// File_CloseWorkspace_ToolStripMenuItem
 			// 
+			this.File_CloseWorkspace_ToolStripMenuItem.Enabled = false;
 			this.File_CloseWorkspace_ToolStripMenuItem.Name = "File_CloseWorkspace_ToolStripMenuItem";
 			this.File_CloseWorkspace_ToolStripMenuItem.Size = new System.Drawing.Size( 176, 22 );
 			this.File_CloseWorkspace_ToolStripMenuItem.Text = "Close Workspace";
@@ -243,6 +244,7 @@ namespace Syntec.Windows
 			this.File_SaveAs_ToolStripMenuItem.Name = "File_SaveAs_ToolStripMenuItem";
 			this.File_SaveAs_ToolStripMenuItem.Size = new System.Drawing.Size( 176, 22 );
 			this.File_SaveAs_ToolStripMenuItem.Text = "Save As";
+			this.File_SaveAs_ToolStripMenuItem.Click += new System.EventHandler( this.File_SaveAs_ToolStripMenuItem_Click );
 			// 
 			// File_SaveAll_ToolStripMenuItem
 			// 
@@ -250,6 +252,7 @@ namespace Syntec.Windows
 			this.File_SaveAll_ToolStripMenuItem.Name = "File_SaveAll_ToolStripMenuItem";
 			this.File_SaveAll_ToolStripMenuItem.Size = new System.Drawing.Size( 176, 22 );
 			this.File_SaveAll_ToolStripMenuItem.Text = "Save All";
+			this.File_SaveAll_ToolStripMenuItem.Click += new System.EventHandler( this.File_SaveAll_ToolStripMenuItem_Click );
 			// 
 			// File_ToolStripSeparator_4
 			// 
@@ -278,6 +281,7 @@ namespace Syntec.Windows
 			this.File_Exit_ToolStripMenuItem.Name = "File_Exit_ToolStripMenuItem";
 			this.File_Exit_ToolStripMenuItem.Size = new System.Drawing.Size( 176, 22 );
 			this.File_Exit_ToolStripMenuItem.Text = "Exit";
+			this.File_Exit_ToolStripMenuItem.Click += new System.EventHandler( this.File_Exit_ToolStripMenuItem_Click );
 			// 
 			// Edit_ToolStripMenuItem
 			// 

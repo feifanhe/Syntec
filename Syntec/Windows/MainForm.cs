@@ -82,11 +82,27 @@ namespace Syntec.Windows
 		{
 			OpenDialog( "Open File", false, "XML Files (*.xml)|*.xml" );
 		}
+		
+		private void File_Close_ToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			Form df = this.ActiveMdiChild;
+			df.Close();
+		}
 
 		private void File_Save_ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
 			DocumentsForm DF = this.ActiveMdiChild as DocumentsForm;
 			DF.Save();
+		}
+		
+		private void File_SaveAs_ToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+
+		}
+		
+		private void File_SaveAll_ToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+
 		}
 
 		#region Recent Workspaces/Files
@@ -130,11 +146,10 @@ namespace Syntec.Windows
 		}
 
 		#endregion
-
-		private void File_Close_ToolStripMenuItem_Click( object sender, EventArgs e )
+		
+		private void File_Exit_ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
-			Form df = this.ActiveMdiChild;
-			df.Close();
+
 		}
 
 		#endregion
@@ -334,7 +349,6 @@ namespace Syntec.Windows
 			}
 		}
 
-
 		#endregion
 
 		#region Test codes
@@ -347,6 +361,8 @@ namespace Syntec.Windows
 			//Application.Restart();
 		}
 
-		#endregion
+		#endregion	
+
+		
 	}
 }
