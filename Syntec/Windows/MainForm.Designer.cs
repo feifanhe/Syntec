@@ -236,6 +236,7 @@ namespace Syntec.Windows
 			this.File_Save_ToolStripMenuItem.Name = "File_Save_ToolStripMenuItem";
 			this.File_Save_ToolStripMenuItem.Size = new System.Drawing.Size( 176, 22 );
 			this.File_Save_ToolStripMenuItem.Text = "Save";
+			this.File_Save_ToolStripMenuItem.Click += new System.EventHandler( this.File_Save_ToolStripMenuItem_Click );
 			// 
 			// File_SaveAs_ToolStripMenuItem
 			// 

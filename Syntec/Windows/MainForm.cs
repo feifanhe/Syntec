@@ -83,6 +83,12 @@ namespace Syntec.Windows
 			OpenDialog( "Open File", false, "XML Files (*.xml)|*.xml" );
 		}
 
+		private void File_Save_ToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			DocumentsForm DF = this.ActiveMdiChild as DocumentsForm;
+			DF.Save();
+		}
+
 		#region Recent Workspaces/Files
 
 		private void RecentWorkspaces_OnClick( int index, string filename )
@@ -127,8 +133,8 @@ namespace Syntec.Windows
 
 		private void File_Close_ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
-			//Form df = this.ActiveMdiChild;
-			//df.Dispose();
+			Form df = this.ActiveMdiChild;
+			df.Close();
 		}
 
 		#endregion
@@ -265,10 +271,10 @@ namespace Syntec.Windows
 			}
 
 			DocumentsForm openFromFile = new DocumentsForm( filePath,
-				new DocumentsForm.ShowPropertiesEventHandler( ShowProperties ),
-				new DocumentsForm.SetPropertyGridEventHandler( SetPropertyGrid ),
-				new DocumentsForm.ShowObjectsEventHandler( ShowObjects ),
-				new DocumentsForm.ShowStatusInfoEventHandler( ShowStatusInfo ) );
+																new DocumentsForm.ShowPropertiesEventHandler( ShowProperties ),
+																new DocumentsForm.SetPropertyGridEventHandler( SetPropertyGrid ),
+																new DocumentsForm.ShowObjectsEventHandler( ShowObjects ),
+																new DocumentsForm.ShowStatusInfoEventHandler( ShowStatusInfo ) );
 
 			if( openFromFile.IsDisposed )
 				return;
