@@ -457,8 +457,8 @@ namespace Fenubars.XML
 
 		#region Password
 
-		private PasswordActions _PasswordActions = new PasswordActions();
-		[XmlElement( "pwd" )]
+		private PasswordActions _PasswordActions;
+		[XmlElement( "pwd", IsNullable=false )]
 		[Category( "Fenu Button" )]
 		[ButtonType( ButtonTypes.EscapeButton | ButtonTypes.NormalButton )]
 		public PasswordActions PasswordActions

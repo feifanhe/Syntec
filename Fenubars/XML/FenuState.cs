@@ -28,8 +28,8 @@ namespace Fenubars.XML
 
 		#region Contained buttons
 
-		private FenuButtonState _EscapeButton = new FenuButtonState();
-		[XmlElement( "escape" )]
+		private FenuButtonState _EscapeButton;
+		[XmlElement( "escape", IsNullable = false )]
 		public FenuButtonState EscapeButton
 		{
 			get
@@ -42,8 +42,8 @@ namespace Fenubars.XML
 			}
 		}
 
-		private List<FenuButtonState> _NormalButtonList = new List<FenuButtonState>();
-		[XmlElement( "button" )]
+		private List<FenuButtonState> _NormalButtonList;
+		[XmlElement( "button", IsNullable = false )]
 		public List<FenuButtonState> NormalButtonList
 		{
 			get
@@ -56,8 +56,8 @@ namespace Fenubars.XML
 			}
 		}
 
-		private FenuButtonState _NextButton = new FenuButtonState();
-		[XmlElement( "next" )]
+		private FenuButtonState _NextButton;
+		[XmlElement( "next", IsNullable = false )]
 		public FenuButtonState NextButton
 		{
 			get

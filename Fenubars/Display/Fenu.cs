@@ -45,14 +45,15 @@ namespace Fenubars.Display
 			FenuTitle.Text = _FenuContent.Name;
 
 			// Add EscapeButton and NextButton button
-			EscapeButton EB = new EscapeButton( _FenuContent.EscapeButton );
+			EscapeButton EB = new EscapeButton();
+			EB.SetState( _FenuContent.EscapeButton );
 			EB.PaintComponent( FormSplitContainer.Panel2.Controls, new Point( 3, 3 ) );
 			EB.MouseDown += new MouseEventHandler( FenuButton_MouseDown );
 
-			NextButton NB = new NextButton( _FenuContent.NextButton );
+			NextButton NB = new NextButton();
+			NB.SetState( _FenuContent.NextButton );
 			NB.PaintComponent( FormSplitContainer.Panel2.Controls, new Point( 3 + 83 * ( normalButtonCount + 1 ), 3 ) );
 			NB.MouseDown += new MouseEventHandler( FenuButton_MouseDown );
-
 
 			// Add normal buttons
 			// TODO: Button amounts should varies

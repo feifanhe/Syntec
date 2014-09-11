@@ -50,7 +50,8 @@ namespace Fenubars.Display
 				links.AddRange( ParseLinksFromButton( parsedNormalButton ) );
 
 			// Add links from Next Button
-			links.AddRange( ParseLinksFromButton( fenu.NextButton ) );
+			if( fenu.NextButton != null )
+				links.AddRange( ParseLinksFromButton( fenu.NextButton ) );
 
 			// Add to fenu link object
 			parent.Links = links;

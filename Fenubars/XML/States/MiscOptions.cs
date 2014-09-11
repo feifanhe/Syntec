@@ -26,6 +26,21 @@ namespace Fenubars.XML
 			}
 		}
 
+		private bool _PasswordSpecified = false;
+		[XmlIgnore]
+		[Browsable( false )]
+		public bool PasswordSpecified
+		{
+			get
+			{
+				return _PasswordSpecified;
+			}
+			set
+			{
+				_PasswordSpecified = value;
+			}
+		}
+
 		private ActionCollection _Correct;
 		public ActionCollection Correct
 		{

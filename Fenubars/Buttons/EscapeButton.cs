@@ -6,22 +6,45 @@ namespace Fenubars.Buttons
 {
 	public partial class EscapeButton : Button
 	{
-		public EscapeButton( FenuButtonState State )
+		public EscapeButton()
 		{
 			InitializeComponent();
 
-			// Basic setup
-			this.Name = "ESCAPE_BTN";
-			//this.Text = this.Name;
+			// Non-variable visual setup
 			this.Size = new Size( 80, 60 );
+		}
+
+		private Binding bind;
+		public void SetState( FenuButtonState State )
+		{
+			SetState( State, false );
+		}
+		public void SetState( FenuButtonState State, bool isForeign )
+		{
+			// Wipe bindings
+			this.DataBindings.Clear();
+			this.ResetText();
+			this.FlatStyle = FlatStyle.Popup;
+
+			// Adjust button style to indicate configured or not
+			if( State == null )
+				return;
+			if( !isForeign )
+				this.FlatStyle = FlatStyle.Standard;
+			
+			// Basic setup
+			this.Text = "<<";
 
 			// Bindings
 			this.DataBindings.Add( "Name", State, "Name" );
-			this.DataBindings.Add( "Text", State, "Title" );
-			//this.DataBindings.Add( "FlatStyle", State, "ParseStyle" );
 
-			//this.Enabled = true;
-			//State.ParseState = true;
+			bind = new Binding( "Enabled", State, "State" );
+			bind.Format += new ConvertEventHandler( StateConverter.StateToBool );
+			bind.Parse += new ConvertEventHandler( StateConverter.BoolToState );
+			this.DataBindings.Add( bind );
+
+			// Post-filled
+			State.Name = State.Name ?? "ESC_BTN";
 		}
 
 		public void PaintComponent( System.Windows.Forms.Control.ControlCollection Canvas,
