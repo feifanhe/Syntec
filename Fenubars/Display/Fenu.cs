@@ -384,9 +384,15 @@ namespace Fenubars.Display
 			}
 
 			// Open the link associated with this fenu
-			if( Linkage != null && FBS.Link.Length > 0 ) {
-				Linkage.Invoke( FBS.Link );
+			if( FBS.Link == null ) {
+				MessageBox.Show( "Linked fenu doesn't exist.",
+									"Fenu not found",
+									MessageBoxButtons.OK,
+									MessageBoxIcon.Exclamation );
+				return;
 			}
+
+			Linkage.Invoke( FBS.Link );
 		}
 
 		public int NormalButtonCount

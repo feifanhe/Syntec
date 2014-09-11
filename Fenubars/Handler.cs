@@ -237,7 +237,6 @@ namespace Fenubars
 
 					newFenuPanel.PopulateButtons();
 
-					
 					// TODO: Move to background worker
 					newFenuPanel = ReflectOnFenu( newFenuPanel );
 
