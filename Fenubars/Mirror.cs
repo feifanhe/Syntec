@@ -141,7 +141,7 @@ namespace Fenubars
 
 					// Button not occupied, then bind info to it
 					if( !binded )
-						button.SetState( image[ index ] );
+						button.SetState( image[ index ], true );
 
 					// Set font
 					button.Font = GenerateFontByStatus( coveringStatus[ index ], binded, button.Font );
@@ -207,6 +207,8 @@ namespace Fenubars
 				italic = false;
 				bold = true;
 			}
+
+			italic = false;
 
 			// Boolean state to font style
 			if(bold & italic)

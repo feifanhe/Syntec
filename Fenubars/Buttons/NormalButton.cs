@@ -18,6 +18,10 @@ namespace Fenubars.Buttons
 		private Binding bind;
 		public void SetState( FenuButtonState State )
 		{
+			SetState( State, false );
+		}
+		public void SetState( FenuButtonState State, bool isForeign )
+		{
 			// Wipe bindings
 			this.DataBindings.Clear();
 			this.ResetText();
@@ -26,7 +30,8 @@ namespace Fenubars.Buttons
 			// Adjust button style to indicate configured or not
 			if( State == null )
 				return;
-			this.FlatStyle = FlatStyle.Standard;
+			if( !isForeign )
+				this.FlatStyle = FlatStyle.Standard;
 
 			// Bindings
 			this.DataBindings.Add( "Name", State, "Name" );
