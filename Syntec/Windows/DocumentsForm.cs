@@ -9,6 +9,7 @@ using Syntec.Module;
 using System.Reflection;
 using ModuleInterface;
 using System.ComponentModel;
+using System.Drawing;
 
 namespace Syntec.Windows
 {
@@ -159,6 +160,13 @@ namespace Syntec.Windows
 		public void ShowStatusInfo( string text, int progress, bool marquee )
 		{
 			this.OnShowStatusInfo( text, progress, marquee );
+		}
+
+		public void Modified( bool modified )
+		{
+			if( modified ) {
+				this.Font = new Font( this.Font, FontStyle.Strikeout );
+			}
 		}
 
 		#endregion

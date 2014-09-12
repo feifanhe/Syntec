@@ -22,18 +22,7 @@ namespace Fenubars
 		private XmlSerializer Serializer;
 
 		// File state holder
-		private XMLGlobalState CurrentFenuState;
-		public List<FenuState> LoadedFenus
-		{
-			get
-			{
-				return CurrentFenuState.IncludedFenus;
-			}
-			set
-			{
-				CurrentFenuState.IncludedFenus = value;
-			}
-		}
+		private XMLGlobalState globalFenuState;
 
 		private ObjectTree CompiledTree;
 		private string XMLPath = string.Empty;
@@ -45,7 +34,7 @@ namespace Fenubars
 			if( type == typeof( Fenu ) ) {
 				// Set to null first, since fenu state don't have some attributes
 				_Host.SetPropertyGrid( null, null );
-				_Host.ShowProperties( CurrentFenuState );
+				_Host.ShowProperties( globalFenuState );
 			}
 			else {
 				// Set object first, and then filter the attributes
@@ -195,13 +184,13 @@ namespace Fenubars
 		{
 			//Deserialize to object
 			using( StreamReader Reader = new StreamReader( XMLPath ) ) {
-				CurrentFenuState = Serializer.Deserialize( Reader ) as XMLGlobalState;
+				globalFenuState = Serializer.Deserialize( Reader ) as XMLGlobalState;
 			}
 		}
 
 		public void Open()
 		{
-			CompiledTree = new ObjectTree( XMLPath, CurrentFenuState.IncludedFenus );
+			CompiledTree = new ObjectTree( XMLPath, globalFenuState.IncludedFenus );
 			_Host.ShowObjects( CompiledTree );
 		}
 
@@ -228,7 +217,7 @@ namespace Fenubars
 		{
 			_Host.ShowStatusInfo( "Loading " + fenuName + "...", 100, true );
 
-			foreach( FenuState parsedFenu in CurrentFenuState.IncludedFenus ) {
+			foreach( FenuState parsedFenu in globalFenuState.IncludedFenus ) {
 				if( parsedFenu.Name == fenuName ) {
 					Fenu newFenuPanel = new Fenu( parsedFenu, NormalButtonCount() );
 					newFenuPanel.OnDataAvailable += new Fenu.DataAvailableEventHandler( FocusedObjectAvailable );
@@ -265,7 +254,7 @@ namespace Fenubars
 		public void SaveAs( string XMLPath )
 		{
 			using( StreamWriter Writer = new StreamWriter( XMLPath ) ) {
-				Serializer.Serialize( Writer, CurrentFenuState, Namespace );
+				Serializer.Serialize( Writer, globalFenuState, Namespace );
 			}
 		}
 

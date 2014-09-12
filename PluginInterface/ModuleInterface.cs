@@ -131,5 +131,11 @@ namespace ModuleInterface
 		/// <param name="marquee">Set the progress bar to marquess mode, progress value must 
 		/// set to a non-negative and less-than-100 integer.</param>
 		void ShowStatusInfo( string text, int progress, bool marquee );
+
+		/// <summary>
+		/// This method tells the host whether the documents it handled is modified or not.
+		/// </summary>
+		/// <param name="modified">True if it's modified.</param>
+		void Modified( bool modified );
 	}
 }

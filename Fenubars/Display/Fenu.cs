@@ -403,6 +403,24 @@ namespace Fenubars.Display
 			}
 		}
 
+		public bool IsDirty
+		{
+			get
+			{
+				foreach( Control control in this.FormSplitContainer.Panel2.Controls ) {
+					NormalButton button = control as NormalButton;
+					if( button != null ) {
+						if( button.IsDirty )
+							return true;
+					}
+
+					// TODO: Test for escape and next button
+				}
+
+				return false;
+			}
+		}
+
 		#endregion
 
 		#region Cut, Copy, Paste and Delete
