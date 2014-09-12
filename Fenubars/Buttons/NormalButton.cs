@@ -1,13 +1,13 @@
 using System.Windows.Forms;
 using Fenubars.XML;
 using System.Drawing;
-using System;
 
 namespace Fenubars.Buttons
 {
 	public partial class NormalButton : Button
 	{
-		public event EventHandler Modified;
+		public delegate void ButtonModifiedHandler();
+		public event ButtonModifiedHandler Modified;
 
 		public NormalButton( int Index )
 		{
@@ -70,7 +70,7 @@ namespace Fenubars.Buttons
 		private void bindingSource_CurrentItemChanged( object sender, System.EventArgs e )
 		{
 			if( Modified != null ) {
-				Modified( this, new EventArgs() );
+				Modified();
 			}
 		}
 
