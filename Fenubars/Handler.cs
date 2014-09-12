@@ -232,8 +232,8 @@ namespace Fenubars
 					newFenuPanel.PopulateButtons();
 
 					// TODO: Move to background worker
-					newFenuPanel = ReflectOnFenu( newFenuPanel );
-					//System.Threading.Thread.Sleep( 2000 );
+					GenerateFenuImage( newFenuPanel );
+					newFenuPanel.UpdateFromImage();
 
 					_Host.DrawOnCanvas( newFenuPanel );
 					_Host.ShowStatusInfo( "Ready", -1, false );

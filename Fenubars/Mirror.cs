@@ -39,7 +39,7 @@ namespace Fenubars
 			return result;
 		}
 
-		private Fenu ReflectOnFenu( Fenu fenu )
+		private void GenerateFenuImage( Fenu fenu )
 		{
 			string originalPathBackup = XMLPath;
 			Fenu mirroredFenu = fenu;
@@ -122,33 +122,10 @@ namespace Fenubars
 				}
 #endif
 
-			// Cycle through all the buttons in original fenu
-			foreach( Control control in GetAllControls( fenu.Controls ) ) {
-				// Filter for specific button
-				if( control is EscapeButton ) {
-
-				}
-				else if( control is NormalButton ) {
-					NormalButton button = control as NormalButton;
-
-					bool binded = ( button.DataBindings.Count != 0 );
-					int index = ButtonPosition( button.Location.X );
-
-					// Button not occupied, then bind info to it
-					if( !binded )
-						button.SetState( image[ index ], true );
-
-					// Set font
-					button.Font = GenerateFontByStatus( coveringStatus[ index ], binded, button.Font );
-				}
-				else if( control is NextButton ) {
-				}
-			}
+			fenu.SaveImage( image, coveringStatus );
 
 			// Restore original path
 			XMLPath = originalPathBackup;
-
-			return mirroredFenu;
 		}
 
 		private T DeserializeButtonNode<T>( XmlNode node ) where T : class
@@ -161,61 +138,6 @@ namespace Fenubars
 			}
 
 			return output;
-		}
-
-		private int ButtonPosition( int xPos )
-		{
-			return ( xPos - 3 ) / 83;
-		}
-
-		private List<Control> GetAllControls( IList controls )
-		{
-			List<Control> result = new List<Control>();
-			foreach( Control control in controls ) {
-				if( control is Button )
-					result.Add( control );
-				List<Control> SubControls = GetAllControls( control.Controls );
-				result.AddRange( SubControls );
-			}
-			return result;
-		}
-
-		private Font GenerateFontByStatus( byte status, bool binded, Font original )
-		{
-			FontStyle style = FontStyle.Regular; 
-
-			// Bold: overwriteen
-			// Italic: foreign button, not covered
-			// Bold-Italic: covered foreign button
-			// Normal: Original not covered
-
-			bool bold = false;
-			bool italic = false;
-
-			if(( status >> 1 ) != 0 )
-				italic = true;
-
-			if( ( status >> 2 ) != 0 )
-				bold = true;
-
-			if( binded & italic ) {
-				italic = false;
-				bold = true;
-			}
-
-			italic = false;
-
-			// Boolean state to font style
-			if(bold & italic)
-				style = FontStyle.Bold | FontStyle.Italic;
-			else if(bold & !italic)
-				style = FontStyle.Bold;
-			else if(!bold & italic)
-				style = FontStyle.Italic;
-			else
-				style = FontStyle.Regular;
-
-			return new Font( original, style );
 		}
 	}
 }

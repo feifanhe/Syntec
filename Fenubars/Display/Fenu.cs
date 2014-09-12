@@ -17,7 +17,12 @@ namespace Fenubars.Display
 		private FenuState _FenuContent;
 		private Point CursorPosition;
 
+		// Register the buttons this fenu owned
 		private int normalButtonCount = -1;
+
+		// Store the image of this fenu's predecessors
+		private List<FenuButtonState> image;
+		private byte[] status;
 
 		#region Event handlers
 
@@ -85,6 +90,43 @@ namespace Fenubars.Display
 				NRB.SetState( FBS );
 
 				NRB.PaintComponent( FormSplitContainer.Panel2.Controls );
+			}
+		}
+
+		public void SaveImage(List<FenuButtonState> image, byte[] status)
+		{
+			this.image = image;
+			this.status = status;
+
+			// This should never occur
+			if( this.image.Count != this.status.Length )
+				throw new IndexOutOfRangeException( "Fenu images and their respective status mismatch." );
+		}
+
+		public void UpdateFromImage()
+		{
+			// Cycle through all the buttons in original fenu
+			foreach( Control control in FormSplitContainer.Panel2.Controls ) {
+				// Filter for specific button
+				if( control is EscapeButton ) {
+
+				}
+				else if( control is NormalButton ) {
+					NormalButton button = control as NormalButton;
+
+					bool binded = ( button.DataBindings.Count != 0 );
+					int index = ButtonPosition( button.Location );
+
+					// Button not occupied, then bind info to it
+					if( !binded )
+						button.SetState( image[ index ], true );
+
+					// Set font
+					button.Font = GenerateFontByStatus( status[ index ], binded, button.Font );
+				}
+				else if( control is NextButton ) {
+
+				}
 			}
 		}
 
@@ -407,6 +449,44 @@ namespace Fenubars.Display
 			Linkage.Invoke( FBS.Link );
 		}
 
+		private Font GenerateFontByStatus( byte status, bool binded, Font original )
+		{
+			FontStyle style = FontStyle.Regular;
+
+			// Bold: overwriteen
+			// Italic: foreign button, not covered
+			// Bold-Italic: covered foreign button
+			// Normal: Original not covered
+
+			bool bold = false;
+			bool italic = false;
+
+			if( ( status >> 1 ) != 0 )
+				italic = true;
+
+			if( ( status >> 2 ) != 0 )
+				bold = true;
+
+			if( binded & italic ) {
+				italic = false;
+				bold = true;
+			}
+
+			italic = false;
+
+			// Boolean state to font style
+			if( bold & italic )
+				style = FontStyle.Bold | FontStyle.Italic;
+			else if( bold & !italic )
+				style = FontStyle.Bold;
+			else if( !bold & italic )
+				style = FontStyle.Italic;
+			else
+				style = FontStyle.Regular;
+
+			return new Font( original, style );
+		}
+
 		public int NormalButtonCount
 		{
 			get
@@ -452,10 +532,8 @@ namespace Fenubars.Display
 			FenuButtonState FBS = ClipBoardManager<FenuButtonState>.GetFromClipboard();
 
 			// Config the position
-			int Xpos = ( target as Button ).Location.X;
-			int Index = ( Xpos - 3 ) / 83;
-			FBS.Position = Index;
-			FBS.Name = "F" + Index.ToString();
+			FBS.Position = ButtonPosition( ( target as Button ).Location );
+			FBS.Name = "F" + FBS.Position.ToString();
 
 			// Add the FenuButtonState to properties container, search before append
 			int ListIndex = _FenuContent.NormalButtonList.FindIndex(
@@ -473,12 +551,19 @@ namespace Fenubars.Display
 			( target as NormalButton ).SetState( FBS );
 		}
 
+		private int ButtonPosition( Point location )
+		{
+			return ( location.X - 3 ) / 83;
+		}
+
 		internal void Delete( Control target )
 		{
 			if( target == null )
 				return;
 
 			ObliterateState( target );
+
+			this.UpdateFromImage();
 		}
 
 		#endregion
