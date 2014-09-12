@@ -180,6 +180,8 @@ namespace Syntec.Windows
 			instance.Close();
 
 			// Disacard object browser
+			this.ShowProperties( null );
+			this.SetPropertyGrid( null, null );
 			this.ShowObjects( null );
 		}
 

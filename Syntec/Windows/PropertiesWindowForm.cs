@@ -15,7 +15,6 @@ namespace Syntec.Windows
 		public void SetSelectedObject( object Content )
 		{
 			PropertiesViewer.SelectedObject = Content;
-
 			PropertiesViewer.Refresh();
 		}
 
