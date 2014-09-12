@@ -56,7 +56,7 @@ namespace Fenubars
 				// Identified if the cycled property has defined ButtonTypeAttribute
 				if( PI.IsDefined( typeof( ButtonTypeAttribute ), false ) ) {
 					ButtonTypes Value = ( PI.GetCustomAttributes( typeof( ButtonTypeAttribute ), false )[ 0 ] as ButtonTypeAttribute ).Type;
-					
+
 					// Using bitwise operation to varify whether the selected property is the wanted one or not
 					if( ( Value & Template ) == Template )
 						Properties.Add( PI.Name );
@@ -103,7 +103,7 @@ namespace Fenubars
 
 			InitiateSerializer();
 
-			RELOAD_XML:
+		RELOAD_XML:
 
 			try {
 				LoadXML( XMLPath );
@@ -203,7 +203,7 @@ namespace Fenubars
 			return defaultButtonCount;
 #else
 			string fileName = Path.GetFileNameWithoutExtension( XMLPath );
-			string digit = fileName.Substring(fileName.Length-1);
+			string digit = fileName.Substring( fileName.Length - 1 );
 
 			int result = -1;
 			if( int.TryParse( digit, out result ) )
@@ -227,6 +227,7 @@ namespace Fenubars
 					Fenu newFenuPanel = new Fenu( parsedFenu, NormalButtonCount() );
 					newFenuPanel.OnDataAvailable += new Fenu.DataAvailableEventHandler( FocusedObjectAvailable );
 					newFenuPanel.Linkage += new Fenu.LinkageEventHandler( Open );
+					newFenuPanel.Modified += new Fenu.FenuModifiedHandler( FenuModified );
 
 					newFenuPanel.PopulateButtons();
 
@@ -247,6 +248,11 @@ namespace Fenubars
 			// Default close operation
 		}
 
+		private void FenuModified()
+		{
+			_Host.Modified( true );
+		}
+
 		#endregion
 
 		#region File processing
@@ -254,6 +260,7 @@ namespace Fenubars
 		public void Save()
 		{
 			SaveAs( this.XMLPath );
+			_Host.Modified( false );
 		}
 
 		public void SaveAs( string XMLPath )
@@ -273,7 +280,7 @@ namespace Fenubars
 
 			Control ctrlParent = focused;
 			while( ( ctrlParent = ctrlParent.Parent ) != null ) {
-				if( ctrlParent.GetType() == typeof(Fenu) ) {
+				if( ctrlParent.GetType() == typeof( Fenu ) ) {
 					return ctrlParent as Fenu;
 				}
 			}

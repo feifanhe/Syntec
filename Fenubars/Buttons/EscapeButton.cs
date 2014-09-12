@@ -1,11 +1,14 @@
 using System.Windows.Forms;
 using Fenubars.XML;
 using System.Drawing;
+using System;
 
 namespace Fenubars.Buttons
 {
 	public partial class EscapeButton : Button
 	{
+		public event EventHandler Modified;
+
 		public EscapeButton()
 		{
 			InitializeComponent();
@@ -19,6 +22,7 @@ namespace Fenubars.Buttons
 		{
 			SetState( State, false );
 		}
+
 		public void SetState( FenuButtonState State, bool isForeign )
 		{
 			// Wipe bindings
@@ -31,20 +35,33 @@ namespace Fenubars.Buttons
 				return;
 			if( !isForeign )
 				this.FlatStyle = FlatStyle.Standard;
-			
+
 			// Basic setup
 			this.Text = "<<";
 
-			// Bindings
-			this.DataBindings.Add( "Name", State, "Name" );
+			// Create binding source for this button
+			BindingSource bindingSource = new BindingSource();
+			bindingSource.DataSource = State;
 
-			bind = new Binding( "Enabled", State, "State" );
+			// Bindings
+			this.DataBindings.Add( "Name", bindingSource, "Name" );
+
+			bind = new Binding( "Enabled", bindingSource, "State" );
 			bind.Format += new ConvertEventHandler( StateConverter.StateToBool );
 			bind.Parse += new ConvertEventHandler( StateConverter.BoolToState );
 			this.DataBindings.Add( bind );
 
 			// Post-filled
 			State.Name = State.Name ?? "ESC_BTN";
+
+			bindingSource.CurrentItemChanged += new System.EventHandler( bindingSource_CurrentItemChanged );
+		}
+
+		private void bindingSource_CurrentItemChanged( object sender, System.EventArgs e )
+		{
+			if( Modified != null ) {
+				Modified( this, new EventArgs());
+			}
 		}
 
 		public void PaintComponent( System.Windows.Forms.Control.ControlCollection Canvas,

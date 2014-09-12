@@ -170,7 +170,14 @@ namespace Syntec.Windows
 		public void Modified( bool modified )
 		{
 			if( modified ) {
-				this.Font = new Font( this.Font, FontStyle.Strikeout );
+				if( !this.TabText.EndsWith( "*" ) ) {
+					this.TabText = this.TabText + "*";
+				}
+			}
+			else {
+				if( this.TabText.EndsWith( "*" ) ) {
+					this.TabText = this.TabText.Substring( 0, this.TabText.Length - 1 );
+				}
 			}
 		}
 

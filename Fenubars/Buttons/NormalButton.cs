@@ -1,11 +1,14 @@
 using System.Windows.Forms;
 using Fenubars.XML;
 using System.Drawing;
+using System;
 
 namespace Fenubars.Buttons
 {
 	public partial class NormalButton : Button
 	{
+		public event EventHandler Modified;
+
 		public NormalButton( int Index )
 		{
 			InitializeComponent();
@@ -13,19 +16,6 @@ namespace Fenubars.Buttons
 			// Non-variable visual setup
 			this.Size = new Size( 80, 60 );
 			this.Location = new Point( 3 + 83 * Index, 3 );
-		}
-
-		private bool _IsDirty = false;
-		public bool IsDirty
-		{
-			get
-			{
-				return _IsDirty;
-			}
-			set
-			{
-				_IsDirty = value;
-			}
 		}
 
 		private Binding bind;
@@ -49,7 +39,6 @@ namespace Fenubars.Buttons
 			// Create binding source for this button
 			BindingSource bindingSource = new BindingSource();
 			bindingSource.DataSource = State;
-			bindingSource.CurrentItemChanged += new System.EventHandler( bindingSource_CurrentItemChanged );
 
 			// Bindings
 			this.DataBindings.Add( "Name", bindingSource, "Name" );
@@ -73,13 +62,16 @@ namespace Fenubars.Buttons
 			// Post-filled
 			State.Name = State.Name ?? "F" + State.Position.ToString();
 
+			bindingSource.CurrentItemChanged += new System.EventHandler( bindingSource_CurrentItemChanged );
 			// Reset IsDirty
-			_IsDirty = false;
+			//_IsDirty = false;
 		}
 
 		private void bindingSource_CurrentItemChanged( object sender, System.EventArgs e )
 		{
-			_IsDirty = true;
+			if( Modified != null ) {
+				Modified( this, new EventArgs() );
+			}
 		}
 
 		public void PaintComponent( System.Windows.Forms.Control.ControlCollection Canvas )

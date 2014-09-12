@@ -27,9 +27,12 @@ namespace Fenubars.Display
 		public delegate void LinkageEventHandler( string FenuName );
 		public event LinkageEventHandler Linkage;
 
+		public delegate void FenuModifiedHandler();
+		public event FenuModifiedHandler Modified;
+
 		#endregion
 
-		public Fenu( FenuState AssignedFenuContent , int normalButtonCount )
+		public Fenu( FenuState AssignedFenuContent, int normalButtonCount )
 		{
 			InitializeComponent();
 
@@ -59,16 +62,19 @@ namespace Fenubars.Display
 			EB.SetState( _FenuContent.EscapeButton );
 			EB.PaintComponent( FormSplitContainer.Panel2.Controls, new Point( 3, 3 ) );
 			EB.MouseDown += new MouseEventHandler( FenuButton_MouseDown );
+			EB.Modified += new EventHandler( FenuButton_Modified );
 
 			NextButton NB = new NextButton();
 			NB.SetState( _FenuContent.NextButton );
 			NB.PaintComponent( FormSplitContainer.Panel2.Controls, new Point( 3 + 83 * ( normalButtonCount + 1 ), 3 ) );
 			NB.MouseDown += new MouseEventHandler( FenuButton_MouseDown );
+			NB.Modified += new EventHandler( FenuButton_Modified );
 
 			// Add normal buttons
 			for( int i = 1; i <= normalButtonCount; i++ ) {
 				NormalButton NRB = new NormalButton( i );
 				NRB.MouseDown += new MouseEventHandler( FenuButton_MouseDown );
+				NRB.Modified += new EventHandler( FenuButton_Modified );
 				NRB.ContextMenuStrip = ButtonContextMenu;
 
 				FenuButtonState FBS = _FenuContent.NormalButtonList.Find(
@@ -155,6 +161,12 @@ namespace Fenubars.Display
 						break;
 				}
 			}
+		}
+
+		private void FenuButton_Modified( object sender, EventArgs e )
+		{
+			if( Modified != null )
+				Modified();
 		}
 
 		#endregion
@@ -400,24 +412,6 @@ namespace Fenubars.Display
 			get
 			{
 				return normalButtonCount;
-			}
-		}
-
-		public bool IsDirty
-		{
-			get
-			{
-				foreach( Control control in this.FormSplitContainer.Panel2.Controls ) {
-					NormalButton button = control as NormalButton;
-					if( button != null ) {
-						if( button.IsDirty )
-							return true;
-					}
-
-					// TODO: Test for escape and next button
-				}
-
-				return false;
 			}
 		}
 
