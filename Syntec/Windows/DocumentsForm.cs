@@ -39,7 +39,7 @@ namespace Syntec.Windows
 		public DocumentsForm( string XMLPath, ShowPropertiesEventHandler OnShowProperties,
 												SetPropertyGridEventHandler OnSetPropertyGrid,
 												ShowObjectsEventHandler OnShowObjects,
-												ShowStatusInfoEventHandler OnShowStatusInfo)
+												ShowStatusInfoEventHandler OnShowStatusInfo )
 		{
 			InitializeComponent();
 
@@ -156,7 +156,7 @@ namespace Syntec.Windows
 		}
 
 		//public void ShowObjects( Control treeView )
-		public void ShowObjects(Control treeView)
+		public void ShowObjects( Control treeView )
 		{
 			currentTreeView = treeView as TreeView;
 			this.OnShowObjects( currentTreeView );
@@ -170,7 +170,14 @@ namespace Syntec.Windows
 		public void Modified( bool modified )
 		{
 			if( modified ) {
-				this.Font = new Font( this.Font, FontStyle.Strikeout );
+				if( !this.TabText.EndsWith( "*" ) ) {
+					this.TabText = this.TabText + "*";
+				}
+			}
+			else {
+				if( this.TabText.EndsWith( "*" ) ) {
+					this.TabText = this.TabText.Substring( 0, this.TabText.Length - 1 );
+				}
 			}
 		}
 
@@ -182,27 +189,27 @@ namespace Syntec.Windows
 		{
 			DialogResult result;
 			// TODO: Check if modification was made by tab
-			if( this.TabText.Contains( "*" ) | true ) {
+			if( this.TabText.Contains( "*" ) ) { // | true ) {
 				result = MessageBox.Show( "Would you like to save the modifications?",
 											"Save before close",
 											MessageBoxButtons.YesNoCancel,
 											MessageBoxIcon.Question );
 				if( result == DialogResult.Yes )
 					instance.Save();
+				else if( result == DialogResult.No ) {
+					instance.Close();
+
+					// Discard object browser
+					this.ShowProperties( null );
+					this.SetPropertyGrid( null, null );
+					this.ShowObjects( null );
+				}
+				else {
+					// Cancel close operation
+					e.Cancel = true;
+				}
 			}
 
-			if( result == DialogResult.No ) {
-				instance.Close();
-				
-				// Discard object browser
-				this.ShowProperties( null );
-				this.SetPropertyGrid( null, null );
-				this.ShowObjects( null );
-			}
-			else {
-				// Cancel close operation
-				e.Cancel = true;
-			}
 		}
 
 		#endregion

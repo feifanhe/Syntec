@@ -32,6 +32,9 @@ namespace Fenubars.Display
 		public delegate void LinkageEventHandler( string FenuName );
 		public event LinkageEventHandler Linkage;
 
+		public delegate void FenuModifiedHandler();
+		public event FenuModifiedHandler Modified;
+
 		#endregion
 
 		public Fenu( FenuState AssignedFenuContent, int normalButtonCount )
@@ -64,16 +67,19 @@ namespace Fenubars.Display
 			EB.SetState( _FenuContent.EscapeButton );
 			EB.PaintComponent( FormSplitContainer.Panel2.Controls, new Point( 3, 3 ) );
 			EB.MouseDown += new MouseEventHandler( FenuButton_MouseDown );
+			EB.Modified += new EscapeButton.ButtonModifiedHandler( SetFenuModified );
 
 			NextButton NB = new NextButton();
 			NB.SetState( _FenuContent.NextButton );
 			NB.PaintComponent( FormSplitContainer.Panel2.Controls, new Point( 3 + 83 * ( normalButtonCount + 1 ), 3 ) );
 			NB.MouseDown += new MouseEventHandler( FenuButton_MouseDown );
+			NB.Modified += new NextButton.ButtonModifiedHandler( SetFenuModified );
 
 			// Add normal buttons
 			for( int i = 1; i <= normalButtonCount; i++ ) {
 				NormalButton NRB = new NormalButton( i );
 				NRB.MouseDown += new MouseEventHandler( FenuButton_MouseDown );
+				NRB.Modified += new NormalButton.ButtonModifiedHandler( SetFenuModified );
 				NRB.ContextMenuStrip = ButtonContextMenu;
 
 				FenuButtonState FBS = _FenuContent.NormalButtonList.Find(
@@ -219,6 +225,12 @@ namespace Fenubars.Display
 			}
 		}
 
+		private void SetFenuModified()
+		{
+			if( Modified != null )
+				Modified();
+		}
+
 		#endregion
 
 		#region Local events
@@ -276,17 +288,17 @@ namespace Fenubars.Display
 					Menu.Items[ "GoTo_ButtonContextMenuItem" ].Visible = false;
 					Menu.Items[ "Cut_ButtonContextMenuItem" ].Visible = false;
 					Menu.Items[ "Copy_ButtonContextMenuItem" ].Visible = false;
-					Menu.Items[ "ButtonContextMenu_Separator2" ].Visible = false;
+					Menu.Items[ "ButtonContextMenu_Separator_2" ].Visible = false;
 					Menu.Items[ "Delete_ButtonContextMenuItem" ].Visible = false;
 				}
 			}
 			else if( Child.GetType() == typeof( EscapeButton ) ) {
 				Menu.Items[ "GoTo_ButtonContextMenuItem" ].Visible = false;
-				Menu.Items[ "ButtonContextMenu_Separator1" ].Visible = false;
+				Menu.Items[ "ButtonContextMenu_Separator_1" ].Visible = false;
 				Menu.Items[ "Cut_ButtonContextMenuItem" ].Visible = false;
 				Menu.Items[ "Copy_ButtonContextMenuItem" ].Visible = false;
 				Menu.Items[ "Paste_ButtonContextMenuItem" ].Visible = false;
-				Menu.Items[ "ButtonContextMenu_Separator2" ].Visible = false;
+				Menu.Items[ "ButtonContextMenu_Separator_2" ].Visible = false;
 
 				if( _FenuContent.EscapeButton != null ) {
 					Menu.Items[ "Create_ButtonContextMenuItem" ].Visible = false;
@@ -296,7 +308,7 @@ namespace Fenubars.Display
 				}
 			}
 			else if( Child.GetType() == typeof( NextButton ) ) {
-				Menu.Items[ "ButtonContextMenu_Separator1" ].Visible = false;
+				Menu.Items[ "ButtonContextMenu_Separator_1" ].Visible = false;
 				Menu.Items[ "Cut_ButtonContextMenuItem" ].Visible = false;
 				Menu.Items[ "Copy_ButtonContextMenuItem" ].Visible = false;
 				Menu.Items[ "Paste_ButtonContextMenuItem" ].Visible = false;
@@ -305,7 +317,7 @@ namespace Fenubars.Display
 					Menu.Items[ "Create_ButtonContextMenuItem" ].Visible = false;
 				}
 				else {
-					Menu.Items[ "ButtonContextMenu_Separator2" ].Visible = false;
+					Menu.Items[ "ButtonContextMenu_Separator_2" ].Visible = false;
 					Menu.Items[ "Delete_ButtonContextMenuItem" ].Visible = false;
 				}
 			}
@@ -373,6 +385,8 @@ namespace Fenubars.Display
 
 			// Assign the binding
 			( target as NormalButton ).SetState( FBS );
+			
+			this.SetFenuModified();
 		}
 
 		internal void Delete( Control target )
@@ -383,6 +397,8 @@ namespace Fenubars.Display
 			ObliterateState( target );
 
 			this.UpdateFromImage();
+			
+			this.SetFenuModified();
 		}
 
 		#endregion
@@ -467,6 +483,8 @@ namespace Fenubars.Display
 				// Set state to newly create FenuButtonState
 				( Target as NormalButton ).SetState( FBS );
 			}
+
+			this.SetFenuModified();
 
 			return true;
 		}
@@ -575,24 +593,7 @@ namespace Fenubars.Display
 			}
 		}
 
-		public bool IsDirty
-		{
-			get
-			{
-				foreach( Control control in this.FormSplitContainer.Panel2.Controls ) {
-					NormalButton button = control as NormalButton;
-					if( button != null ) {
-						if( button.IsDirty )
-							return true;
-					}
-
-					// TODO: Test for escape and next button
-				}
-
-				return false;
-			}
-		}
-
 		#endregion
+
 	}
 }
