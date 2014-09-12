@@ -80,10 +80,12 @@ namespace Azuria.Common.Controls
 		/// <summary>Overwrite the PropertyGrid.SelectedObject property.</summary>
 		/// <remarks>The object passed to the base PropertyGrid is the wrapper.</remarks>
 		public new object SelectedObject {
-			get {
+			get
+			{
 				return m_Wrapper != null ? ( (ObjectWrapper)base.SelectedObject ).SelectedObject : null;
 			}
-			set {
+			set
+			{
 				if( value != null ) // Code added by Hassan Assalih ( Bug Discovered here and fixed )
 				{
 					// Set the new object to the wrapper and create one if necessary.

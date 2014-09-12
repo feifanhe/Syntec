@@ -180,8 +180,10 @@ namespace Syntec.Windows
 
 			if( result == DialogResult.No ) {
 				instance.Close();
-
-				// Disacard object browser
+				
+				// Discard object browser
+				this.ShowProperties( null );
+				this.SetPropertyGrid( null, null );
 				this.ShowObjects( null );
 			}
 			else {
