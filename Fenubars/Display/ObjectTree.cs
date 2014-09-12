@@ -22,7 +22,6 @@ namespace Fenubars.Display
 			this.ImageList = this.ObjectType_ImageList;
 
 			// First time execution, fully reconstruct the tree
-			//FullyReconstructTree();
 			ConstructForest();
 		}
 
