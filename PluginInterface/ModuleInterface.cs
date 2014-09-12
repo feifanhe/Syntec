@@ -95,6 +95,12 @@ namespace ModuleInterface
 		void DrawOnCanvas( System.Windows.Forms.Control control );
 
 		/// <summary>
+		/// This method finds the control by the name on the designated host.
+		/// </summary>
+		/// <returns>The specified control in the host, return <c>null</c> if none found.</returns>
+		Control FindControlByName( string name );
+
+		/// <summary>
 		/// This method finds the focused control on the designated host.
 		/// </summary>
 		/// <returns>Focused control in the host, return <c>null</c> if none found.</returns>
