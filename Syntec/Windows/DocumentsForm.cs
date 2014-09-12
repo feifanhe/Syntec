@@ -126,6 +126,11 @@ namespace Syntec.Windows
 			this.ResumeLayout();
 		}
 
+		public Control FindControlByName( string name )
+		{
+			return this.Controls[ name ];
+		}
+
 		public Control FindFocusedControl()
 		{
 			return FindFocusedControl( this );

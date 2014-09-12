@@ -226,6 +226,11 @@ namespace Fenubars
 
 		public void Open( string fenuName )
 		{
+			if( _Host.FindControlByName( fenuName ) != null ) {
+				_Host.FindControlByName( fenuName ).Focus();
+				return;
+			}
+
 			_Host.ShowStatusInfo( "Loading " + fenuName + "...", 100, true );
 
 			foreach( FenuState parsedFenu in CurrentFenuState.IncludedFenus ) {
