@@ -11,14 +11,14 @@ namespace Fenubars.Display
 
 		private List<FenuLink> links = new List<FenuLink>();
 
-		public ObjectTree( string fileName, List<FenuState> fenus )
+		public ObjectTree( string filePath, List<FenuState> fenus )
 		{
 			InitializeComponent();
 
 			CompileLinksInfo( fenus );
 
 			// Save file name
-			this.Name = fileName;
+			this.Name = filePath;
 			this.ImageList = this.ObjectType_ImageList;
 
 			// First time execution, fully reconstruct the tree

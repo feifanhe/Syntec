@@ -14,7 +14,7 @@ namespace Syntec.Windows
 	public partial class ObjectBrowserForm : DockContent
 	{
 		// Corresponding document tab name
-		private string documentName = string.Empty;
+		private string filePath = string.Empty;
 
 		public ObjectBrowserForm()
 		{
@@ -42,7 +42,7 @@ namespace Syntec.Windows
 				Object_TreeView.ImageList = templateTreeView.ImageList;
 
 				// Acquire target tab name
-				documentName = templateTreeView.Name;
+				filePath = templateTreeView.Name;
 
 				this.Refresh_ToolStripButton.Enabled = true;
 			}
@@ -127,7 +127,7 @@ namespace Syntec.Windows
 				DocumentsForm holder = form as DocumentsForm;
 
 				// TODO: SET NAME
-				if( ( holder != null ) && ( holder.TabText == documentName ) ) {
+				if( ( holder != null ) && ( holder.ToolTipText == filePath ) ) {
 					holder.Open( name );
 					break;
 				}
