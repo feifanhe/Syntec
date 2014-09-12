@@ -105,6 +105,7 @@ namespace Fenubars.Display
 			// 
 			// FenuTitle
 			// 
+			this.FenuTitle.ContextMenuStrip = this.FenuContextMenu;
 			this.FenuTitle.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.FenuTitle.Location = new System.Drawing.Point( 0, 0 );
 			this.FenuTitle.Name = "FenuTitle";
@@ -147,7 +148,7 @@ namespace Fenubars.Display
             this.ButtonContextMenu_Separator_2,
             this.Delete_ButtonContextMenuItem} );
 			this.ButtonContextMenu.Name = "ButtonContextMenu";
-			this.ButtonContextMenu.Size = new System.Drawing.Size( 153, 170 );
+			this.ButtonContextMenu.Size = new System.Drawing.Size( 126, 148 );
 			this.ButtonContextMenu.Opening += new System.ComponentModel.CancelEventHandler( this.ButtonContextMenu_Opening );
 			// 
 			// Create_ButtonContextMenuItem
