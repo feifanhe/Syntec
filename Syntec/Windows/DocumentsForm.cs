@@ -111,6 +111,15 @@ namespace Syntec.Windows
 
 		#endregion
 
+		#region Object Tree
+
+		public void RefreshObject()
+		{
+			instance.RefreshObjects();
+		}
+
+		#endregion
+
 		#endregion
 
 		#region IModuleHost Members
