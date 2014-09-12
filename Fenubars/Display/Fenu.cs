@@ -34,7 +34,7 @@ namespace Fenubars.Display
 
 		#endregion
 
-		public Fenu( FenuState AssignedFenuContent , int normalButtonCount )
+		public Fenu( FenuState AssignedFenuContent, int normalButtonCount )
 		{
 			InitializeComponent();
 
@@ -87,7 +87,7 @@ namespace Fenubars.Display
 			}
 		}
 
-		public void SaveImage(List<FenuButtonState> image, byte[] status)
+		public void SaveImage( List<FenuButtonState> image, byte[] status )
 		{
 			this.image = image;
 			this.status = status;
@@ -143,7 +143,7 @@ namespace Fenubars.Display
 
 		#endregion
 
-		#region Context menu item click event
+		#region Button context menu item click event
 
 		private void Create_ButtonContextMenuItem_Click( object sender, EventArgs e )
 		{
@@ -173,6 +173,26 @@ namespace Fenubars.Display
 		private void Delete_ButtonContextMenuItem_Click( object sender, EventArgs e )
 		{
 			Delete( FindChildOnScreen( CursorPosition ) );
+		}
+
+		#endregion
+
+		#region Fenu context menu item click event
+
+		private void Refresh_FenuContextMenuItem_Click( object sender, EventArgs e )
+		{
+			// TODO: Regenerate image
+		}
+
+		private void Close_FenuContextMenuItem_Click( object sender, EventArgs e )
+		{
+			// TODO: Need to refresh object tree
+			this.CloseFenu_Click( null, null );
+		}
+
+		private void Delete_FenuContextMenuItem_Click( object sender, EventArgs e )
+		{
+
 		}
 
 		#endregion
@@ -300,6 +320,73 @@ namespace Fenubars.Display
 
 		#region Methods
 
+		#region Cut, Copy, Paste and Delete
+
+		internal void Cut( Control target )
+		{
+			Copy( target );
+			Delete( target );
+		}
+
+		internal void Copy( Control target )
+		{
+			if( target == null )
+				return;
+
+			// Find the properties container of the target
+			FenuButtonState FBS = _FenuContent.NormalButtonList.Find(
+				delegate( FenuButtonState DummyState )
+				{
+					return ( target as NormalButton ).Name == DummyState.Name;
+				} );
+			// Copy the object to clipboard
+			ClipBoardManager<FenuButtonState>.CopyToClipboard( FBS );
+
+			//// Debug function, check if the button is serializable
+			//ClipBoardManager<FenuButtonState>.IsSerializable( FBS );
+		}
+
+		internal void Paste( Control target )
+		{
+			// Check if the targeted control is applicable for clipboard data
+			if( target == null )
+				return;
+
+			// Acquire deserialized data from clip board manager
+			FenuButtonState FBS = ClipBoardManager<FenuButtonState>.GetFromClipboard();
+
+			// Config the position
+			FBS.Position = ButtonPosition( ( target as Button ).Location );
+			FBS.Name = "F" + FBS.Position.ToString();
+
+			// Add the FenuButtonState to properties container, search before append
+			int ListIndex = _FenuContent.NormalButtonList.FindIndex(
+				delegate( FenuButtonState DummyState )
+				{
+					return DummyState.Position == FBS.Position;
+				} );
+
+			if( ListIndex == -1 )
+				_FenuContent.NormalButtonList.Add( FBS );
+			else
+				_FenuContent.NormalButtonList[ ListIndex ] = FBS;
+
+			// Assign the binding
+			( target as NormalButton ).SetState( FBS );
+		}
+
+		internal void Delete( Control target )
+		{
+			if( target == null )
+				return;
+
+			ObliterateState( target );
+
+			this.UpdateFromImage();
+		}
+
+		#endregion
+
 		// Overload for realtime cursor position (normal left click operation)
 		private Control FindChildOnScreen()
 		{
@@ -338,6 +425,11 @@ namespace Fenubars.Display
 
 			// Kick start the event 
 			OnDataAvailable( type, storage );
+		}
+
+		private int ButtonPosition( Point location )
+		{
+			return ( location.X - 3 ) / 83;
 		}
 
 		private bool InstantiateState( object Target )
@@ -502,77 +594,5 @@ namespace Fenubars.Display
 		}
 
 		#endregion
-
-		#region Cut, Copy, Paste and Delete
-
-		internal void Cut( Control target )
-		{
-			Copy( target );
-			Delete( target );
-		}
-
-		internal void Copy( Control target )
-		{
-			if( target == null )
-				return;
-
-			// Find the properties container of the target
-			FenuButtonState FBS = _FenuContent.NormalButtonList.Find(
-				delegate( FenuButtonState DummyState )
-				{
-					return ( target as NormalButton ).Name == DummyState.Name;
-				} );
-			// Copy the object to clipboard
-			ClipBoardManager<FenuButtonState>.CopyToClipboard( FBS );
-
-			//ClipBoardManager<FenuButtonState>.IsSerializable( FBS );
-		}
-
-		internal void Paste( Control target )
-		{
-			// Check if the targeted control is applicable for clipboard data
-			if( target == null )
-				return;
-
-			// Acquire deserialized data from clip board manager
-			FenuButtonState FBS = ClipBoardManager<FenuButtonState>.GetFromClipboard();
-
-			// Config the position
-			FBS.Position = ButtonPosition( ( target as Button ).Location );
-			FBS.Name = "F" + FBS.Position.ToString();
-
-			// Add the FenuButtonState to properties container, search before append
-			int ListIndex = _FenuContent.NormalButtonList.FindIndex(
-				delegate( FenuButtonState DummyState )
-				{
-					return DummyState.Position == FBS.Position;
-				} );
-
-			if( ListIndex == -1 )
-				_FenuContent.NormalButtonList.Add( FBS );
-			else
-				_FenuContent.NormalButtonList[ ListIndex ] = FBS;
-
-			// Assign the binding
-			( target as NormalButton ).SetState( FBS );
-		}
-
-		private int ButtonPosition( Point location )
-		{
-			return ( location.X - 3 ) / 83;
-		}
-
-		internal void Delete( Control target )
-		{
-			if( target == null )
-				return;
-
-			ObliterateState( target );
-
-			this.UpdateFromImage();
-		}
-
-		#endregion
 	}
-
 }

@@ -32,6 +32,11 @@ namespace Fenubars.Display
 			this.FormSplitContainer = new System.Windows.Forms.SplitContainer();
 			this.TitleBarSplitterContainer = new System.Windows.Forms.SplitContainer();
 			this.FenuTitle = new System.Windows.Forms.Label();
+			this.FenuContextMenu = new System.Windows.Forms.ContextMenuStrip( this.components );
+			this.Refresh_FenuContextMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.Close_FenuContextMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.FenuContextMenuItem_Separator_1 = new System.Windows.Forms.ToolStripSeparator();
+			this.Delete_FenuContextMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.CloseFenu = new System.Windows.Forms.Panel();
 			this.ButtonPanel = new System.Windows.Forms.Panel();
 			this.ButtonContextMenu = new System.Windows.Forms.ContextMenuStrip( this.components );
@@ -43,18 +48,13 @@ namespace Fenubars.Display
 			this.Paste_ButtonContextMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.ButtonContextMenu_Separator_2 = new System.Windows.Forms.ToolStripSeparator();
 			this.Delete_ButtonContextMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.FenuContextMenu = new System.Windows.Forms.ContextMenuStrip( this.components );
-			this.Delete_FenuContextMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.Refresh_FenuContextMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.Close_FenuContextMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.FenuContextMenuItem_Separator_1 = new System.Windows.Forms.ToolStripSeparator();
 			this.FormSplitContainer.Panel1.SuspendLayout();
 			this.FormSplitContainer.SuspendLayout();
 			this.TitleBarSplitterContainer.Panel1.SuspendLayout();
 			this.TitleBarSplitterContainer.Panel2.SuspendLayout();
 			this.TitleBarSplitterContainer.SuspendLayout();
-			this.ButtonContextMenu.SuspendLayout();
 			this.FenuContextMenu.SuspendLayout();
+			this.ButtonContextMenu.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// FormSplitContainer
@@ -115,6 +115,44 @@ namespace Fenubars.Display
 			this.FenuTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.FenuTitle.Click += new System.EventHandler( this.FenuTitle_Click );
 			// 
+			// FenuContextMenu
+			// 
+			this.FenuContextMenu.Items.AddRange( new System.Windows.Forms.ToolStripItem[] {
+            this.Refresh_FenuContextMenuItem,
+            this.Close_FenuContextMenuItem,
+            this.FenuContextMenuItem_Separator_1,
+            this.Delete_FenuContextMenuItem} );
+			this.FenuContextMenu.Name = "contextMenuStrip1";
+			this.FenuContextMenu.Size = new System.Drawing.Size( 153, 98 );
+			// 
+			// Refresh_FenuContextMenuItem
+			// 
+			this.Refresh_FenuContextMenuItem.Enabled = false;
+			this.Refresh_FenuContextMenuItem.Name = "Refresh_FenuContextMenuItem";
+			this.Refresh_FenuContextMenuItem.Size = new System.Drawing.Size( 152, 22 );
+			this.Refresh_FenuContextMenuItem.Text = "Refresh";
+			this.Refresh_FenuContextMenuItem.Click += new System.EventHandler( this.Refresh_FenuContextMenuItem_Click );
+			// 
+			// Close_FenuContextMenuItem
+			// 
+			this.Close_FenuContextMenuItem.Name = "Close_FenuContextMenuItem";
+			this.Close_FenuContextMenuItem.Size = new System.Drawing.Size( 152, 22 );
+			this.Close_FenuContextMenuItem.Text = "Close";
+			this.Close_FenuContextMenuItem.Click += new System.EventHandler( this.Close_FenuContextMenuItem_Click );
+			// 
+			// FenuContextMenuItem_Separator_1
+			// 
+			this.FenuContextMenuItem_Separator_1.Name = "FenuContextMenuItem_Separator_1";
+			this.FenuContextMenuItem_Separator_1.Size = new System.Drawing.Size( 149, 6 );
+			// 
+			// Delete_FenuContextMenuItem
+			// 
+			this.Delete_FenuContextMenuItem.Enabled = false;
+			this.Delete_FenuContextMenuItem.Name = "Delete_FenuContextMenuItem";
+			this.Delete_FenuContextMenuItem.Size = new System.Drawing.Size( 152, 22 );
+			this.Delete_FenuContextMenuItem.Text = "Delete";
+			this.Delete_FenuContextMenuItem.Click += new System.EventHandler( this.Delete_FenuContextMenuItem_Click );
+			// 
 			// CloseFenu
 			// 
 			this.CloseFenu.BackgroundImage = ( (System.Drawing.Image)( resources.GetObject( "CloseFenu.BackgroundImage" ) ) );
@@ -154,87 +192,54 @@ namespace Fenubars.Display
 			// Create_ButtonContextMenuItem
 			// 
 			this.Create_ButtonContextMenuItem.Name = "Create_ButtonContextMenuItem";
-			this.Create_ButtonContextMenuItem.Size = new System.Drawing.Size( 152, 22 );
+			this.Create_ButtonContextMenuItem.Size = new System.Drawing.Size( 125, 22 );
 			this.Create_ButtonContextMenuItem.Text = "Create..";
 			this.Create_ButtonContextMenuItem.Click += new System.EventHandler( this.Create_ButtonContextMenuItem_Click );
 			// 
 			// GoTo_ButtonContextMenuItem
 			// 
 			this.GoTo_ButtonContextMenuItem.Name = "GoTo_ButtonContextMenuItem";
-			this.GoTo_ButtonContextMenuItem.Size = new System.Drawing.Size( 152, 22 );
+			this.GoTo_ButtonContextMenuItem.Size = new System.Drawing.Size( 125, 22 );
 			this.GoTo_ButtonContextMenuItem.Text = "Go to link";
 			this.GoTo_ButtonContextMenuItem.Click += new System.EventHandler( this.GoTo_ButtonContextMenuItem_Click );
 			// 
 			// ButtonContextMenu_Separator_1
 			// 
 			this.ButtonContextMenu_Separator_1.Name = "ButtonContextMenu_Separator_1";
-			this.ButtonContextMenu_Separator_1.Size = new System.Drawing.Size( 149, 6 );
+			this.ButtonContextMenu_Separator_1.Size = new System.Drawing.Size( 122, 6 );
 			// 
 			// Cut_ButtonContextMenuItem
 			// 
 			this.Cut_ButtonContextMenuItem.Name = "Cut_ButtonContextMenuItem";
-			this.Cut_ButtonContextMenuItem.Size = new System.Drawing.Size( 152, 22 );
+			this.Cut_ButtonContextMenuItem.Size = new System.Drawing.Size( 125, 22 );
 			this.Cut_ButtonContextMenuItem.Text = "Cut";
 			this.Cut_ButtonContextMenuItem.Click += new System.EventHandler( this.Cut_ButtonContextMenuItem_Click );
 			// 
 			// Copy_ButtonContextMenuItem
 			// 
 			this.Copy_ButtonContextMenuItem.Name = "Copy_ButtonContextMenuItem";
-			this.Copy_ButtonContextMenuItem.Size = new System.Drawing.Size( 152, 22 );
+			this.Copy_ButtonContextMenuItem.Size = new System.Drawing.Size( 125, 22 );
 			this.Copy_ButtonContextMenuItem.Text = "Copy";
 			this.Copy_ButtonContextMenuItem.Click += new System.EventHandler( this.Copy_ButtonContextMenuItem_Click );
 			// 
 			// Paste_ButtonContextMenuItem
 			// 
 			this.Paste_ButtonContextMenuItem.Name = "Paste_ButtonContextMenuItem";
-			this.Paste_ButtonContextMenuItem.Size = new System.Drawing.Size( 152, 22 );
+			this.Paste_ButtonContextMenuItem.Size = new System.Drawing.Size( 125, 22 );
 			this.Paste_ButtonContextMenuItem.Text = "Paste";
 			this.Paste_ButtonContextMenuItem.Click += new System.EventHandler( this.Paste_ButtonContextMenuItem_Click );
 			// 
 			// ButtonContextMenu_Separator_2
 			// 
 			this.ButtonContextMenu_Separator_2.Name = "ButtonContextMenu_Separator_2";
-			this.ButtonContextMenu_Separator_2.Size = new System.Drawing.Size( 149, 6 );
+			this.ButtonContextMenu_Separator_2.Size = new System.Drawing.Size( 122, 6 );
 			// 
 			// Delete_ButtonContextMenuItem
 			// 
 			this.Delete_ButtonContextMenuItem.Name = "Delete_ButtonContextMenuItem";
-			this.Delete_ButtonContextMenuItem.Size = new System.Drawing.Size( 152, 22 );
+			this.Delete_ButtonContextMenuItem.Size = new System.Drawing.Size( 125, 22 );
 			this.Delete_ButtonContextMenuItem.Text = "Delete";
 			this.Delete_ButtonContextMenuItem.Click += new System.EventHandler( this.Delete_ButtonContextMenuItem_Click );
-			// 
-			// FenuContextMenu
-			// 
-			this.FenuContextMenu.Items.AddRange( new System.Windows.Forms.ToolStripItem[] {
-            this.Refresh_FenuContextMenuItem,
-            this.Close_FenuContextMenuItem,
-            this.FenuContextMenuItem_Separator_1,
-            this.Delete_FenuContextMenuItem} );
-			this.FenuContextMenu.Name = "contextMenuStrip1";
-			this.FenuContextMenu.Size = new System.Drawing.Size( 114, 76 );
-			// 
-			// Delete_FenuContextMenuItem
-			// 
-			this.Delete_FenuContextMenuItem.Name = "Delete_FenuContextMenuItem";
-			this.Delete_FenuContextMenuItem.Size = new System.Drawing.Size( 113, 22 );
-			this.Delete_FenuContextMenuItem.Text = "Delete";
-			// 
-			// Refresh_FenuContextMenuItem
-			// 
-			this.Refresh_FenuContextMenuItem.Name = "Refresh_FenuContextMenuItem";
-			this.Refresh_FenuContextMenuItem.Size = new System.Drawing.Size( 113, 22 );
-			this.Refresh_FenuContextMenuItem.Text = "Refresh";
-			// 
-			// Close_FenuContextMenuItem
-			// 
-			this.Close_FenuContextMenuItem.Name = "Close_FenuContextMenuItem";
-			this.Close_FenuContextMenuItem.Size = new System.Drawing.Size( 113, 22 );
-			this.Close_FenuContextMenuItem.Text = "Close";
-			// 
-			// FenuContextMenuItem_Separator_1
-			// 
-			this.FenuContextMenuItem_Separator_1.Name = "FenuContextMenuItem_Separator_1";
-			this.FenuContextMenuItem_Separator_1.Size = new System.Drawing.Size( 110, 6 );
 			// 
 			// Fenu
 			// 
@@ -248,8 +253,8 @@ namespace Fenubars.Display
 			this.TitleBarSplitterContainer.Panel1.ResumeLayout( false );
 			this.TitleBarSplitterContainer.Panel2.ResumeLayout( false );
 			this.TitleBarSplitterContainer.ResumeLayout( false );
-			this.ButtonContextMenu.ResumeLayout( false );
 			this.FenuContextMenu.ResumeLayout( false );
+			this.ButtonContextMenu.ResumeLayout( false );
 			this.ResumeLayout( false );
 
 		}
