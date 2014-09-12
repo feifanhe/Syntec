@@ -15,12 +15,17 @@ namespace Fenubars.Display
 		{
 			InitializeComponent();
 
-			CompileLinksInfo( fenus );
-
 			// Save file name
 			this.Name = filePath;
 			this.ImageList = this.ObjectType_ImageList;
 
+			// RebuildForest
+			RebuildForest( fenus );
+		}
+
+		public void RebuildForest( List<FenuState> fenus )
+		{
+			CompileLinksInfo( fenus );
 			// First time execution, fully reconstruct the tree
 			ConstructForest();
 		}
@@ -29,6 +34,8 @@ namespace Fenubars.Display
 
 		private void CompileLinksInfo( List<FenuState> fenus )
 		{
+			links.Clear();
+			MessageBox.Show( "Links cleared" );
 			foreach( FenuState fenu in fenus ) {
 				FenuLink newLink = new FenuLink( fenu.Name );
 				CompileChildLinks( newLink, fenu );
@@ -88,6 +95,8 @@ namespace Fenubars.Display
 
 		private void ConstructForest()
 		{
+			this.Nodes.Clear();
+			MessageBox.Show( "Nodes cleared" );
 			foreach( FenuLink Leaf in links ) {
 				if( !IsInForest( Leaf.Name ) ) {
 					this.Nodes.Add( Leaf.Name, Leaf.Name, 0, 0 );
@@ -155,7 +164,7 @@ namespace Fenubars.Display
 
 		#endregion
 
-		
+
 	}
 
 	internal class FenuLink

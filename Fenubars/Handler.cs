@@ -215,6 +215,10 @@ namespace Fenubars
 
 		public void Open( string fenuName )
 		{
+			if( fenuName == String.Empty ) {
+				return;
+			}
+
 			if( _Host.FindControlByName( fenuName ) != null ) {
 				_Host.FindControlByName( fenuName ).Focus();
 				return;
@@ -318,6 +322,16 @@ namespace Fenubars
 			Fenu fenu = FindWhichFenu( out focused );
 			if( fenu != null )
 				fenu.Delete( focused );
+		}
+
+		#endregion
+
+		#region Owning object operations
+
+		public void RefreshObjects()
+		{
+			CompiledTree.RebuildForest( globalFenuState.IncludedFenus );
+			_Host.ShowObjects( CompiledTree );
 		}
 
 		#endregion

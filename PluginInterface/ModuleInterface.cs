@@ -84,6 +84,15 @@ namespace ModuleInterface
 		void Delete();
 
 		#endregion
+
+		#region Owning object operations
+
+		/// <summary>
+		/// This method tells the module to do refresh its owning objects.
+		/// </summary>
+		void RefreshObjects();
+
+		#endregion
 	}
 
 	public interface IModuleHost

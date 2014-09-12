@@ -94,7 +94,14 @@ namespace Syntec.Windows
 
 		private void Refresh_ToolStripButton_Click( object sender, EventArgs e )
 		{
+			foreach( Form form in Application.OpenForms ) {
+				DocumentsForm holder = form as DocumentsForm;
 
+				// TODO: SET NAME
+				if( ( holder != null ) && ( holder.ToolTipText == filePath ) ) {
+					holder.RefreshObject();
+				}
+			}
 		}
 
 		private void ViewCode_ToolStripButton_Click( object sender, EventArgs e )
