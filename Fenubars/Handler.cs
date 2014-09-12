@@ -201,8 +201,7 @@ namespace Fenubars
 
 		public void Open()
 		{
-			CompiledTree = new ObjectTree( Path.GetFileNameWithoutExtension( XMLPath ), 
-											CurrentFenuState.IncludedFenus );
+			CompiledTree = new ObjectTree( XMLPath, CurrentFenuState.IncludedFenus );
 			_Host.ShowObjects( CompiledTree );
 		}
 
@@ -239,6 +238,7 @@ namespace Fenubars
 
 					// TODO: Move to background worker
 					newFenuPanel = ReflectOnFenu( newFenuPanel );
+					//System.Threading.Thread.Sleep( 2000 );
 
 					_Host.DrawOnCanvas( newFenuPanel );
 					_Host.ShowStatusInfo( "Ready", -1, false );

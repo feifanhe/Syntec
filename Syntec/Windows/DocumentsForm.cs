@@ -167,22 +167,29 @@ namespace Syntec.Windows
 
 		private void DocumentsForm_FormClosing( object sender, FormClosingEventArgs e )
 		{
+			DialogResult result;
 			// TODO: Check if modification was made by tab
 			if( this.TabText.Contains( "*" ) | true ) {
-				DialogResult result = MessageBox.Show( "Would you like to save the modifications?",
-														"Save before close",
-														MessageBoxButtons.YesNo,
-														MessageBoxIcon.Question );
+				result = MessageBox.Show( "Would you like to save the modifications?",
+											"Save before close",
+											MessageBoxButtons.YesNoCancel,
+											MessageBoxIcon.Question );
 				if( result == DialogResult.Yes )
 					instance.Save();
 			}
 
-			instance.Close();
-
-			// Disacard object browser
-			this.ShowProperties( null );
-			this.SetPropertyGrid( null, null );
-			this.ShowObjects( null );
+			if( result == DialogResult.No ) {
+				instance.Close();
+				
+				// Discard object browser
+				this.ShowProperties( null );
+				this.SetPropertyGrid( null, null );
+				this.ShowObjects( null );
+			}
+			else {
+				// Cancel close operation
+				e.Cancel = true;
+			}
 		}
 
 		#endregion

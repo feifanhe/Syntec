@@ -267,21 +267,19 @@ namespace Syntec.Windows
 			}
 		}
 
-		private IDockContent FindDocument( string text )
-		{
-			foreach( IDockContent content in Main_DockPanel.Contents ) {
-				if( content.DockHandler.ToolTipText == text )
-					return content;
-			}
-			return null;
-		} 
-
 		private void OpenFile( string filePath )
 		{
 			// Document opened, switch tab
-			IDockContent content = FindDocument( filePath );
-			if( content != null ) {
-				content.DockHandler.Show();
+			IDockContent target = null;
+			
+			// Scan for opened documents
+			foreach( IDockContent content in Main_DockPanel.Contents ) {
+				if( content.DockHandler.ToolTipText == filePath )
+					target = content;
+			}
+
+			if( target != null ) {
+				target.DockHandler.Show();
 				return;
 			}
 
