@@ -568,6 +568,8 @@ namespace Fenubars.Display
 				return;
 
 			ObliterateState( target );
+
+			this.UpdateFromImage();
 		}
 
 		#endregion
