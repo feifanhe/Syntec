@@ -68,18 +68,21 @@ namespace Fenubars.Display
 			EB.PaintComponent( FormSplitContainer.Panel2.Controls, new Point( 3, 3 ) );
 			EB.MouseDown += new MouseEventHandler( FenuButton_MouseDown );
 			EB.Modified += new EscapeButton.ButtonModifiedHandler( SetFenuModified );
+			EB.KeyDown += new KeyEventHandler( FenuButton_KeyDown );
 
 			NextButton NB = new NextButton();
 			NB.SetState( _FenuContent.NextButton );
 			NB.PaintComponent( FormSplitContainer.Panel2.Controls, new Point( 3 + 83 * ( normalButtonCount + 1 ), 3 ) );
 			NB.MouseDown += new MouseEventHandler( FenuButton_MouseDown );
 			NB.Modified += new NextButton.ButtonModifiedHandler( SetFenuModified );
+			NB.KeyDown += new KeyEventHandler( FenuButton_KeyDown );
 
 			// Add normal buttons
 			for( int i = 1; i <= normalButtonCount; i++ ) {
 				NormalButton NRB = new NormalButton( i );
 				NRB.MouseDown += new MouseEventHandler( FenuButton_MouseDown );
 				NRB.Modified += new NormalButton.ButtonModifiedHandler( SetFenuModified );
+				NRB.KeyDown += new KeyEventHandler( FenuButton_KeyDown );
 				NRB.ContextMenuStrip = ButtonContextMenu;
 
 				FenuButtonState FBS = _FenuContent.NormalButtonList.Find(
@@ -222,6 +225,13 @@ namespace Fenubars.Display
 						Console.WriteLine( "REGISTER AT: " + CursorPosition );
 						break;
 				}
+			}
+		}
+
+		private void FenuButton_KeyDown( object sender, KeyEventArgs e )
+		{
+			if( e.KeyCode == Keys.Space ) {
+				GotoLink( sender );
 			}
 		}
 

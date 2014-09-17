@@ -85,14 +85,18 @@ namespace Syntec.Windows
 		
 		private void File_Close_ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
-			Form df = this.ActiveMdiChild;
-			df.Close();
+			DocumentsForm DF = this.ActiveMdiChild as DocumentsForm;
+			if( DF != null ) {
+				DF.Close();
+			}
 		}
 
 		private void File_Save_ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
 			DocumentsForm DF = this.ActiveMdiChild as DocumentsForm;
-			DF.Save();
+			if( DF != null ) {
+				DF.Save();
+			}
 		}
 		
 		private void File_SaveAs_ToolStripMenuItem_Click( object sender, EventArgs e )
@@ -149,7 +153,7 @@ namespace Syntec.Windows
 		
 		private void File_Exit_ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
-
+			this.Close();
 		}
 
 		#endregion
@@ -158,22 +162,34 @@ namespace Syntec.Windows
 
 		private void Edit_Cut_ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
-			( Main_DockPanel.ActiveDocument as DocumentsForm ).Cut();
+			DocumentsForm DF = this.ActiveMdiChild as DocumentsForm;
+			if( DF != null ) {
+				DF.Cut();
+			}
 		}
 
 		private void Edit_Copy_ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
-			( Main_DockPanel.ActiveDocument as DocumentsForm ).Copy();
+			DocumentsForm DF = this.ActiveMdiChild as DocumentsForm;
+			if( DF != null ) {
+				DF.Copy();
+			}
 		}
 
 		private void Edit_Paste_ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
-			( Main_DockPanel.ActiveDocument as DocumentsForm ).Paste();
+			DocumentsForm DF = this.ActiveMdiChild as DocumentsForm;
+			if( DF != null ) {
+				DF.Paste();
+			}
 		}
 
 		private void Edit_Delete_ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
-			( Main_DockPanel.ActiveDocument as DocumentsForm ).Delete();
+			DocumentsForm DF = this.ActiveMdiChild as DocumentsForm;
+			if( DF != null ) {
+				DF.Delete();
+			}
 		}
 
 		#endregion

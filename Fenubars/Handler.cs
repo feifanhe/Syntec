@@ -330,7 +330,7 @@ namespace Fenubars
 
 		public void RefreshObjects()
 		{
-			CompiledTree.RebuildForest( globalFenuState.IncludedFenus );
+			CompiledTree = new ObjectTree( XMLPath, globalFenuState.IncludedFenus );
 			_Host.ShowObjects( CompiledTree );
 		}
 

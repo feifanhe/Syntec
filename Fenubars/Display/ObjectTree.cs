@@ -35,7 +35,6 @@ namespace Fenubars.Display
 		private void CompileLinksInfo( List<FenuState> fenus )
 		{
 			links.Clear();
-			MessageBox.Show( "Links cleared" );
 			foreach( FenuState fenu in fenus ) {
 				FenuLink newLink = new FenuLink( fenu.Name );
 				CompileChildLinks( newLink, fenu );
@@ -96,7 +95,6 @@ namespace Fenubars.Display
 		private void ConstructForest()
 		{
 			this.Nodes.Clear();
-			MessageBox.Show( "Nodes cleared" );
 			foreach( FenuLink Leaf in links ) {
 				if( !IsInForest( Leaf.Name ) ) {
 					this.Nodes.Add( Leaf.Name, Leaf.Name, 0, 0 );

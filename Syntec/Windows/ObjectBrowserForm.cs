@@ -44,7 +44,7 @@ namespace Syntec.Windows
 				// Acquire target tab name
 				filePath = templateTreeView.Name;
 
-				this.Refresh_ToolStripButton.Enabled = true;
+				//this.Refresh_ToolStripButton.Enabled = true;
 			}
 
 			this.ResumeLayout();
