@@ -108,6 +108,10 @@
       <SubType>Designer</SubType>
       <DependentUpon>PropertiesWindowForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Windows\StringViewerForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>StringViewerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Windows\WorkspaceExplorerForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>WorkspaceExplorerForm.cs</DependentUpon>
@@ -159,13 +163,18 @@
     <Compile Include="Windows\PropertiesWindowForm.Designer.cs">
       <DependentUpon>PropertiesWindowForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Windows\StringViewerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\StringViewerForm.Designer.cs">
+      <DependentUpon>StringViewerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Windows\WorkspaceExplorerForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Windows\WorkspaceExplorerForm.Designer.cs">
       <DependentUpon>WorkspaceExplorerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="WorkspaceCategory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PluginInterface\ModuleInterface.csproj">

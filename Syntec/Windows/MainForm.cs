@@ -16,6 +16,7 @@ namespace Syntec.Windows
 		private WorkspaceExplorerForm WorkspaceExplorer = new WorkspaceExplorerForm();
 		private PropertiesWindowForm PropertiesWindow = new PropertiesWindowForm();
 		private ObjectBrowserForm ObjectBrowser = new ObjectBrowserForm();
+		private StringViewerForm StringViewer = new StringViewerForm();
 
 		// Most recently used items variables
 		private const string INI_FILE_NAME = "Syntec.ini";
@@ -36,6 +37,7 @@ namespace Syntec.Windows
 			PropertiesWindow.Show( Main_DockPanel, DockState.DockRight );
 			ObjectBrowser.Show( PropertiesWindow.Pane, DockAlignment.Top, 0.6 );
 			WorkspaceExplorer.Show( ObjectBrowser.Pane, ObjectBrowser );
+			StringViewer.Show( ObjectBrowser.Pane, ObjectBrowser );
 
 			PopulateRecentlyUsedMenu();
 		}
@@ -122,6 +124,9 @@ namespace Syntec.Windows
 			}
 
 			WorkspaceExplorer.ShowWorkspace( filename );
+
+
+			StringViewer.ShowString( filename );
 
 			// Switch workspace explorer tab
 			WorkspaceExplorer.Show();
@@ -252,6 +257,8 @@ namespace Syntec.Windows
 				RecentWorkspacesMenu.AddFile( dialog.SelectedPath );
 
 				WorkspaceExplorer.ShowWorkspace( dialog.SelectedPath );
+
+				StringViewer.ShowString( dialog.SelectedPath );
 
 				// Switch to workspace explorer tab
 				WorkspaceExplorer.Show();

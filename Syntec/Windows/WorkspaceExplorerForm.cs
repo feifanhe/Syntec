@@ -108,6 +108,7 @@ namespace Syntec.Windows
 				string[] subdirs = Directory.GetDirectories( path );
 
 				foreach( string subdir in subdirs ) {
+					MessageBox.Show( subdir );
 					TreeNode child = new TreeNode( subdir );
 					// Save directory info into tag
 					child.Tag = subdir;
