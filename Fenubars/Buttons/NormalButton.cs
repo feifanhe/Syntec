@@ -9,6 +9,9 @@ namespace Fenubars.Buttons
 		public delegate void ButtonModifiedHandler();
 		public event ButtonModifiedHandler Modified;
 
+		public delegate string GetResourceEventHandler( string ID );
+		public event GetResourceEventHandler OnGetResource;
+
 		public NormalButton( int Index )
 		{
 			InitializeComponent();
@@ -18,7 +21,6 @@ namespace Fenubars.Buttons
 			this.Location = new Point( 3 + 83 * Index, 3 );
 		}
 
-		private Binding bind;
 		public void SetState( FenuButtonState State )
 		{
 			SetState( State, false );
@@ -37,12 +39,16 @@ namespace Fenubars.Buttons
 				this.FlatStyle = FlatStyle.Standard;
 
 			// Create binding source for this button
+			Binding bind;
 			BindingSource bindingSource = new BindingSource();
 			bindingSource.DataSource = State;
 
 			// Bindings
 			this.DataBindings.Add( "Name", bindingSource, "Name" );
-			this.DataBindings.Add( "Text", bindingSource, "Title" );
+
+			bind = new Binding( "Text", bindingSource, "Title" );
+			bind.Format += new ConvertEventHandler( TitleToResource );
+			this.DataBindings.Add( bind );
 
 			bind = new Binding( "Enabled", bindingSource, "State" );
 			bind.Format += new ConvertEventHandler( StateConverter.StateToBool );
@@ -77,6 +83,16 @@ namespace Fenubars.Buttons
 		public void PaintComponent( System.Windows.Forms.Control.ControlCollection Canvas )
 		{
 			Canvas.Add( this );
+		}
+
+		public void TitleToResource( object sender, ConvertEventArgs cevent )
+		{
+			if( cevent.Value != null ) {
+				string Title = (string)cevent.Value;
+				if( Title.ToUpper().StartsWith( "STR::" ) ) {
+					cevent.Value = this.OnGetResource( Title.Substring( 5 ) );
+				}
+			}
 		}
 	}
 }

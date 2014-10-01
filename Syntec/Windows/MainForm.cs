@@ -16,7 +16,8 @@ namespace Syntec.Windows
 		private WorkspaceExplorerForm WorkspaceExplorer = new WorkspaceExplorerForm();
 		private PropertiesWindowForm PropertiesWindow = new PropertiesWindowForm();
 		private ObjectBrowserForm ObjectBrowser = new ObjectBrowserForm();
-		private StringViewerForm StringViewer = new StringViewerForm();
+		private StringManagerForm StringManager = new StringManagerForm();
+		//private FindResultsViewerForm FindResultsViewer = new FindResultsViewerForm();
 
 		// Most recently used items variables
 		private const string INI_FILE_NAME = "Syntec.ini";
@@ -36,8 +37,8 @@ namespace Syntec.Windows
 			// Load all the windows and set them to default locations
 			PropertiesWindow.Show( Main_DockPanel, DockState.DockRight );
 			ObjectBrowser.Show( PropertiesWindow.Pane, DockAlignment.Top, 0.6 );
-			WorkspaceExplorer.Show( ObjectBrowser.Pane, ObjectBrowser );
-			StringViewer.Show( ObjectBrowser.Pane, ObjectBrowser );
+			StringManager.Show( ObjectBrowser.Pane, ObjectBrowser );
+			WorkspaceExplorer.Show( StringManager.Pane, StringManager );
 
 			PopulateRecentlyUsedMenu();
 		}
@@ -84,7 +85,7 @@ namespace Syntec.Windows
 		{
 			OpenDialog( "Open File", false, "XML Files (*.xml)|*.xml" );
 		}
-		
+
 		private void File_Close_ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
 			DocumentsForm DF = this.ActiveMdiChild as DocumentsForm;
@@ -100,12 +101,12 @@ namespace Syntec.Windows
 				DF.Save();
 			}
 		}
-		
+
 		private void File_SaveAs_ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
 
 		}
-		
+
 		private void File_SaveAll_ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
 
@@ -126,7 +127,7 @@ namespace Syntec.Windows
 			WorkspaceExplorer.ShowWorkspace( filename );
 
 
-			StringViewer.ShowString( filename );
+			StringManager.ShowString( filename );
 
 			// Switch workspace explorer tab
 			WorkspaceExplorer.Show();
@@ -155,7 +156,7 @@ namespace Syntec.Windows
 		}
 
 		#endregion
-		
+
 		private void File_Exit_ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
 			this.Close();
@@ -258,7 +259,7 @@ namespace Syntec.Windows
 
 				WorkspaceExplorer.ShowWorkspace( dialog.SelectedPath );
 
-				StringViewer.ShowString( dialog.SelectedPath );
+				StringManager.ShowString( dialog.SelectedPath );
 
 				// Switch to workspace explorer tab
 				WorkspaceExplorer.Show();
@@ -294,7 +295,7 @@ namespace Syntec.Windows
 		{
 			// Document opened, switch tab
 			IDockContent target = null;
-			
+
 			// Scan for opened documents
 			foreach( IDockContent content in Main_DockPanel.Contents ) {
 				if( content.DockHandler.ToolTipText == filePath )
@@ -310,12 +311,11 @@ namespace Syntec.Windows
 																new DocumentsForm.ShowPropertiesEventHandler( ShowProperties ),
 																new DocumentsForm.SetPropertyGridEventHandler( SetPropertyGrid ),
 																new DocumentsForm.ShowObjectsEventHandler( ShowObjects ),
-																new DocumentsForm.ShowStatusInfoEventHandler( ShowStatusInfo ) );
+																new DocumentsForm.ShowStatusInfoEventHandler( ShowStatusInfo ),
+																new DocumentsForm.GetResourceEventHandler( GetResource ) );
 
 			if( openFromFile.IsDisposed )
 				return;
-
-			openFromFile.OnShowStatusInfo += new DocumentsForm.ShowStatusInfoEventHandler( ShowStatusInfo );
 
 			openFromFile.Show( Main_DockPanel, DockState.Document );
 			openFromFile.TabText = Path.GetFileNameWithoutExtension( filePath );
@@ -339,7 +339,7 @@ namespace Syntec.Windows
 
 			// When tree view is null, it means the file will be closed
 			// Discard the object browser and properties window and switch to workspace explorer tabb
-			if( treeView == null ) 
+			if( treeView == null )
 				WorkspaceExplorer.Show();
 			else
 				ObjectBrowser.Show();
@@ -370,20 +370,23 @@ namespace Syntec.Windows
 			}
 		}
 
+		private string GetResource( string Path, string ID, string Language )
+		{
+			return this.StringManager.FindString( Path, ID, Language );
+		}
+
 		#endregion
 
 		#region Test codes
 
 		private void Test_Button_Click( object sender, EventArgs e )
 		{
-			string path = @"C:\Res\_Arm\_Mill\_21A\Common\CncFenu.xml";
-			OpenFile( path );
-
-			//Application.Restart();
+			string test = this.StringManager.FindString( @"D:\Res\_Arm\_Mill\_11A\Common\CncFenu.xml", "Str::Fenu::Main::MenuProgram", "CHT" );
+			MessageBox.Show( test );
 		}
 
-		#endregion	
+		#endregion
 
-		
+
 	}
 }

@@ -34,12 +34,16 @@ namespace Syntec.Windows
 		public delegate void ShowStatusInfoEventHandler( string text, int progress, bool marquee );
 		public event ShowStatusInfoEventHandler OnShowStatusInfo;
 
+		public delegate string GetResourceEventHandler( string Path, string ID, string Language );
+		public event GetResourceEventHandler OnGetResource;
+
 		#endregion
 
 		public DocumentsForm( string XMLPath, ShowPropertiesEventHandler OnShowProperties,
 												SetPropertyGridEventHandler OnSetPropertyGrid,
 												ShowObjectsEventHandler OnShowObjects,
-												ShowStatusInfoEventHandler OnShowStatusInfo )
+												ShowStatusInfoEventHandler OnShowStatusInfo,
+												GetResourceEventHandler OnGetResource )
 		{
 			InitializeComponent();
 
@@ -50,6 +54,7 @@ namespace Syntec.Windows
 			this.OnSetPropertyGrid += OnSetPropertyGrid;
 			this.OnShowObjects += OnShowObjects;
 			this.OnShowStatusInfo += OnShowStatusInfo;
+			this.OnGetResource += OnGetResource;
 
 			if( ( instance = ModuleManager.FindProcessor( XMLPath ) ) == null ) {
 				// Destroy this form if nothing applicable
@@ -187,6 +192,16 @@ namespace Syntec.Windows
 				if( this.TabText.EndsWith( "*" ) ) {
 					this.TabText = this.TabText.Substring( 0, this.TabText.Length - 1 );
 				}
+			}
+		}
+
+		public string GetResource( string Path, string ID, string Language )
+		{
+			if( this.OnGetResource != null ) {
+				return this.OnGetResource( Path, ID, Language );
+			}
+			else {
+				return string.Empty;
 			}
 		}
 

@@ -35,6 +35,9 @@ namespace Fenubars.Display
 		public delegate void FenuModifiedHandler();
 		public event FenuModifiedHandler Modified;
 
+		public delegate string GetResourceEventHandler( string ID );
+		public event GetResourceEventHandler OnGetResource;
+
 		#endregion
 
 		public Fenu( FenuState AssignedFenuContent, int normalButtonCount )
@@ -83,6 +86,7 @@ namespace Fenubars.Display
 				NRB.MouseDown += new MouseEventHandler( FenuButton_MouseDown );
 				NRB.Modified += new NormalButton.ButtonModifiedHandler( SetFenuModified );
 				NRB.KeyDown += new KeyEventHandler( FenuButton_KeyDown );
+				NRB.OnGetResource += new NormalButton.GetResourceEventHandler( GetResource );
 				NRB.ContextMenuStrip = ButtonContextMenu;
 
 				FenuButtonState FBS = _FenuContent.NormalButtonList.Find(
@@ -121,8 +125,9 @@ namespace Fenubars.Display
 					int index = ButtonPosition( button.Location );
 
 					// Button not occupied, then bind info to it
-					if( !binded )
+					if( !binded ) {
 						button.SetState( image[ index ], true );
+					}
 
 					// Set font
 					button.Font = GenerateFontByStatus( status[ index ], binded, button.Font );
@@ -239,6 +244,11 @@ namespace Fenubars.Display
 		{
 			if( Modified != null )
 				Modified();
+		}
+
+		private string GetResource( string ID )
+		{
+			return this.OnGetResource( ID );
 		}
 
 		#endregion
@@ -395,7 +405,7 @@ namespace Fenubars.Display
 
 			// Assign the binding
 			( target as NormalButton ).SetState( FBS );
-			
+
 			this.SetFenuModified();
 		}
 
@@ -407,7 +417,7 @@ namespace Fenubars.Display
 			ObliterateState( target );
 
 			this.UpdateFromImage();
-			
+
 			this.SetFenuModified();
 		}
 

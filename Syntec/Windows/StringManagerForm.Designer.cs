@@ -1,6 +1,6 @@
 namespace Syntec.Windows
 {
-	partial class StringViewerForm
+	partial class StringManagerForm
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -27,23 +27,24 @@ namespace Syntec.Windows
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager( typeof( StringViewerForm ) );
-			this.StringViewer_ToolStrip = new System.Windows.Forms.ToolStrip();
+			this.components = new System.ComponentModel.Container();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager( typeof( StringManagerForm ) );
+			this.StringManager_ToolStrip = new System.Windows.Forms.ToolStrip();
 			this.Refresh_ToolStripButton = new System.Windows.Forms.ToolStripButton();
-			this.String_TreeView = new System.Windows.Forms.TreeView();
-			this.StringViewer_ToolStrip.SuspendLayout();
+			this.String_TreeView = new Language.Display.ObjectTree();
+			this.StringManager_ToolStrip.SuspendLayout();
 			this.SuspendLayout();
 			// 
-			// StringViewer_ToolStrip
+			// StringManager_ToolStrip
 			// 
-			this.StringViewer_ToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-			this.StringViewer_ToolStrip.Items.AddRange( new System.Windows.Forms.ToolStripItem[] {
+			this.StringManager_ToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+			this.StringManager_ToolStrip.Items.AddRange( new System.Windows.Forms.ToolStripItem[] {
             this.Refresh_ToolStripButton} );
-			this.StringViewer_ToolStrip.Location = new System.Drawing.Point( 0, 0 );
-			this.StringViewer_ToolStrip.Name = "StringViewer_ToolStrip";
-			this.StringViewer_ToolStrip.Size = new System.Drawing.Size( 249, 25 );
-			this.StringViewer_ToolStrip.TabIndex = 0;
-			this.StringViewer_ToolStrip.Text = "toolStrip1";
+			this.StringManager_ToolStrip.Location = new System.Drawing.Point( 0, 0 );
+			this.StringManager_ToolStrip.Name = "StringManager_ToolStrip";
+			this.StringManager_ToolStrip.Size = new System.Drawing.Size( 249, 25 );
+			this.StringManager_ToolStrip.TabIndex = 0;
+			this.StringManager_ToolStrip.Text = "toolStrip1";
 			// 
 			// Refresh_ToolStripButton
 			// 
@@ -59,21 +60,24 @@ namespace Syntec.Windows
 			// String_TreeView
 			// 
 			this.String_TreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.String_TreeView.ImageIndex = 0;
 			this.String_TreeView.Location = new System.Drawing.Point( 0, 25 );
 			this.String_TreeView.Name = "String_TreeView";
+			this.String_TreeView.SelectedImageIndex = 0;
 			this.String_TreeView.Size = new System.Drawing.Size( 249, 351 );
 			this.String_TreeView.TabIndex = 1;
 			// 
-			// StringViewer
+			// StringManagerForm
 			// 
 			this.ClientSize = new System.Drawing.Size( 249, 376 );
 			this.Controls.Add( this.String_TreeView );
-			this.Controls.Add( this.StringViewer_ToolStrip );
+			this.Controls.Add( this.StringManager_ToolStrip );
 			this.Font = new System.Drawing.Font( "PMingLiU", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ( (byte)( 136 ) ) );
-			this.Name = "StringViewer";
-			this.Text = "String Viewer";
-			this.StringViewer_ToolStrip.ResumeLayout( false );
-			this.StringViewer_ToolStrip.PerformLayout();
+			this.Icon = ( (System.Drawing.Icon)( resources.GetObject( "$this.Icon" ) ) );
+			this.Name = "StringManagerForm";
+			this.Text = "String Manager";
+			this.StringManager_ToolStrip.ResumeLayout( false );
+			this.StringManager_ToolStrip.PerformLayout();
 			this.ResumeLayout( false );
 			this.PerformLayout();
 
@@ -81,8 +85,8 @@ namespace Syntec.Windows
 
 		#endregion
 
-		private System.Windows.Forms.ToolStrip StringViewer_ToolStrip;
+		private System.Windows.Forms.ToolStrip StringManager_ToolStrip;
 		private System.Windows.Forms.ToolStripButton Refresh_ToolStripButton;
-		private System.Windows.Forms.TreeView String_TreeView;
+		private Language.Display.ObjectTree String_TreeView;
 	}
 }

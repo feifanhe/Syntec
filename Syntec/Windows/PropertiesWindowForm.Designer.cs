@@ -27,6 +27,7 @@ namespace Syntec.Windows
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager( typeof( PropertiesWindowForm ) );
 			this.PropertiesViewer = new Azuria.Common.Controls.FilteredPropertyGrid();
 			this.SuspendLayout();
 			// 
@@ -49,6 +50,7 @@ namespace Syntec.Windows
 			this.Controls.Add( this.PropertiesViewer );
 			this.Font = new System.Drawing.Font( "Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ( (byte)( 136 ) ) );
 			this.HideOnClose = true;
+			this.Icon = ( (System.Drawing.Icon)( resources.GetObject( "$this.Icon" ) ) );
 			this.Name = "PropertiesWindowForm";
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;

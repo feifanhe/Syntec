@@ -84,19 +84,19 @@
       <SubType>Designer</SubType>
       <DependentUpon>DocumentsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Windows\NewFileDialog.resx">
+    <EmbeddedResource Include="Methods\NewFileDialog.resx">
       <SubType>Designer</SubType>
       <DependentUpon>NewFileDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Windows\NewItemInputPanel.resx">
+    <EmbeddedResource Include="Methods\NewItemInputPanel.resx">
       <DependentUpon>NewItemInputPanel.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Windows\NewItemSelectionPanel.resx">
+    <EmbeddedResource Include="Methods\NewItemSelectionPanel.resx">
       <SubType>Designer</SubType>
       <DependentUpon>NewItemSelectionPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Windows\NewWorkspaceDialog.resx">
+    <EmbeddedResource Include="Methods\NewWorkspaceDialog.resx">
       <SubType>Designer</SubType>
       <DependentUpon>NewWorkspaceDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -108,9 +108,9 @@
       <SubType>Designer</SubType>
       <DependentUpon>PropertiesWindowForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Windows\StringViewerForm.resx">
+    <EmbeddedResource Include="Windows\StringManagerForm.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>StringViewerForm.cs</DependentUpon>
+      <DependentUpon>StringManagerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Windows\WorkspaceExplorerForm.resx">
       <SubType>Designer</SubType>
@@ -127,29 +127,28 @@
     <Compile Include="Windows\DocumentsForm.Designer.cs">
       <DependentUpon>DocumentsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Windows\NewFileDialog.cs">
+    <Compile Include="Methods\NewFileDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Windows\NewFileDialog.Designer.cs">
+    <Compile Include="Methods\NewFileDialog.Designer.cs">
       <DependentUpon>NewFileDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Windows\NewItemInputPanel.cs">
+    <Compile Include="Methods\NewItemInputPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Windows\NewItemInputPanel.Designer.cs">
+    <Compile Include="Methods\NewItemInputPanel.Designer.cs">
       <DependentUpon>NewItemInputPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Windows\NewItemSelectionPanel.cs">
+    <Compile Include="Methods\NewItemSelectionPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Windows\NewItemSelectionPanel.Designer.cs">
+    <Compile Include="Methods\NewItemSelectionPanel.Designer.cs">
       <DependentUpon>NewItemSelectionPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Windows\NewWorkspaceDialog.cs">
+    <Compile Include="Methods\NewWorkspaceDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Windows\NewWorkspaceDialog.Designer.cs">
-      <DependentUpon>NewWorkspaceDialog.cs</DependentUpon>
+    <Compile Include="Methods\NewWorkspaceDialog.Designer.cs">
     </Compile>
     <Compile Include="Windows\ObjectBrowserForm.cs">
       <SubType>Form</SubType>
@@ -163,11 +162,11 @@
     <Compile Include="Windows\PropertiesWindowForm.Designer.cs">
       <DependentUpon>PropertiesWindowForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Windows\StringViewerForm.cs">
+    <Compile Include="Windows\StringManagerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Windows\StringViewerForm.Designer.cs">
-      <DependentUpon>StringViewerForm.cs</DependentUpon>
+    <Compile Include="Windows\StringManagerForm.Designer.cs">
+      <DependentUpon>StringManagerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Windows\WorkspaceExplorerForm.cs">
       <SubType>Form</SubType>
@@ -177,6 +176,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Language\Language.csproj">
+      <Project>{0D6FC54A-AF80-46AD-B533-7DE8FA844763}</Project>
+      <Name>Language</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PluginInterface\ModuleInterface.csproj">
       <Project>{00D0C21D-D94C-4B0F-A710-1EFBABB4C4C6}</Project>
       <Name>ModuleInterface</Name>

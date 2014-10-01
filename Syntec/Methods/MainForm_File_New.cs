@@ -14,7 +14,7 @@ namespace Syntec.Windows
 				// TODO: new workspace
 				RecentWorkspacesMenu.AddFile( dialog.SelectedBaseRes );
 				WorkspaceExplorer.ShowWorkspace( dialog.SelectedBaseRes );
-				StringViewer.ShowString( dialog.SelectedBaseRes );
+				StringManager.ShowString( dialog.SelectedBaseRes );
 			}
 		}
 

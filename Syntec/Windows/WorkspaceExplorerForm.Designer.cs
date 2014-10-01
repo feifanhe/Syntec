@@ -106,7 +106,7 @@ namespace Syntec.Windows
 			this.Name = "WorkspaceExplorerForm";
 			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
-			this.Text = "WorkspaceExplorer";
+			this.Text = "Workspace Explorer";
 			this.Workspace_ToolStrip.ResumeLayout( false );
 			this.Workspace_ToolStrip.PerformLayout();
 			this.ResumeLayout( false );

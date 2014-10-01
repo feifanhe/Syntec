@@ -41,6 +41,8 @@ namespace Fenubars
 				_Host.ShowProperties( data );
 				_Host.SetPropertyGrid( new AttributeCollection( new Attribute[] { new CategoryAttribute( "Fenu Button" ) } ),
 										SelectedProperties( type ) );
+				// Reset object
+				_Host.ShowProperties( data );
 			}
 		}
 
@@ -232,6 +234,7 @@ namespace Fenubars
 					newFenuPanel.OnDataAvailable += new Fenu.DataAvailableEventHandler( FocusedObjectAvailable );
 					newFenuPanel.Linkage += new Fenu.LinkageEventHandler( Open );
 					newFenuPanel.Modified += new Fenu.FenuModifiedHandler( FenuModified );
+					newFenuPanel.OnGetResource += new Fenu.GetResourceEventHandler( GetResource );
 
 					newFenuPanel.PopulateButtons();
 
@@ -255,6 +258,11 @@ namespace Fenubars
 		private void FenuModified()
 		{
 			_Host.Modified( true );
+		}
+
+		private string GetResource( string ID )
+		{
+			return _Host.GetResource( this.XMLPath, ID, "CHT" );
 		}
 
 		#endregion

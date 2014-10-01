@@ -152,5 +152,7 @@ namespace ModuleInterface
 		/// </summary>
 		/// <param name="modified">True if it's modified.</param>
 		void Modified( bool modified );
+
+		string GetResource( string Path, string ID, string Language );
 	}
 }
