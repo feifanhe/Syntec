@@ -28,42 +28,37 @@ namespace Syntec.Windows
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem( "Test", 0 );
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager( typeof( FindResultsForm ) );
-			this.listView1 = new System.Windows.Forms.ListView();
-			this.imageList1 = new System.Windows.Forms.ImageList( this.components );
+			this.FindResults_ListView = new System.Windows.Forms.ListView();
+			this.FindResults_ImageList = new System.Windows.Forms.ImageList( this.components );
 			this.SuspendLayout();
 			// 
-			// listView1
+			// FindResults_ListView
 			// 
-			this.listView1.Activation = System.Windows.Forms.ItemActivation.OneClick;
-			this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-			listViewItem1.StateImageIndex = 0;
-			listViewItem1.UseItemStyleForSubItems = false;
-			this.listView1.Items.AddRange( new System.Windows.Forms.ListViewItem[] {
-            listViewItem1} );
-			this.listView1.Location = new System.Drawing.Point( 0, 0 );
-			this.listView1.Name = "listView1";
-			this.listView1.Size = new System.Drawing.Size( 733, 122 );
-			this.listView1.SmallImageList = this.imageList1;
-			this.listView1.TabIndex = 0;
-			this.listView1.UseCompatibleStateImageBehavior = false;
-			this.listView1.View = System.Windows.Forms.View.List;
-			this.listView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler( this.listView1_MouseDoubleClick );
+			this.FindResults_ListView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.FindResults_ListView.Location = new System.Drawing.Point( 0, 0 );
+			this.FindResults_ListView.Name = "FindResults_ListView";
+			this.FindResults_ListView.Size = new System.Drawing.Size( 733, 122 );
+			this.FindResults_ListView.SmallImageList = this.FindResults_ImageList;
+			this.FindResults_ListView.TabIndex = 0;
+			this.FindResults_ListView.UseCompatibleStateImageBehavior = false;
+			this.FindResults_ListView.View = System.Windows.Forms.View.List;
+			this.FindResults_ListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler( this.listView1_MouseDoubleClick );
 			// 
-			// imageList1
+			// FindResults_ImageList
 			// 
-			this.imageList1.ImageStream = ( (System.Windows.Forms.ImageListStreamer)( resources.GetObject( "imageList1.ImageStream" ) ) );
-			this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-			this.imageList1.Images.SetKeyName( 0, "Edit_Copy.png" );
+			this.FindResults_ImageList.ImageStream = ( (System.Windows.Forms.ImageListStreamer)( resources.GetObject( "FindResults_ImageList.ImageStream" ) ) );
+			this.FindResults_ImageList.TransparentColor = System.Drawing.Color.Transparent;
+			this.FindResults_ImageList.Images.SetKeyName( 0, "Search_Result.png" );
 			// 
 			// FindResultsForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF( 6F, 12F );
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size( 733, 122 );
-			this.Controls.Add( this.listView1 );
+			this.Controls.Add( this.FindResults_ListView );
 			this.Font = new System.Drawing.Font( "PMingLiU", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ( (byte)( 136 ) ) );
+			this.Icon = ( (System.Drawing.Icon)( resources.GetObject( "$this.Icon" ) ) );
 			this.Name = "FindResultsForm";
 			this.Text = "Find Results";
 			this.ResumeLayout( false );
@@ -72,7 +67,7 @@ namespace Syntec.Windows
 
 		#endregion
 
-		private System.Windows.Forms.ListView listView1;
-		private System.Windows.Forms.ImageList imageList1;
+		private System.Windows.Forms.ListView FindResults_ListView;
+		private System.Windows.Forms.ImageList FindResults_ImageList;
 	}
 }

@@ -37,11 +37,9 @@ namespace Syntec.Windows
 
 			// Load all the windows and set them to default locations
 			PropertiesWindow.Show( Main_DockPanel, DockState.DockRight );
-			FindResults.Show( Main_DockPanel, DockState.DockBottom);
 			ObjectBrowser.Show( PropertiesWindow.Pane, DockAlignment.Top, 0.6 );
 			StringManager.Show( ObjectBrowser.Pane, ObjectBrowser );
 			WorkspaceExplorer.Show( StringManager.Pane, StringManager );
-
 
 			PopulateRecentlyUsedMenu();
 		}
@@ -203,6 +201,7 @@ namespace Syntec.Windows
 
 		private void Edit_Search_ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
+
 			string key = "¨t²Î";
 
 			// TODO: Show a dialog as searching interface
@@ -219,6 +218,13 @@ namespace Syntec.Windows
 				}
 			}
 
+			if( FindResults.IsHidden ) {
+				FindResults.Show( Main_DockPanel, DockState.DockBottom );
+				Main_DockPanel.UpdateDockWindowZOrder( DockStyle.Bottom, false );
+			}
+			else {
+				FindResults.Show();
+			}
 			// or search in this.MdiChildren
 
 			//DocumentsForm DF = this.ActiveMdiChild as DocumentsForm;
