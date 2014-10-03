@@ -22,17 +22,17 @@ namespace Syntec.Windows
 			string displayName = host.XMLPath + " : " + searchResult.ObjectName;
 			ListViewItem newItem = new ListViewItem( displayName, 0 );
 			newItem.Tag = searchResult;
-			this.listView1.Items.Add( newItem );
+			this.FindResults_ListView.Items.Add( newItem );
 		}
 
 		public void ClearItem()
 		{
-			this.listView1.Items.Clear();
+			this.FindResults_ListView.Items.Clear();
 		}
 
 		private void listView1_MouseDoubleClick( object sender, MouseEventArgs e )
 		{
-			ListViewItem item = listView1.GetItemAt( e.X, e.Y );
+			ListViewItem item = FindResults_ListView.GetItemAt( e.X, e.Y );
 			ModuleInterface.SearchResult searchResult = item.Tag as ModuleInterface.SearchResult;
 			searchResult.ShowResult( searchResult.ObjectName );
 		}
