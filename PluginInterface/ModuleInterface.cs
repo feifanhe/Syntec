@@ -83,6 +83,11 @@ namespace ModuleInterface
 		/// </summary>
 		void Delete();
 
+		/// <summary>
+		/// To find the controls that use the specified ID
+		/// </summary>
+		SearchResult[] SearchForIDUsers( string[] IDs );
+
 		#endregion
 
 		#region Owning object operations
@@ -154,5 +159,25 @@ namespace ModuleInterface
 		void Modified( bool modified );
 
 		string GetResource( string Path, string ID, string Language );
+	}
+
+	public class SearchResult
+	{
+		public delegate void ShowResultHandler( string target );
+		public ShowResultHandler ShowResult;
+
+		private string _ObjectName;
+		public string ObjectName
+		{
+			get
+			{
+				return this._ObjectName;
+			}
+			set
+			{
+				this._ObjectName = value;
+			}
+		}
+
 	}
 }

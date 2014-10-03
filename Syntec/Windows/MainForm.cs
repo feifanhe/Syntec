@@ -13,6 +13,7 @@ namespace Syntec.Windows
 	public partial class MainForm : Form
 	{
 		// General windows
+		private FindResultsForm FindResults = new FindResultsForm();
 		private WorkspaceExplorerForm WorkspaceExplorer = new WorkspaceExplorerForm();
 		private PropertiesWindowForm PropertiesWindow = new PropertiesWindowForm();
 		private ObjectBrowserForm ObjectBrowser = new ObjectBrowserForm();
@@ -36,9 +37,11 @@ namespace Syntec.Windows
 
 			// Load all the windows and set them to default locations
 			PropertiesWindow.Show( Main_DockPanel, DockState.DockRight );
+			FindResults.Show( Main_DockPanel, DockState.DockBottom);
 			ObjectBrowser.Show( PropertiesWindow.Pane, DockAlignment.Top, 0.6 );
 			StringManager.Show( ObjectBrowser.Pane, ObjectBrowser );
 			WorkspaceExplorer.Show( StringManager.Pane, StringManager );
+
 
 			PopulateRecentlyUsedMenu();
 		}
@@ -198,6 +201,33 @@ namespace Syntec.Windows
 			}
 		}
 
+		private void Edit_Search_ToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			string key = "¨t²Î";
+
+			// TODO: Show a dialog as searching interface
+
+			string[] results = this.FindIDsByContent( key );
+
+			this.FindResults.ClearItem();
+
+			// search in all opened documents
+
+			foreach( Form form in this.MdiChildren ) {
+				if( typeof( DocumentsForm ) == form.GetType() ) {
+					( form as DocumentsForm ).SearchForIDUsers( results );
+				}
+			}
+
+			// or search in this.MdiChildren
+
+			//DocumentsForm DF = this.ActiveMdiChild as DocumentsForm;
+			//if( DF != null ) {
+			//    // Do find ID user
+			//}
+
+		}
+
 		#endregion
 
 		#region View
@@ -312,7 +342,8 @@ namespace Syntec.Windows
 																new DocumentsForm.SetPropertyGridEventHandler( SetPropertyGrid ),
 																new DocumentsForm.ShowObjectsEventHandler( ShowObjects ),
 																new DocumentsForm.ShowStatusInfoEventHandler( ShowStatusInfo ),
-																new DocumentsForm.GetResourceEventHandler( GetResource ) );
+																new DocumentsForm.GetResourceEventHandler( GetResource ),
+																new DocumentsForm.FindResultsEventHandler( OnFindResults ) );
 
 			if( openFromFile.IsDisposed )
 				return;
@@ -375,6 +406,18 @@ namespace Syntec.Windows
 			return this.StringManager.FindString( Path, ID, Language );
 		}
 
+		private void OnFindResults( DocumentsForm host, ModuleInterface.SearchResult[] results )
+		{
+			foreach( ModuleInterface.SearchResult result in results){
+				this.FindResults.AddItem( host, result );
+			}
+		}
+
+		private string[] FindIDsByContent( string content )
+		{
+			return this.StringManager.FindIDsByContent( content );
+		}
+
 		#endregion
 
 		#region Test codes
@@ -386,7 +429,6 @@ namespace Syntec.Windows
 		}
 
 		#endregion
-
 
 	}
 }

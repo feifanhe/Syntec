@@ -28,21 +28,21 @@ namespace Syntec.Windows
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager( typeof( MainForm ) );
-			WeifenLuo.WinFormsUI.Docking.DockPanelSkin dockPanelSkin1 = new WeifenLuo.WinFormsUI.Docking.DockPanelSkin();
-			WeifenLuo.WinFormsUI.Docking.AutoHideStripSkin autoHideStripSkin1 = new WeifenLuo.WinFormsUI.Docking.AutoHideStripSkin();
-			WeifenLuo.WinFormsUI.Docking.DockPanelGradient dockPanelGradient1 = new WeifenLuo.WinFormsUI.Docking.DockPanelGradient();
-			WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient1 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
-			WeifenLuo.WinFormsUI.Docking.DockPaneStripSkin dockPaneStripSkin1 = new WeifenLuo.WinFormsUI.Docking.DockPaneStripSkin();
-			WeifenLuo.WinFormsUI.Docking.DockPaneStripGradient dockPaneStripGradient1 = new WeifenLuo.WinFormsUI.Docking.DockPaneStripGradient();
-			WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient2 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
-			WeifenLuo.WinFormsUI.Docking.DockPanelGradient dockPanelGradient2 = new WeifenLuo.WinFormsUI.Docking.DockPanelGradient();
-			WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient3 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
-			WeifenLuo.WinFormsUI.Docking.DockPaneStripToolWindowGradient dockPaneStripToolWindowGradient1 = new WeifenLuo.WinFormsUI.Docking.DockPaneStripToolWindowGradient();
-			WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient4 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
-			WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient5 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
-			WeifenLuo.WinFormsUI.Docking.DockPanelGradient dockPanelGradient3 = new WeifenLuo.WinFormsUI.Docking.DockPanelGradient();
-			WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient6 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
-			WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient7 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
+			WeifenLuo.WinFormsUI.Docking.DockPanelSkin dockPanelSkin2 = new WeifenLuo.WinFormsUI.Docking.DockPanelSkin();
+			WeifenLuo.WinFormsUI.Docking.AutoHideStripSkin autoHideStripSkin2 = new WeifenLuo.WinFormsUI.Docking.AutoHideStripSkin();
+			WeifenLuo.WinFormsUI.Docking.DockPanelGradient dockPanelGradient4 = new WeifenLuo.WinFormsUI.Docking.DockPanelGradient();
+			WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient8 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
+			WeifenLuo.WinFormsUI.Docking.DockPaneStripSkin dockPaneStripSkin2 = new WeifenLuo.WinFormsUI.Docking.DockPaneStripSkin();
+			WeifenLuo.WinFormsUI.Docking.DockPaneStripGradient dockPaneStripGradient2 = new WeifenLuo.WinFormsUI.Docking.DockPaneStripGradient();
+			WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient9 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
+			WeifenLuo.WinFormsUI.Docking.DockPanelGradient dockPanelGradient5 = new WeifenLuo.WinFormsUI.Docking.DockPanelGradient();
+			WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient10 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
+			WeifenLuo.WinFormsUI.Docking.DockPaneStripToolWindowGradient dockPaneStripToolWindowGradient2 = new WeifenLuo.WinFormsUI.Docking.DockPaneStripToolWindowGradient();
+			WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient11 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
+			WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient12 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
+			WeifenLuo.WinFormsUI.Docking.DockPanelGradient dockPanelGradient6 = new WeifenLuo.WinFormsUI.Docking.DockPanelGradient();
+			WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient13 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
+			WeifenLuo.WinFormsUI.Docking.TabGradient tabGradient14 = new WeifenLuo.WinFormsUI.Docking.TabGradient();
 			this.Main_MenuStrip = new System.Windows.Forms.MenuStrip();
 			this.File_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.File_New_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,7 +66,7 @@ namespace Syntec.Windows
 			this.File_ToolStripSeparator_5 = new System.Windows.Forms.ToolStripSeparator();
 			this.File_Exit_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.Edit_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.Dummy = new System.Windows.Forms.ToolStripMenuItem();
+			this.Edit_Undo_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.Edit_ToolStripSeparator_1 = new System.Windows.Forms.ToolStripSeparator();
 			this.Edit_Cut_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.Edit_Copy_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -75,7 +75,7 @@ namespace Syntec.Windows
 			this.Edit_ToolStripSeparator_2 = new System.Windows.Forms.ToolStripSeparator();
 			this.Edit_SelectAll_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.Edit_ToolStripSeparator_3 = new System.Windows.Forms.ToolStripSeparator();
-			this.Dummy2 = new System.Windows.Forms.ToolStripMenuItem();
+			this.Edit_Search_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.View_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.View_Code_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.View_Designer_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -291,7 +291,7 @@ namespace Syntec.Windows
 			// Edit_ToolStripMenuItem
 			// 
 			this.Edit_ToolStripMenuItem.DropDownItems.AddRange( new System.Windows.Forms.ToolStripItem[] {
-            this.Dummy,
+            this.Edit_Undo_ToolStripMenuItem,
             this.Edit_ToolStripSeparator_1,
             this.Edit_Cut_ToolStripMenuItem,
             this.Edit_Copy_ToolStripMenuItem,
@@ -300,28 +300,29 @@ namespace Syntec.Windows
             this.Edit_ToolStripSeparator_2,
             this.Edit_SelectAll_ToolStripMenuItem,
             this.Edit_ToolStripSeparator_3,
-            this.Dummy2} );
+            this.Edit_Search_ToolStripMenuItem} );
 			this.Edit_ToolStripMenuItem.Name = "Edit_ToolStripMenuItem";
 			this.Edit_ToolStripMenuItem.Size = new System.Drawing.Size( 42, 20 );
 			this.Edit_ToolStripMenuItem.Text = "Edit";
 			// 
-			// Dummy
+			// Edit_Undo_ToolStripMenuItem
 			// 
-			this.Dummy.Enabled = false;
-			this.Dummy.Name = "Dummy";
-			this.Dummy.Size = new System.Drawing.Size( 127, 22 );
-			this.Dummy.Text = "Dummy";
+			this.Edit_Undo_ToolStripMenuItem.Enabled = false;
+			this.Edit_Undo_ToolStripMenuItem.Image = ( (System.Drawing.Image)( resources.GetObject( "Edit_Undo_ToolStripMenuItem.Image" ) ) );
+			this.Edit_Undo_ToolStripMenuItem.Name = "Edit_Undo_ToolStripMenuItem";
+			this.Edit_Undo_ToolStripMenuItem.Size = new System.Drawing.Size( 152, 22 );
+			this.Edit_Undo_ToolStripMenuItem.Text = "Undo";
 			// 
 			// Edit_ToolStripSeparator_1
 			// 
 			this.Edit_ToolStripSeparator_1.Name = "Edit_ToolStripSeparator_1";
-			this.Edit_ToolStripSeparator_1.Size = new System.Drawing.Size( 124, 6 );
+			this.Edit_ToolStripSeparator_1.Size = new System.Drawing.Size( 149, 6 );
 			// 
 			// Edit_Cut_ToolStripMenuItem
 			// 
 			this.Edit_Cut_ToolStripMenuItem.Image = ( (System.Drawing.Image)( resources.GetObject( "Edit_Cut_ToolStripMenuItem.Image" ) ) );
 			this.Edit_Cut_ToolStripMenuItem.Name = "Edit_Cut_ToolStripMenuItem";
-			this.Edit_Cut_ToolStripMenuItem.Size = new System.Drawing.Size( 127, 22 );
+			this.Edit_Cut_ToolStripMenuItem.Size = new System.Drawing.Size( 152, 22 );
 			this.Edit_Cut_ToolStripMenuItem.Text = "Cut";
 			this.Edit_Cut_ToolStripMenuItem.Click += new System.EventHandler( this.Edit_Cut_ToolStripMenuItem_Click );
 			// 
@@ -329,7 +330,7 @@ namespace Syntec.Windows
 			// 
 			this.Edit_Copy_ToolStripMenuItem.Image = ( (System.Drawing.Image)( resources.GetObject( "Edit_Copy_ToolStripMenuItem.Image" ) ) );
 			this.Edit_Copy_ToolStripMenuItem.Name = "Edit_Copy_ToolStripMenuItem";
-			this.Edit_Copy_ToolStripMenuItem.Size = new System.Drawing.Size( 127, 22 );
+			this.Edit_Copy_ToolStripMenuItem.Size = new System.Drawing.Size( 152, 22 );
 			this.Edit_Copy_ToolStripMenuItem.Text = "Copy";
 			this.Edit_Copy_ToolStripMenuItem.Click += new System.EventHandler( this.Edit_Copy_ToolStripMenuItem_Click );
 			// 
@@ -337,7 +338,7 @@ namespace Syntec.Windows
 			// 
 			this.Edit_Paste_ToolStripMenuItem.Image = ( (System.Drawing.Image)( resources.GetObject( "Edit_Paste_ToolStripMenuItem.Image" ) ) );
 			this.Edit_Paste_ToolStripMenuItem.Name = "Edit_Paste_ToolStripMenuItem";
-			this.Edit_Paste_ToolStripMenuItem.Size = new System.Drawing.Size( 127, 22 );
+			this.Edit_Paste_ToolStripMenuItem.Size = new System.Drawing.Size( 152, 22 );
 			this.Edit_Paste_ToolStripMenuItem.Text = "Paste";
 			this.Edit_Paste_ToolStripMenuItem.Click += new System.EventHandler( this.Edit_Paste_ToolStripMenuItem_Click );
 			// 
@@ -345,33 +346,33 @@ namespace Syntec.Windows
 			// 
 			this.Edit_Delete_ToolStripMenuItem.Image = ( (System.Drawing.Image)( resources.GetObject( "Edit_Delete_ToolStripMenuItem.Image" ) ) );
 			this.Edit_Delete_ToolStripMenuItem.Name = "Edit_Delete_ToolStripMenuItem";
-			this.Edit_Delete_ToolStripMenuItem.Size = new System.Drawing.Size( 127, 22 );
+			this.Edit_Delete_ToolStripMenuItem.Size = new System.Drawing.Size( 152, 22 );
 			this.Edit_Delete_ToolStripMenuItem.Text = "Delete";
 			this.Edit_Delete_ToolStripMenuItem.Click += new System.EventHandler( this.Edit_Delete_ToolStripMenuItem_Click );
 			// 
 			// Edit_ToolStripSeparator_2
 			// 
 			this.Edit_ToolStripSeparator_2.Name = "Edit_ToolStripSeparator_2";
-			this.Edit_ToolStripSeparator_2.Size = new System.Drawing.Size( 124, 6 );
+			this.Edit_ToolStripSeparator_2.Size = new System.Drawing.Size( 149, 6 );
 			// 
 			// Edit_SelectAll_ToolStripMenuItem
 			// 
 			this.Edit_SelectAll_ToolStripMenuItem.Enabled = false;
 			this.Edit_SelectAll_ToolStripMenuItem.Name = "Edit_SelectAll_ToolStripMenuItem";
-			this.Edit_SelectAll_ToolStripMenuItem.Size = new System.Drawing.Size( 127, 22 );
+			this.Edit_SelectAll_ToolStripMenuItem.Size = new System.Drawing.Size( 152, 22 );
 			this.Edit_SelectAll_ToolStripMenuItem.Text = "Select All";
 			// 
 			// Edit_ToolStripSeparator_3
 			// 
 			this.Edit_ToolStripSeparator_3.Name = "Edit_ToolStripSeparator_3";
-			this.Edit_ToolStripSeparator_3.Size = new System.Drawing.Size( 124, 6 );
+			this.Edit_ToolStripSeparator_3.Size = new System.Drawing.Size( 149, 6 );
 			// 
-			// Dummy2
+			// Edit_Search_ToolStripMenuItem
 			// 
-			this.Dummy2.Enabled = false;
-			this.Dummy2.Name = "Dummy2";
-			this.Dummy2.Size = new System.Drawing.Size( 127, 22 );
-			this.Dummy2.Text = "Dummy2";
+			this.Edit_Search_ToolStripMenuItem.Name = "Edit_Search_ToolStripMenuItem";
+			this.Edit_Search_ToolStripMenuItem.Size = new System.Drawing.Size( 152, 22 );
+			this.Edit_Search_ToolStripMenuItem.Text = "Search";
+			this.Edit_Search_ToolStripMenuItem.Click += new System.EventHandler( this.Edit_Search_ToolStripMenuItem_Click );
 			// 
 			// View_ToolStripMenuItem
 			// 
@@ -607,52 +608,52 @@ namespace Syntec.Windows
 			this.Main_DockPanel.Location = new System.Drawing.Point( 0, 49 );
 			this.Main_DockPanel.Name = "Main_DockPanel";
 			this.Main_DockPanel.Size = new System.Drawing.Size( 1220, 470 );
-			dockPanelGradient1.EndColor = System.Drawing.SystemColors.ControlLight;
-			dockPanelGradient1.StartColor = System.Drawing.SystemColors.ControlLight;
-			autoHideStripSkin1.DockStripGradient = dockPanelGradient1;
-			tabGradient1.EndColor = System.Drawing.SystemColors.Control;
-			tabGradient1.StartColor = System.Drawing.SystemColors.Control;
-			tabGradient1.TextColor = System.Drawing.SystemColors.ControlDarkDark;
-			autoHideStripSkin1.TabGradient = tabGradient1;
-			autoHideStripSkin1.TextFont = new System.Drawing.Font( "Segoe UI", 9F );
-			dockPanelSkin1.AutoHideStripSkin = autoHideStripSkin1;
-			tabGradient2.EndColor = System.Drawing.SystemColors.ControlLightLight;
-			tabGradient2.StartColor = System.Drawing.SystemColors.ControlLightLight;
-			tabGradient2.TextColor = System.Drawing.SystemColors.ControlText;
-			dockPaneStripGradient1.ActiveTabGradient = tabGradient2;
-			dockPanelGradient2.EndColor = System.Drawing.SystemColors.Control;
-			dockPanelGradient2.StartColor = System.Drawing.SystemColors.Control;
-			dockPaneStripGradient1.DockStripGradient = dockPanelGradient2;
-			tabGradient3.EndColor = System.Drawing.SystemColors.ControlLight;
-			tabGradient3.StartColor = System.Drawing.SystemColors.ControlLight;
-			tabGradient3.TextColor = System.Drawing.SystemColors.ControlText;
-			dockPaneStripGradient1.InactiveTabGradient = tabGradient3;
-			dockPaneStripSkin1.DocumentGradient = dockPaneStripGradient1;
-			dockPaneStripSkin1.TextFont = new System.Drawing.Font( "Segoe UI", 9F );
-			tabGradient4.EndColor = System.Drawing.SystemColors.ActiveCaption;
-			tabGradient4.LinearGradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-			tabGradient4.StartColor = System.Drawing.SystemColors.GradientActiveCaption;
-			tabGradient4.TextColor = System.Drawing.SystemColors.ActiveCaptionText;
-			dockPaneStripToolWindowGradient1.ActiveCaptionGradient = tabGradient4;
-			tabGradient5.EndColor = System.Drawing.SystemColors.Control;
-			tabGradient5.StartColor = System.Drawing.SystemColors.Control;
-			tabGradient5.TextColor = System.Drawing.SystemColors.ControlText;
-			dockPaneStripToolWindowGradient1.ActiveTabGradient = tabGradient5;
-			dockPanelGradient3.EndColor = System.Drawing.SystemColors.ControlLight;
-			dockPanelGradient3.StartColor = System.Drawing.SystemColors.ControlLight;
-			dockPaneStripToolWindowGradient1.DockStripGradient = dockPanelGradient3;
-			tabGradient6.EndColor = System.Drawing.SystemColors.InactiveCaption;
-			tabGradient6.LinearGradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-			tabGradient6.StartColor = System.Drawing.SystemColors.GradientInactiveCaption;
-			tabGradient6.TextColor = System.Drawing.SystemColors.InactiveCaptionText;
-			dockPaneStripToolWindowGradient1.InactiveCaptionGradient = tabGradient6;
-			tabGradient7.EndColor = System.Drawing.Color.Transparent;
-			tabGradient7.StartColor = System.Drawing.Color.Transparent;
-			tabGradient7.TextColor = System.Drawing.SystemColors.ControlDarkDark;
-			dockPaneStripToolWindowGradient1.InactiveTabGradient = tabGradient7;
-			dockPaneStripSkin1.ToolWindowGradient = dockPaneStripToolWindowGradient1;
-			dockPanelSkin1.DockPaneStripSkin = dockPaneStripSkin1;
-			this.Main_DockPanel.Skin = dockPanelSkin1;
+			dockPanelGradient4.EndColor = System.Drawing.SystemColors.ControlLight;
+			dockPanelGradient4.StartColor = System.Drawing.SystemColors.ControlLight;
+			autoHideStripSkin2.DockStripGradient = dockPanelGradient4;
+			tabGradient8.EndColor = System.Drawing.SystemColors.Control;
+			tabGradient8.StartColor = System.Drawing.SystemColors.Control;
+			tabGradient8.TextColor = System.Drawing.SystemColors.ControlDarkDark;
+			autoHideStripSkin2.TabGradient = tabGradient8;
+			autoHideStripSkin2.TextFont = new System.Drawing.Font( "Segoe UI", 9F );
+			dockPanelSkin2.AutoHideStripSkin = autoHideStripSkin2;
+			tabGradient9.EndColor = System.Drawing.SystemColors.ControlLightLight;
+			tabGradient9.StartColor = System.Drawing.SystemColors.ControlLightLight;
+			tabGradient9.TextColor = System.Drawing.SystemColors.ControlText;
+			dockPaneStripGradient2.ActiveTabGradient = tabGradient9;
+			dockPanelGradient5.EndColor = System.Drawing.SystemColors.Control;
+			dockPanelGradient5.StartColor = System.Drawing.SystemColors.Control;
+			dockPaneStripGradient2.DockStripGradient = dockPanelGradient5;
+			tabGradient10.EndColor = System.Drawing.SystemColors.ControlLight;
+			tabGradient10.StartColor = System.Drawing.SystemColors.ControlLight;
+			tabGradient10.TextColor = System.Drawing.SystemColors.ControlText;
+			dockPaneStripGradient2.InactiveTabGradient = tabGradient10;
+			dockPaneStripSkin2.DocumentGradient = dockPaneStripGradient2;
+			dockPaneStripSkin2.TextFont = new System.Drawing.Font( "Segoe UI", 9F );
+			tabGradient11.EndColor = System.Drawing.SystemColors.ActiveCaption;
+			tabGradient11.LinearGradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+			tabGradient11.StartColor = System.Drawing.SystemColors.GradientActiveCaption;
+			tabGradient11.TextColor = System.Drawing.SystemColors.ActiveCaptionText;
+			dockPaneStripToolWindowGradient2.ActiveCaptionGradient = tabGradient11;
+			tabGradient12.EndColor = System.Drawing.SystemColors.Control;
+			tabGradient12.StartColor = System.Drawing.SystemColors.Control;
+			tabGradient12.TextColor = System.Drawing.SystemColors.ControlText;
+			dockPaneStripToolWindowGradient2.ActiveTabGradient = tabGradient12;
+			dockPanelGradient6.EndColor = System.Drawing.SystemColors.ControlLight;
+			dockPanelGradient6.StartColor = System.Drawing.SystemColors.ControlLight;
+			dockPaneStripToolWindowGradient2.DockStripGradient = dockPanelGradient6;
+			tabGradient13.EndColor = System.Drawing.SystemColors.InactiveCaption;
+			tabGradient13.LinearGradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+			tabGradient13.StartColor = System.Drawing.SystemColors.GradientInactiveCaption;
+			tabGradient13.TextColor = System.Drawing.SystemColors.InactiveCaptionText;
+			dockPaneStripToolWindowGradient2.InactiveCaptionGradient = tabGradient13;
+			tabGradient14.EndColor = System.Drawing.Color.Transparent;
+			tabGradient14.StartColor = System.Drawing.Color.Transparent;
+			tabGradient14.TextColor = System.Drawing.SystemColors.ControlDarkDark;
+			dockPaneStripToolWindowGradient2.InactiveTabGradient = tabGradient14;
+			dockPaneStripSkin2.ToolWindowGradient = dockPaneStripToolWindowGradient2;
+			dockPanelSkin2.DockPaneStripSkin = dockPaneStripSkin2;
+			this.Main_DockPanel.Skin = dockPanelSkin2;
 			this.Main_DockPanel.TabIndex = 5;
 			// 
 			// MainForm
@@ -733,7 +734,7 @@ namespace Syntec.Windows
 		private System.Windows.Forms.ToolStripSplitButton Standard_NewFile_ToolStripSplitButton;
 		private System.Windows.Forms.ToolStripButton Standard_OpenFile_ToolStripButton;
 		private System.Windows.Forms.ToolStripMenuItem Edit_ToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem Dummy;
+		private System.Windows.Forms.ToolStripMenuItem Edit_Undo_ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator Edit_ToolStripSeparator_1;
 		private System.Windows.Forms.ToolStripMenuItem Edit_Cut_ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem Edit_Copy_ToolStripMenuItem;
@@ -742,7 +743,7 @@ namespace Syntec.Windows
 		private System.Windows.Forms.ToolStripSeparator Edit_ToolStripSeparator_2;
 		private System.Windows.Forms.ToolStripMenuItem Edit_SelectAll_ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator Edit_ToolStripSeparator_3;
-		private System.Windows.Forms.ToolStripMenuItem Dummy2;
+		private System.Windows.Forms.ToolStripMenuItem Edit_Search_ToolStripMenuItem;
 		internal WeifenLuo.WinFormsUI.Docking.DockPanel Main_DockPanel;
 		private System.Windows.Forms.ToolStripStatusLabel StatusText;
 		private System.Windows.Forms.ToolStripProgressBar ProgressBar;

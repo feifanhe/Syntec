@@ -20,6 +20,8 @@ namespace Syntec.Windows
 		// Temporary store the tree view, for document switching
 		private TreeView currentTreeView = null;
 
+		public string XMLPath;
+
 		#region Event handlers
 
 		public delegate void ShowPropertiesEventHandler( object control );
@@ -37,17 +39,23 @@ namespace Syntec.Windows
 		public delegate string GetResourceEventHandler( string Path, string ID, string Language );
 		public event GetResourceEventHandler OnGetResource;
 
+		public delegate void FindResultsEventHandler( DocumentsForm host, SearchResult[] results );
+		public event FindResultsEventHandler OnFindResults;
+
 		#endregion
 
 		public DocumentsForm( string XMLPath, ShowPropertiesEventHandler OnShowProperties,
 												SetPropertyGridEventHandler OnSetPropertyGrid,
 												ShowObjectsEventHandler OnShowObjects,
 												ShowStatusInfoEventHandler OnShowStatusInfo,
-												GetResourceEventHandler OnGetResource )
+												GetResourceEventHandler OnGetResource,
+												FindResultsEventHandler OnFindResults )
 		{
 			InitializeComponent();
 
 			this.SuspendLayout();
+
+			this.XMLPath = XMLPath;
 
 			// Bind events for instance
 			this.OnShowProperties += OnShowProperties;
@@ -55,6 +63,7 @@ namespace Syntec.Windows
 			this.OnShowObjects += OnShowObjects;
 			this.OnShowStatusInfo += OnShowStatusInfo;
 			this.OnGetResource += OnGetResource;
+			this.OnFindResults += OnFindResults;
 
 			if( ( instance = ModuleManager.FindProcessor( XMLPath ) ) == null ) {
 				// Destroy this form if nothing applicable
@@ -112,6 +121,12 @@ namespace Syntec.Windows
 		public void Delete()
 		{
 			instance.Delete();
+		}
+
+		public void SearchForIDUsers( string[] IDs )
+		{
+			SearchResult[] sr = instance.SearchForIDUsers( IDs );
+			OnFindResults( this, sr );
 		}
 
 		#endregion

@@ -22,6 +22,7 @@ namespace Fenubars.Events
 			}
 
 			if( ( oldValue == null && newValue != null ) || !oldValue.Equals( (T)newValue ) ) {
+				
 				oldValue = newValue;
 
 				FirePropertyChanged( propertyName );

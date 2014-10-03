@@ -13,12 +13,12 @@ namespace Syntec.Windows
 		}
 
 		// TODO: Modulize Language Manager
-		public void ShowString( string Path )
+		public void ShowString( string path )
 		{
 			this.String_TreeView.Nodes.Clear();
 
 			//Language.Display.ObjectTree Tree = new Language.Display.ObjectTree();
-			String_TreeView.Load( Path );
+			String_TreeView.Load( path );
 
 			// Copy tree nodes
 			//TreeNode[] treeNodes = new TreeNode[ Tree.Nodes.Count ];
@@ -34,6 +34,10 @@ namespace Syntec.Windows
 			return this.String_TreeView.FindString( path, id, language );
 		}
 
+		public string[] FindIDsByContent( string content )
+		{
+			return this.String_TreeView.FindIDsByContent( content );
+		}
 
 	}
 }

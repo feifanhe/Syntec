@@ -70,19 +70,12 @@ namespace Fenubars.Display
 			if( button.Link != null )
 				acquiredLinks.Add( button.Link );
 
-			// Read from <action>
-			string linkToTest = button.Actions.Action;
-			if( linkToTest != null && linkToTest.IndexOf( CUSTOM_FENU_HEADER ) == 0 )
-				acquiredLinks.Add( linkToTest.Substring( CUSTOM_FENU_HEADER.Length ) );
-
-
 			// Read from <actions>
-			foreach( string action in button.Actions.Actions ) {
+			foreach( string action in button.Actions ) {
 				if( action == null )
 					continue;
-				linkToTest = action;
-				if( linkToTest != null && linkToTest.IndexOf( CUSTOM_FENU_HEADER ) == 0 )
-					acquiredLinks.Add( linkToTest.Substring( CUSTOM_FENU_HEADER.Length ) );
+				if( action != null && action.IndexOf( CUSTOM_FENU_HEADER ) == 0 )
+					acquiredLinks.Add( action.Substring( CUSTOM_FENU_HEADER.Length ) );
 			}
 
 			return acquiredLinks.ToArray();

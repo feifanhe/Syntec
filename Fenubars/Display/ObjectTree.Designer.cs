@@ -15,6 +15,10 @@ namespace Fenubars.Display
 			this.ObjectType_ImageList.TransparentColor = System.Drawing.Color.Transparent;
 			this.ObjectType_ImageList.Images.SetKeyName( 0, "Fenubar_Fenu_Main.png" );
 			this.ObjectType_ImageList.Images.SetKeyName( 1, "Fenubar_Fenu.png" );
+			// 
+			// ObjectTree
+			// 
+			this.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.ResumeLayout( false );
 
 		}

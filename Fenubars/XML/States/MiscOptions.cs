@@ -11,10 +11,11 @@ namespace Fenubars.XML
 	};
 
 	[TypeConverter( typeof( ExpandableObjectConverter ) )]
-	public class PasswordActions
+	public class PasswordActions : Fenubars.Events.NotifyProperyChangedBase
 	{
-		private int _Password;
-		public int Password
+		[XmlElement( "value" )]
+		private string _Password;
+		public string Password
 		{
 			get
 			{
@@ -22,7 +23,7 @@ namespace Fenubars.XML
 			}
 			set
 			{
-				_Password = value;
+				PasswordSpecified = this.CheckPropertyChanged<string>( "Password", ref _Password, ref value );
 			}
 		}
 
@@ -41,7 +42,8 @@ namespace Fenubars.XML
 			}
 		}
 
-		private ActionCollection _Correct;
+		[XmlElement( "cor" )]
+		private ActionCollection _Correct = new ActionCollection();
 		public ActionCollection Correct
 		{
 			get
@@ -54,7 +56,8 @@ namespace Fenubars.XML
 			}
 		}
 
-		private ActionCollection _Incorrect;
+		[XmlElement( "incor" )]
+		private ActionCollection _Incorrect = new ActionCollection();
 		public ActionCollection Incorrect
 		{
 			get
@@ -66,27 +69,23 @@ namespace Fenubars.XML
 				_Incorrect = value;
 			}
 		}
+
+		public override string ToString()
+		{
+			return string.Empty;
+		}
 	}
 
 	[TypeConverter( typeof( ExpandableObjectConverter ) )]
-	public class ActionCollection
+	public class ActionCollection : Fenubars.Events.NotifyProperyChangedBase
 	{
-		private string _Action;
-		[XmlElement( "action" )]
-		public string Action
-		{
-			get
-			{
-				return _Action;
-			}
-			set
-			{
-				_Action = value;
-			}
-		}
+		// Remember to sync with FenuButtonState:Action
 
 		private List<string> _Actions = new List<string>();
-		[XmlElement( "actions" )]
+		[XmlArray( "actions" )]
+		[XmlArrayItem( "action", typeof( string ) )]
+		[Category( "Fenu Button" )]
+		[ButtonType( ButtonTypes.EscapeButton | ButtonTypes.NormalButton | ButtonTypes.NextButton )]
 		public List<string> Actions
 		{
 			get
@@ -96,6 +95,48 @@ namespace Fenubars.XML
 			set
 			{
 				_Actions = value;
+			}
+		}
+
+		[XmlIgnore]
+		[Browsable( false )]
+		public bool ActionsSpecified
+		{
+			get
+			{
+				if( _Actions.Count < 1 ) {
+					return false;
+				}
+				return true;
+			}
+		}
+
+		[XmlElement( "action" )]
+		[Browsable( false )]
+		public string Action
+		{
+			get
+			{
+				return _Actions[ 0 ];
+			}
+			set
+			{
+				if( value != string.Empty ) {
+					_Actions.Add( value );
+				}
+			}
+		}
+
+		[XmlIgnore]
+		[Browsable( false )]
+		public bool ActionSpecified
+		{
+			get
+			{
+				if( _Actions.Count == 1 ) {
+					return true;
+				}
+				return false;
 			}
 		}
 

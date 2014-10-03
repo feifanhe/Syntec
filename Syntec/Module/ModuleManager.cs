@@ -89,7 +89,6 @@ namespace Syntec.Module
 				Assembly parsedAssembly = parsedModule.Assembly;
 
 				// Create instance to test
-				string typeName = parsedModule.Name + ".Initialize";
 				instance = Activator.CreateInstance( parsedAssembly.GetType( parsedModule.EntryType ) ) as IModule;
 				// Try to know if this DLL can interpret the XML
 				if( instance.Initialize( XMLPath ) && parsedModule.Enabled )
@@ -97,6 +96,25 @@ namespace Syntec.Module
 
 				// Wipe the instance
 				instance = null;
+			}
+
+			return null;
+		}
+
+		public static IModule GetModuleByName( string ModuleName )
+		{
+			IModule instance;
+
+			// Loop throuh all loaded modules
+			foreach( Module parsedModule in moduleList ) {
+				if( parsedModule.Name.CompareTo( ModuleName ) == 0 ) {
+					Assembly parsedAssembly = parsedModule.Assembly;
+
+					// Create instance
+					instance = Activator.CreateInstance( parsedAssembly.GetType( parsedModule.EntryType ) ) as IModule;
+					if( parsedModule.Enabled )
+						return instance;
+				}
 			}
 
 			return null;

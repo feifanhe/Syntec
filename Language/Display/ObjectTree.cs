@@ -34,12 +34,37 @@ namespace Language.Display
 		private string WorkspacePath = string.Empty;
 		private TreeNode TreeRoot;
 
+		#region Contructor
+
 		public ObjectTree()
 		{
 			InitializeComponent();
 			Serializer = new XmlSerializer( typeof( XmlResmapState ), "" );
 			ResmapStateList = new List<XmlResmapState>();
 		}
+
+		#endregion
+
+		#region Basic Opreation
+
+		public void Reset()
+		{
+			this.WorkspacePath = string.Empty;
+			this.Nodes.Clear();
+		}
+
+		public void Load( string Path )
+		{
+			Reset();
+			if( TestPath( Path ) ) {
+				CompileTree();
+				this.Nodes.Add( this.TreeRoot );
+			}
+		}
+
+		#endregion
+
+		#region Search
 
 		public string FindString( string Path, string ID, string Language )
 		{
@@ -74,21 +99,23 @@ namespace Language.Display
 			return string.Empty;
 		}
 
-		public void Reset()
+		public string[] FindIDsByContent( string content )
 		{
-			this.WorkspacePath = string.Empty;
-			this.Nodes.Clear();
+			string CONTENT = content.ToUpper();
+			List<string> IDList = new List<string>();
+			foreach( XmlResmapState Resmap in ResmapStateList ) {
+				foreach( XmlMessageState Message in Resmap.IncludedMessages ) {
+					if( Message.Content != null && Message.Content.ToUpper().Contains( CONTENT ) ) {
+						IDList.Add( Message.ID );
+					} 
+				}
+			}
+			return IDList.ToArray();
 		}
 
-		public void Load( string Path )
-		{
-			Reset();
-			if( TestPath( Path ) ) {
-				Stopwatch sw = new Stopwatch();
-				CompileTree();
-				this.Nodes.Add( this.TreeRoot );
-			}
-		}
+		#endregion
+
+		#region Helper Functions
 
 		private bool TestPath( string Path )
 		{
@@ -98,6 +125,24 @@ namespace Language.Display
 			this.WorkspacePath = Path;
 			return true;
 		}
+
+
+		private bool IsLanguageFolder( string path )
+		{
+			string[] subdirs = Directory.GetDirectories( path );
+			foreach( string subdir in subdirs ) {
+				if( Path.GetFileName( subdir ).ToUpper().CompareTo( "STRING" ) == 0 ) {
+					return true;
+				}
+			}
+			return false;
+		}
+
+		#endregion
+
+		#region Tree Compiling
+
+		#region Tree Construct
 
 		private void CompileTree()
 		{
@@ -177,6 +222,10 @@ namespace Language.Display
 			}
 		}
 
+		#endregion
+
+		#region Load Xml
+
 		private void AddStrings( TreeNode StringBranch, string filename, string language )
 		{
 			LanguageCollector Languages = StringBranch.Tag as LanguageCollector;
@@ -230,15 +279,9 @@ namespace Language.Display
 			}
 		}
 
-		private bool IsLanguageFolder( string path )
-		{
-			string[] subdirs = Directory.GetDirectories( path );
-			foreach( string subdir in subdirs ) {
-				if( Path.GetFileName( subdir ).ToUpper().CompareTo( "STRING" ) == 0 ) {
-					return true;
-				}
-			}
-			return false;
-		}
+		#endregion
+
+		#endregion
+
 	}
 }

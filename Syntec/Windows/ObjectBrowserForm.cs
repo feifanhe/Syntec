@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 
 using WeifenLuo.WinFormsUI.Docking;
+using ModuleInterface;
 using System.Reflection;
 
 namespace Syntec.Windows
@@ -15,6 +16,7 @@ namespace Syntec.Windows
 	{
 		// Corresponding document tab name
 		private string filePath = string.Empty;
+		public IModuleHost host;
 
 		public ObjectBrowserForm()
 		{
@@ -32,11 +34,12 @@ namespace Syntec.Windows
 				// Remove the tree view
 				this.Object_TreeView.Nodes.Clear();
 
-				// Copy tree nodes
+				// Clone Tree Nodes
 				TreeView templateTreeView = treeView as TreeView;
-				TreeNode[] treeNodes = new TreeNode[ templateTreeView.Nodes.Count ];
-				templateTreeView.Nodes.CopyTo( treeNodes, 0 );
-				Object_TreeView.Nodes.AddRange( treeNodes );
+				this.Object_TreeView.Nodes.Clear();
+				foreach( TreeNode node in templateTreeView.Nodes ) {
+					this.Object_TreeView.Nodes.Add( node.Clone() as TreeNode );
+				}
 
 				// Copy image list
 				Object_TreeView.ImageList = templateTreeView.ImageList;
@@ -44,7 +47,7 @@ namespace Syntec.Windows
 				// Acquire target tab name
 				filePath = templateTreeView.Name;
 
-				//this.Refresh_ToolStripButton.Enabled = true;
+				this.Refresh_ToolStripButton.Enabled = true;
 			}
 
 			this.ResumeLayout();

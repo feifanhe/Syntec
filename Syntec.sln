@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModuleInterface", "PluginIn
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginTest", "PluginTest\PluginTest.csproj", "{80E2C8EA-4F3E-4A6F-8A2F-3B771A17C927}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Language", "Language\Language.csproj", "{0D6FC54A-AF80-46AD-B533-7DE8FA844763}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringManager", "Language\StringManager.csproj", "{0D6FC54A-AF80-46AD-B533-7DE8FA844763}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

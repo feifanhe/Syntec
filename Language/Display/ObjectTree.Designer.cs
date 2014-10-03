@@ -48,7 +48,6 @@ namespace Language.Display
 			this.ImageList = this.ObjectType_ImageList;
 			this.SelectedImageIndex = 0;
 			this.ResumeLayout( false );
-
 		}
 
 		#endregion

@@ -1,3 +1,5 @@
+#define CONSTANT_KEY_COUNT
+
 using System;
 using System.IO;
 using System.ComponentModel;
@@ -12,6 +14,7 @@ using Fenubars.Buttons;
 using Fenubars.XML;
 
 using ModuleInterface;
+
 
 namespace Fenubars
 {
@@ -171,6 +174,12 @@ namespace Fenubars
 
 					if( line.Contains( "True" ) )
 						line = line.Replace( "True", "true" );
+
+					if( line.Contains( "<Action" ) )
+						line = line.Replace( "<Action", "<action" );
+
+					if( line.Contains( "</Action" ) )
+						line = line.Replace( "</Action", "<action" );
 
 					output.Add( line );
 				}
@@ -332,12 +341,34 @@ namespace Fenubars
 				fenu.Delete( focused );
 		}
 
+		public SearchResult[] SearchForIDUsers( string[] IDs )
+		{
+			List<SearchResult> results = new List<SearchResult>();
+
+			foreach( FenuState fenu in this.globalFenuState.IncludedFenus ) {
+				foreach( FenuButtonState button in fenu.NormalButtonList ) {
+					foreach( string id in IDs ) {
+						if( button.Title != null && button.Title.Contains( id ) ) {
+							SearchResult result = new SearchResult();
+							result.ObjectName = fenu.Name;
+							result.ShowResult += new SearchResult.ShowResultHandler( Open );
+							results.Add( result );
+							break;
+						}
+					}
+				}
+			}
+
+			return results.ToArray();
+		}
+
 		#endregion
 
 		#region Owning object operations
 
 		public void RefreshObjects()
 		{
+			// TODO: Fix problem here
 			CompiledTree = new ObjectTree( XMLPath, globalFenuState.IncludedFenus );
 			_Host.ShowObjects( CompiledTree );
 		}

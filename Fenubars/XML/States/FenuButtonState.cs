@@ -342,6 +342,9 @@ namespace Fenubars.XML
 			}
 			set
 			{
+				if( value == string.Empty ) {
+					value = null;
+				}
 				LinkSpecified = this.CheckPropertyChanged<string>( "Link", ref _Link, ref value );
 			}
 		}
@@ -437,11 +440,15 @@ namespace Fenubars.XML
 
 		#region Action
 
-		private ActionCollection _Actions = new ActionCollection();
-		[XmlIgnore]
+		// Remember to sync with MiscOptions:ActionCollection
+
+		private List<string> _Actions = new List<string>();
+		[XmlArray( "actions" )]
+		[XmlArrayItem( "action", typeof( string ) )]
 		[Category( "Fenu Button" )]
 		[ButtonType( ButtonTypes.EscapeButton | ButtonTypes.NormalButton | ButtonTypes.NextButton )]
-		public ActionCollection Actions
+		//public ActionCollection Actions
+		public List<string> Actions
 		{
 			get
 			{
@@ -453,12 +460,54 @@ namespace Fenubars.XML
 			}
 		}
 
+		[XmlIgnore]
+		[Browsable( false )]
+		public bool ActionsSpecified
+		{
+			get
+			{
+				if( _Actions.Count < 1 ) {
+					return false;
+				}
+				return true;
+			}
+		}
+
+		[XmlElement( "action" )]
+		[Browsable( false )]
+		public string Action
+		{
+			get
+			{
+				return _Actions[ 0 ];
+			}
+			set
+			{
+				if( value != string.Empty ) {
+					_Actions.Add( value );
+				}
+			}
+		}
+
+		[XmlIgnore]
+		[Browsable( false )]
+		public bool ActionSpecified
+		{
+			get
+			{
+				if( _Actions.Count == 1 ) {
+					return true;
+				}
+				return false;
+			}
+		}
+
 		#endregion
 
 		#region Password
 
-		private PasswordActions _PasswordActions;
-		[XmlElement( "pwd", IsNullable=false )]
+		private PasswordActions _PasswordActions = new PasswordActions();
+		[XmlElement( "pwd", IsNullable = false )]
 		[Category( "Fenu Button" )]
 		[ButtonType( ButtonTypes.EscapeButton | ButtonTypes.NormalButton )]
 		public PasswordActions PasswordActions
