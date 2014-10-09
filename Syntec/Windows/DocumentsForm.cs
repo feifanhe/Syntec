@@ -10,6 +10,7 @@ using System.Reflection;
 using ModuleInterface;
 using System.ComponentModel;
 using System.Drawing;
+using System.Diagnostics;
 
 namespace Syntec.Windows
 {
@@ -253,9 +254,35 @@ namespace Syntec.Windows
 
 		#endregion
 
+		#region Context Menu Strip
+
+		private void Save_ToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			instance.Save();
+		}
+
+		private void OpenFolder_ToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			Process.Start( "explorer.exe", string.Concat( "/Select, ", this.XMLPath ) );
+		}
+
+		private void CopyFullPath_ToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			Clipboard.SetText( this.XMLPath );
+		}
+
+		private void Close_ToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			this.Close();
+		}
+
+		#endregion
+
 		private void DocumentsForm_Activated( object sender, EventArgs e )
 		{
 			this.ShowObjects( currentTreeView );
 		}
+
+
 	}
 }

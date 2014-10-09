@@ -310,19 +310,19 @@ namespace Syntec.Windows
 			this.Edit_Undo_ToolStripMenuItem.Enabled = false;
 			this.Edit_Undo_ToolStripMenuItem.Image = ( (System.Drawing.Image)( resources.GetObject( "Edit_Undo_ToolStripMenuItem.Image" ) ) );
 			this.Edit_Undo_ToolStripMenuItem.Name = "Edit_Undo_ToolStripMenuItem";
-			this.Edit_Undo_ToolStripMenuItem.Size = new System.Drawing.Size( 152, 22 );
+			this.Edit_Undo_ToolStripMenuItem.Size = new System.Drawing.Size( 127, 22 );
 			this.Edit_Undo_ToolStripMenuItem.Text = "Undo";
 			// 
 			// Edit_ToolStripSeparator_1
 			// 
 			this.Edit_ToolStripSeparator_1.Name = "Edit_ToolStripSeparator_1";
-			this.Edit_ToolStripSeparator_1.Size = new System.Drawing.Size( 149, 6 );
+			this.Edit_ToolStripSeparator_1.Size = new System.Drawing.Size( 124, 6 );
 			// 
 			// Edit_Cut_ToolStripMenuItem
 			// 
 			this.Edit_Cut_ToolStripMenuItem.Image = ( (System.Drawing.Image)( resources.GetObject( "Edit_Cut_ToolStripMenuItem.Image" ) ) );
 			this.Edit_Cut_ToolStripMenuItem.Name = "Edit_Cut_ToolStripMenuItem";
-			this.Edit_Cut_ToolStripMenuItem.Size = new System.Drawing.Size( 152, 22 );
+			this.Edit_Cut_ToolStripMenuItem.Size = new System.Drawing.Size( 127, 22 );
 			this.Edit_Cut_ToolStripMenuItem.Text = "Cut";
 			this.Edit_Cut_ToolStripMenuItem.Click += new System.EventHandler( this.Edit_Cut_ToolStripMenuItem_Click );
 			// 
@@ -330,7 +330,7 @@ namespace Syntec.Windows
 			// 
 			this.Edit_Copy_ToolStripMenuItem.Image = ( (System.Drawing.Image)( resources.GetObject( "Edit_Copy_ToolStripMenuItem.Image" ) ) );
 			this.Edit_Copy_ToolStripMenuItem.Name = "Edit_Copy_ToolStripMenuItem";
-			this.Edit_Copy_ToolStripMenuItem.Size = new System.Drawing.Size( 152, 22 );
+			this.Edit_Copy_ToolStripMenuItem.Size = new System.Drawing.Size( 127, 22 );
 			this.Edit_Copy_ToolStripMenuItem.Text = "Copy";
 			this.Edit_Copy_ToolStripMenuItem.Click += new System.EventHandler( this.Edit_Copy_ToolStripMenuItem_Click );
 			// 
@@ -338,7 +338,7 @@ namespace Syntec.Windows
 			// 
 			this.Edit_Paste_ToolStripMenuItem.Image = ( (System.Drawing.Image)( resources.GetObject( "Edit_Paste_ToolStripMenuItem.Image" ) ) );
 			this.Edit_Paste_ToolStripMenuItem.Name = "Edit_Paste_ToolStripMenuItem";
-			this.Edit_Paste_ToolStripMenuItem.Size = new System.Drawing.Size( 152, 22 );
+			this.Edit_Paste_ToolStripMenuItem.Size = new System.Drawing.Size( 127, 22 );
 			this.Edit_Paste_ToolStripMenuItem.Text = "Paste";
 			this.Edit_Paste_ToolStripMenuItem.Click += new System.EventHandler( this.Edit_Paste_ToolStripMenuItem_Click );
 			// 
@@ -346,31 +346,31 @@ namespace Syntec.Windows
 			// 
 			this.Edit_Delete_ToolStripMenuItem.Image = ( (System.Drawing.Image)( resources.GetObject( "Edit_Delete_ToolStripMenuItem.Image" ) ) );
 			this.Edit_Delete_ToolStripMenuItem.Name = "Edit_Delete_ToolStripMenuItem";
-			this.Edit_Delete_ToolStripMenuItem.Size = new System.Drawing.Size( 152, 22 );
+			this.Edit_Delete_ToolStripMenuItem.Size = new System.Drawing.Size( 127, 22 );
 			this.Edit_Delete_ToolStripMenuItem.Text = "Delete";
 			this.Edit_Delete_ToolStripMenuItem.Click += new System.EventHandler( this.Edit_Delete_ToolStripMenuItem_Click );
 			// 
 			// Edit_ToolStripSeparator_2
 			// 
 			this.Edit_ToolStripSeparator_2.Name = "Edit_ToolStripSeparator_2";
-			this.Edit_ToolStripSeparator_2.Size = new System.Drawing.Size( 149, 6 );
+			this.Edit_ToolStripSeparator_2.Size = new System.Drawing.Size( 124, 6 );
 			// 
 			// Edit_SelectAll_ToolStripMenuItem
 			// 
 			this.Edit_SelectAll_ToolStripMenuItem.Enabled = false;
 			this.Edit_SelectAll_ToolStripMenuItem.Name = "Edit_SelectAll_ToolStripMenuItem";
-			this.Edit_SelectAll_ToolStripMenuItem.Size = new System.Drawing.Size( 152, 22 );
+			this.Edit_SelectAll_ToolStripMenuItem.Size = new System.Drawing.Size( 127, 22 );
 			this.Edit_SelectAll_ToolStripMenuItem.Text = "Select All";
 			// 
 			// Edit_ToolStripSeparator_3
 			// 
 			this.Edit_ToolStripSeparator_3.Name = "Edit_ToolStripSeparator_3";
-			this.Edit_ToolStripSeparator_3.Size = new System.Drawing.Size( 149, 6 );
+			this.Edit_ToolStripSeparator_3.Size = new System.Drawing.Size( 124, 6 );
 			// 
 			// Edit_Search_ToolStripMenuItem
 			// 
 			this.Edit_Search_ToolStripMenuItem.Name = "Edit_Search_ToolStripMenuItem";
-			this.Edit_Search_ToolStripMenuItem.Size = new System.Drawing.Size( 152, 22 );
+			this.Edit_Search_ToolStripMenuItem.Size = new System.Drawing.Size( 127, 22 );
 			this.Edit_Search_ToolStripMenuItem.Text = "Search";
 			this.Edit_Search_ToolStripMenuItem.Click += new System.EventHandler( this.Edit_Search_ToolStripMenuItem_Click );
 			// 
