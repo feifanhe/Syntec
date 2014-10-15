@@ -42,7 +42,6 @@ namespace Fenubars
 		private void GenerateFenuImage( Fenu fenu )
 		{
 			string originalPathBackup = XMLPath;
-			Fenu mirroredFenu = fenu;
 
 			// Byte array to store button covering status
 			byte[] coveringStatus = new byte[ fenu.NormalButtonCount + 2 ];

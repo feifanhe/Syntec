@@ -4,7 +4,7 @@ using System.Text;
 using System.Xml.Serialization;
 using System.ComponentModel;
 
-namespace Language.XML
+namespace StringManager.XML
 {
 	public class XmlMessageState
 	{

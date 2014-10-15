@@ -31,7 +31,7 @@ namespace Syntec.Windows
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager( typeof( StringManagerForm ) );
 			this.StringManager_ToolStrip = new System.Windows.Forms.ToolStrip();
 			this.Refresh_ToolStripButton = new System.Windows.Forms.ToolStripButton();
-			this.String_TreeView = new Language.Display.ObjectTree();
+			this.String_TreeView = new StringManager.Display.ObjectTree();
 			this.StringManager_ToolStrip.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -87,6 +87,6 @@ namespace Syntec.Windows
 
 		private System.Windows.Forms.ToolStrip StringManager_ToolStrip;
 		private System.Windows.Forms.ToolStripButton Refresh_ToolStripButton;
-		private Language.Display.ObjectTree String_TreeView;
+		private StringManager.Display.ObjectTree String_TreeView;
 	}
 }

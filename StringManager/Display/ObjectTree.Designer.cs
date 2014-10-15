@@ -1,4 +1,4 @@
-namespace Language.Display
+namespace StringManager.Display
 {
 	partial class ObjectTree
 	{

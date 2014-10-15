@@ -4,7 +4,7 @@ using System.Text;
 using System.Xml.Serialization;
 using System.ComponentModel;
 
-namespace Language.XML
+namespace StringManager.XML
 {
 	[XmlRoot( "ResMap" )]
 	public class XmlResmapState

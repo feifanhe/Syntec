@@ -5,10 +5,10 @@ using System.Diagnostics;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
-using Language.XML;
+using StringManager.XML;
 using System.Xml.Serialization;
 
-namespace Language.Display
+namespace StringManager.Display
 {
 	public partial class ObjectTree : TreeView
 	{

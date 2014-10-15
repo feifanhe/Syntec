@@ -249,7 +249,7 @@ namespace Fenubars
 
 					// TODO: Move to background worker
 					GenerateFenuImage( newFenuPanel );
-					newFenuPanel.UpdateFromImage();
+					//newFenuPanel.UpdateFromImage();
 
 					_Host.DrawOnCanvas( newFenuPanel );
 					_Host.ShowStatusInfo( "Ready", -1, false );
@@ -257,6 +257,8 @@ namespace Fenubars
 					return;
 				}
 			}
+
+			_Host.ShowStatusInfo( "Ready", -1, false );
 		}
 
 		public void Close()
