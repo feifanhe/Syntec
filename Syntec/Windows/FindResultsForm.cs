@@ -15,6 +15,11 @@ namespace Syntec.Windows
 		public FindResultsForm()
 		{
 			InitializeComponent();
+			ColumnHeader header = new ColumnHeader();
+			header.Text = "Fenu";
+			header.Name = "Fenu";
+			header.Width = this.FindResults_ListView.Width;
+			this.FindResults_ListView.Columns.Add( header );
 		}
 
 		public void AddItem( DocumentsForm host, ModuleInterface.SearchResult searchResult )

@@ -45,7 +45,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PluginInterface\PluginInterface.csproj">
+    <ProjectReference Include="..\PluginInterface\ModuleInterface.csproj">
       <Project>{00D0C21D-D94C-4B0F-A710-1EFBABB4C4C6}</Project>
       <Name>PluginInterface</Name>
     </ProjectReference>

@@ -7,6 +7,7 @@ using WeifenLuo.WinFormsUI.Docking;
 
 using Syntec;
 using Syntec.Module;
+using Syntec.Methods;
 
 namespace Syntec.Windows
 {
@@ -201,21 +202,36 @@ namespace Syntec.Windows
 
 		private void Edit_Search_ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
+			SearchDialog dialog = new Syntec.Methods.SearchDialog();
 
-			string key = "¨t²Î";
+			if( dialog.ShowDialog() == DialogResult.Cancel ) {
+				return;
+			}
 
-			// TODO: Show a dialog as searching interface
-
-			string[] results = this.FindIDsByContent( key );
+			// TODO: Filiter in StringManager - Match Case, Match Whole Work
+			string[] results = this.StringManager.FindIDsByContent( dialog.Keyword );
 
 			this.FindResults.ClearItem();
 
+			// TODO: Scope
 			// search in all opened documents
 
-			foreach( Form form in this.MdiChildren ) {
-				if( typeof( DocumentsForm ) == form.GetType() ) {
-					( form as DocumentsForm ).SearchForIDUsers( results );
-				}
+			switch( dialog.SearchScope ) {
+				case SearchDialog.SearchScopeType.AllOpenDocument:
+					foreach( Form form in this.MdiChildren ) {
+						if( typeof( DocumentsForm ) == form.GetType() ) {
+							( form as DocumentsForm ).SearchForIDUsers( results );
+						}
+					}
+					break;
+				case SearchDialog.SearchScopeType.CurrentDocument:
+					DocumentsForm DF = this.ActiveMdiChild as DocumentsForm;
+					if( DF != null ) {
+						DF.SearchForIDUsers( results );
+					}
+					break;
+				default:
+					break;
 			}
 
 			if( FindResults.IsHidden ) {
@@ -225,13 +241,6 @@ namespace Syntec.Windows
 			else {
 				FindResults.Show();
 			}
-			// or search in this.MdiChildren
-
-			//DocumentsForm DF = this.ActiveMdiChild as DocumentsForm;
-			//if( DF != null ) {
-			//    // Do find ID user
-			//}
-
 		}
 
 		#endregion
@@ -414,14 +423,9 @@ namespace Syntec.Windows
 
 		private void OnFindResults( DocumentsForm host, ModuleInterface.SearchResult[] results )
 		{
-			foreach( ModuleInterface.SearchResult result in results){
+			foreach( ModuleInterface.SearchResult result in results ) {
 				this.FindResults.AddItem( host, result );
 			}
-		}
-
-		private string[] FindIDsByContent( string content )
-		{
-			return this.StringManager.FindIDsByContent( content );
 		}
 
 		#endregion

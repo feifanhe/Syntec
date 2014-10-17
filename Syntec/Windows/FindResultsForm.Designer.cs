@@ -36,13 +36,14 @@ namespace Syntec.Windows
 			// FindResults_ListView
 			// 
 			this.FindResults_ListView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.FindResults_ListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
 			this.FindResults_ListView.Location = new System.Drawing.Point( 0, 0 );
 			this.FindResults_ListView.Name = "FindResults_ListView";
 			this.FindResults_ListView.Size = new System.Drawing.Size( 733, 122 );
 			this.FindResults_ListView.SmallImageList = this.FindResults_ImageList;
 			this.FindResults_ListView.TabIndex = 0;
 			this.FindResults_ListView.UseCompatibleStateImageBehavior = false;
-			this.FindResults_ListView.View = System.Windows.Forms.View.List;
+			this.FindResults_ListView.View = System.Windows.Forms.View.Details;
 			this.FindResults_ListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler( this.listView1_MouseDoubleClick );
 			// 
 			// FindResults_ImageList

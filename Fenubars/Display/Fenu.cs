@@ -142,12 +142,12 @@ namespace Fenubars.Display
 
 		private void CloseFenu_MouseEnter( object sender, EventArgs e )
 		{
-			CloseFenu.BackColor = SystemColors.Highlight;
+			this.CloseFenu.BackColor = SystemColors.Highlight;
 		}
 
 		private void CloseFenu_MouseLeave( object sender, EventArgs e )
 		{
-			CloseFenu.BackColor = SystemColors.ActiveCaption;
+			this.CloseFenu.BackColor = SystemColors.ActiveCaption;
 		}
 
 		private void CloseFenu_Click( object sender, EventArgs e )
