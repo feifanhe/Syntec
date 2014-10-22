@@ -179,7 +179,7 @@ namespace Fenubars
 						line = line.Replace( "<Action", "<action" );
 
 					if( line.Contains( "</Action" ) )
-						line = line.Replace( "</Action", "<action" );
+						line = line.Replace( "</Action", "</action" );
 
 					output.Add( line );
 				}

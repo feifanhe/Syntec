@@ -466,10 +466,12 @@ namespace Fenubars.XML
 		{
 			get
 			{
-				if( _Actions.Count < 1 ) {
+				if( _Actions.Count <= 1 ) {
 					return false;
 				}
-				return true;
+				else {
+					return true;
+				}
 			}
 		}
 
@@ -498,7 +500,9 @@ namespace Fenubars.XML
 				if( _Actions.Count == 1 ) {
 					return true;
 				}
-				return false;
+				else {
+					return false;
+				}
 			}
 		}
 

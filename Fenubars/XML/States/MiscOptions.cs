@@ -41,6 +41,9 @@ namespace Fenubars.XML
 				_PasswordSpecified = value;
 			}
 		}
+		
+
+		#region incor
 
 		[XmlElement( "cor" )]
 		private ActionCollection _Correct = new ActionCollection();
@@ -56,6 +59,25 @@ namespace Fenubars.XML
 			}
 		}
 
+		[XmlIgnore]
+		[Browsable( false )]
+		public bool CorrectSpecified
+		{
+			get
+			{
+				if( _Correct.Count == 0 ) {
+					return false;
+				}
+				else {
+					return true;
+				}
+			}
+		}
+
+		#endregion
+
+		#region incor
+
 		[XmlElement( "incor" )]
 		private ActionCollection _Incorrect = new ActionCollection();
 		public ActionCollection Incorrect
@@ -70,6 +92,23 @@ namespace Fenubars.XML
 			}
 		}
 
+		[XmlIgnore]
+		[Browsable( false )]
+		public bool IncorrectSpecified
+		{
+			get
+			{
+				if( _Incorrect.Count == 0 ) {
+					return false;
+				}
+				else {
+					return true;
+				}
+			}
+		}
+
+		#endregion
+
 		public override string ToString()
 		{
 			return string.Empty;
@@ -81,11 +120,16 @@ namespace Fenubars.XML
 	{
 		// Remember to sync with FenuButtonState:Action
 
+		#region Action
+
+		// Remember to sync with MiscOptions:ActionCollection
+
 		private List<string> _Actions = new List<string>();
 		[XmlArray( "actions" )]
 		[XmlArrayItem( "action", typeof( string ) )]
 		[Category( "Fenu Button" )]
 		[ButtonType( ButtonTypes.EscapeButton | ButtonTypes.NormalButton | ButtonTypes.NextButton )]
+		//public ActionCollection Actions
 		public List<string> Actions
 		{
 			get
@@ -104,10 +148,12 @@ namespace Fenubars.XML
 		{
 			get
 			{
-				if( _Actions.Count < 1 ) {
+				if( _Actions.Count <= 1 ) {
 					return false;
 				}
-				return true;
+				else {
+					return true;
+				}
 			}
 		}
 
@@ -136,7 +182,21 @@ namespace Fenubars.XML
 				if( _Actions.Count == 1 ) {
 					return true;
 				}
-				return false;
+				else {
+					return false;
+				}
+			}
+		}
+
+		#endregion
+
+		[XmlIgnore]
+		[Browsable( false )]
+		public int Count
+		{
+			get
+			{
+				return _Actions.Count;
 			}
 		}
 
