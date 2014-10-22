@@ -37,6 +37,7 @@ namespace Fenubars.Display
 			this.Close_FenuContextMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.FenuContextMenuItem_Separator_1 = new System.Windows.Forms.ToolStripSeparator();
 			this.Delete_FenuContextMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.DisplayMode_CheckBox = new System.Windows.Forms.CheckBox();
 			this.CloseFenu = new System.Windows.Forms.Panel();
 			this.ButtonPanel = new System.Windows.Forms.Panel();
 			this.ButtonContextMenu = new System.Windows.Forms.ContextMenuStrip( this.components );
@@ -84,6 +85,7 @@ namespace Fenubars.Display
 			// TitleBarSplitterContainer
 			// 
 			this.TitleBarSplitterContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.TitleBarSplitterContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
 			this.TitleBarSplitterContainer.IsSplitterFixed = true;
 			this.TitleBarSplitterContainer.Location = new System.Drawing.Point( 0, 0 );
 			this.TitleBarSplitterContainer.Name = "TitleBarSplitterContainer";
@@ -96,10 +98,11 @@ namespace Fenubars.Display
 			// TitleBarSplitterContainer.Panel2
 			// 
 			this.TitleBarSplitterContainer.Panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+			this.TitleBarSplitterContainer.Panel2.Controls.Add( this.DisplayMode_CheckBox );
 			this.TitleBarSplitterContainer.Panel2.Controls.Add( this.CloseFenu );
-			this.TitleBarSplitterContainer.Panel2MinSize = 0;
+			this.TitleBarSplitterContainer.Panel2MinSize = 107;
 			this.TitleBarSplitterContainer.Size = new System.Drawing.Size( 489, 20 );
-			this.TitleBarSplitterContainer.SplitterDistance = 449;
+			this.TitleBarSplitterContainer.SplitterDistance = 379;
 			this.TitleBarSplitterContainer.SplitterWidth = 3;
 			this.TitleBarSplitterContainer.TabIndex = 0;
 			// 
@@ -109,7 +112,7 @@ namespace Fenubars.Display
 			this.FenuTitle.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.FenuTitle.Location = new System.Drawing.Point( 0, 0 );
 			this.FenuTitle.Name = "FenuTitle";
-			this.FenuTitle.Size = new System.Drawing.Size( 449, 20 );
+			this.FenuTitle.Size = new System.Drawing.Size( 379, 20 );
 			this.FenuTitle.TabIndex = 0;
 			this.FenuTitle.Text = "NAME - PATH";
 			this.FenuTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -153,12 +156,24 @@ namespace Fenubars.Display
 			this.Delete_FenuContextMenuItem.Text = "Delete";
 			this.Delete_FenuContextMenuItem.Click += new System.EventHandler( this.Delete_FenuContextMenuItem_Click );
 			// 
+			// DisplayMode_CheckBox
+			// 
+			this.DisplayMode_CheckBox.AutoSize = true;
+			this.DisplayMode_CheckBox.Dock = System.Windows.Forms.DockStyle.Right;
+			this.DisplayMode_CheckBox.Location = new System.Drawing.Point( 0, 0 );
+			this.DisplayMode_CheckBox.Name = "DisplayMode_CheckBox";
+			this.DisplayMode_CheckBox.Size = new System.Drawing.Size( 87, 20 );
+			this.DisplayMode_CheckBox.TabIndex = 1;
+			this.DisplayMode_CheckBox.Text = "Merged View";
+			this.DisplayMode_CheckBox.UseVisualStyleBackColor = true;
+			this.DisplayMode_CheckBox.CheckedChanged += new System.EventHandler( this.DisplayMode_CheckBox_CheckedChanged );
+			// 
 			// CloseFenu
 			// 
 			this.CloseFenu.BackgroundImage = ( (System.Drawing.Image)( resources.GetObject( "CloseFenu.BackgroundImage" ) ) );
 			this.CloseFenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
 			this.CloseFenu.Dock = System.Windows.Forms.DockStyle.Right;
-			this.CloseFenu.Location = new System.Drawing.Point( 17, 0 );
+			this.CloseFenu.Location = new System.Drawing.Point( 87, 0 );
 			this.CloseFenu.Name = "CloseFenu";
 			this.CloseFenu.RightToLeft = System.Windows.Forms.RightToLeft.No;
 			this.CloseFenu.Size = new System.Drawing.Size( 20, 20 );
@@ -252,6 +267,7 @@ namespace Fenubars.Display
 			this.FormSplitContainer.ResumeLayout( false );
 			this.TitleBarSplitterContainer.Panel1.ResumeLayout( false );
 			this.TitleBarSplitterContainer.Panel2.ResumeLayout( false );
+			this.TitleBarSplitterContainer.Panel2.PerformLayout();
 			this.TitleBarSplitterContainer.ResumeLayout( false );
 			this.FenuContextMenu.ResumeLayout( false );
 			this.ButtonContextMenu.ResumeLayout( false );
@@ -280,5 +296,6 @@ namespace Fenubars.Display
 		private System.Windows.Forms.ToolStripMenuItem Close_FenuContextMenuItem;
 		private System.Windows.Forms.ToolStripSeparator FenuContextMenuItem_Separator_1;
 		private System.Windows.Forms.ToolStripMenuItem Delete_FenuContextMenuItem;
+		private System.Windows.Forms.CheckBox DisplayMode_CheckBox;
 	}
 }

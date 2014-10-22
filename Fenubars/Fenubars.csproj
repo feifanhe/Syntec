@@ -83,6 +83,10 @@
     <Compile Include="XML\XMLGlobalState.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Buttons\NormalButton.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>NormalButton.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Display\Fenu.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Fenu.cs</DependentUpon>

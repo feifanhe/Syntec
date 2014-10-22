@@ -18,7 +18,7 @@ namespace Fenubars.Buttons
 
 			// Non-variable visual setup
 			this.Size = new Size( 80, 60 );
-			this.Location = new Point( 3 + 83 * Index, 3 );
+			this.Location = new Point( 3 + 80 * Index, 3 );
 		}
 
 		public void SetState( FenuButtonState State )

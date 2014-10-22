@@ -27,7 +27,7 @@ namespace Fenubars
 				combinedPath += segments + "\\";
 
 				// Check if it's the beginning of workspace zone
-				if( segments == "Res" ) {
+				if( segments.Contains("Res") ) {
 					inWorkspace = true;
 					result.Add( combinedPath );
 				}

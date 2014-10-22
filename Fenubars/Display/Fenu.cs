@@ -21,6 +21,7 @@ namespace Fenubars.Display
 		private int normalButtonCount = -1;
 
 		// Store the image of this fenu's predecessors
+		private FenuButtonState[] originalState;
 		private List<FenuButtonState> image;
 		private byte[] status;
 
@@ -62,11 +63,14 @@ namespace Fenubars.Display
 
 		public void PopulateButtons()
 		{
+			this.originalState = new FenuButtonState[ this.NormalButtonCount + 2 ];
+
 			// TODO: Modify the title to call-pathway
 			FenuTitle.Text = _FenuContent.Name;
 
 			// Add EscapeButton and NextButton button
 			EscapeButton EB = new EscapeButton();
+			this.originalState[ 0 ] = _FenuContent.EscapeButton;
 			EB.SetState( _FenuContent.EscapeButton );
 			EB.PaintComponent( FormSplitContainer.Panel2.Controls, new Point( 3, 3 ) );
 			EB.MouseDown += new MouseEventHandler( FenuButton_MouseDown );
@@ -74,8 +78,9 @@ namespace Fenubars.Display
 			EB.KeyDown += new KeyEventHandler( FenuButton_KeyDown );
 
 			NextButton NB = new NextButton();
+			this.originalState[ this.originalState.Length - 1 ] = _FenuContent.NextButton;
 			NB.SetState( _FenuContent.NextButton );
-			NB.PaintComponent( FormSplitContainer.Panel2.Controls, new Point( 3 + 83 * ( normalButtonCount + 1 ), 3 ) );
+			NB.PaintComponent( FormSplitContainer.Panel2.Controls, new Point( 3 + 80 * ( normalButtonCount + 1 ), 3 ) );
 			NB.MouseDown += new MouseEventHandler( FenuButton_MouseDown );
 			NB.Modified += new NextButton.ButtonModifiedHandler( SetFenuModified );
 			NB.KeyDown += new KeyEventHandler( FenuButton_KeyDown );
@@ -94,6 +99,8 @@ namespace Fenubars.Display
 					{
 						return DummyState.Position == i;
 					} );
+
+				this.originalState[ i ] = FBS;
 				NRB.SetState( FBS );
 
 				NRB.PaintComponent( FormSplitContainer.Panel2.Controls );
@@ -110,7 +117,7 @@ namespace Fenubars.Display
 				throw new IndexOutOfRangeException( "Fenu images and their respective status mismatch." );
 		}
 
-		public void UpdateFromImage()
+		public void UpdateFromOriginalState()
 		{
 			// Cycle through all the buttons in original fenu
 			foreach( Control control in FormSplitContainer.Panel2.Controls ) {
@@ -125,12 +132,12 @@ namespace Fenubars.Display
 					int index = ButtonPosition( button.Location );
 
 					// Button not occupied, then bind info to it
-					if( !binded ) {
-						button.SetState( image[ index ], true );
-					}
+					//if( !binded ) {
+						button.SetState( originalState[ index ], false );
+					//}
 
 					// Set font
-					button.Font = GenerateFontByStatus( status[ index ], binded, button.Font );
+					button.Font = GenerateFontByStatus( 0x01, binded, button.Font );
 				}
 				else if( control is NextButton ) {
 
@@ -138,7 +145,46 @@ namespace Fenubars.Display
 			}
 		}
 
-		#region Titlebar close event
+		public void UpdateFromImage()
+		{
+			// Cycle through all the buttons in original fenu
+			foreach( Control control in FormSplitContainer.Panel2.Controls ) {
+				// Filter for specific button
+				if( control is EscapeButton ) {
+
+				}
+				else if( control is NormalButton ) {
+					NormalButton button = control as NormalButton;
+
+
+					bool binded = ( button.DataBindings.Count != 0 );
+					int index = ButtonPosition( button.Location );
+
+					// Button not occupied, then bind info to it
+					if( !binded ) {
+						button.SetState( this.image[ index ], true );
+					}
+
+					// Set font
+					//button.Font = GenerateFontByStatus( status[ index ], binded, button.Font );
+				}
+				else if( control is NextButton ) {
+
+				}
+			}
+		}
+
+		#region Titlebar event
+		
+		private void DisplayMode_CheckBox_CheckedChanged( object sender, EventArgs e )
+		{
+			if( DisplayMode_CheckBox.Checked ) {
+				UpdateFromImage();
+			}
+			else {
+				UpdateFromOriginalState();
+			}
+		}
 
 		private void CloseFenu_MouseEnter( object sender, EventArgs e )
 		{

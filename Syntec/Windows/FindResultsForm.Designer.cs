@@ -44,7 +44,7 @@ namespace Syntec.Windows
 			this.FindResults_ListView.TabIndex = 0;
 			this.FindResults_ListView.UseCompatibleStateImageBehavior = false;
 			this.FindResults_ListView.View = System.Windows.Forms.View.Details;
-			this.FindResults_ListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler( this.listView1_MouseDoubleClick );
+			this.FindResults_ListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler( this.FindResults_MouseDoubleClick );
 			// 
 			// FindResults_ImageList
 			// 

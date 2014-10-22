@@ -15,6 +15,11 @@ namespace Syntec.Windows
 		public FindResultsForm()
 		{
 			InitializeComponent();
+			AddColumnHeader();
+		}
+
+		public void AddColumnHeader()
+		{
 			ColumnHeader header = new ColumnHeader();
 			header.Text = "Fenu";
 			header.Name = "Fenu";
@@ -35,7 +40,7 @@ namespace Syntec.Windows
 			this.FindResults_ListView.Items.Clear();
 		}
 
-		private void listView1_MouseDoubleClick( object sender, MouseEventArgs e )
+		private void FindResults_MouseDoubleClick( object sender, MouseEventArgs e )
 		{
 			ListViewItem item = FindResults_ListView.GetItemAt( e.X, e.Y );
 			ModuleInterface.SearchResult searchResult = item.Tag as ModuleInterface.SearchResult;
