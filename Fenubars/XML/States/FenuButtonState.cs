@@ -186,35 +186,50 @@ namespace Fenubars.XML
 
 		#region ForeColor
 
-		private string _ForeColor = "0,0,0";
+		private string _ForeColorArgb = "0,0,0";
 		[XmlElement( "forecolor" )]
-		[Category( "Fenu Button" )]
-		[ButtonType( ButtonTypes.NormalButton )]
+		[Browsable( false )]
 		[DefaultValue( "0,0,0" )]
-		public string ForeColor
+		public string ForeColorArgb
 		{
 			get
 			{
-				return _ForeColor;
+				return _ForeColorArgb;
 			}
 			set
 			{
-				ForeColorSpecified = this.CheckPropertyChanged<string>( "ForeColor", ref _ForeColor, ref value );
+				ForeColorArgbSpecified =
+					this.CheckPropertyChanged<string>( "ForeColorArgb", ref _ForeColorArgb, ref value );
 			}
 		}
 
-		private bool _ForeColorSpecified;
+		private bool _ForeColorArgbSpecified;
 		[XmlIgnore]
 		[Browsable( false )]
-		public bool ForeColorSpecified
+		public bool ForeColorArgbSpecified
 		{
 			get
 			{
-				return _ForeColorSpecified;
+				return _ForeColorArgbSpecified;
 			}
 			set
 			{
-				_ForeColorSpecified = value;
+				_ForeColorArgbSpecified = value;
+			}
+		}
+
+		[XmlIgnore]
+		[Category( "Fenu Button" )]
+		[ButtonType( ButtonTypes.NormalButton )]
+		public Color ForeColor
+		{
+			get
+			{
+				return ColorConverter.StringToColor( ForeColorArgb );
+			}
+			set
+			{
+				ForeColorArgb = ColorConverter.ColorToString( value );
 			}
 		}
 
@@ -222,35 +237,51 @@ namespace Fenubars.XML
 
 		#region BackColor
 
-		private string _BackColor = "240,240,240";
+		private string _BackColorArgb = "240,240,240";
 		[XmlElement( "backcolor" )]
-		[Category( "Fenu Button" )]
+		[Browsable( false )]
 		[ButtonType( ButtonTypes.NormalButton )]
 		[DefaultValue( "240,240,240" )]
-		public string BackColor
+		public string BackColorArgb
 		{
 			get
 			{
-				return _BackColor;
+				return _BackColorArgb;
 			}
 			set
 			{
-				BackColorSpecified = this.CheckPropertyChanged<string>( "BackColor", ref _BackColor, ref value );
+				BackColorArgbSpecified =
+					this.CheckPropertyChanged<string>( "BackColorArgb", ref _BackColorArgb, ref value );
 			}
 		}
 
-		private bool _BackColorSpecified;
+		private bool _BackColorArgbSpecified;
 		[XmlIgnore]
 		[Browsable( false )]
-		public bool BackColorSpecified
+		public bool BackColorArgbSpecified
 		{
 			get
 			{
-				return _BackColorSpecified;
+				return _BackColorArgbSpecified;
 			}
 			set
 			{
-				_BackColorSpecified = value;
+				_BackColorArgbSpecified = value;
+			}
+		}
+
+		[XmlIgnore]
+		[Category( "Fenu Button" )]
+		[ButtonType( ButtonTypes.NormalButton )]
+		public Color BackColor
+		{
+			get
+			{
+				return ColorConverter.StringToColor( BackColorArgb );
+			}
+			set
+			{
+				BackColorArgb = ColorConverter.ColorToString( value );
 			}
 		}
 
@@ -258,35 +289,51 @@ namespace Fenubars.XML
 
 		#region LightOnColor
 
-		private string _LightOnColor = "240,240,240";
+		private string _LightOnColorArgb = "240,240,240";
 		[XmlElement( "LightOnColor" )]
-		[Category( "Fenu Button" )]
+		[Browsable( false )]
 		[ButtonType( ButtonTypes.NormalButton )]
 		[DefaultValue( "240,240,240" )]
-		public string LightOnColor
+		public string LightOnColorArgb
 		{
 			get
 			{
-				return _LightOnColor;
+				return _LightOnColorArgb;
 			}
 			set
 			{
-				LightOnColorSpecified = this.CheckPropertyChanged<string>( "LightOnColor", ref _LightOnColor, ref value );
+				LightOnColorArgbSpecified =
+					this.CheckPropertyChanged<string>( "LightOnColorArgb", ref _LightOnColorArgb, ref value );
 			}
 		}
 
-		private bool _LightOnColorSpecified;
+		private bool _LightOnColorArgbSpecified;
 		[XmlIgnore]
 		[Browsable( false )]
-		public bool LightOnColorSpecified
+		public bool LightOnColorArgbSpecified
 		{
 			get
 			{
-				return _LightOnColorSpecified;
+				return _LightOnColorArgbSpecified;
 			}
 			set
 			{
-				_LightOnColorSpecified = value;
+				_LightOnColorArgbSpecified = value;
+			}
+		}
+
+		[XmlIgnore]
+		[Category( "Fenu Button" )]
+		[ButtonType( ButtonTypes.NormalButton )]
+		public Color LightOnColor
+		{
+			get
+			{
+				return ColorConverter.StringToColor( LightOnColorArgb );
+			}
+			set
+			{
+				LightOnColorArgb = ColorConverter.ColorToString( value );
 			}
 		}
 
@@ -513,6 +560,7 @@ namespace Fenubars.XML
 		private PasswordActions _PasswordActions = new PasswordActions();
 		[XmlElement( "pwd", IsNullable = false )]
 		[Category( "Fenu Button" )]
+		[ReadOnly( true )]
 		[ButtonType( ButtonTypes.EscapeButton | ButtonTypes.NormalButton )]
 		public PasswordActions PasswordActions
 		{
@@ -523,6 +571,22 @@ namespace Fenubars.XML
 			set
 			{
 				_PasswordActions = value;
+			}
+		}
+
+		[XmlIgnore]
+		[Browsable( false )]
+		public bool PasswordActionsSpecified
+		{
+			get
+			{
+				if( _PasswordActions.Password != null &&
+					_PasswordActions.Password != string.Empty ) {
+					return true;
+				}
+				else {
+					return false;
+				}
 			}
 		}
 

@@ -3,6 +3,7 @@ using System.Drawing;
 
 namespace Fenubars.XML
 {
+
 	public static class StateConverter
 	{
 		public static void BoolToState( object sender, ConvertEventArgs cevent )
@@ -22,23 +23,31 @@ namespace Fenubars.XML
 	{
 		public static void StringToColor( object sender, ConvertEventArgs cevent )
 		{
-			string[] RGB = ( (string)cevent.Value ).Split( ',' );
+			cevent.Value = StringToColor( (string)cevent.Value );
+		}
+
+		public static Color StringToColor( string rgb )
+		{
+			string[] RGB = rgb.Split( ',' );
 			if( RGB.Length != 3 ) {
-				cevent.Value = Color.FromArgb( 0, 0, 0 );
-				return;
+				return Color.FromArgb( 0, 0, 0 );
 			}
-			cevent.Value = Color.FromArgb( int.Parse( RGB[ 0 ] ),
-											int.Parse( RGB[ 1 ] ),
-											int.Parse( RGB[ 2 ] ) );
+			return Color.FromArgb( int.Parse( RGB[ 0 ] ),
+									int.Parse( RGB[ 1 ] ),
+									int.Parse( RGB[ 2 ] ) );
 		}
 
 		public static void ColorToString( object sender, ConvertEventArgs cevent )
 		{
-			string ColorString = string.Empty;
-			ColorString = ( (Color)cevent.Value ).R.ToString() + ",";
-			ColorString += ( (Color)cevent.Value ).G.ToString() + ",";
-			ColorString += ( (Color)cevent.Value ).B.ToString();
-			cevent.Value = ColorString;
+			cevent.Value = ColorToString( (Color)cevent.Value );
+		}
+
+		public static string ColorToString( Color color )
+		{
+			return string.Concat( 
+				color.R.ToString(), ",", 
+				color.G.ToString(), ",", 
+				color.B.ToString() );
 		}
 	}
 }

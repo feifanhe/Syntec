@@ -45,24 +45,16 @@ namespace Fenubars.Buttons
 
 			// Bindings
 			this.DataBindings.Add( "Name", bindingSource, "Name" );
+			this.DataBindings.Add( "BackColor", bindingSource, "BackColor" );
+			this.DataBindings.Add( "ForeColor", bindingSource, "ForeColor" );
 
 			bind = new Binding( "Text", bindingSource, "Title" );
-			bind.Format += new ConvertEventHandler( TitleToResource );
+			bind.Format += new ConvertEventHandler( IdToContent );
 			this.DataBindings.Add( bind );
 
 			bind = new Binding( "Enabled", bindingSource, "State" );
 			bind.Format += new ConvertEventHandler( StateConverter.StateToBool );
 			bind.Parse += new ConvertEventHandler( StateConverter.BoolToState );
-			this.DataBindings.Add( bind );
-
-			bind = new Binding( "BackColor", bindingSource, "BackColor" );
-			bind.Format += new ConvertEventHandler( Fenubars.XML.ColorConverter.StringToColor );
-			bind.Parse += new ConvertEventHandler( Fenubars.XML.ColorConverter.ColorToString );
-			this.DataBindings.Add( bind );
-
-			bind = new Binding( "ForeColor", bindingSource, "ForeColor" );
-			bind.Format += new ConvertEventHandler( Fenubars.XML.ColorConverter.StringToColor );
-			bind.Parse += new ConvertEventHandler( Fenubars.XML.ColorConverter.ColorToString );
 			this.DataBindings.Add( bind );
 
 			// Post-filled
@@ -85,7 +77,7 @@ namespace Fenubars.Buttons
 			Canvas.Add( this );
 		}
 
-		public void TitleToResource( object sender, ConvertEventArgs cevent )
+		public void IdToContent( object sender, ConvertEventArgs cevent )
 		{
 			if( cevent.Value != null ) {
 				string Title = (string)cevent.Value;
