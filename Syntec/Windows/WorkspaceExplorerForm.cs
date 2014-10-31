@@ -12,6 +12,14 @@ namespace Syntec.Windows
 {
 	public partial class WorkspaceExplorerForm : DockContent
 	{
+		public string WorkspacePath
+		{
+			get
+			{
+				return this.basePath;
+			}
+		}
+
 		// Base path that the entire tree will be built on
 		private string basePath;
 
@@ -82,7 +90,7 @@ namespace Syntec.Windows
 				return false;
 			}
 
-			basePath = path.Substring( 0, index ) + @"Res\";
+			basePath = path.Substring( 0, index ) + "Res";
 			return true;
 		}
 

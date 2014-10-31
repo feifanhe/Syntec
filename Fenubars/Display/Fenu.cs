@@ -30,7 +30,7 @@ namespace Fenubars.Display
 		public delegate void DataAvailableEventHandler( Type type, FenuButtonState data );
 		public event DataAvailableEventHandler OnDataAvailable;
 
-		public delegate void LinkageEventHandler( string FenuName );
+		public delegate Fenu LinkageEventHandler( string FenuName );
 		public event LinkageEventHandler Linkage;
 
 		public delegate void FenuModifiedHandler();
@@ -63,6 +63,8 @@ namespace Fenubars.Display
 
 		public void PopulateButtons()
 		{
+			FormSplitContainer.Panel2.Controls.Clear();
+
 			this.originalState = new FenuButtonState[ this.NormalButtonCount + 2 ];
 
 			// TODO: Modify the title to call-pathway
@@ -70,20 +72,26 @@ namespace Fenubars.Display
 
 			// Add EscapeButton and NextButton button
 			EscapeButton EB = new EscapeButton();
+			if( _FenuContent.EscapeButton == null ) {
+				_FenuContent.EscapeButton = new FenuButtonState();
+			}
 			this.originalState[ 0 ] = _FenuContent.EscapeButton;
 			EB.SetState( _FenuContent.EscapeButton );
-			EB.PaintComponent( FormSplitContainer.Panel2.Controls, new Point( 3, 3 ) );
 			EB.MouseDown += new MouseEventHandler( FenuButton_MouseDown );
 			EB.Modified += new EscapeButton.ButtonModifiedHandler( SetFenuModified );
 			EB.KeyDown += new KeyEventHandler( FenuButton_KeyDown );
+			EB.PaintComponent( FormSplitContainer.Panel2.Controls, new Point( 3, 3 ) );
 
 			NextButton NB = new NextButton();
+			if( _FenuContent.NextButton == null ) {
+				_FenuContent.NextButton = new FenuButtonState();
+			}
 			this.originalState[ this.originalState.Length - 1 ] = _FenuContent.NextButton;
 			NB.SetState( _FenuContent.NextButton );
-			NB.PaintComponent( FormSplitContainer.Panel2.Controls, new Point( 3 + 80 * ( normalButtonCount + 1 ), 3 ) );
 			NB.MouseDown += new MouseEventHandler( FenuButton_MouseDown );
 			NB.Modified += new NextButton.ButtonModifiedHandler( SetFenuModified );
 			NB.KeyDown += new KeyEventHandler( FenuButton_KeyDown );
+			NB.PaintComponent( FormSplitContainer.Panel2.Controls, new Point( 3 + 80 * ( normalButtonCount + 1 ), 3 ) );
 
 			// Add normal buttons
 			for( int i = 1; i <= normalButtonCount; i++ ) {
@@ -102,7 +110,6 @@ namespace Fenubars.Display
 
 				this.originalState[ i ] = FBS;
 				NRB.SetState( FBS );
-
 				NRB.PaintComponent( FormSplitContainer.Panel2.Controls );
 			}
 		}
@@ -133,7 +140,7 @@ namespace Fenubars.Display
 
 					// Button not occupied, then bind info to it
 					//if( !binded ) {
-						button.SetState( originalState[ index ], false );
+					button.SetState( originalState[ index ], false );
 					//}
 
 					// Set font
@@ -175,14 +182,14 @@ namespace Fenubars.Display
 		}
 
 		#region Titlebar event
-		
+
 		private void DisplayMode_CheckBox_CheckedChanged( object sender, EventArgs e )
 		{
 			if( DisplayMode_CheckBox.Checked ) {
 				UpdateFromImage();
 			}
 			else {
-				UpdateFromOriginalState();
+				PopulateButtons();
 			}
 		}
 
@@ -312,8 +319,10 @@ namespace Fenubars.Display
 			switch( e.Button ) {
 				case MouseButtons.Left:
 					Control Child = FindChildOnScreen();
-					if( Child == null )
+					if( Child == null ) {
+						OnDataAvailable( typeof( Fenu ), null );
 						return;
+					}
 					IdentifyButtonObject( Child );
 					break;
 				case MouseButtons.Right:
@@ -435,7 +444,7 @@ namespace Fenubars.Display
 
 			// Config the position
 			FBS.Position = ButtonPosition( ( target as Button ).Location );
-			FBS.Name = "F" + FBS.Position.ToString();
+			//FBS.Name = "F" + FBS.Position.ToString();
 
 			// Add the FenuButtonState to properties container, search before append
 			int ListIndex = _FenuContent.NormalButtonList.FindIndex(
@@ -462,7 +471,9 @@ namespace Fenubars.Display
 
 			ObliterateState( target );
 
-			this.UpdateFromImage();
+			if( DisplayMode_CheckBox.Checked ) {
+				this.UpdateFromImage();
+			}
 
 			this.SetFenuModified();
 		}
@@ -502,7 +513,7 @@ namespace Fenubars.Display
 				storage = _FenuContent.NormalButtonList.Find(
 					delegate( FenuButtonState DummyState )
 					{
-						return ( target as NormalButton ).Name == DummyState.Name;
+						return ButtonPosition( ( target as NormalButton ).Location ) == DummyState.Position;
 					} );
 
 			// Kick start the event 
@@ -511,7 +522,7 @@ namespace Fenubars.Display
 
 		private int ButtonPosition( Point location )
 		{
-			return ( location.X - 3 ) / 83;
+			return ( location.X - 3 ) / 80;
 		}
 
 		private bool InstantiateState( object Target )
@@ -533,13 +544,11 @@ namespace Fenubars.Display
 			FenuButtonState FBS = new FenuButtonState();
 
 			if( TargetType == typeof( EscapeButton ) ) {
-
 			}
 			else if( TargetType == typeof( NextButton ) ) {
 			}
 			else if( TargetType == typeof( NormalButton ) ) {
-				int Xpos = ( Target as Button ).Location.X;
-				int Index = ( Xpos - 3 ) / 83;
+				int Index = ButtonPosition( ( Target as Button ).Location );
 
 				// Config the position
 				FBS.Position = Index;
@@ -555,9 +564,9 @@ namespace Fenubars.Display
 			return true;
 		}
 
-		private bool ObliterateState( object Target )
+		private bool ObliterateState( object target )
 		{
-			Type TargetType = Target.GetType();
+			Type TargetType = target.GetType();
 
 			if( TargetType == typeof( EscapeButton ) ) {
 			}
@@ -568,11 +577,11 @@ namespace Fenubars.Display
 				int Index = _FenuContent.NormalButtonList.FindIndex(
 					delegate( FenuButtonState DummyState )
 					{
-						return ( Target as Button ).Name == DummyState.Name;
+						return ButtonPosition( ( target as NormalButton ).Location ) == DummyState.Position;
 					} );
 
 				// Restore state to null
-				( Target as NormalButton ).SetState( null );
+				( target as NormalButton ).SetState( null );
 
 				// Remove state from list
 				_FenuContent.NormalButtonList.RemoveAt( Index );
@@ -595,7 +604,7 @@ namespace Fenubars.Display
 				FBS = _FenuContent.NormalButtonList.Find(
 					delegate( FenuButtonState DummyState )
 					{
-						return ( Button as NormalButton ).Name == DummyState.Name;
+						return ButtonPosition( ( Button as NormalButton ).Location ) == DummyState.Position;
 					} );
 			else {
 				return;
@@ -610,7 +619,12 @@ namespace Fenubars.Display
 				return;
 			}
 
-			Linkage.Invoke( FBS.Link );
+			Fenu fenu = Linkage.Invoke( FBS.Link);
+			// Show the information of Caller in title
+			if( fenu == null )
+				return;
+			fenu.FenuTitle.Text = fenu._FenuContent.Name + " <- " + this._FenuContent.Name + " : F" + FBS.Position;
+
 		}
 
 		private Font GenerateFontByStatus( byte status, bool binded, Font original )
@@ -660,6 +674,7 @@ namespace Fenubars.Display
 		}
 
 		#endregion
+
 
 	}
 }

@@ -42,7 +42,7 @@ namespace Fenubars.XML
 			}
 		}
 
-		private List<FenuButtonState> _NormalButtonList;
+		private List<FenuButtonState> _NormalButtonList = new List<FenuButtonState>();
 		[XmlElement( "button", IsNullable = false )]
 		public List<FenuButtonState> NormalButtonList
 		{

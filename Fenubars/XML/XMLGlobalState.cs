@@ -11,8 +11,9 @@ namespace Fenubars.XML
 	{
 		#region Fenu global states
 
-		private bool _Button3D;
+		private bool _Button3D = true;
 		[Category( "Global" )]
+		[DefaultValue( true )]
 		public bool Button3D
 		{
 			get
@@ -25,8 +26,9 @@ namespace Fenubars.XML
 			}
 		}
 
-		private int _Level3D;
+		private int _Level3D = 4;
 		[Category( "Global" )]
+		[DefaultValue( 4 )]
 		public int Level3D
 		{
 			get
@@ -39,8 +41,9 @@ namespace Fenubars.XML
 			}
 		}
 
-		private bool _NoFunc;
+		private bool _NoFunc = false;
 		[Category( "Global" )]
+		[DefaultValue( false )]
 		public bool NoFunc
 		{
 			get
@@ -53,8 +56,9 @@ namespace Fenubars.XML
 			}
 		}
 
-		private bool _NoLR;
+		private bool _NoLR = false;
 		[Category( "Global" )]
+		[DefaultValue( false )]
 		public bool NoLR
 		{
 			get
@@ -67,8 +71,9 @@ namespace Fenubars.XML
 			}
 		}
 
-		private bool _BigLR;
+		private bool _BigLR = false;
 		[Category( "Global" )]
+		[DefaultValue( false )]
 		public bool BigLR
 		{
 			get
@@ -81,8 +86,9 @@ namespace Fenubars.XML
 			}
 		}
 
-		private bool _TextOverPic;
+		private bool _TextOverPic = false;
 		[Category( "Global" )]
+		[DefaultValue( false )]
 		public bool TextOverPic
 		{
 			get
@@ -111,8 +117,9 @@ namespace Fenubars.XML
 			}
 		}
 
-		private int _Alignment;
+		private int _Alignment = 1;
 		[Category( "Global" )]
+		[DefaultValue( 1 )]
 		public int Alignment
 		{
 			get

@@ -4,10 +4,4 @@ using System.Text;
 
 namespace Syntec
 {
-	public enum Show
-	{
-		Properties,
-		Objects,
-		Workspace // Reserved
-	}
 }

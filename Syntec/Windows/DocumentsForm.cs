@@ -37,7 +37,7 @@ namespace Syntec.Windows
 		public delegate void ShowStatusInfoEventHandler( string text, int progress, bool marquee );
 		public event ShowStatusInfoEventHandler OnShowStatusInfo;
 
-		public delegate string GetResourceEventHandler( string Path, string ID, string Language );
+		public delegate string GetResourceEventHandler( string Path, string ID );
 		public event GetResourceEventHandler OnGetResource;
 
 		public delegate void FindResultsEventHandler( DocumentsForm host, SearchResult[] results );
@@ -45,12 +45,14 @@ namespace Syntec.Windows
 
 		#endregion
 
-		public DocumentsForm( string XMLPath, ShowPropertiesEventHandler OnShowProperties,
-												SetPropertyGridEventHandler OnSetPropertyGrid,
-												ShowObjectsEventHandler OnShowObjects,
-												ShowStatusInfoEventHandler OnShowStatusInfo,
-												GetResourceEventHandler OnGetResource,
-												FindResultsEventHandler OnFindResults )
+		public DocumentsForm(
+			string XMLPath,
+			ShowPropertiesEventHandler OnShowProperties,
+			SetPropertyGridEventHandler OnSetPropertyGrid,
+			ShowObjectsEventHandler OnShowObjects,
+			ShowStatusInfoEventHandler OnShowStatusInfo,
+			GetResourceEventHandler OnGetResource,
+			FindResultsEventHandler OnFindResults )
 		{
 			InitializeComponent();
 
@@ -80,6 +82,51 @@ namespace Syntec.Windows
 
 				// Set target host
 				instance.Host = this;
+				instance.Open();
+
+				this.ResumeLayout();
+			}
+		}
+
+		public DocumentsForm(
+			string XMLPath,
+			string ModuleName,
+			ShowPropertiesEventHandler OnShowProperties,
+			SetPropertyGridEventHandler OnSetPropertyGrid,
+			ShowObjectsEventHandler OnShowObjects,
+			ShowStatusInfoEventHandler OnShowStatusInfo,
+			GetResourceEventHandler OnGetResource,
+			FindResultsEventHandler OnFindResults )
+		{
+			InitializeComponent();
+
+			this.SuspendLayout();
+
+			this.XMLPath = XMLPath;
+
+			// Bind events for instance
+			this.OnShowProperties += OnShowProperties;
+			this.OnSetPropertyGrid += OnSetPropertyGrid;
+			this.OnShowObjects += OnShowObjects;
+			this.OnShowStatusInfo += OnShowStatusInfo;
+			this.OnGetResource += OnGetResource;
+			this.OnFindResults += OnFindResults;
+
+			if( ( instance = ModuleManager.GetModuleByName( ModuleName ) ) == null ) {
+				// Destroy this form if nothing applicable
+				this.Dispose();
+				MessageBox.Show( "No adequate module to create this XML file.",
+									"Unable to create",
+									MessageBoxButtons.OK,
+									MessageBoxIcon.Exclamation );
+			}
+			else {
+				//// Called when testing whether this module can process the XML or not
+				//instance.Initialize( XMLPath );
+
+				// Set target host
+				instance.Host = this;
+				instance.NewFile( XMLPath );
 				instance.Open();
 
 				this.ResumeLayout();
@@ -211,10 +258,10 @@ namespace Syntec.Windows
 			}
 		}
 
-		public string GetResource( string Path, string ID, string Language )
+		public string GetResource( string Path, string ID )
 		{
 			if( this.OnGetResource != null ) {
-				return this.OnGetResource( Path, ID, Language );
+				return this.OnGetResource( Path, ID );
 			}
 			else {
 				return string.Empty;

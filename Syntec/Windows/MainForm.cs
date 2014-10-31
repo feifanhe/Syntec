@@ -78,6 +78,25 @@ namespace Syntec.Windows
 
 		#region File
 
+		private void New_Workspace_ToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			NewWorkspaceDialog dialog = new NewWorkspaceDialog();
+			if( dialog.ShowDialog() == DialogResult.OK ) {
+				// TODO: new workspace
+				RecentWorkspacesMenu.AddFile( dialog.SelectedBaseRes );
+				WorkspaceExplorer.ShowWorkspace( dialog.SelectedBaseRes );
+				StringManager.ShowString( dialog.SelectedBaseRes );
+			}
+		}
+
+		private void New_File_ToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			NewFileDialog dialog = new NewFileDialog( WorkspaceExplorer.WorkspacePath );
+			if( dialog.ShowDialog() == DialogResult.OK ) {
+				this.NewFile( dialog.FileName, dialog.SelectedModule );
+			}
+		}
+
 		private void Open_Workspace_ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
 			OpenDialog( "Open Workspace", true );
@@ -292,7 +311,7 @@ namespace Syntec.Windows
 		{
 			// Determine which type of dialog it is
 			if( dirMode ) {
-				FolderBrowserDialog dialog = new FolderBrowserDialog();
+				Ookii.Dialogs.VistaFolderBrowserDialog dialog = new Ookii.Dialogs.VistaFolderBrowserDialog();
 
 				dialog.Description = @"Workspace should located under ""Res"" folder.";
 				dialog.ShowNewFolderButton = false;
@@ -336,6 +355,42 @@ namespace Syntec.Windows
 			}
 		}
 
+		// TODO: Combine with openFile
+		private void NewFile( string filePath, string moduleName )
+		{
+			// Document opened, switch tab
+			IDockContent target = null;
+
+			// Scan for opened documents
+			foreach( IDockContent content in Main_DockPanel.Contents ) {
+				if( content.DockHandler.ToolTipText == filePath )
+					target = content;
+			}
+
+			if( target != null ) {
+				target.DockHandler.Show();
+				return;
+			}
+
+			DocumentsForm openFromFile =
+				new DocumentsForm(
+					filePath,
+					moduleName,
+					new DocumentsForm.ShowPropertiesEventHandler( ShowProperties ),
+					new DocumentsForm.SetPropertyGridEventHandler( SetPropertyGrid ),
+					new DocumentsForm.ShowObjectsEventHandler( ShowObjects ),
+					new DocumentsForm.ShowStatusInfoEventHandler( ShowStatusInfo ),
+					new DocumentsForm.GetResourceEventHandler( GetResource ),
+					new DocumentsForm.FindResultsEventHandler( OnFindResults ) );
+
+			if( openFromFile.IsDisposed )
+				return;
+
+			openFromFile.Show( Main_DockPanel, DockState.Document );
+			openFromFile.TabText = Path.GetFileNameWithoutExtension( filePath );
+			openFromFile.ToolTipText = filePath;
+		}
+
 		private void OpenFile( string filePath )
 		{
 			// Document opened, switch tab
@@ -352,13 +407,15 @@ namespace Syntec.Windows
 				return;
 			}
 
-			DocumentsForm openFromFile = new DocumentsForm( filePath,
-																new DocumentsForm.ShowPropertiesEventHandler( ShowProperties ),
-																new DocumentsForm.SetPropertyGridEventHandler( SetPropertyGrid ),
-																new DocumentsForm.ShowObjectsEventHandler( ShowObjects ),
-																new DocumentsForm.ShowStatusInfoEventHandler( ShowStatusInfo ),
-																new DocumentsForm.GetResourceEventHandler( GetResource ),
-																new DocumentsForm.FindResultsEventHandler( OnFindResults ) );
+			DocumentsForm openFromFile = 
+				new DocumentsForm( 
+					filePath,
+					new DocumentsForm.ShowPropertiesEventHandler( ShowProperties ),
+					new DocumentsForm.SetPropertyGridEventHandler( SetPropertyGrid ),
+					new DocumentsForm.ShowObjectsEventHandler( ShowObjects ),
+					new DocumentsForm.ShowStatusInfoEventHandler( ShowStatusInfo ),
+					new DocumentsForm.GetResourceEventHandler( GetResource ),
+					new DocumentsForm.FindResultsEventHandler( OnFindResults ) );
 
 			if( openFromFile.IsDisposed )
 				return;
@@ -416,9 +473,9 @@ namespace Syntec.Windows
 			}
 		}
 
-		private string GetResource( string Path, string ID, string Language )
+		private string GetResource( string Path, string ID )
 		{
-			return this.StringManager.FindString( Path, ID, Language );
+			return this.StringManager.FindString( Path, ID, "CHT" );
 		}
 
 		private void OnFindResults( DocumentsForm host, ModuleInterface.SearchResult[] results )

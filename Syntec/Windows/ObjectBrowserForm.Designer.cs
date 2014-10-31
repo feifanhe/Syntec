@@ -34,7 +34,7 @@ namespace Syntec.Windows
 			this.ViewCode_ToolStripButton = new System.Windows.Forms.ToolStripButton();
 			this.ViewDesigner_ToolStripButton = new System.Windows.Forms.ToolStripButton();
 			this.ViewStructure_ToolStripButton = new System.Windows.Forms.ToolStripButton();
-			this.Object_TreeView = new System.Windows.Forms.TreeView();
+			this.ObjectTree_Panel = new System.Windows.Forms.Panel();
 			this.ObjectBrowser_ToolStrip.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -104,25 +104,20 @@ namespace Syntec.Windows
 			this.ViewStructure_ToolStripButton.ToolTipText = "View Structure";
 			this.ViewStructure_ToolStripButton.Click += new System.EventHandler( this.ViewStructure_ToolStripButton_Click );
 			// 
-			// Object_TreeView
+			// ObjectTree_Panel
 			// 
-			this.Object_TreeView.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.Object_TreeView.Location = new System.Drawing.Point( 0, 25 );
-			this.Object_TreeView.Name = "Object_TreeView";
-			this.Object_TreeView.Size = new System.Drawing.Size( 248, 301 );
-			this.Object_TreeView.TabIndex = 1;
-			this.Object_TreeView.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler( this.TreeView_NodeMouseDoubleClick );
-			this.Object_TreeView.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler( this.TreeView_BeforeExpand );
-			this.Object_TreeView.BeforeCollapse += new System.Windows.Forms.TreeViewCancelEventHandler( this.TreeView_BeforeCollapse );
-			this.Object_TreeView.MouseDown += new System.Windows.Forms.MouseEventHandler( this.TreeView_MouseDown );
-			this.Object_TreeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler( this.TreeView_NodeMouseClick );
+			this.ObjectTree_Panel.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.ObjectTree_Panel.Location = new System.Drawing.Point( 0, 25 );
+			this.ObjectTree_Panel.Name = "ObjectTree_Panel";
+			this.ObjectTree_Panel.Size = new System.Drawing.Size( 248, 301 );
+			this.ObjectTree_Panel.TabIndex = 2;
 			// 
 			// ObjectBrowserForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF( 6F, 13F );
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size( 248, 326 );
-			this.Controls.Add( this.Object_TreeView );
+			this.Controls.Add( this.ObjectTree_Panel );
 			this.Controls.Add( this.ObjectBrowser_ToolStrip );
 			this.Font = new System.Drawing.Font( "Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ( (byte)( 136 ) ) );
 			this.HideOnClose = true;
@@ -146,6 +141,6 @@ namespace Syntec.Windows
 		private System.Windows.Forms.ToolStripButton ViewCode_ToolStripButton;
 		private System.Windows.Forms.ToolStripButton ViewDesigner_ToolStripButton;
 		private System.Windows.Forms.ToolStripButton ViewStructure_ToolStripButton;
-		private System.Windows.Forms.TreeView Object_TreeView;
+		private System.Windows.Forms.Panel ObjectTree_Panel;
 	}
 }

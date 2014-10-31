@@ -48,31 +48,37 @@ namespace Syntec.Windows
 				return;
 			}
 
-			string ProductPath =
-					this.SelectionPanel.SelectedCategory.Replace( "\\", "\\_" ).Substring(
-					this.SelectionPanel.SelectedCategory.IndexOf( "\\" ) );
-
-			if( this.InputPanel.SelectedSolutionIndex == 0 ) {
-				// Add to existing Res folder
-
-				int index = this.InputPanel.SelectedPath.ToUpper().LastIndexOf( "RES" );
-				if( index < 0 ) {
-					// This section should never occur
-					MessageBox.Show( "Designated path isn't located in Res.",
-										"Wrong File Path",
-										MessageBoxButtons.OK,
-										MessageBoxIcon.Error );
-					return;
-				}
-				this._SelectedBaseRes = this.InputPanel.SelectedPath.Substring( 0, index ) + @"Res\";
-				Directory.CreateDirectory( this._SelectedBaseRes + ProductPath );
+			// extract seleted product path
+			string ProductPath = this.SelectionPanel.SelectedCategory.Substring( this.SelectionPanel.SelectedCategory.IndexOf( Path.DirectorySeparatorChar ) + 1 );
+			if( this.SelectionPanel.SelectedTemplate != string.Empty ) {
+				ProductPath = ProductPath + Path.DirectorySeparatorChar + this.SelectionPanel.SelectedTemplate;
 			}
-			else {
+			ProductPath = ProductPath.Replace( Path.DirectorySeparatorChar.ToString(), Path.DirectorySeparatorChar + "_" );
+
+			switch( this.InputPanel.SelectedSolution ) {
 				// Create new Res folder
-				this._SelectedBaseRes = this.InputPanel.SelectedPath + @"\Res";
-				Directory.CreateDirectory( this._SelectedBaseRes + ProductPath );
-			
+				case NewItemInputPanel.NewWorkspaceSolutionType.CreateNewResFolder:
+					this._SelectedBaseRes = this.InputPanel.SelectedPath + Path.DirectorySeparatorChar + "Res";
+					MessageBox.Show( _SelectedBaseRes );
+					Directory.CreateDirectory( this._SelectedBaseRes + Path.DirectorySeparatorChar + ProductPath );
+					break;
+
+				// Add to existing Res folder
+				case NewItemInputPanel.NewWorkspaceSolutionType.AddToExistingResFolder:
+					int index = this.InputPanel.SelectedPath.ToUpper().LastIndexOf( "RES" );
+					if( index < 0 ) {
+						// This section should never occur
+						MessageBox.Show( "Designated path isn't located in Res.",
+											"Wrong File Path",
+											MessageBoxButtons.OK,
+											MessageBoxIcon.Error );
+						return;
+					}
+					this._SelectedBaseRes = this.InputPanel.SelectedPath.Substring( 0, index ) + "Res";
+					Directory.CreateDirectory( this._SelectedBaseRes + Path.DirectorySeparatorChar + ProductPath );
+					break;
 			}
+
 			this.DialogResult = DialogResult.OK;
 		}
 

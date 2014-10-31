@@ -41,6 +41,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ookii.Dialogs, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0c15020868fd6249, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\Ookii.Dialogs.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
@@ -57,9 +61,6 @@
     <Compile Include="Configurator\IniConfigurator.cs" />
     <Compile Include="Definitions\EnumDefinitions.cs" />
     <Compile Include="Methods\Global.cs" />
-    <Compile Include="Methods\MainForm_File_New.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Methods\NewWorkspaceDialog.cs">
       <SubType>Form</SubType>
     </Compile>

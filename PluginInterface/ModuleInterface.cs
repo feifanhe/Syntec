@@ -21,6 +21,12 @@ namespace ModuleInterface
 		#region Basic operations
 
 		/// <summary>
+		/// This method call the new file method of an module.
+		/// </summary>
+		/// <param name="XMLPath">The file path.</param>
+		void NewFile( string XMLPath );
+
+		/// <summary>
 		/// This method call the initialization method of an module.
 		/// </summary>
 		/// <param name="XMLPath">The XML file path.</param>
@@ -158,7 +164,12 @@ namespace ModuleInterface
 		/// <param name="modified">True if it's modified.</param>
 		void Modified( bool modified );
 
-		string GetResource( string Path, string ID, string Language );
+		/// <summary>
+		/// This method returns the resource of coordinate id.
+		/// </summary>
+		/// <param name="Path">Path of recent file</param>
+		/// <param name="ID">Resource ID</param>
+		string GetResource( string Path, string ID );
 	}
 
 	public class SearchResult

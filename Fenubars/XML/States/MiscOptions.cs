@@ -127,7 +127,6 @@ namespace Fenubars.XML
 		private List<string> _Actions = new List<string>();
 		[XmlArray( "actions" )]
 		[XmlArrayItem( "action", typeof( string ) )]
-		[Category( "Fenu Button" )]
 		[ButtonType( ButtonTypes.EscapeButton | ButtonTypes.NormalButton | ButtonTypes.NextButton )]
 		//public ActionCollection Actions
 		public List<string> Actions

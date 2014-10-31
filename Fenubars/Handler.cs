@@ -14,6 +14,7 @@ using Fenubars.Buttons;
 using Fenubars.XML;
 
 using ModuleInterface;
+using Fenubars.Editor;
 
 
 namespace Fenubars
@@ -42,8 +43,14 @@ namespace Fenubars
 			else {
 				// Set object first, and then filter the attributes
 				_Host.ShowProperties( data );
-				_Host.SetPropertyGrid( new AttributeCollection( new Attribute[] { new CategoryAttribute( "Fenu Button" ) } ),
-										SelectedProperties( type ) );
+				_Host.SetPropertyGrid(
+					new AttributeCollection(
+						new Attribute[] { 
+							new CategoryAttribute( "Fenu Button" ),
+							new CategoryAttribute( "Behavior" ),
+							new CategoryAttribute( "Appearance" )
+						} ),
+					SelectedProperties( type ) );
 				// Reset object
 				_Host.ShowProperties( data );
 			}
@@ -98,6 +105,13 @@ namespace Fenubars
 		#endregion
 
 		#region Basic operations
+
+		public void NewFile( string XMLPath )
+		{
+			this.XMLPath = XMLPath;
+			InitiateSerializer();
+			this.globalFenuState = new XMLGlobalState();
+		}
 
 		public bool Initialize( string XMLPath )
 		{
@@ -201,8 +215,13 @@ namespace Fenubars
 
 		public void Open()
 		{
-			CompiledTree = new ObjectTree( XMLPath, globalFenuState.IncludedFenus );
-			_Host.ShowObjects( CompiledTree );
+			this.CompiledTree = new ObjectTree( XMLPath, globalFenuState.IncludedFenus );
+			this.CompiledTree.NewFenu += new ObjectTree.IndefiniteFenuOperationEventHandler( NewFenu );
+			this.CompiledTree.PasteFenu += new ObjectTree.IndefiniteFenuOperationEventHandler( PasteFenu );
+			this.CompiledTree.CutFenu += new ObjectTree.DefiniteFenuOperationEventHandler( CutFenu );
+			this.CompiledTree.CopyFenu += new ObjectTree.DefiniteFenuOperationEventHandler( CopyFenu );
+			this.CompiledTree.DeleteFenu += new ObjectTree.DefiniteFenuOperationEventHandler( DeleteFenu );
+			this._Host.ShowObjects( CompiledTree );
 		}
 
 		// Figure out 5 or 8 key by filename
@@ -226,22 +245,29 @@ namespace Fenubars
 
 		public void Open( string fenuName )
 		{
+			OpenFenu( fenuName );
+			return;
+		}
+
+		public Fenu OpenFenu( string fenuName )
+		{
 			if( fenuName == String.Empty ) {
-				return;
+				return null;
 			}
 
 			if( _Host.FindControlByName( fenuName ) != null ) {
 				_Host.FindControlByName( fenuName ).Focus();
-				return;
+				return _Host.FindControlByName( fenuName ) as Fenu;
 			}
 
 			_Host.ShowStatusInfo( "Loading " + fenuName + "...", 100, true );
 
+			// TODO: Imporve search method
 			foreach( FenuState parsedFenu in globalFenuState.IncludedFenus ) {
 				if( parsedFenu.Name == fenuName ) {
 					Fenu newFenuPanel = new Fenu( parsedFenu, NormalButtonCount() );
 					newFenuPanel.OnDataAvailable += new Fenu.DataAvailableEventHandler( FocusedObjectAvailable );
-					newFenuPanel.Linkage += new Fenu.LinkageEventHandler( Open );
+					newFenuPanel.Linkage += new Fenu.LinkageEventHandler( OpenFenu );
 					newFenuPanel.Modified += new Fenu.FenuModifiedHandler( FenuModified );
 					newFenuPanel.OnGetResource += new Fenu.GetResourceEventHandler( GetResource );
 
@@ -254,11 +280,12 @@ namespace Fenubars
 					_Host.DrawOnCanvas( newFenuPanel );
 					_Host.ShowStatusInfo( "Ready", -1, false );
 
-					return;
+					return newFenuPanel;
 				}
 			}
-
 			_Host.ShowStatusInfo( "Ready", -1, false );
+
+			return null;
 		}
 
 		public void Close()
@@ -273,7 +300,7 @@ namespace Fenubars
 
 		private string GetResource( string ID )
 		{
-			return _Host.GetResource( this.XMLPath, ID, "CHT" );
+			return _Host.GetResource( this.XMLPath, ID );
 		}
 
 		#endregion
@@ -366,13 +393,82 @@ namespace Fenubars
 
 		#endregion
 
+		#region Fenu operations
+
+		public void NewFenu()
+		{
+			FenuState newFenuState = new FenuState();
+			newFenuState.Name = "New Fenu";
+			this.globalFenuState.IncludedFenus.Add( newFenuState );
+			this.RefreshObjects();
+		}
+
+		public void PasteFenu()
+		{
+			FenuState fenuState = ClipBoardManager<FenuState>.GetFromClipboard();
+			
+			if( fenuState == null ) {
+				return;
+			}
+
+			string fenuName = fenuState.Name + " - Copy ";
+			int length = fenuName.Length;
+			int copies = 1;
+			bool terminal;
+			do {
+				terminal = true;
+				foreach( FenuState parsedFenu in this.globalFenuState.IncludedFenus ) {
+					if( parsedFenu.Name == fenuName ) {
+						copies++;
+						fenuName.Remove( length );
+						fenuName += copies.ToString();
+						terminal = false;
+						break;
+					}
+				}
+			} while( !terminal );
+			fenuState.Name = fenuName;
+			this.globalFenuState.IncludedFenus.Add( fenuState );
+			this.FenuModified();
+			this.RefreshObjects();
+		}
+
+		public void CutFenu( string fenuName )
+		{
+			this.CopyFenu( fenuName );
+			this.DeleteFenu( fenuName );
+		}
+
+		public void CopyFenu( string fenuName )
+		{
+			foreach( FenuState parsedFenu in this.globalFenuState.IncludedFenus ) {
+				if( parsedFenu.Name == fenuName ) {
+					ClipBoardManager<FenuState>.CopyToClipboard( parsedFenu );
+					break;
+				}
+			}
+		}
+
+		public void DeleteFenu( string fenuName )
+		{
+			foreach( FenuState parsedFenu in this.globalFenuState.IncludedFenus ) {
+				if( parsedFenu.Name == fenuName ) {
+					this.globalFenuState.IncludedFenus.Remove( parsedFenu );
+					break;
+				}
+			}
+			this.FenuModified();
+			this.RefreshObjects();
+		}
+
+		#endregion
+
 		#region Owning object operations
 
 		public void RefreshObjects()
 		{
 			// TODO: Fix problem here
-			CompiledTree = new ObjectTree( XMLPath, globalFenuState.IncludedFenus );
-			_Host.ShowObjects( CompiledTree );
+			Open();
 		}
 
 		#endregion

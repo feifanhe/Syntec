@@ -2,11 +2,22 @@ using System;
 using System.Collections.Generic;
 using Fenubars.XML;
 using System.Windows.Forms;
+using System.Drawing;
+
+using Fenubars.Editor;
 
 namespace Fenubars.Display
 {
 	public partial class ObjectTree : TreeView
 	{
+		public delegate void IndefiniteFenuOperationEventHandler();
+		public event IndefiniteFenuOperationEventHandler NewFenu;
+		public event IndefiniteFenuOperationEventHandler PasteFenu;
+		public delegate void DefiniteFenuOperationEventHandler( string name );
+		public event DefiniteFenuOperationEventHandler CutFenu;
+		public event DefiniteFenuOperationEventHandler CopyFenu;
+		public event DefiniteFenuOperationEventHandler DeleteFenu;
+
 		private readonly string CUSTOM_FENU_HEADER = "CUSTOMFENU_";
 
 		private List<FenuLink> links = new List<FenuLink>();
@@ -17,18 +28,115 @@ namespace Fenubars.Display
 
 			// Save file name
 			this.Name = filePath;
-			this.ImageList = this.ObjectType_ImageList;
+
+			// Set context menu
+			SetContextMenu();
 
 			// RebuildForest
 			RebuildForest( fenus );
 		}
 
-		public void RebuildForest( List<FenuState> fenus )
+		private void SetContextMenu()
+		{
+			ToolStripMenuItem NewFenu_ToolStripMenuItem = new ToolStripMenuItem();
+			NewFenu_ToolStripMenuItem.Text = "New Fenu";
+			NewFenu_ToolStripMenuItem.Click += new EventHandler( NewFenu_ToolStripMenuItem_Click );
+
+			ToolStripMenuItem PasteFenu_ToolStripMenuItem = new ToolStripMenuItem();
+			PasteFenu_ToolStripMenuItem.Text = "Paste Fenu";
+			PasteFenu_ToolStripMenuItem.Click += new EventHandler( PasteFenu_ToolStripMenuItem_Click );
+
+			ToolStripSeparator ObjectFenu_ToolStripSeparator = new ToolStripSeparator();
+
+			ToolStripMenuItem CutFenu_ToolStripMenuItem = new ToolStripMenuItem();
+			CutFenu_ToolStripMenuItem.Text = "Cut Fenu";
+			CutFenu_ToolStripMenuItem.Click += new EventHandler( CutFenu_ToolStripMenuItem_Click );
+
+			ToolStripMenuItem CopyFenu_ToolStripMenuItem = new ToolStripMenuItem();
+			CopyFenu_ToolStripMenuItem.Text = "Copy Fenu";
+			CopyFenu_ToolStripMenuItem.Click += new EventHandler( CopyFenu_ToolStripMenuItem_Click );
+
+			ToolStripMenuItem DeleteFenu_ToolStripMenuItem = new ToolStripMenuItem();
+			DeleteFenu_ToolStripMenuItem.Text = "Delete Fenu";
+			DeleteFenu_ToolStripMenuItem.Click += new EventHandler(DeleteFenu_ToolStripMenuItem_Click);
+
+			this.ObjectTree_ContextMenuStrip.Items.Add( NewFenu_ToolStripMenuItem );
+			this.ObjectTree_ContextMenuStrip.Items.Add( PasteFenu_ToolStripMenuItem );
+			this.ObjectTree_ContextMenuStrip.Items.Add( ObjectFenu_ToolStripSeparator );
+			this.ObjectTree_ContextMenuStrip.Items.Add( CutFenu_ToolStripMenuItem );
+			this.ObjectTree_ContextMenuStrip.Items.Add( CopyFenu_ToolStripMenuItem );
+			this.ObjectTree_ContextMenuStrip.Items.Add( DeleteFenu_ToolStripMenuItem );
+		}
+
+		private void RebuildForest( List<FenuState> fenus )
 		{
 			CompileLinksInfo( fenus );
 			// First time execution, fully reconstruct the tree
 			ConstructForest();
 		}
+
+		#region Context Menu Event
+
+		private void ObjectTree_ContextMenuStrip_Opening( object sender, System.ComponentModel.CancelEventArgs e )
+		{
+			if( ClipBoardManager<FenuState>.Available() ) {
+				this.ObjectTree_ContextMenuStrip.Items[ 1 ].Enabled = true;
+			}
+			else {
+				this.ObjectTree_ContextMenuStrip.Items[ 1 ].Enabled = false;
+			}
+
+			if( this.SelectedNode == null ) {
+				this.ObjectTree_ContextMenuStrip.Items[ 3 ].Enabled = false;
+				this.ObjectTree_ContextMenuStrip.Items[ 4 ].Enabled = false;
+				this.ObjectTree_ContextMenuStrip.Items[ 5 ].Enabled = false;
+			}
+			else {
+				this.ObjectTree_ContextMenuStrip.Items[ 3 ].Enabled = true;
+				this.ObjectTree_ContextMenuStrip.Items[ 4 ].Enabled = true;
+				this.ObjectTree_ContextMenuStrip.Items[ 5 ].Enabled = true;
+			}
+		}
+
+		private void NewFenu_ToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			if( this.NewFenu != null ) {
+				this.NewFenu.Invoke();
+			}
+		}
+
+		private void PasteFenu_ToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			if( this.PasteFenu != null ) {
+				this.PasteFenu.Invoke();
+			}
+		}
+
+		private void CutFenu_ToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			if( this.CutFenu != null ) {
+				this.CutFenu.Invoke( this.SelectedNode.Text );
+			}
+		}
+
+		private void CopyFenu_ToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			if( this.CopyFenu != null ) {
+
+				this.CopyFenu.Invoke( this.SelectedNode.Text );
+			}
+		}
+
+		private void DeleteFenu_ToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			if( this.DeleteFenu != null ) {
+				this.DeleteFenu.Invoke( this.SelectedNode.Text );
+			}
+		}
+
+
+
+		#endregion
 
 		#region Build Links
 
@@ -142,19 +250,16 @@ namespace Fenubars.Display
 			}
 		}
 
-
-
-
 		private FenuLink FindFenuLinkByName( string name )
 		{
-			return links.Find( delegate( FenuLink selectedFenuLink )
-											{
-												return selectedFenuLink.Name == name;
-											} );
+			return 
+				links.Find( delegate( FenuLink selectedFenuLink )
+				{
+					return selectedFenuLink.Name == name;
+				} );
 		}
 
 		#endregion
-
 
 	}
 

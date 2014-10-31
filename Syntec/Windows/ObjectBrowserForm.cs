@@ -16,7 +16,7 @@ namespace Syntec.Windows
 	{
 		// Corresponding document tab name
 		private string filePath = string.Empty;
-		public IModuleHost host;
+		private TreeView ObjectTree;
 
 		public ObjectBrowserForm()
 		{
@@ -25,32 +25,24 @@ namespace Syntec.Windows
 
 		public void SetContents( Control treeView )
 		{
-			this.SuspendLayout();
-
 			if( treeView == null ) {
-				Object_TreeView.Nodes.Clear();
-			}
-			else {
-				// Remove the tree view
-				this.Object_TreeView.Nodes.Clear();
-
-				// Clone Tree Nodes
-				TreeView templateTreeView = treeView as TreeView;
-				this.Object_TreeView.Nodes.Clear();
-				foreach( TreeNode node in templateTreeView.Nodes ) {
-					this.Object_TreeView.Nodes.Add( node.Clone() as TreeNode );
-				}
-
-				// Copy image list
-				Object_TreeView.ImageList = templateTreeView.ImageList;
-
-				// Acquire target tab name
-				filePath = templateTreeView.Name;
-
-				this.Refresh_ToolStripButton.Enabled = true;
+				this.ObjectTree_Panel.Controls.Clear();
+				return;
 			}
 
-			this.ResumeLayout();
+			TreeView templateTreeView = treeView as TreeView;
+
+			templateTreeView.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler( this.TreeView_NodeMouseDoubleClick );
+			templateTreeView.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler( this.TreeView_BeforeExpand );
+			templateTreeView.BeforeCollapse += new System.Windows.Forms.TreeViewCancelEventHandler( this.TreeView_BeforeCollapse );
+			templateTreeView.MouseDown += new System.Windows.Forms.MouseEventHandler( this.TreeView_MouseDown );
+			templateTreeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler( this.TreeView_NodeMouseClick );
+
+			this.ObjectTree_Panel.Controls.Clear();
+			this.ObjectTree_Panel.Controls.Add( templateTreeView );
+			this.ObjectTree = templateTreeView;
+			this.filePath = templateTreeView.Name;
+			this.Refresh_ToolStripButton.Enabled = true;
 		}
 
 		#region Tree view event
@@ -114,7 +106,9 @@ namespace Syntec.Windows
 
 		private void ViewDesigner_ToolStripButton_Click( object sender, EventArgs e )
 		{
-			OpenDesigner( Object_TreeView.SelectedNode.Name );
+			if( ObjectTree != null && this.ObjectTree.SelectedNode != null ) {
+				OpenDesigner( this.ObjectTree.SelectedNode.Name );
+			}
 		}
 
 		private void ViewStructure_ToolStripButton_Click( object sender, EventArgs e )

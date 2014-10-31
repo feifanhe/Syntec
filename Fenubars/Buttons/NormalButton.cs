@@ -58,7 +58,7 @@ namespace Fenubars.Buttons
 			this.DataBindings.Add( bind );
 
 			// Post-filled
-			State.Name = State.Name ?? "F" + State.Position.ToString();
+			//State.Name = State.Name ?? "F" + State.Position.ToString();
 
 			bindingSource.CurrentItemChanged += new System.EventHandler( bindingSource_CurrentItemChanged );
 			// Reset IsDirty
@@ -80,9 +80,10 @@ namespace Fenubars.Buttons
 		public void IdToContent( object sender, ConvertEventArgs cevent )
 		{
 			if( cevent.Value != null ) {
-				string Title = (string)cevent.Value;
-				if( Title.ToUpper().StartsWith( "STR::" ) ) {
-					cevent.Value = this.OnGetResource( Title.Substring( 5 ) );
+				string id = (string)cevent.Value;
+				if( id.ToUpper().StartsWith( "STR::" ) ) {
+					string resource = this.OnGetResource( id.Substring( 5 ) );
+					cevent.Value = ( resource == string.Empty ) ? id : resource;
 				}
 			}
 		}

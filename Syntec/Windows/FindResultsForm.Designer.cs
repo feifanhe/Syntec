@@ -59,6 +59,7 @@ namespace Syntec.Windows
 			this.ClientSize = new System.Drawing.Size( 733, 122 );
 			this.Controls.Add( this.FindResults_ListView );
 			this.Font = new System.Drawing.Font( "PMingLiU", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ( (byte)( 136 ) ) );
+			this.HideOnClose = true;
 			this.Icon = ( (System.Drawing.Icon)( resources.GetObject( "$this.Icon" ) ) );
 			this.Name = "FindResultsForm";
 			this.Text = "Find Results";

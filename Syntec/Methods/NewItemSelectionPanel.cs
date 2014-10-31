@@ -17,7 +17,25 @@ namespace Syntec.Windows
 		{
 			get
 			{
-				return Category_TreeView.SelectedNode.FullPath;
+				return Categories_TreeView.SelectedNode.FullPath;
+			}
+		}
+
+		ListViewItem _SelectedTemplate;
+		public string SelectedTemplate
+		{
+			get
+			{
+				if( _SelectedTemplate == null ) {
+					return string.Empty;
+				}
+				XmlElement Tag = _SelectedTemplate.Tag as XmlElement;
+				if( Tag.Attributes[ "value" ] != null ) {
+					return Tag.Attributes[ "value" ].Value;
+				}
+				else {
+					return string.Empty;
+				}
 			}
 		}
 
@@ -49,7 +67,7 @@ namespace Syntec.Windows
 				return;
 			}
 
-			this.Category_TreeView.Nodes.Clear();
+			this.Categories_TreeView.Nodes.Clear();
 
 			if( xDoc.DocumentElement == null ||
 				string.Compare( xDoc.DocumentElement.Name, "Category" ) != 0 ||
@@ -60,8 +78,9 @@ namespace Syntec.Windows
 			TreeNode Root = new TreeNode( xDoc.DocumentElement.Attributes[ "name" ].Value );
 			Root.Tag = xDoc.DocumentElement;
 			AddNode( Root, xDoc.DocumentElement );
-			this.Category_TreeView.Nodes.Add( Root );
+			this.Categories_TreeView.Nodes.Add( Root );
 			Root.ExpandAll();
+			this.Categories_TreeView.SelectedNode = Root;
 		}
 
 		private void AddNode( TreeNode ParentTreeNode, XmlElement ParentXmlNode )
@@ -82,9 +101,31 @@ namespace Syntec.Windows
 
 		#endregion
 
+		#region Template
+
+		public void PopulateTemplate( XmlElement CategoryNode )
+		{
+			this.Templates_ListView.Items.Clear();
+			foreach( XmlElement Element in CategoryNode.ChildNodes ) {
+				if( Element.Name == "Template" ) {
+					{
+						ListViewItem Template = new ListViewItem( Element.Attributes[ "name" ].Value, 0 );
+						Template.Tag = Element;
+						this.Templates_ListView.Items.Add( Template );
+					}
+				}
+			}
+			this.Templates_ListView.Select();
+			if( this.Templates_ListView.Items.Count > 0 ) {
+				this.Templates_ListView.Items[ 0 ].Selected = true;
+			}
+		}
+
+		#endregion
+
 		#region Event
 
-		private void Category_TreeView_NodeMouseClick( object sender, TreeNodeMouseClickEventArgs e )
+		private void Category_TreeView_AfterSelect( object sender, TreeViewEventArgs e )
 		{
 			if( e.Node.Tag == null )
 				return;
@@ -93,19 +134,21 @@ namespace Syntec.Windows
 
 			XmlElement Tag = e.Node.Tag as XmlElement;
 
+			PopulateTemplate( Tag );
+
 			if( Tag.Attributes[ "desc" ] != null ) {
 				this.Description_TextBox.Text = Tag.Attributes[ "desc" ].Value;
 			}
-
-			// TODO: Populate Template List
 		}
 
-		private void Template_ListView_ItemChecked( object sender, ItemCheckedEventArgs e )
+		private void Template_ListView_ItemSelectionChanged( object sender, ListViewItemSelectionChangedEventArgs e )
 		{
 			if( e.Item.Tag == null )
 				return;
 			if( e.Item.Tag.GetType() != typeof( XmlElement ) )
 				return;
+
+			this._SelectedTemplate = e.Item;
 
 			XmlElement Tag = e.Item.Tag as XmlElement;
 
@@ -115,5 +158,7 @@ namespace Syntec.Windows
 		}
 
 		#endregion
+
+
 	}
 }

@@ -27,12 +27,15 @@ namespace Syntec.Windows
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager( typeof( NewItemSelectionPanel ) );
 			this.Main_SplitContainer = new System.Windows.Forms.SplitContainer();
 			this.Category_SplitContainer = new System.Windows.Forms.SplitContainer();
-			this.Category_TreeView = new System.Windows.Forms.TreeView();
-			this.Category_Label = new System.Windows.Forms.Label();
-			this.Template_ListView = new System.Windows.Forms.ListView();
-			this.Template_Label = new System.Windows.Forms.Label();
+			this.Categories_TreeView = new System.Windows.Forms.TreeView();
+			this.Categories_Label = new System.Windows.Forms.Label();
+			this.Templates_ListView = new System.Windows.Forms.ListView();
+			this.NewItem_ImageList = new System.Windows.Forms.ImageList( this.components );
+			this.Templates_Label = new System.Windows.Forms.Label();
 			this.Description_TextBox = new System.Windows.Forms.TextBox();
 			this.Main_SplitContainer.Panel1.SuspendLayout();
 			this.Main_SplitContainer.Panel2.SuspendLayout();
@@ -71,54 +74,64 @@ namespace Syntec.Windows
 			// 
 			// Category_SplitContainer.Panel1
 			// 
-			this.Category_SplitContainer.Panel1.Controls.Add( this.Category_TreeView );
-			this.Category_SplitContainer.Panel1.Controls.Add( this.Category_Label );
+			this.Category_SplitContainer.Panel1.Controls.Add( this.Categories_TreeView );
+			this.Category_SplitContainer.Panel1.Controls.Add( this.Categories_Label );
 			// 
 			// Category_SplitContainer.Panel2
 			// 
-			this.Category_SplitContainer.Panel2.Controls.Add( this.Template_ListView );
-			this.Category_SplitContainer.Panel2.Controls.Add( this.Template_Label );
+			this.Category_SplitContainer.Panel2.Controls.Add( this.Templates_ListView );
+			this.Category_SplitContainer.Panel2.Controls.Add( this.Templates_Label );
 			this.Category_SplitContainer.Size = new System.Drawing.Size( 640, 330 );
 			this.Category_SplitContainer.SplitterDistance = 240;
 			this.Category_SplitContainer.TabIndex = 0;
 			// 
-			// Category_TreeView
+			// Categories_TreeView
 			// 
-			this.Category_TreeView.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.Category_TreeView.Location = new System.Drawing.Point( 0, 23 );
-			this.Category_TreeView.Name = "Category_TreeView";
-			this.Category_TreeView.Size = new System.Drawing.Size( 240, 307 );
-			this.Category_TreeView.TabIndex = 1;
-			this.Category_TreeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler( this.Category_TreeView_NodeMouseClick );
+			this.Categories_TreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.Categories_TreeView.HideSelection = false;
+			this.Categories_TreeView.Location = new System.Drawing.Point( 0, 23 );
+			this.Categories_TreeView.Name = "Categories_TreeView";
+			this.Categories_TreeView.Size = new System.Drawing.Size( 240, 307 );
+			this.Categories_TreeView.TabIndex = 1;
+			this.Categories_TreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler( this.Category_TreeView_AfterSelect );
 			// 
-			// Category_Label
+			// Categories_Label
 			// 
-			this.Category_Label.Dock = System.Windows.Forms.DockStyle.Top;
-			this.Category_Label.Location = new System.Drawing.Point( 0, 0 );
-			this.Category_Label.Name = "Category_Label";
-			this.Category_Label.Size = new System.Drawing.Size( 240, 23 );
-			this.Category_Label.TabIndex = 0;
-			this.Category_Label.Text = "Categories:";
+			this.Categories_Label.Dock = System.Windows.Forms.DockStyle.Top;
+			this.Categories_Label.Location = new System.Drawing.Point( 0, 0 );
+			this.Categories_Label.Name = "Categories_Label";
+			this.Categories_Label.Size = new System.Drawing.Size( 240, 23 );
+			this.Categories_Label.TabIndex = 0;
+			this.Categories_Label.Text = "Categories:";
 			// 
-			// Template_ListView
+			// Templates_ListView
 			// 
-			this.Template_ListView.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.Template_ListView.Location = new System.Drawing.Point( 0, 23 );
-			this.Template_ListView.MultiSelect = false;
-			this.Template_ListView.Name = "Template_ListView";
-			this.Template_ListView.Size = new System.Drawing.Size( 396, 307 );
-			this.Template_ListView.TabIndex = 1;
-			this.Template_ListView.UseCompatibleStateImageBehavior = false;
-			this.Template_ListView.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler( this.Template_ListView_ItemChecked );
+			this.Templates_ListView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.Templates_ListView.HideSelection = false;
+			this.Templates_ListView.LargeImageList = this.NewItem_ImageList;
+			this.Templates_ListView.Location = new System.Drawing.Point( 0, 23 );
+			this.Templates_ListView.MultiSelect = false;
+			this.Templates_ListView.Name = "Templates_ListView";
+			this.Templates_ListView.Size = new System.Drawing.Size( 396, 307 );
+			this.Templates_ListView.SmallImageList = this.NewItem_ImageList;
+			this.Templates_ListView.TabIndex = 1;
+			this.Templates_ListView.UseCompatibleStateImageBehavior = false;
+			this.Templates_ListView.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler( this.Template_ListView_ItemSelectionChanged );
 			// 
-			// Template_Label
+			// NewItem_ImageList
 			// 
-			this.Template_Label.Dock = System.Windows.Forms.DockStyle.Top;
-			this.Template_Label.Location = new System.Drawing.Point( 0, 0 );
-			this.Template_Label.Name = "Template_Label";
-			this.Template_Label.Size = new System.Drawing.Size( 396, 23 );
-			this.Template_Label.TabIndex = 0;
-			this.Template_Label.Text = "Templates:";
+			this.NewItem_ImageList.ImageStream = ( (System.Windows.Forms.ImageListStreamer)( resources.GetObject( "NewItem_ImageList.ImageStream" ) ) );
+			this.NewItem_ImageList.TransparentColor = System.Drawing.Color.Transparent;
+			this.NewItem_ImageList.Images.SetKeyName( 0, "Templates.png" );
+			// 
+			// Templates_Label
+			// 
+			this.Templates_Label.Dock = System.Windows.Forms.DockStyle.Top;
+			this.Templates_Label.Location = new System.Drawing.Point( 0, 0 );
+			this.Templates_Label.Name = "Templates_Label";
+			this.Templates_Label.Size = new System.Drawing.Size( 396, 23 );
+			this.Templates_Label.TabIndex = 0;
+			this.Templates_Label.Text = "Templates:";
 			// 
 			// Description_TextBox
 			// 
@@ -153,9 +166,10 @@ namespace Syntec.Windows
 		private System.Windows.Forms.SplitContainer Main_SplitContainer;
 		private System.Windows.Forms.TextBox Description_TextBox;
 		private System.Windows.Forms.SplitContainer Category_SplitContainer;
-		private System.Windows.Forms.Label Category_Label;
-		private System.Windows.Forms.Label Template_Label;
-		private System.Windows.Forms.TreeView Category_TreeView;
-		private System.Windows.Forms.ListView Template_ListView;
+		private System.Windows.Forms.Label Categories_Label;
+		private System.Windows.Forms.Label Templates_Label;
+		private System.Windows.Forms.TreeView Categories_TreeView;
+		private System.Windows.Forms.ListView Templates_ListView;
+		private System.Windows.Forms.ImageList NewItem_ImageList;
 	}
 }

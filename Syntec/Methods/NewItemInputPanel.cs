@@ -6,10 +6,21 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 
+using Ookii.Dialogs;
+using System.Reflection;
+
 namespace Syntec.Windows
 {
 	public partial class NewItemInputPanel : UserControl
 	{
+		public enum NewWorkspaceSolutionType
+		{
+			[Description( "Create new Res folder" )]
+			CreateNewResFolder,
+			[Description( "Add to existing Res folder" )]
+			AddToExistingResFolder
+		};
+
 		#region Properties
 
 		public string SelectedPath
@@ -20,11 +31,11 @@ namespace Syntec.Windows
 			}
 		}
 
-		public int SelectedSolutionIndex
+		public NewWorkspaceSolutionType SelectedSolution
 		{
 			get
 			{
-				return this.Solution_ComboBox.SelectedIndex;
+				return (NewWorkspaceSolutionType)this.Solution_ComboBox.SelectedValue;
 			}
 		}
 
@@ -35,12 +46,33 @@ namespace Syntec.Windows
 		public NewItemInputPanel()
 		{
 			InitializeComponent();
-			this.Solution_ComboBox.Items.AddRange( 
-				new string[] {
-					"Add to existing Res folder",
-					"Create new Res folder"
-				} );
+			this.SetSolution();
 			this.Solution_ComboBox.SelectedIndex = 0;
+		}
+
+
+		private void SetSolution()
+		{
+			List<KeyValuePair<Enum, string>> solutionList = new List<KeyValuePair<Enum, string>>();
+			Array solutionValues = Enum.GetValues( typeof( NewWorkspaceSolutionType ) );
+
+			foreach( Enum value in solutionValues ) {
+				string description = value.ToString();
+				FieldInfo fieldInfo = value.GetType().GetField( description );
+				DescriptionAttribute[] attributes =
+					(DescriptionAttribute[])
+					fieldInfo.GetCustomAttributes( typeof( DescriptionAttribute ), false );
+
+				if( attributes != null && attributes.Length > 0 ) {
+					description = attributes[ 0 ].Description;
+				}
+
+				solutionList.Add( new KeyValuePair<Enum, string>( value, description ) );
+			}
+
+			this.Solution_ComboBox.DataSource = solutionList;
+			this.Solution_ComboBox.DisplayMember = "Value";
+			this.Solution_ComboBox.ValueMember = "Key";
 		}
 
 		#endregion
@@ -49,7 +81,7 @@ namespace Syntec.Windows
 
 		private void Browser_Button_Click( object sender, EventArgs e )
 		{
-			FolderBrowserDialog dialog = new FolderBrowserDialog();
+			VistaFolderBrowserDialog dialog = new VistaFolderBrowserDialog();
 			if( dialog.ShowDialog() == DialogResult.OK ) {
 				this.Location_Text.Text = dialog.SelectedPath;
 			}

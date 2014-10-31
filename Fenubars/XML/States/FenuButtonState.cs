@@ -15,7 +15,6 @@ namespace Fenubars.XML
 		private string _Name;
 		[XmlAttribute( "name" )]
 		[Category( "Fenu Button" )]
-		[ReadOnly( true )]
 		[ButtonType( ButtonTypes.EscapeButton | ButtonTypes.NormalButton | ButtonTypes.NextButton )]
 		public string Name
 		{
@@ -25,20 +24,24 @@ namespace Fenubars.XML
 			}
 			set
 			{
-				this.CheckPropertyChanged<string>( "Name", ref _Name, ref value );
+				NameSpecified = this.CheckPropertyChanged<string>( "Name", ref _Name, ref value );
 			}
 		}
 
-		//private bool _NameSpecified = false;
-		//[XmlIgnore]
-		//public bool NameSpecified {
-		//    get {
-		//        return _NameSpecified;
-		//    }
-		//    set {
-		//        _NameSpecified = value;
-		//    }
-		//}
+		private bool _NameSpecified = false;
+		[XmlIgnore]
+		[Browsable( false )]
+		public bool NameSpecified
+		{
+			get
+			{
+				return _NameSpecified;
+			}
+			set
+			{
+				_NameSpecified = value;
+			}
+		}
 
 		#endregion
 
@@ -82,7 +85,7 @@ namespace Fenubars.XML
 
 		private string _Title;
 		[XmlElement( "title" )]
-		[Category( "Fenu Button" )]
+		[Category( "Appearance" )]
 		[ButtonType( ButtonTypes.NormalButton )]
 		public string Title
 		{
@@ -117,7 +120,7 @@ namespace Fenubars.XML
 
 		private ButtonState _State = ButtonState.disable;
 		[XmlElement( "state" )]
-		[Category( "Fenu Button" )]
+		[Category( "Behavior" )]
 		[ButtonType( ButtonTypes.EscapeButton | ButtonTypes.NormalButton | ButtonTypes.NextButton )]
 		[DefaultValue( ButtonState.disable )]
 		public ButtonState State
@@ -153,7 +156,7 @@ namespace Fenubars.XML
 
 		private string _Picture;
 		[XmlElement( "picture" )]
-		[Category( "Fenu Button" )]
+		[Category( "Appearance" )]
 		[ButtonType( ButtonTypes.NormalButton )]
 		public string Picture
 		{
@@ -219,7 +222,7 @@ namespace Fenubars.XML
 		}
 
 		[XmlIgnore]
-		[Category( "Fenu Button" )]
+		[Category( "Appearance" )]
 		[ButtonType( ButtonTypes.NormalButton )]
 		public Color ForeColor
 		{
@@ -271,7 +274,7 @@ namespace Fenubars.XML
 		}
 
 		[XmlIgnore]
-		[Category( "Fenu Button" )]
+		[Category( "Appearance" )]
 		[ButtonType( ButtonTypes.NormalButton )]
 		public Color BackColor
 		{
@@ -323,7 +326,7 @@ namespace Fenubars.XML
 		}
 
 		[XmlIgnore]
-		[Category( "Fenu Button" )]
+		[Category( "Appearance" )]
 		[ButtonType( ButtonTypes.NormalButton )]
 		public Color LightOnColor
 		{
@@ -343,7 +346,7 @@ namespace Fenubars.XML
 
 		private bool _HoldMode = false;
 		[XmlElement( "HoldMode" )]
-		[Category( "Fenu Button" )]
+		[Category( "Behavior" )]
 		[ButtonType( ButtonTypes.NormalButton )]
 		[DefaultValue( false )]
 		public bool HoldMode
@@ -379,7 +382,7 @@ namespace Fenubars.XML
 
 		private string _Link;
 		[XmlElement( "link" )]
-		[Category( "Fenu Button" )]
+		[Category( "Behavior" )]
 		[ButtonType( ButtonTypes.EscapeButton | ButtonTypes.NormalButton | ButtonTypes.NextButton )]
 		public string Link
 		{
@@ -417,7 +420,7 @@ namespace Fenubars.XML
 
 		private bool _Visible = true;
 		[XmlElement( "visible" )]
-		[Category( "Fenu Button" )]
+		[Category( "Behavior" )]
 		[ButtonType( ButtonTypes.EscapeButton | ButtonTypes.NormalButton | ButtonTypes.NextButton )]
 		[DefaultValue( true )]
 		public bool Visible
@@ -451,11 +454,11 @@ namespace Fenubars.XML
 
 		#region UserLevel
 
-		private int _UserLevel = 0;
+		private int _UserLevel = 99;
 		[XmlElement( "userlevel" )]
-		[Category( "Fenu Button" )]
+		[Category( "Behavior" )]
 		[ButtonType( ButtonTypes.NormalButton | ButtonTypes.NextButton )]
-		[DefaultValue( 0 )]
+		[DefaultValue( 99 )]
 		public int UserLevel
 		{
 			get
@@ -492,7 +495,7 @@ namespace Fenubars.XML
 		private List<string> _Actions = new List<string>();
 		[XmlArray( "actions" )]
 		[XmlArrayItem( "action", typeof( string ) )]
-		[Category( "Fenu Button" )]
+		[Category( "Behavior" )]
 		[ButtonType( ButtonTypes.EscapeButton | ButtonTypes.NormalButton | ButtonTypes.NextButton )]
 		//public ActionCollection Actions
 		public List<string> Actions
@@ -559,7 +562,7 @@ namespace Fenubars.XML
 
 		private PasswordActions _PasswordActions = new PasswordActions();
 		[XmlElement( "pwd", IsNullable = false )]
-		[Category( "Fenu Button" )]
+		[Category( "Behavior" )]
 		[ReadOnly( true )]
 		[ButtonType( ButtonTypes.EscapeButton | ButtonTypes.NormalButton )]
 		public PasswordActions PasswordActions
