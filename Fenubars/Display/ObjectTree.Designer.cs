@@ -29,7 +29,10 @@ namespace Fenubars.Display
 			this.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.ImageIndex = 0;
 			this.ImageList = this.ObjectType_ImageList;
+			this.LabelEdit = true;
+			this.LineColor = System.Drawing.Color.Black;
 			this.SelectedImageIndex = 0;
+			this.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler( this.ObjectTree_AfterLabelEdit );
 			this.ResumeLayout( false );
 
 		}

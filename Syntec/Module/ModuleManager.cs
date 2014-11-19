@@ -31,13 +31,18 @@ namespace Syntec.Module
 
 		private static void SearchFolder()
 		{
-			//Go through all the files in the module directory
-			foreach( string fileName in Directory.GetFiles( Application.StartupPath + Global.ModuleFolderPath ) ) {
-				FileInfo file = new FileInfo( fileName );
+			try {
+				//Go through all the files in the module directory
+				foreach( string fileName in Directory.GetFiles( Application.StartupPath + Global.ModuleFolderPath ) ) {
+					FileInfo file = new FileInfo( fileName );
 
-				//Preliminary check, must be .dll
-				if( file.Extension.ToUpper() == ".DLL" )
-					AddModule( fileName );
+					//Preliminary check, must be .dll
+					if( file.Extension.ToUpper() == ".DLL" )
+						AddModule( fileName );
+				}
+			}
+			catch( DirectoryNotFoundException e ) {
+				MessageBox.Show( e.Message );
 			}
 		}
 
@@ -130,7 +135,9 @@ namespace Syntec.Module
 
 		public static void RewriteConfigs( Dictionary<string, bool> stateList )
 		{
-			File.Delete( Application.StartupPath + Global.ModuleFolderPath + @"\Modules.ini" );
+			if( File.Exists( Application.StartupPath + Global.ModuleFolderPath + @"\Modules.ini" ) ) {
+				File.Delete( Application.StartupPath + Global.ModuleFolderPath + @"\Modules.ini" );
+			}
 
 			// Dump all loaded modules' settings into .tmp file
 			IniConfigurator tempIni = new IniConfigurator( Application.StartupPath + Global.ModuleFolderPath + @"\Modules.ini" );

@@ -18,11 +18,11 @@ namespace Fenubars.Buttons
 		}
 
 		private Binding bind;
-		public void SetState( FenuButtonState State )
+		public void SetState( XMLGlobalState globalFenuState, FenuButtonState State )
 		{
-			SetState( State, false );
+			SetState( globalFenuState, State, false );
 		}
-		public void SetState( FenuButtonState State, bool isForeign )
+		public void SetState( XMLGlobalState globalFenuState, FenuButtonState State, bool isForeign )
 		{
 			// Wipe bindings
 			this.DataBindings.Clear();
@@ -49,6 +49,10 @@ namespace Fenubars.Buttons
 			bind.Format += new ConvertEventHandler( StateConverter.StateToBool );
 			bind.Parse += new ConvertEventHandler( StateConverter.BoolToState );
 			this.DataBindings.Add( bind );
+
+			BindingSource globalBindingSource = new BindingSource();
+			globalBindingSource.DataSource = globalFenuState;
+			this.DataBindings.Add( "TextAlign", globalBindingSource, "Alignment" );
 
 			// Post-filled
 			State.Name = State.Name ?? "NEXT_BTN";

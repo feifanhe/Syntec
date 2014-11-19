@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription( "Use this plugin to support fenubar edit function." )]
 [assembly: AssemblyConfiguration( "" )]
 [assembly: AssemblyCompany( "SYNTEC" )]
-[assembly: AssemblyProduct( "" )]
+[assembly: AssemblyProduct( "Fenubars" )]
 [assembly: AssemblyCopyright( "Copyright ©  2014" )]
 [assembly: AssemblyTrademark( "" )]
 [assembly: AssemblyCulture( "" )]

@@ -221,6 +221,7 @@ namespace Fenubars
 			this.CompiledTree.CutFenu += new ObjectTree.DefiniteFenuOperationEventHandler( CutFenu );
 			this.CompiledTree.CopyFenu += new ObjectTree.DefiniteFenuOperationEventHandler( CopyFenu );
 			this.CompiledTree.DeleteFenu += new ObjectTree.DefiniteFenuOperationEventHandler( DeleteFenu );
+			this.CompiledTree.RenameFenu += new ObjectTree.RenameFenuOperationEventHandler( RenameFenu );
 			this._Host.ShowObjects( CompiledTree );
 		}
 
@@ -265,7 +266,7 @@ namespace Fenubars
 			// TODO: Imporve search method
 			foreach( FenuState parsedFenu in globalFenuState.IncludedFenus ) {
 				if( parsedFenu.Name == fenuName ) {
-					Fenu newFenuPanel = new Fenu( parsedFenu, NormalButtonCount() );
+					Fenu newFenuPanel = new Fenu( this.globalFenuState, parsedFenu, NormalButtonCount() );
 					newFenuPanel.OnDataAvailable += new Fenu.DataAvailableEventHandler( FocusedObjectAvailable );
 					newFenuPanel.Linkage += new Fenu.LinkageEventHandler( OpenFenu );
 					newFenuPanel.Modified += new Fenu.FenuModifiedHandler( FenuModified );
@@ -315,8 +316,17 @@ namespace Fenubars
 
 		public void SaveAs( string XMLPath )
 		{
-			using( StreamWriter Writer = new StreamWriter( XMLPath ) ) {
-				Serializer.Serialize( Writer, globalFenuState, Namespace );
+			try {
+				StreamWriter writer = new StreamWriter( XMLPath );
+				XmlWriterSettings settings = new XmlWriterSettings();
+				settings.Indent = true;
+				settings.IndentChars = "\t";
+				using( XmlWriter xmlWriter = XmlWriter.Create( writer, settings ) ) {
+					Serializer.Serialize( xmlWriter, globalFenuState, Namespace );
+				}
+			}
+			catch( IOException e ) {
+				MessageBox.Show( "The file is busy!" );
 			}
 		}
 
@@ -380,6 +390,8 @@ namespace Fenubars
 						if( button.Title != null && button.Title.Contains( id ) ) {
 							SearchResult result = new SearchResult();
 							result.ObjectName = fenu.Name;
+							result.ItemName = "F" + button.Position.ToString();
+							result.ItemValue = GetResource( id );
 							result.ShowResult += new SearchResult.ShowResultHandler( Open );
 							results.Add( result );
 							break;
@@ -406,7 +418,7 @@ namespace Fenubars
 		public void PasteFenu()
 		{
 			FenuState fenuState = ClipBoardManager<FenuState>.GetFromClipboard();
-			
+
 			if( fenuState == null ) {
 				return;
 			}
@@ -461,13 +473,34 @@ namespace Fenubars
 			this.RefreshObjects();
 		}
 
+		public bool RenameFenu( string oldName, string newName )
+		{
+			foreach( FenuState parsedOldFenu in this.globalFenuState.IncludedFenus ) {
+				if( parsedOldFenu.Name == oldName ) {
+					foreach( FenuState parsedNewFenu in this.globalFenuState.IncludedFenus ) {
+						if( parsedNewFenu.Name == newName ) {
+							return false;	// fail
+						}
+					}
+					parsedOldFenu.Name = newName;
+					if( _Host.FindControlByName( oldName ) != null ) {
+						Fenu openedFenu = ( _Host.FindControlByName( oldName ) as Fenu );
+						openedFenu.Name = newName;
+						openedFenu.TitleText = newName;
+					}
+					this.FenuModified();
+					return true;	// success
+				}
+			}
+			return false;	// fail, impossible to reach here
+		}
+
 		#endregion
 
 		#region Owning object operations
 
 		public void RefreshObjects()
 		{
-			// TODO: Fix problem here
 			Open();
 		}
 

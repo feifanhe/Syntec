@@ -5,6 +5,8 @@ using System.Xml.Serialization;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Drawing.Design;
+using System.Windows.Forms.Design;
 
 namespace Fenubars.XML
 {
@@ -116,13 +118,110 @@ namespace Fenubars.XML
 
 		#endregion
 
+		#region Alignment
+
+		//private int _AlignmentIndex = 0;
+		//[XmlElement( "Alignment" )]
+		//[DefaultValue( 0 )]
+		//[Browsable( false )]
+		//public int AlignmentIndex
+		//{
+		//    get
+		//    {
+		//        return _AlignmentIndex;
+		//    }
+		//    set
+		//    {
+		//        _AlignmentIndex = value;
+		//    }
+		//}
+
+		//[XmlIgnore]
+		//[Browsable( false )]
+		//public bool AlignmentIndexSpecified
+		//{
+		//    get
+		//    {
+		//        return _AlignmentIndex == 0 ? false : true;
+		//    }
+		//}
+
+		//[XmlIgnore]
+		//[Category( "Appearance" )]
+		//[ButtonType( ButtonTypes.EscapeButton | ButtonTypes.NormalButton | ButtonTypes.NextButton )]
+		//public ContentAlignment Alignment
+		//{
+		//    get
+		//    {
+		//        switch( _AlignmentIndex ) {
+		//            case 1:
+		//                return ContentAlignment.TopLeft;
+		//            case 2:
+		//                return ContentAlignment.TopCenter;
+		//            case 3:
+		//                return ContentAlignment.TopRight;
+		//            case 4:
+		//                return ContentAlignment.MiddleLeft;
+		//            case 5:
+		//                return ContentAlignment.MiddleCenter;
+		//            case 6:
+		//                return ContentAlignment.MiddleRight;
+		//            case 7:
+		//                return ContentAlignment.BottomLeft;
+		//            case 8:
+		//                return ContentAlignment.BottomCenter;
+		//            case 9:
+		//                return ContentAlignment.BottomRight;
+		//            default:
+		//                return ContentAlignment.TopLeft;
+		//        }
+		//    }
+		//    set
+		//    {
+		//        switch( value ) {
+		//            case ContentAlignment.TopLeft:
+		//                this._AlignmentIndex = 1;
+		//                break;
+		//            case ContentAlignment.TopCenter:
+		//                this._AlignmentIndex = 2;
+		//                break;
+		//            case ContentAlignment.TopRight:
+		//                this._AlignmentIndex = 3;
+		//                break;
+		//            case ContentAlignment.MiddleLeft:
+		//                this._AlignmentIndex = 4;
+		//                break;
+		//            case ContentAlignment.MiddleCenter:
+		//                this._AlignmentIndex = 5;
+		//                break;
+		//            case ContentAlignment.MiddleRight:
+		//                this._AlignmentIndex = 6;
+		//                break;
+		//            case ContentAlignment.BottomLeft:
+		//                this._AlignmentIndex = 7;
+		//                break;
+		//            case ContentAlignment.BottomCenter:
+		//                this._AlignmentIndex = 8;
+		//                break;
+		//            case ContentAlignment.BottomRight:
+		//                this._AlignmentIndex = 9;
+		//                break;
+		//            default:
+		//                this._AlignmentIndex = 0;
+		//                break;
+		//        }
+		//    }
+		//}
+
+		#endregion
+
 		#region State
 
-		private ButtonState _State = ButtonState.disable;
+		private ButtonState _State = ButtonState.enable;
 		[XmlElement( "state" )]
 		[Category( "Behavior" )]
 		[ButtonType( ButtonTypes.EscapeButton | ButtonTypes.NormalButton | ButtonTypes.NextButton )]
-		[DefaultValue( ButtonState.disable )]
+		[DefaultValue( ButtonState.enable )]
 		public ButtonState State
 		{
 			get
@@ -384,6 +483,7 @@ namespace Fenubars.XML
 		[XmlElement( "link" )]
 		[Category( "Behavior" )]
 		[ButtonType( ButtonTypes.EscapeButton | ButtonTypes.NormalButton | ButtonTypes.NextButton )]
+		[TypeConverter( typeof( FenuButtonState.LinkConverter ) )]
 		public string Link
 		{
 			get
@@ -411,6 +511,22 @@ namespace Fenubars.XML
 			set
 			{
 				_LinkSpecified = value;
+			}
+		}
+
+		public class LinkConverter : StringConverter
+		{
+			public override bool GetStandardValuesSupported( ITypeDescriptorContext context )
+			{
+				return true;
+			}
+			public override bool GetStandardValuesExclusive( ITypeDescriptorContext context )
+			{
+				return false;
+			}
+			public override StandardValuesCollection GetStandardValues( ITypeDescriptorContext context )
+			{
+				return new StandardValuesCollection( new string[] { } );
 			}
 		}
 
@@ -497,7 +613,7 @@ namespace Fenubars.XML
 		[XmlArrayItem( "action", typeof( string ) )]
 		[Category( "Behavior" )]
 		[ButtonType( ButtonTypes.EscapeButton | ButtonTypes.NormalButton | ButtonTypes.NextButton )]
-		//public ActionCollection Actions
+		[EditorAttribute( typeof( FenuButtonState.ActionsConverter ), typeof( System.Drawing.Design.UITypeEditor ) )]
 		public List<string> Actions
 		{
 			get
@@ -553,6 +669,25 @@ namespace Fenubars.XML
 				else {
 					return false;
 				}
+			}
+		}
+
+		public class ActionsConverter : UITypeEditor
+		{
+			public override UITypeEditorEditStyle GetEditStyle( ITypeDescriptorContext context )
+			{
+				return UITypeEditorEditStyle.Modal;
+			}
+
+			public override object EditValue( ITypeDescriptorContext context, IServiceProvider provider, object value )
+			{
+				IWindowsFormsEditorService service = (IWindowsFormsEditorService)provider.GetService( typeof( IWindowsFormsEditorService ) );
+
+				if( service != null ) {
+					ActionsSelector.ActionsSelectDialog dialog = new ActionsSelector.ActionsSelectDialog();
+					dialog.ShowDialog( value as List<string> );
+				}
+				return value;
 			}
 		}
 

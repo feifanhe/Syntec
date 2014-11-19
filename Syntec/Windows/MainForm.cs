@@ -38,7 +38,7 @@ namespace Syntec.Windows
 
 			// Load all the windows and set them to default locations
 			PropertiesWindow.Show( Main_DockPanel, DockState.DockRight );
-			ObjectBrowser.Show( PropertiesWindow.Pane, DockAlignment.Top, 0.6 );
+			ObjectBrowser.Show( PropertiesWindow.Pane, DockAlignment.Top, 0.5 );
 			StringManager.Show( ObjectBrowser.Pane, ObjectBrowser );
 			WorkspaceExplorer.Show( StringManager.Pane, StringManager );
 
@@ -223,7 +223,7 @@ namespace Syntec.Windows
 		{
 			SearchDialog dialog = new Syntec.Methods.SearchDialog();
 
-			if( dialog.ShowDialog() == DialogResult.Cancel ) {
+			if( dialog.ShowDialog() == DialogResult.Cancel || dialog.Keyword == string.Empty ) {
 				return;
 			}
 
@@ -389,6 +389,7 @@ namespace Syntec.Windows
 			openFromFile.Show( Main_DockPanel, DockState.Document );
 			openFromFile.TabText = Path.GetFileNameWithoutExtension( filePath );
 			openFromFile.ToolTipText = filePath;
+			openFromFile.FormClosed += new FormClosedEventHandler(DocumentForm_FormClosed);
 		}
 
 		private void OpenFile( string filePath )
@@ -423,6 +424,7 @@ namespace Syntec.Windows
 			openFromFile.Show( Main_DockPanel, DockState.Document );
 			openFromFile.TabText = Path.GetFileNameWithoutExtension( filePath );
 			openFromFile.ToolTipText = filePath;
+			openFromFile.FormClosed += new FormClosedEventHandler( DocumentForm_FormClosed );
 		}
 
 		private void ShowProperties( object control )
@@ -473,6 +475,11 @@ namespace Syntec.Windows
 			}
 		}
 
+		private void DocumentForm_FormClosed( object sender, FormClosedEventArgs e )
+		{
+			ShowObjects( null );
+		}
+
 		private string GetResource( string Path, string ID )
 		{
 			return this.StringManager.FindString( Path, ID, "CHT" );
@@ -491,8 +498,6 @@ namespace Syntec.Windows
 
 		private void Test_Button_Click( object sender, EventArgs e )
 		{
-			string test = this.StringManager.FindString( @"D:\Res\_Arm\_Mill\_11A\Common\CncFenu.xml", "Str::Fenu::Main::MenuProgram", "CHT" );
-			MessageBox.Show( test );
 		}
 
 		#endregion

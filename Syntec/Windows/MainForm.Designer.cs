@@ -87,6 +87,7 @@ namespace Syntec.Windows
 			this.View_ToolStripSeparator_2 = new System.Windows.Forms.ToolStripSeparator();
 			this.View_Toolbars_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.Toolbars_Standard_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.View_Languages_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.Tools_ToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
 			this.Tools_ModuleManager_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.Tools_ToolStripSeparator_1 = new System.Windows.Forms.ToolStripSeparator();
@@ -121,7 +122,7 @@ namespace Syntec.Windows
             this.Test_Button} );
 			this.Main_MenuStrip.Location = new System.Drawing.Point( 0, 0 );
 			this.Main_MenuStrip.Name = "Main_MenuStrip";
-			this.Main_MenuStrip.Size = new System.Drawing.Size( 1220, 24 );
+			this.Main_MenuStrip.Size = new System.Drawing.Size( 1020, 24 );
 			this.Main_MenuStrip.TabIndex = 1;
 			// 
 			// File_ToolStripMenuItem
@@ -160,7 +161,9 @@ namespace Syntec.Windows
 			// 
 			this.New_Workspace_ToolStripMenuItem.Image = ( (System.Drawing.Image)( resources.GetObject( "New_Workspace_ToolStripMenuItem.Image" ) ) );
 			this.New_Workspace_ToolStripMenuItem.Name = "New_Workspace_ToolStripMenuItem";
-			this.New_Workspace_ToolStripMenuItem.Size = new System.Drawing.Size( 139, 22 );
+			this.New_Workspace_ToolStripMenuItem.ShortcutKeys = ( (System.Windows.Forms.Keys)( ( ( System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift )
+						| System.Windows.Forms.Keys.N ) ) );
+			this.New_Workspace_ToolStripMenuItem.Size = new System.Drawing.Size( 219, 22 );
 			this.New_Workspace_ToolStripMenuItem.Text = "Workspace";
 			this.New_Workspace_ToolStripMenuItem.Click += new System.EventHandler( this.New_Workspace_ToolStripMenuItem_Click );
 			// 
@@ -168,7 +171,8 @@ namespace Syntec.Windows
 			// 
 			this.New_File_ToolStripMenuItem.Image = ( (System.Drawing.Image)( resources.GetObject( "New_File_ToolStripMenuItem.Image" ) ) );
 			this.New_File_ToolStripMenuItem.Name = "New_File_ToolStripMenuItem";
-			this.New_File_ToolStripMenuItem.Size = new System.Drawing.Size( 139, 22 );
+			this.New_File_ToolStripMenuItem.ShortcutKeys = ( (System.Windows.Forms.Keys)( ( System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N ) ) );
+			this.New_File_ToolStripMenuItem.Size = new System.Drawing.Size( 219, 22 );
 			this.New_File_ToolStripMenuItem.Text = "File";
 			this.New_File_ToolStripMenuItem.Click += new System.EventHandler( this.New_File_ToolStripMenuItem_Click );
 			// 
@@ -310,19 +314,20 @@ namespace Syntec.Windows
 			this.Edit_Undo_ToolStripMenuItem.Enabled = false;
 			this.Edit_Undo_ToolStripMenuItem.Image = ( (System.Drawing.Image)( resources.GetObject( "Edit_Undo_ToolStripMenuItem.Image" ) ) );
 			this.Edit_Undo_ToolStripMenuItem.Name = "Edit_Undo_ToolStripMenuItem";
-			this.Edit_Undo_ToolStripMenuItem.Size = new System.Drawing.Size( 127, 22 );
+			this.Edit_Undo_ToolStripMenuItem.Size = new System.Drawing.Size( 156, 22 );
 			this.Edit_Undo_ToolStripMenuItem.Text = "Undo";
 			// 
 			// Edit_ToolStripSeparator_1
 			// 
 			this.Edit_ToolStripSeparator_1.Name = "Edit_ToolStripSeparator_1";
-			this.Edit_ToolStripSeparator_1.Size = new System.Drawing.Size( 124, 6 );
+			this.Edit_ToolStripSeparator_1.Size = new System.Drawing.Size( 153, 6 );
 			// 
 			// Edit_Cut_ToolStripMenuItem
 			// 
 			this.Edit_Cut_ToolStripMenuItem.Image = ( (System.Drawing.Image)( resources.GetObject( "Edit_Cut_ToolStripMenuItem.Image" ) ) );
 			this.Edit_Cut_ToolStripMenuItem.Name = "Edit_Cut_ToolStripMenuItem";
-			this.Edit_Cut_ToolStripMenuItem.Size = new System.Drawing.Size( 127, 22 );
+			this.Edit_Cut_ToolStripMenuItem.ShortcutKeys = ( (System.Windows.Forms.Keys)( ( System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X ) ) );
+			this.Edit_Cut_ToolStripMenuItem.Size = new System.Drawing.Size( 156, 22 );
 			this.Edit_Cut_ToolStripMenuItem.Text = "Cut";
 			this.Edit_Cut_ToolStripMenuItem.Click += new System.EventHandler( this.Edit_Cut_ToolStripMenuItem_Click );
 			// 
@@ -330,7 +335,8 @@ namespace Syntec.Windows
 			// 
 			this.Edit_Copy_ToolStripMenuItem.Image = ( (System.Drawing.Image)( resources.GetObject( "Edit_Copy_ToolStripMenuItem.Image" ) ) );
 			this.Edit_Copy_ToolStripMenuItem.Name = "Edit_Copy_ToolStripMenuItem";
-			this.Edit_Copy_ToolStripMenuItem.Size = new System.Drawing.Size( 127, 22 );
+			this.Edit_Copy_ToolStripMenuItem.ShortcutKeys = ( (System.Windows.Forms.Keys)( ( System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C ) ) );
+			this.Edit_Copy_ToolStripMenuItem.Size = new System.Drawing.Size( 156, 22 );
 			this.Edit_Copy_ToolStripMenuItem.Text = "Copy";
 			this.Edit_Copy_ToolStripMenuItem.Click += new System.EventHandler( this.Edit_Copy_ToolStripMenuItem_Click );
 			// 
@@ -338,7 +344,8 @@ namespace Syntec.Windows
 			// 
 			this.Edit_Paste_ToolStripMenuItem.Image = ( (System.Drawing.Image)( resources.GetObject( "Edit_Paste_ToolStripMenuItem.Image" ) ) );
 			this.Edit_Paste_ToolStripMenuItem.Name = "Edit_Paste_ToolStripMenuItem";
-			this.Edit_Paste_ToolStripMenuItem.Size = new System.Drawing.Size( 127, 22 );
+			this.Edit_Paste_ToolStripMenuItem.ShortcutKeys = ( (System.Windows.Forms.Keys)( ( System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V ) ) );
+			this.Edit_Paste_ToolStripMenuItem.Size = new System.Drawing.Size( 156, 22 );
 			this.Edit_Paste_ToolStripMenuItem.Text = "Paste";
 			this.Edit_Paste_ToolStripMenuItem.Click += new System.EventHandler( this.Edit_Paste_ToolStripMenuItem_Click );
 			// 
@@ -346,31 +353,33 @@ namespace Syntec.Windows
 			// 
 			this.Edit_Delete_ToolStripMenuItem.Image = ( (System.Drawing.Image)( resources.GetObject( "Edit_Delete_ToolStripMenuItem.Image" ) ) );
 			this.Edit_Delete_ToolStripMenuItem.Name = "Edit_Delete_ToolStripMenuItem";
-			this.Edit_Delete_ToolStripMenuItem.Size = new System.Drawing.Size( 127, 22 );
+			this.Edit_Delete_ToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+			this.Edit_Delete_ToolStripMenuItem.Size = new System.Drawing.Size( 156, 22 );
 			this.Edit_Delete_ToolStripMenuItem.Text = "Delete";
 			this.Edit_Delete_ToolStripMenuItem.Click += new System.EventHandler( this.Edit_Delete_ToolStripMenuItem_Click );
 			// 
 			// Edit_ToolStripSeparator_2
 			// 
 			this.Edit_ToolStripSeparator_2.Name = "Edit_ToolStripSeparator_2";
-			this.Edit_ToolStripSeparator_2.Size = new System.Drawing.Size( 124, 6 );
+			this.Edit_ToolStripSeparator_2.Size = new System.Drawing.Size( 153, 6 );
 			// 
 			// Edit_SelectAll_ToolStripMenuItem
 			// 
 			this.Edit_SelectAll_ToolStripMenuItem.Enabled = false;
 			this.Edit_SelectAll_ToolStripMenuItem.Name = "Edit_SelectAll_ToolStripMenuItem";
-			this.Edit_SelectAll_ToolStripMenuItem.Size = new System.Drawing.Size( 127, 22 );
+			this.Edit_SelectAll_ToolStripMenuItem.Size = new System.Drawing.Size( 156, 22 );
 			this.Edit_SelectAll_ToolStripMenuItem.Text = "Select All";
 			// 
 			// Edit_ToolStripSeparator_3
 			// 
 			this.Edit_ToolStripSeparator_3.Name = "Edit_ToolStripSeparator_3";
-			this.Edit_ToolStripSeparator_3.Size = new System.Drawing.Size( 124, 6 );
+			this.Edit_ToolStripSeparator_3.Size = new System.Drawing.Size( 153, 6 );
 			// 
 			// Edit_Search_ToolStripMenuItem
 			// 
 			this.Edit_Search_ToolStripMenuItem.Name = "Edit_Search_ToolStripMenuItem";
-			this.Edit_Search_ToolStripMenuItem.Size = new System.Drawing.Size( 127, 22 );
+			this.Edit_Search_ToolStripMenuItem.ShortcutKeys = ( (System.Windows.Forms.Keys)( ( System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F ) ) );
+			this.Edit_Search_ToolStripMenuItem.Size = new System.Drawing.Size( 156, 22 );
 			this.Edit_Search_ToolStripMenuItem.Text = "Search";
 			this.Edit_Search_ToolStripMenuItem.Click += new System.EventHandler( this.Edit_Search_ToolStripMenuItem_Click );
 			// 
@@ -385,7 +394,8 @@ namespace Syntec.Windows
             this.View_PropertiesWindow_ToolStripMenuItem,
             this.View_ObjectBrowser_ToolStripMenuItem,
             this.View_ToolStripSeparator_2,
-            this.View_Toolbars_ToolStripMenuItem} );
+            this.View_Toolbars_ToolStripMenuItem,
+            this.View_Languages_ToolStripMenuItem} );
 			this.View_ToolStripMenuItem.Name = "View_ToolStripMenuItem";
 			this.View_ToolStripMenuItem.Size = new System.Drawing.Size( 47, 20 );
 			this.View_ToolStripMenuItem.Text = "View";
@@ -460,6 +470,13 @@ namespace Syntec.Windows
 			this.Toolbars_Standard_ToolStripMenuItem.Size = new System.Drawing.Size( 128, 22 );
 			this.Toolbars_Standard_ToolStripMenuItem.Text = "Standard";
 			// 
+			// View_Languages_ToolStripMenuItem
+			// 
+			this.View_Languages_ToolStripMenuItem.Enabled = false;
+			this.View_Languages_ToolStripMenuItem.Name = "View_Languages_ToolStripMenuItem";
+			this.View_Languages_ToolStripMenuItem.Size = new System.Drawing.Size( 189, 22 );
+			this.View_Languages_ToolStripMenuItem.Text = "Langeage";
+			// 
 			// Tools_ToolStripMenu
 			// 
 			this.Tools_ToolStripMenu.DropDownItems.AddRange( new System.Windows.Forms.ToolStripItem[] {
@@ -503,9 +520,9 @@ namespace Syntec.Windows
             this.StatusText,
             this.DummyLabel,
             this.ProgressBar} );
-			this.Main_StatusStrip.Location = new System.Drawing.Point( 0, 519 );
+			this.Main_StatusStrip.Location = new System.Drawing.Point( 0, 580 );
 			this.Main_StatusStrip.Name = "Main_StatusStrip";
-			this.Main_StatusStrip.Size = new System.Drawing.Size( 1220, 22 );
+			this.Main_StatusStrip.Size = new System.Drawing.Size( 1020, 22 );
 			this.Main_StatusStrip.TabIndex = 2;
 			// 
 			// StatusText
@@ -519,7 +536,7 @@ namespace Syntec.Windows
 			// 
 			this.DummyLabel.BackColor = System.Drawing.SystemColors.Control;
 			this.DummyLabel.Name = "DummyLabel";
-			this.DummyLabel.Size = new System.Drawing.Size( 1161, 17 );
+			this.DummyLabel.Size = new System.Drawing.Size( 961, 17 );
 			this.DummyLabel.Spring = true;
 			// 
 			// ProgressBar
@@ -576,6 +593,7 @@ namespace Syntec.Windows
 			this.Standard_Save_ToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.Standard_Save_ToolStripButton.Name = "Standard_Save_ToolStripButton";
 			this.Standard_Save_ToolStripButton.Size = new System.Drawing.Size( 23, 22 );
+			this.Standard_Save_ToolStripButton.Click += new System.EventHandler( this.File_Save_ToolStripMenuItem_Click );
 			// 
 			// Standard_SaveAll_ToolStripButton
 			// 
@@ -584,6 +602,7 @@ namespace Syntec.Windows
 			this.Standard_SaveAll_ToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.Standard_SaveAll_ToolStripButton.Name = "Standard_SaveAll_ToolStripButton";
 			this.Standard_SaveAll_ToolStripButton.Size = new System.Drawing.Size( 23, 22 );
+			this.Standard_SaveAll_ToolStripButton.Click += new System.EventHandler( this.File_SaveAll_ToolStripMenuItem_Click );
 			// 
 			// Standard_Separator_1
 			// 
@@ -598,7 +617,7 @@ namespace Syntec.Windows
 			this.Main_ToolStripPanel.Name = "Main_ToolStripPanel";
 			this.Main_ToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
 			this.Main_ToolStripPanel.RowMargin = new System.Windows.Forms.Padding( 3, 0, 0, 0 );
-			this.Main_ToolStripPanel.Size = new System.Drawing.Size( 1220, 25 );
+			this.Main_ToolStripPanel.Size = new System.Drawing.Size( 1020, 25 );
 			// 
 			// Main_DockPanel
 			// 
@@ -607,7 +626,7 @@ namespace Syntec.Windows
 			this.Main_DockPanel.DockBackColor = System.Drawing.SystemColors.ControlDark;
 			this.Main_DockPanel.Location = new System.Drawing.Point( 0, 49 );
 			this.Main_DockPanel.Name = "Main_DockPanel";
-			this.Main_DockPanel.Size = new System.Drawing.Size( 1220, 470 );
+			this.Main_DockPanel.Size = new System.Drawing.Size( 1020, 531 );
 			dockPanelGradient1.EndColor = System.Drawing.SystemColors.ControlLight;
 			dockPanelGradient1.StartColor = System.Drawing.SystemColors.ControlLight;
 			autoHideStripSkin1.DockStripGradient = dockPanelGradient1;
@@ -661,7 +680,7 @@ namespace Syntec.Windows
 			this.AutoScaleDimensions = new System.Drawing.SizeF( 6F, 12F );
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlDark;
-			this.ClientSize = new System.Drawing.Size( 1220, 541 );
+			this.ClientSize = new System.Drawing.Size( 1020, 602 );
 			this.Controls.Add( this.Main_DockPanel );
 			this.Controls.Add( this.Main_ToolStripPanel );
 			this.Controls.Add( this.Main_StatusStrip );
@@ -751,6 +770,7 @@ namespace Syntec.Windows
 		private System.Windows.Forms.ToolStripStatusLabel DummyLabel;
 		private System.Windows.Forms.ToolStripSeparator Tools_ToolStripSeparator_1;
 		private System.Windows.Forms.ToolStripMenuItem Tools_LanguageWizard_ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem View_Languages_ToolStripMenuItem;
 	}
 }
 

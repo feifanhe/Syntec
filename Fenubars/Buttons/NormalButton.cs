@@ -21,11 +21,11 @@ namespace Fenubars.Buttons
 			this.Location = new Point( 3 + 80 * Index, 3 );
 		}
 
-		public void SetState( FenuButtonState State )
+		public void SetState( XMLGlobalState globalFenuState, FenuButtonState State )
 		{
-			SetState( State, false );
+			SetState( globalFenuState, State, false );
 		}
-		public void SetState( FenuButtonState State, bool isForeign )
+		public void SetState( XMLGlobalState globalFenuState, FenuButtonState State, bool isForeign )
 		{
 			// Wipe bindings
 			this.DataBindings.Clear();
@@ -40,27 +40,31 @@ namespace Fenubars.Buttons
 
 			// Create binding source for this button
 			Binding bind;
-			BindingSource bindingSource = new BindingSource();
-			bindingSource.DataSource = State;
+			BindingSource buttonBindingSource = new BindingSource();
+			buttonBindingSource.DataSource = State;
 
 			// Bindings
-			this.DataBindings.Add( "Name", bindingSource, "Name" );
-			this.DataBindings.Add( "BackColor", bindingSource, "BackColor" );
-			this.DataBindings.Add( "ForeColor", bindingSource, "ForeColor" );
+			this.DataBindings.Add( "Name", buttonBindingSource, "Name" );
+			this.DataBindings.Add( "BackColor", buttonBindingSource, "BackColor" );
+			this.DataBindings.Add( "ForeColor", buttonBindingSource, "ForeColor" );
 
-			bind = new Binding( "Text", bindingSource, "Title" );
+			bind = new Binding( "Text", buttonBindingSource, "Title" );
 			bind.Format += new ConvertEventHandler( IdToContent );
 			this.DataBindings.Add( bind );
 
-			bind = new Binding( "Enabled", bindingSource, "State" );
+			bind = new Binding( "Enabled", buttonBindingSource, "State" );
 			bind.Format += new ConvertEventHandler( StateConverter.StateToBool );
 			bind.Parse += new ConvertEventHandler( StateConverter.BoolToState );
 			this.DataBindings.Add( bind );
 
+			BindingSource globalBindingSource = new BindingSource();
+			globalBindingSource.DataSource = globalFenuState;
+			this.DataBindings.Add( "TextAlign", globalBindingSource, "Alignment" );
+
 			// Post-filled
 			//State.Name = State.Name ?? "F" + State.Position.ToString();
 
-			bindingSource.CurrentItemChanged += new System.EventHandler( bindingSource_CurrentItemChanged );
+			buttonBindingSource.CurrentItemChanged += new System.EventHandler( bindingSource_CurrentItemChanged );
 			// Reset IsDirty
 			//_IsDirty = false;
 		}

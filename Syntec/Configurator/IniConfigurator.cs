@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using System.Data;
+using System.Windows.Forms;
 
 namespace Syntec.Configurator
 {
@@ -101,33 +102,40 @@ namespace Syntec.Configurator
 
 		public void Save()
 		{
-			FileInfo file = new FileInfo( filePath );
-			FileStream FS;
+			try {
+				FileInfo file = new FileInfo( filePath );
+				FileStream FS;
 
-			// Create the file if it doesn't exist
-			if( file.Exists )
-				FS = file.Create();
-			else
-				FS = file.OpenWrite();
+				// Create the file if it doesn't exist
+				if( file.Exists )
+					FS = file.Create();
+				else
+					FS = file.OpenWrite();
 
-			// Sort data table
-			DataView dv = settings.DefaultView;
-			dv.Sort = "Category asc";
-			DataTable sortedDT = dv.ToTable();
+				// Sort data table
+				DataView dv = settings.DefaultView;
+				dv.Sort = "Category asc";
+				DataTable sortedDT = dv.ToTable();
 
-			StreamWriter SW = new StreamWriter( FS );
+				StreamWriter SW = new StreamWriter( FS );
 
-			string lastCategory = "";
-			foreach( DataRow row in sortedDT.Rows ) {
-				if( (string)row[ 0 ] != lastCategory ) {
-					lastCategory = (string)row[ 0 ];
-					SW.WriteLine( "[" + lastCategory + "]" );
+				string lastCategory = "";
+				foreach( DataRow row in sortedDT.Rows ) {
+					if( (string)row[ 0 ] != lastCategory ) {
+						lastCategory = (string)row[ 0 ];
+						SW.WriteLine( "[" + lastCategory + "]" );
+					}
+
+					SW.WriteLine( (string)row[ 1 ] + "=" + (string)row[ 2 ] );
 				}
 
-				SW.WriteLine( (string)row[ 1 ] + "=" + (string)row[ 2 ] );
+				SW.Close();
 			}
-
-			SW.Close();
+			catch( IOException e ) {
+				MessageBox.Show( e.Message );
+			}
 		}
 	}
 }
+	
+

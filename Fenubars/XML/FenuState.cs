@@ -42,6 +42,19 @@ namespace Fenubars.XML
 			}
 		}
 
+		private bool EscapeButtonSpecified
+		{
+			get
+			{
+				if( _EscapeButton == null ) {
+					return false;
+				}
+				else {
+					return true;
+				}
+			}
+		}
+
 		private List<FenuButtonState> _NormalButtonList = new List<FenuButtonState>();
 		[XmlElement( "button", IsNullable = false )]
 		public List<FenuButtonState> NormalButtonList
@@ -67,6 +80,19 @@ namespace Fenubars.XML
 			set
 			{
 				_NextButton = value;
+			}
+		}
+
+		private bool NextButtonSpecified
+		{
+			get
+			{
+				if( _NextButton == null ) {
+					return false;
+				}
+				else {
+					return true;
+				}
 			}
 		}
 

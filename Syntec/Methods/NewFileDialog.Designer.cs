@@ -31,17 +31,17 @@ namespace Syntec.Windows
 			this.OK_Button = new System.Windows.Forms.Button();
 			this.Cancel_Button = new System.Windows.Forms.Button();
 			this.Modules_ListView = new System.Windows.Forms.ListView();
-			this.Templates_Label = new System.Windows.Forms.Label();
-			this.NewFileSelectionPanel = new System.Windows.Forms.Panel();
-			this.NewFileInputPanel = new System.Windows.Forms.Panel();
-			this.label1 = new System.Windows.Forms.Label();
-			this.Name_Label = new System.Windows.Forms.Label();
 			this.Name_ColumnHeader = new System.Windows.Forms.ColumnHeader();
 			this.Version_ColumnHeader = new System.Windows.Forms.ColumnHeader();
 			this.Description_ColumnHeader = new System.Windows.Forms.ColumnHeader();
-			this.Location_TextBox = new System.Windows.Forms.TextBox();
-			this.Name_TextBox = new System.Windows.Forms.TextBox();
+			this.Templates_Label = new System.Windows.Forms.Label();
+			this.NewFileSelectionPanel = new System.Windows.Forms.Panel();
+			this.NewFileInputPanel = new System.Windows.Forms.Panel();
 			this.Browse_Button = new System.Windows.Forms.Button();
+			this.Name_TextBox = new System.Windows.Forms.TextBox();
+			this.Location_TextBox = new System.Windows.Forms.TextBox();
+			this.Name_Label = new System.Windows.Forms.Label();
+			this.label1 = new System.Windows.Forms.Label();
 			this.ButtonPanel.SuspendLayout();
 			this.NewFileSelectionPanel.SuspendLayout();
 			this.NewFileInputPanel.SuspendLayout();
@@ -100,6 +100,21 @@ namespace Syntec.Windows
 			this.Modules_ListView.UseCompatibleStateImageBehavior = false;
 			this.Modules_ListView.View = System.Windows.Forms.View.Details;
 			// 
+			// Name_ColumnHeader
+			// 
+			this.Name_ColumnHeader.Text = "Name";
+			this.Name_ColumnHeader.Width = 180;
+			// 
+			// Version_ColumnHeader
+			// 
+			this.Version_ColumnHeader.Text = "Version";
+			this.Version_ColumnHeader.Width = 100;
+			// 
+			// Description_ColumnHeader
+			// 
+			this.Description_ColumnHeader.Text = "Description";
+			this.Description_ColumnHeader.Width = 340;
+			// 
 			// Templates_Label
 			// 
 			this.Templates_Label.AutoSize = true;
@@ -132,55 +147,6 @@ namespace Syntec.Windows
 			this.NewFileInputPanel.Size = new System.Drawing.Size( 640, 56 );
 			this.NewFileInputPanel.TabIndex = 5;
 			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point( 3, 6 );
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size( 49, 12 );
-			this.label1.TabIndex = 0;
-			this.label1.Text = "Location:";
-			// 
-			// Name_Label
-			// 
-			this.Name_Label.AutoSize = true;
-			this.Name_Label.Location = new System.Drawing.Point( 17, 34 );
-			this.Name_Label.Name = "Name_Label";
-			this.Name_Label.Size = new System.Drawing.Size( 35, 12 );
-			this.Name_Label.TabIndex = 1;
-			this.Name_Label.Text = "Name:";
-			// 
-			// Name_ColumnHeader
-			// 
-			this.Name_ColumnHeader.Text = "Name";
-			this.Name_ColumnHeader.Width = 180;
-			// 
-			// Version_ColumnHeader
-			// 
-			this.Version_ColumnHeader.Text = "Version";
-			this.Version_ColumnHeader.Width = 100;
-			// 
-			// Description_ColumnHeader
-			// 
-			this.Description_ColumnHeader.Text = "Description";
-			this.Description_ColumnHeader.Width = 340;
-			// 
-			// Location_TextBox
-			// 
-			this.Location_TextBox.Anchor = ( (System.Windows.Forms.AnchorStyles)( ( ( System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left )
-						| System.Windows.Forms.AnchorStyles.Right ) ) );
-			this.Location_TextBox.Location = new System.Drawing.Point( 58, 3 );
-			this.Location_TextBox.Name = "Location_TextBox";
-			this.Location_TextBox.Size = new System.Drawing.Size( 498, 22 );
-			this.Location_TextBox.TabIndex = 2;
-			// 
-			// Name_TextBox
-			// 
-			this.Name_TextBox.Location = new System.Drawing.Point( 58, 31 );
-			this.Name_TextBox.Name = "Name_TextBox";
-			this.Name_TextBox.Size = new System.Drawing.Size( 240, 22 );
-			this.Name_TextBox.TabIndex = 3;
-			// 
 			// Browse_Button
 			// 
 			this.Browse_Button.Anchor = ( (System.Windows.Forms.AnchorStyles)( ( System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right ) ) );
@@ -192,6 +158,40 @@ namespace Syntec.Windows
 			this.Browse_Button.UseVisualStyleBackColor = true;
 			this.Browse_Button.Click += new System.EventHandler( this.Browse_Button_Click );
 			// 
+			// Name_TextBox
+			// 
+			this.Name_TextBox.Location = new System.Drawing.Point( 58, 31 );
+			this.Name_TextBox.Name = "Name_TextBox";
+			this.Name_TextBox.Size = new System.Drawing.Size( 240, 22 );
+			this.Name_TextBox.TabIndex = 3;
+			// 
+			// Location_TextBox
+			// 
+			this.Location_TextBox.Anchor = ( (System.Windows.Forms.AnchorStyles)( ( ( System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left )
+						| System.Windows.Forms.AnchorStyles.Right ) ) );
+			this.Location_TextBox.Location = new System.Drawing.Point( 58, 3 );
+			this.Location_TextBox.Name = "Location_TextBox";
+			this.Location_TextBox.Size = new System.Drawing.Size( 498, 22 );
+			this.Location_TextBox.TabIndex = 2;
+			// 
+			// Name_Label
+			// 
+			this.Name_Label.AutoSize = true;
+			this.Name_Label.Location = new System.Drawing.Point( 17, 34 );
+			this.Name_Label.Name = "Name_Label";
+			this.Name_Label.Size = new System.Drawing.Size( 35, 12 );
+			this.Name_Label.TabIndex = 1;
+			this.Name_Label.Text = "Name:";
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point( 3, 6 );
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size( 49, 12 );
+			this.label1.TabIndex = 0;
+			this.label1.Text = "Location:";
+			// 
 			// NewFileDialog
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF( 6F, 12F );
@@ -201,7 +201,10 @@ namespace Syntec.Windows
 			this.Controls.Add( this.NewFileSelectionPanel );
 			this.Controls.Add( this.ButtonPanel );
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+			this.MaximizeBox = false;
+			this.MinimizeBox = false;
 			this.Name = "NewFileDialog";
+			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "New File";
 			this.ButtonPanel.ResumeLayout( false );

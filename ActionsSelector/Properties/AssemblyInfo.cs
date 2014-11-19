@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle( "Syntec" )]
-[assembly: AssemblyDescription( "Syntec IDE" )]
+[assembly: AssemblyTitle( "ActionsSelector" )]
+[assembly: AssemblyDescription( "Actions selector for Fenubars and Browser" )]
 [assembly: AssemblyConfiguration( "" )]
-[assembly: AssemblyCompany( "Syntec" )]
-[assembly: AssemblyProduct( "Syntec" )]
+[assembly: AssemblyCompany( "SYNTEC" )]
+[assembly: AssemblyProduct( "ActionsSelector" )]
 [assembly: AssemblyCopyright( "Copyright ©  2014" )]
 [assembly: AssemblyTrademark( "" )]
 [assembly: AssemblyCulture( "" )]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible( false )]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid( "2add7fc0-0cc5-468b-9ae3-058663749534" )]
+[assembly: Guid( "0ec98422-05c3-4358-9770-0ca02795e680" )]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -29,5 +29,7 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion( "1.0.0.0" )]
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+[assembly: AssemblyVersion( "1.0.*" )]
 [assembly: AssemblyFileVersion( "1.0.0.0" )]

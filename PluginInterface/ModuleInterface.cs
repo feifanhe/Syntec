@@ -189,6 +189,31 @@ namespace ModuleInterface
 				this._ObjectName = value;
 			}
 		}
+		
+		private string _ItemName;
+		public string ItemName
+		{
+			get
+			{
+				return this._ItemName;
+			}
+			set
+			{
+				this._ItemName = value;
+			}
+		}
 
+		private string _ItemValue;
+		public string ItemValue
+		{
+			get
+			{
+				return this._ItemValue;
+			}
+			set
+			{
+				this._ItemValue = value;
+			}
+		}
 	}
 }

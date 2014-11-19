@@ -18,7 +18,7 @@ namespace Fenubars.Editor
 					return serializer.CanDeserialize( xreader );
 				}
 				catch( Exception ) {
-				    return false;
+					return false;
 				}
 			}
 		}

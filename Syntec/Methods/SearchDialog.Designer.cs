@@ -84,43 +84,49 @@
 						| System.Windows.Forms.AnchorStyles.Right ) ) );
 			this.txtKeyword.Location = new System.Drawing.Point( 75, 6 );
 			this.txtKeyword.Name = "txtKeyword";
-			this.txtKeyword.Size = new System.Drawing.Size( 232, 22 );
+			this.txtKeyword.Size = new System.Drawing.Size( 327, 22 );
 			this.txtKeyword.TabIndex = 4;
 			// 
 			// cbbSearchScope
 			// 
+			this.cbbSearchScope.Anchor = ( (System.Windows.Forms.AnchorStyles)( ( ( System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left )
+						| System.Windows.Forms.AnchorStyles.Right ) ) );
 			this.cbbSearchScope.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbbSearchScope.FormattingEnabled = true;
 			this.cbbSearchScope.Location = new System.Drawing.Point( 75, 34 );
 			this.cbbSearchScope.Name = "cbbSearchScope";
-			this.cbbSearchScope.Size = new System.Drawing.Size( 232, 20 );
+			this.cbbSearchScope.Size = new System.Drawing.Size( 327, 20 );
 			this.cbbSearchScope.TabIndex = 5;
 			// 
 			// btnCancel
 			// 
-			this.btnCancel.Location = new System.Drawing.Point( 151, 104 );
+			this.btnCancel.Anchor = ( (System.Windows.Forms.AnchorStyles)( ( System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right ) ) );
+			this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.btnCancel.Location = new System.Drawing.Point( 327, 104 );
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.Size = new System.Drawing.Size( 75, 23 );
 			this.btnCancel.TabIndex = 6;
 			this.btnCancel.Text = "Cancel";
 			this.btnCancel.UseVisualStyleBackColor = true;
-			this.btnCancel.Click += new System.EventHandler( this.btnCancel_Click );
 			// 
 			// btnOK
 			// 
-			this.btnOK.Location = new System.Drawing.Point( 232, 104 );
+			this.btnOK.Anchor = ( (System.Windows.Forms.AnchorStyles)( ( System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right ) ) );
+			this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.btnOK.Location = new System.Drawing.Point( 246, 104 );
 			this.btnOK.Name = "btnOK";
 			this.btnOK.Size = new System.Drawing.Size( 75, 23 );
 			this.btnOK.TabIndex = 7;
 			this.btnOK.Text = "OK";
 			this.btnOK.UseVisualStyleBackColor = true;
-			this.btnOK.Click += new System.EventHandler( this.btnOK_Click );
 			// 
 			// SearchDialog
 			// 
+			this.AcceptButton = this.btnOK;
 			this.AutoScaleDimensions = new System.Drawing.SizeF( 6F, 12F );
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size( 319, 139 );
+			this.CancelButton = this.btnCancel;
+			this.ClientSize = new System.Drawing.Size( 414, 139 );
 			this.Controls.Add( this.btnOK );
 			this.Controls.Add( this.btnCancel );
 			this.Controls.Add( this.cbbSearchScope );
@@ -129,7 +135,11 @@
 			this.Controls.Add( this.chkMatchCase );
 			this.Controls.Add( this.lblLookIn );
 			this.Controls.Add( this.lblFindWhat );
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+			this.MaximizeBox = false;
+			this.MinimizeBox = false;
 			this.Name = "SearchDialog";
+			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Search";
 			this.ResumeLayout( false );

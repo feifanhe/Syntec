@@ -14,6 +14,7 @@ namespace Fenubars.Display
 {
 	public partial class Fenu : UserControl
 	{
+		private XMLGlobalState globalFenuState;
 		private FenuState _FenuContent;
 		private Point CursorPosition;
 
@@ -24,6 +25,21 @@ namespace Fenubars.Display
 		private FenuButtonState[] originalState;
 		private List<FenuButtonState> image;
 		private byte[] status;
+
+		public string TitleText
+		{
+			get
+			{
+				if( this.FenuTitle.Text == null ) {
+					return string.Empty;
+				}
+				return this.FenuTitle.Text;
+			}
+			set
+			{
+				this.FenuTitle.Text = value;
+			}
+		}
 
 		#region Event handlers
 
@@ -41,10 +57,11 @@ namespace Fenubars.Display
 
 		#endregion
 
-		public Fenu( FenuState AssignedFenuContent, int normalButtonCount )
+		public Fenu( XMLGlobalState globalFenuState, FenuState AssignedFenuContent, int normalButtonCount )
 		{
 			InitializeComponent();
 
+			this.globalFenuState = globalFenuState;
 			this._FenuContent = AssignedFenuContent;
 			this.normalButtonCount = normalButtonCount;
 
@@ -76,7 +93,7 @@ namespace Fenubars.Display
 				_FenuContent.EscapeButton = new FenuButtonState();
 			}
 			this.originalState[ 0 ] = _FenuContent.EscapeButton;
-			EB.SetState( _FenuContent.EscapeButton );
+			EB.SetState( this.globalFenuState, _FenuContent.EscapeButton );
 			EB.MouseDown += new MouseEventHandler( FenuButton_MouseDown );
 			EB.Modified += new EscapeButton.ButtonModifiedHandler( SetFenuModified );
 			EB.KeyDown += new KeyEventHandler( FenuButton_KeyDown );
@@ -87,7 +104,7 @@ namespace Fenubars.Display
 				_FenuContent.NextButton = new FenuButtonState();
 			}
 			this.originalState[ this.originalState.Length - 1 ] = _FenuContent.NextButton;
-			NB.SetState( _FenuContent.NextButton );
+			NB.SetState( this.globalFenuState, _FenuContent.NextButton );
 			NB.MouseDown += new MouseEventHandler( FenuButton_MouseDown );
 			NB.Modified += new NextButton.ButtonModifiedHandler( SetFenuModified );
 			NB.KeyDown += new KeyEventHandler( FenuButton_KeyDown );
@@ -109,7 +126,7 @@ namespace Fenubars.Display
 					} );
 
 				this.originalState[ i ] = FBS;
-				NRB.SetState( FBS );
+				NRB.SetState( this.globalFenuState, FBS );
 				NRB.PaintComponent( FormSplitContainer.Panel2.Controls );
 			}
 		}
@@ -140,7 +157,7 @@ namespace Fenubars.Display
 
 					// Button not occupied, then bind info to it
 					//if( !binded ) {
-					button.SetState( originalState[ index ], false );
+					button.SetState( this.globalFenuState, originalState[ index ], false );
 					//}
 
 					// Set font
@@ -169,7 +186,7 @@ namespace Fenubars.Display
 
 					// Button not occupied, then bind info to it
 					if( !binded ) {
-						button.SetState( this.image[ index ], true );
+						button.SetState( this.globalFenuState, this.image[ index ], true );
 					}
 
 					// Set font
@@ -424,7 +441,7 @@ namespace Fenubars.Display
 			FenuButtonState FBS = _FenuContent.NormalButtonList.Find(
 				delegate( FenuButtonState DummyState )
 				{
-					return ( target as NormalButton ).Name == DummyState.Name;
+					return ButtonPosition( ( target as NormalButton ).Location ) == DummyState.Position;
 				} );
 			// Copy the object to clipboard
 			ClipBoardManager<FenuButtonState>.CopyToClipboard( FBS );
@@ -459,7 +476,7 @@ namespace Fenubars.Display
 				_FenuContent.NormalButtonList[ ListIndex ] = FBS;
 
 			// Assign the binding
-			( target as NormalButton ).SetState( FBS );
+			( target as NormalButton ).SetState( this.globalFenuState, FBS );
 
 			this.SetFenuModified();
 		}
@@ -556,7 +573,7 @@ namespace Fenubars.Display
 				_FenuContent.NormalButtonList.Add( FBS );
 
 				// Set state to newly create FenuButtonState
-				( Target as NormalButton ).SetState( FBS );
+				( Target as NormalButton ).SetState( this.globalFenuState, FBS );
 			}
 
 			this.SetFenuModified();
@@ -581,7 +598,7 @@ namespace Fenubars.Display
 					} );
 
 				// Restore state to null
-				( target as NormalButton ).SetState( null );
+				( target as NormalButton ).SetState( null, null );
 
 				// Remove state from list
 				_FenuContent.NormalButtonList.RemoveAt( Index );
@@ -619,7 +636,7 @@ namespace Fenubars.Display
 				return;
 			}
 
-			Fenu fenu = Linkage.Invoke( FBS.Link);
+			Fenu fenu = Linkage.Invoke( FBS.Link );
 			// Show the information of Caller in title
 			if( fenu == null )
 				return;

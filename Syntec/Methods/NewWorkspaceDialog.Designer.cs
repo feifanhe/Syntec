@@ -87,7 +87,10 @@ namespace Syntec.Windows
 			this.Controls.Add( this.InputPanel );
 			this.Controls.Add( this.SelectionPanel );
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+			this.MaximizeBox = false;
+			this.MinimizeBox = false;
 			this.Name = "NewWorkspaceDialog";
+			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "New Workspace";
 			this.ButtonPanel.ResumeLayout( false );

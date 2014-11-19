@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Drawing;
 
 using Fenubars.Editor;
+using System.Collections;
 
 namespace Fenubars.Display
 {
@@ -17,6 +18,8 @@ namespace Fenubars.Display
 		public event DefiniteFenuOperationEventHandler CutFenu;
 		public event DefiniteFenuOperationEventHandler CopyFenu;
 		public event DefiniteFenuOperationEventHandler DeleteFenu;
+		public delegate bool RenameFenuOperationEventHandler( string oldName, string newName );
+		public event RenameFenuOperationEventHandler RenameFenu;
 
 		private readonly string CUSTOM_FENU_HEADER = "CUSTOMFENU_";
 
@@ -42,10 +45,6 @@ namespace Fenubars.Display
 			NewFenu_ToolStripMenuItem.Text = "New Fenu";
 			NewFenu_ToolStripMenuItem.Click += new EventHandler( NewFenu_ToolStripMenuItem_Click );
 
-			ToolStripMenuItem PasteFenu_ToolStripMenuItem = new ToolStripMenuItem();
-			PasteFenu_ToolStripMenuItem.Text = "Paste Fenu";
-			PasteFenu_ToolStripMenuItem.Click += new EventHandler( PasteFenu_ToolStripMenuItem_Click );
-
 			ToolStripSeparator ObjectFenu_ToolStripSeparator = new ToolStripSeparator();
 
 			ToolStripMenuItem CutFenu_ToolStripMenuItem = new ToolStripMenuItem();
@@ -56,16 +55,25 @@ namespace Fenubars.Display
 			CopyFenu_ToolStripMenuItem.Text = "Copy Fenu";
 			CopyFenu_ToolStripMenuItem.Click += new EventHandler( CopyFenu_ToolStripMenuItem_Click );
 
+			ToolStripMenuItem PasteFenu_ToolStripMenuItem = new ToolStripMenuItem();
+			PasteFenu_ToolStripMenuItem.Text = "Paste Fenu";
+			PasteFenu_ToolStripMenuItem.Click += new EventHandler( PasteFenu_ToolStripMenuItem_Click );
+
 			ToolStripMenuItem DeleteFenu_ToolStripMenuItem = new ToolStripMenuItem();
 			DeleteFenu_ToolStripMenuItem.Text = "Delete Fenu";
-			DeleteFenu_ToolStripMenuItem.Click += new EventHandler(DeleteFenu_ToolStripMenuItem_Click);
+			DeleteFenu_ToolStripMenuItem.Click += new EventHandler( DeleteFenu_ToolStripMenuItem_Click );
+
+			ToolStripMenuItem RenameFenu_ToolStripMenuItem = new ToolStripMenuItem();
+			RenameFenu_ToolStripMenuItem.Text = "Rename Fenu";
+			RenameFenu_ToolStripMenuItem.Click += new EventHandler( RenameFenu_ToolStripMenuItem_Click );
 
 			this.ObjectTree_ContextMenuStrip.Items.Add( NewFenu_ToolStripMenuItem );
-			this.ObjectTree_ContextMenuStrip.Items.Add( PasteFenu_ToolStripMenuItem );
 			this.ObjectTree_ContextMenuStrip.Items.Add( ObjectFenu_ToolStripSeparator );
 			this.ObjectTree_ContextMenuStrip.Items.Add( CutFenu_ToolStripMenuItem );
 			this.ObjectTree_ContextMenuStrip.Items.Add( CopyFenu_ToolStripMenuItem );
+			this.ObjectTree_ContextMenuStrip.Items.Add( PasteFenu_ToolStripMenuItem );
 			this.ObjectTree_ContextMenuStrip.Items.Add( DeleteFenu_ToolStripMenuItem );
+			this.ObjectTree_ContextMenuStrip.Items.Add( RenameFenu_ToolStripMenuItem );
 		}
 
 		private void RebuildForest( List<FenuState> fenus )
@@ -80,21 +88,23 @@ namespace Fenubars.Display
 		private void ObjectTree_ContextMenuStrip_Opening( object sender, System.ComponentModel.CancelEventArgs e )
 		{
 			if( ClipBoardManager<FenuState>.Available() ) {
-				this.ObjectTree_ContextMenuStrip.Items[ 1 ].Enabled = true;
+				this.ObjectTree_ContextMenuStrip.Items[ 4 ].Enabled = true;	// Paste
 			}
 			else {
-				this.ObjectTree_ContextMenuStrip.Items[ 1 ].Enabled = false;
+				this.ObjectTree_ContextMenuStrip.Items[ 4 ].Enabled = false;	// Paste
 			}
 
 			if( this.SelectedNode == null ) {
-				this.ObjectTree_ContextMenuStrip.Items[ 3 ].Enabled = false;
-				this.ObjectTree_ContextMenuStrip.Items[ 4 ].Enabled = false;
-				this.ObjectTree_ContextMenuStrip.Items[ 5 ].Enabled = false;
+				this.ObjectTree_ContextMenuStrip.Items[ 2 ].Enabled = false;	// Cut
+				this.ObjectTree_ContextMenuStrip.Items[ 3 ].Enabled = false;	// Copy
+				this.ObjectTree_ContextMenuStrip.Items[ 5 ].Enabled = false;	// Delete
+				this.ObjectTree_ContextMenuStrip.Items[ 6 ].Enabled = false;	// Rename
 			}
 			else {
-				this.ObjectTree_ContextMenuStrip.Items[ 3 ].Enabled = true;
-				this.ObjectTree_ContextMenuStrip.Items[ 4 ].Enabled = true;
-				this.ObjectTree_ContextMenuStrip.Items[ 5 ].Enabled = true;
+				this.ObjectTree_ContextMenuStrip.Items[ 2 ].Enabled = true;	// Cut
+				this.ObjectTree_ContextMenuStrip.Items[ 3 ].Enabled = true;	// Copy
+				this.ObjectTree_ContextMenuStrip.Items[ 5 ].Enabled = true;	// Delete
+				this.ObjectTree_ContextMenuStrip.Items[ 6 ].Enabled = true;	// Rename
 			}
 		}
 
@@ -102,13 +112,6 @@ namespace Fenubars.Display
 		{
 			if( this.NewFenu != null ) {
 				this.NewFenu.Invoke();
-			}
-		}
-
-		private void PasteFenu_ToolStripMenuItem_Click( object sender, EventArgs e )
-		{
-			if( this.PasteFenu != null ) {
-				this.PasteFenu.Invoke();
 			}
 		}
 
@@ -127,6 +130,13 @@ namespace Fenubars.Display
 			}
 		}
 
+		private void PasteFenu_ToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			if( this.PasteFenu != null ) {
+				this.PasteFenu.Invoke();
+			}
+		}
+
 		private void DeleteFenu_ToolStripMenuItem_Click( object sender, EventArgs e )
 		{
 			if( this.DeleteFenu != null ) {
@@ -134,7 +144,36 @@ namespace Fenubars.Display
 			}
 		}
 
+		private void RenameFenu_ToolStripMenuItem_Click( object sender, EventArgs e )
+		{
+			this.SelectedNode.BeginEdit();
+		}
 
+
+		private void ObjectTree_AfterLabelEdit( object sender, NodeLabelEditEventArgs e )
+		{
+			if( e.CancelEdit ) {
+				e.Node.EndEdit( true );
+			}
+			else if( e.Label == null || e.Label.Length == 0 ) {
+				e.CancelEdit = true;
+			}
+			else {
+				if( this.RenameFenu != null ) {
+					string originalName = e.Node.Name;
+					if( !this.RenameFenu.Invoke( originalName, e.Label ) ) {
+						MessageBox.Show( "Invalid fenu name.\nThe fenu name already exists.", "Rename Fenu" );
+						e.CancelEdit = true;
+						e.Node.BeginEdit();
+					}
+					else {
+						e.Node.Name = e.Label;
+						e.Node.Text = e.Label;
+						e.Node.EndEdit( false );
+					}
+				}
+			}
+		}
 
 		#endregion
 
@@ -155,7 +194,8 @@ namespace Fenubars.Display
 			List<string> links = new List<string>();
 
 			//// Add links from Escape Button
-			//links.AddRange( ParseLinksFromButton( fenu.EscapeButton ) );
+			if( fenu.EscapeButton != null )
+				links.AddRange( ParseLinksFromButton( fenu.EscapeButton ) );
 			// ^ Causing stack overflow
 
 			// Add links from Normal Buttons
@@ -203,6 +243,25 @@ namespace Fenubars.Display
 					ConstructTree( Tree, Leaf );
 				}
 			}
+			
+			this.TreeViewNodeSorter = new FenuTreeSorter();
+			this.Sort();
+		}
+
+		public class FenuTreeSorter : IComparer
+		{
+			public int Compare( object x, object y )
+			{
+				TreeNode tx = x as TreeNode;
+				TreeNode ty = y as TreeNode;
+
+				// main has highest priority
+				if( tx.Text == "main" )
+					return -1;
+
+				// else call Compare
+				return string.Compare( tx.Text, ty.Text );
+			}
 		}
 
 		private void ConstructTree( TreeNode Tree, FenuLink Parent )
@@ -211,12 +270,43 @@ namespace Fenubars.Display
 				return;
 			}
 			foreach( string ChildName in Parent.Links ) {
-				if( !IsInForest( ChildName ) && !IsInTree( Tree, ChildName ) ) {
+				if( IsTreeRoot( ChildName ) && !IsAncestor( Tree, ChildName ) ) {
+					TreeNode temp = this.Nodes[ ChildName ];
+					this.Nodes[ ChildName ].Remove();
+					Tree.Nodes.Add( temp );
+				}
+				else if( !IsInForest( ChildName ) ) {
 					Tree.Nodes.Add( ChildName, ChildName, 0, 0 );
 					TreeNode Subtree = Tree.Nodes[ ChildName ];
 					FenuLink Child = FindFenuLinkByName( ChildName );
 					ConstructTree( Subtree, Child );
 				}
+			}
+		}
+
+		private bool IsTreeRoot( string LeafName )
+		{
+			// Preserve main
+			if( LeafName == "main" ) {
+				return false;
+			}
+
+			if( this.Nodes.ContainsKey( LeafName ) ) {
+				return true;
+			}
+			return false;
+		}
+
+		private bool IsAncestor( TreeNode Tree, string LeafName )
+		{
+			if( Tree == null ) {
+				return false;
+			}
+			else if( Tree.Text == LeafName ) {
+				return true;
+			}
+			else {
+				return IsAncestor( Tree.Parent, LeafName );
 			}
 		}
 
@@ -252,7 +342,7 @@ namespace Fenubars.Display
 
 		private FenuLink FindFenuLinkByName( string name )
 		{
-			return 
+			return
 				links.Find( delegate( FenuLink selectedFenuLink )
 				{
 					return selectedFenuLink.Name == name;
@@ -260,6 +350,7 @@ namespace Fenubars.Display
 		}
 
 		#endregion
+
 
 	}
 

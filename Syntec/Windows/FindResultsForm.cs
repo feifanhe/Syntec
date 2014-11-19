@@ -29,7 +29,7 @@ namespace Syntec.Windows
 
 		public void AddItem( DocumentsForm host, ModuleInterface.SearchResult searchResult )
 		{
-			string displayName = host.XMLPath + " : " + searchResult.ObjectName;
+			string displayName = host.XMLPath + " - " + searchResult.ObjectName + " : " + searchResult.ItemName + " ( " + searchResult.ItemValue + " )";
 			ListViewItem newItem = new ListViewItem( displayName, 0 );
 			newItem.Tag = searchResult;
 			this.FindResults_ListView.Items.Add( newItem );

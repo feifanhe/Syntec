@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml.Serialization;
 using System.ComponentModel;
+using System.Drawing;
 
 namespace Fenubars.XML
 {
@@ -13,6 +14,7 @@ namespace Fenubars.XML
 
 		private bool _Button3D = true;
 		[Category( "Global" )]
+		[XmlElement( "Button3D" )]
 		[DefaultValue( true )]
 		public bool Button3D
 		{
@@ -28,6 +30,7 @@ namespace Fenubars.XML
 
 		private int _Level3D = 4;
 		[Category( "Global" )]
+		[XmlElement( "Level3D" )]
 		[DefaultValue( 4 )]
 		public int Level3D
 		{
@@ -43,6 +46,7 @@ namespace Fenubars.XML
 
 		private bool _NoFunc = false;
 		[Category( "Global" )]
+		[XmlElement( "NoFunc" )]
 		[DefaultValue( false )]
 		public bool NoFunc
 		{
@@ -58,6 +62,7 @@ namespace Fenubars.XML
 
 		private bool _NoLR = false;
 		[Category( "Global" )]
+		[XmlElement( "NoLR" )]
 		[DefaultValue( false )]
 		public bool NoLR
 		{
@@ -73,6 +78,7 @@ namespace Fenubars.XML
 
 		private bool _BigLR = false;
 		[Category( "Global" )]
+		[XmlElement( "BigLR" )]
 		[DefaultValue( false )]
 		public bool BigLR
 		{
@@ -88,6 +94,7 @@ namespace Fenubars.XML
 
 		private bool _TextOverPic = false;
 		[Category( "Global" )]
+		[XmlElement( "TextOverPic" )]
 		[DefaultValue( false )]
 		public bool TextOverPic
 		{
@@ -103,6 +110,7 @@ namespace Fenubars.XML
 
 		private string _Title;
 		[Category( "Global" )]
+		[XmlElement( "Title" )]
 		[ReadOnly( true )]
 		[Browsable( false )]
 		public string Title
@@ -117,18 +125,85 @@ namespace Fenubars.XML
 			}
 		}
 
-		private int _Alignment = 1;
-		[Category( "Global" )]
+		private int _AlignmentIndex = 1;
+		[XmlElement( "Alignment" )]
 		[DefaultValue( 1 )]
-		public int Alignment
+		[Browsable(false)]
+		public int AlignmentIndex
 		{
 			get
 			{
-				return _Alignment;
+				return _AlignmentIndex;
 			}
 			set
 			{
-				_Alignment = value;
+				_AlignmentIndex = value;
+			}
+		}
+
+		[XmlIgnore]
+		[Category( "Global" )]
+		public ContentAlignment Alignment
+		{
+			get
+			{
+				switch( _AlignmentIndex ) {
+					case 1:
+						return ContentAlignment.TopLeft;
+					case 2:
+						return ContentAlignment.TopCenter;
+					case 3:
+						return ContentAlignment.TopRight;
+					case 4:
+						return ContentAlignment.MiddleLeft;
+					case 5:
+						return ContentAlignment.MiddleCenter;
+					case 6:
+						return ContentAlignment.MiddleRight;
+					case 7:
+						return ContentAlignment.BottomLeft;
+					case 8:
+						return ContentAlignment.BottomCenter;
+					case 9:
+						return ContentAlignment.BottomRight;
+					default:
+						return ContentAlignment.TopLeft;
+				}
+			}
+			set
+			{
+				switch( value ) {
+					case ContentAlignment.TopLeft:
+						this._AlignmentIndex = 1;
+						break;
+					case ContentAlignment.TopCenter:
+						this._AlignmentIndex = 2;
+						break;
+					case ContentAlignment.TopRight:
+						this._AlignmentIndex = 3;
+						break;
+					case ContentAlignment.MiddleLeft:
+						this._AlignmentIndex = 4;
+						break;
+					case ContentAlignment.MiddleCenter:
+						this._AlignmentIndex = 5;
+						break;
+					case ContentAlignment.MiddleRight:
+						this._AlignmentIndex = 6;
+						break;
+					case ContentAlignment.BottomLeft:
+						this._AlignmentIndex = 7;
+						break;
+					case ContentAlignment.BottomCenter:
+						this._AlignmentIndex = 8;
+						break;
+					case ContentAlignment.BottomRight:
+						this._AlignmentIndex = 9;
+						break;
+					default:
+						this._AlignmentIndex = 1;
+						break;
+				}
 			}
 		}
 
