@@ -1,0 +1,114 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{126634A3-FB20-4127-9699-81E7E79A472B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fenubars</RootNamespace>
+    <AssemblyName>Fenubars</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Syntec\bin\Debug\Modules\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Buttons\EscapeButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Buttons\EscapeButton.Designer.cs">
+      <DependentUpon>EscapeButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Buttons\NextButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Buttons\NextButton.Designer.cs">
+      <DependentUpon>NextButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Buttons\NormalButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Buttons\NormalButton.Designer.cs">
+      <DependentUpon>NormalButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Display\Fenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Display\Fenu.Designer.cs">
+      <DependentUpon>Fenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Display\ObjectTree.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Display\ObjectTree.Designer.cs">
+      <DependentUpon>ObjectTree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editor\ClipBoardManager.cs" />
+    <Compile Include="Events\NotifyProperyChangedBase.cs" />
+    <Compile Include="Handler.cs" />
+    <Compile Include="Mirror.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="XML\States\BindingConverter.cs" />
+    <Compile Include="XML\States\ButtonTypeAttribute.cs" />
+    <Compile Include="XML\States\FenuButtonState.cs" />
+    <Compile Include="XML\States\MiscOptions.cs" />
+    <Compile Include="XML\FenuState.cs" />
+    <Compile Include="XML\XMLGlobalState.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Display\Fenu.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Fenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Display\ObjectTree.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ObjectTree.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PluginInterface\ModuleInterface.csproj">
+      <Project>{00D0C21D-D94C-4B0F-A710-1EFBABB4C4C6}</Project>
+      <Name>ModuleInterface</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

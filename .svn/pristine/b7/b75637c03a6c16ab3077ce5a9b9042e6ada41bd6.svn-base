@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Category name="All" desc="A workspace for creating a Res folder for all controller.">
+	<Template name="Default" value="" desc="A workspace for creating a Res folder for all controller." />
+	<Category name="Arm" desc="A workspace for creating a Res folder for Arm-based CNC controller.">
+		<Template name="Default" value="" desc="A workspace for creating a Res folder for Arm-based CNC controller." />
+		<Category name="Cutting" desc="A workspace for creating a Res folder for Cutting CNC controller.">
+			<Template name="Default"	value="" 	desc="A workspace for creating a Res folder for Cutting CNC controller." />
+			<Template name="6A" 		value="6A" 	desc="A workspace for creating a Res folder for 6A controller." />
+			<Template name="6B" 		value="6B" 	desc="A workspace for creating a Res folder for 6B controller." />
+		</Category>
+		<Category name="HC" desc="A workspace for creating a Res folder for HC CNC controller.">
+			<Template name="Default" 	value="" 	desc="A workspace for creating a Res folder for HC CNC controller." />
+			<Template name="8A" 		value="8A"	desc="A workspace for creating a Res folder for 8A controller." />
+			<Template name="8B" 		value="8B"	desc="A workspace for creating a Res folder for 8B controller." />
+			<Template name="10A" 		value="10A"	desc="A workspace for creating a Res folder for 10A controller." />
+			<Template name="10B" 		value="10B"	desc="A workspace for creating a Res folder for 10B controller." />
+		</Category>
+		<Category name="Lathe" desc="A workspace for creating a Res folder for Lathe CNC controller.">
+			<Template name="Default" 	value="" 	desc="A workspace for creating a Res folder for Lathe CNC controller." />
+			<Template name="11A" 		value="11A" desc="A workspace for creating a Res folder for 11A controller." />
+			<Template name="11B" 		value="11B"	desc="A workspace for creating a Res folder for 11B controller." />
+			<Template name="21A" 		value="21A"	desc="A workspace for creating a Res folder for 21A controller." />
+			<Template name="21B" 		value="21B"	desc="A workspace for creating a Res folder for 21B controller." />
+		</Category>
+		<Category name="Mill" desc="A workspace for creating a Res folder for Mill CNC controller.">
+			<Template name="Default" 	value="" 	desc="A workspace for creating a Res folder for Cutting CNC controller." />
+			<Template name="6D" 		value="6D" 	desc="A workspace for creating a Res folder for 6D controller." />
+			<Template name="11A" 		value="11A"	desc="A workspace for creating a Res folder for 11A controller." />
+			<Template name="11B" 		value="11B"	desc="A workspace for creating a Res folder for 11B controller." />
+			<Template name="21A" 		value="21A"	desc="A workspace for creating a Res folder for 21A controller." />
+		</Category>
+		<Category name="Robot" desc="A workspace for creating a Res folder for Robot CNC controller.">
+			<Template name="Default" 	value="" 	desc="A workspace for creating a Res folder for Robot CNC controller." />
+			<Template name="21R" 		value="21R"	desc="A workspace for creating a Res folder for 21R controller." />
+		</Category>
+	</Category>
+	<Category name="x86" desc="A workspace for creating a Res folder for x86-based CNC controller.">
+		<Template name="Default" value="" desc="A workspace for creating a Res folder for x86-based CNC controller." />
+		<Category name="Lathe" desc="A workspace for creating a Res folder for Lathe CNC controller.">
+			<Template name="Default"	value=""	desc="A workspace for creating a Res folder for Lathe CNC controller." />
+		</Category>
+		<Category name="Mill" desc="A workspace for creating a Res folder for Mill CNC controller.">
+			<Template name="Default"	value=""	desc="A workspace for creating a Res folder for Mill CNC controller." />
+		</Category>
+	</Category>
+</Category>

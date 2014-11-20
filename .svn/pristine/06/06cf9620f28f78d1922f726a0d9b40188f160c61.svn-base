@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Categories>
+	<Category name="切換頁面">
+		<Action name="切換至客製頁面" value="CUSTOMXML">
+			<Description>
+提供將客戶自訂的畫面設定檔（符合OCBrowser格式，並位於Appdata資料夾）載入並顯示在畫面上，請在下方輸入欄填入您要的頁面名稱
+
+範例：切換至「SamplePage.xml」畫面檔&#x0D;&#x0A;
+輸入：SamplePage
+			</Description>
+			<Form>
+				<TextBox null="false" separator="_" prefix="" postfix=".xml" />
+			</Form>
+		</Action>
+		<Action name="切換至設定工件座標系統頁面" value="ShowMenuWorkPieceCord">
+			<Description>
+切換至設定工件座標系統頁面
+			</Description>
+		</Action>
+	</Category>
+	<Category name="其它">
+		<Action name="自行定義" value="">
+			<Description>
+請在下方輸入欄填入Action
+
+範例：執行自定義動作「SelfDefine_Action」
+輸入：SelfDefine_Action
+			</Description>
+			<Form>
+				<TextBox size="large" separator="" prefix="" postfix="" />
+				<TextBox size="medium" separator="" prefix="" postfix="" />
+				<TextBox size="medium" separator="" prefix="" postfix="" />
+				<TextBox size="small" separator="" prefix="" postfix="" />
+				<TextBox size="small" separator="" prefix="" postfix="" />
+				<TextBox size="small" separator="" prefix="" postfix="" />
+				<TextBox size="small" separator="" prefix="" postfix="" />
+			</Form>
+		</Action>
+	</Category>
+</Categories>

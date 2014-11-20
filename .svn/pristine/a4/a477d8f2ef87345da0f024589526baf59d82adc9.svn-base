@@ -1,0 +1,111 @@
+﻿<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="XMLType" targetNamespace="XMLType" elementFormDefault="qualified">
+  <xsd:element name="root" type="tns:Fenubars" />
+  
+  <!-- START Common fenubars configurations -->
+  <xsd:complexType name="Fenubars">
+    <xsd:sequence>
+      <xsd:element name="NoLR" type="xsd:boolean" minOccurs="0" maxOccurs="1" />
+      <xsd:element name="Button3D" type="xsd:boolean" minOccurs="0" maxOccurs="1" />
+      <xsd:element name="Level3D" type="xsd:decimal" minOccurs="0" maxOccurs="1" />
+      <xsd:element name="TextOverPic" type="xsd:boolean" minOccurs="0" maxOccurs="1" />
+      <xsd:element name="NoFunc" type="xsd:boolean" minOccurs="0" maxOccurs="1" />
+      <xsd:element name="BigLR" type="xsd:boolean" minOccurs="0" maxOccurs="1" />
+      <xsd:element name="Alignment" type="xsd:decimal" minOccurs="0" maxOccurs="1" />
+      <xsd:element name="fenu" type="tns:Fenu" minOccurs="0" maxOccurs="unbounded" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <!-- END Common fenubars configurations-->
+  
+  <!-- START General definition of a fenubar -->
+  <xsd:complexType name="Fenu">
+    <xsd:sequence>
+      <xsd:element name="escape" type="tns:EscapeButton" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="button" type="tns:NormalButton" minOccurs="0" maxOccurs="8"/>
+      <xsd:element name="next" type="tns:NextButton" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+    <xsd:attribute name="name" type="xsd:string" />
+  </xsd:complexType>
+  <!-- END General definition of a fenubar -->
+  
+  <xsd:complexType name="EscapeButton">
+    <xsd:sequence>
+      <xsd:group ref="tns:MutualDef" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="pwd" type="tns:PwdActions" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+    <xsd:attribute name="name" type="xsd:string" />
+  </xsd:complexType>
+  
+  <xsd:complexType name="NormalButton">
+    <xsd:sequence>
+      <xsd:group ref="tns:MutualDef" minOccurs="1" maxOccurs="1"/>
+      
+      <xsd:element name="position" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+      
+      <xsd:element name="visible" type="xsd:boolean"  minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="picture" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+      
+      <xsd:element name="userlevel" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="forecolor" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="backcolor" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="lightoncolor" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="holdmode" type="xsd:boolean"  minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="alignment" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+      
+      <xsd:element name="invisibledevice" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+
+      
+      <xsd:element name="pwd" type="tns:PwdActions" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+    <xsd:attribute name="name" type="xsd:string" />
+  </xsd:complexType>
+  
+  <xsd:complexType name="NextButton">
+    <xsd:sequence>
+      <xsd:group ref="tns:MutualDef" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="userlevel" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+    <xsd:attribute name="name" type="xsd:string" />
+  </xsd:complexType>
+  
+  <!-- START Mutual definition of buttons -->
+  <xsd:group name="MutualDef">
+    <xsd:sequence>
+      <xsd:element name="title" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="state" type="tns:State"  minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="action" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="actions" type="tns:Actions" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="link" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="enablerule" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:group>
+  <!-- END Mutual definition of buttons -->
+  
+  <xsd:simpleType name="State">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="enable" />
+      <xsd:enumeration value="disable" />
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:complexType name="Actions">
+    <xsd:sequence>
+      <xsd:element name="action" type="xsd:string" minOccurs="2" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="PwdActions">
+    <xsd:sequence>
+      <xsd:element name="value" type="xsd:decimal"/>
+      <xsd:element name="cor" type="tns:ActionCollection" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="incor" type="tns:ActionCollection" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ActionCollection">
+    <xsd:sequence>
+      <xsd:element name="action" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="actions" type="tns:Actions" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>
+ 
